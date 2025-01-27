@@ -27,7 +27,7 @@ export const CartProvider = ({ children }) => {
 
     const handleCartProtected = () => {
         setIsCartProtected(!isCartProtected);
-
+        console.log("handle cart protected", isCartProtected)
         setCartProducts((prevCart) => ({
             ...prevCart,
             is_all_protected: prevCart.is_all_protected === 0 ? 1 : 0,

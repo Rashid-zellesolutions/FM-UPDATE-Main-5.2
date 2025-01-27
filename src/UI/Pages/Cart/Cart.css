@@ -36,6 +36,7 @@
     width: 30%;
     height: auto;
     padding-top: 90px;
+    margin-top: 105px;
     /* border: 1px solid black; */
     position: relative;
 }
@@ -166,6 +167,7 @@
 .cart-order-summary-price-detail-single-item {
     display: flex;
     width: 100%;
+    padding: 10px 0;
     align-items: center;
     justify-content: space-between;
 }
@@ -372,7 +374,7 @@ mobile-cart-order-summary-total{
     padding: 11px;
     align-items: center;
     justify-content: center;
-    background-color: var(--active-nav-item-color);
+    background-color: var(--text-color);
     color: #fff;
     border-radius: 5px;
     border: none;

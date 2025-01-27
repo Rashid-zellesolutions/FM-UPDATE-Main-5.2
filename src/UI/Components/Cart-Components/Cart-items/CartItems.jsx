@@ -16,6 +16,8 @@ import guardIcon from '../../../../Assets/icons/guard-icon.png';
 import { IoInformationCircle } from "react-icons/io5";
 import check from "../../../../Assets/check.png";
 import { useList } from '../../../../context/wishListContext/wishListContext';
+import { FaArrowsRotate } from "react-icons/fa6";
+import ToggleSwitch from '../../../../Global-Components/ToggleSwitch/ToggleSwitch';
 
 const CartItems = ({
     cartProductName,
@@ -34,8 +36,13 @@ const CartItems = ({
     regular_price,
     isProtected,
     removeProtection,
-    addProtection
+    addProtection,
+    totalProducts
 }) => {
+
+    console.log("product data", productData)
+
+    console.log("total product on card page", totalProducts)
 
     // States and variables
     const {
@@ -83,18 +90,18 @@ const CartItems = ({
     };
 
     const { addToList, removeFromList, isInWishList } = useList()
-      const handleWishList = (item) => {
+    const handleWishList = (item) => {
         console.log("item uid", item)
-        console.log("item uid type", item.isVariable===1 ? item.variation_uid : item.product_uid, item.isVariable === 1)
-    
+        console.log("item uid type", item.isVariable === 1 ? item.variation_uid : item.product_uid, item.isVariable === 1)
+
         if (isInWishList(item?.product_uid)) {
-          removeFromList(item?.product_uid)
+            removeFromList(item?.product_uid)
         } else {
-          addToList(item)
-           handleRomoveProduct();
+            addToList(item)
+            handleRomoveProduct();
             console.log("item added in wish list and deleted from cart")
         }
-      }
+    }
 
     return (
         <>
@@ -132,36 +139,129 @@ const CartItems = ({
             </div>
 
             {/* Desktop view Card */}
-            <div className={`desktop-cart-product`}>
+            <div className={`desktop-cart-product`} style={{ borderBottom: totalProducts > 1 ? '1px solid #d7d7d7' : 'none' }} >
 
                 <div className='desktop-cart-product-image'>
                     <img src={`${url}${cartPRoductImage}`} alt='product image' />
                 </div>
                 <div className='desktop-cart-containt-section'>
-                    <button className={`cross-btn ${isCartOpen ? 'hide-cross-btn' : ''}`} onClick={handleRomoveProduct}>
-                        <img src={crossBtn} alt='cross' />
-                    </button>
-                    <div className='desktop-name-and-single-price'>
-                        <h3>{cartProductName}</h3>
-                        {attributes && attributes.map((item, index) => {
-                            return (
-                                <p className='desktop-product-extra-info'>{item?.options[0].name}</p>
-                            )
-                        })}
-                        <div className='cart-side-section-price-and-count'>
-                            <p><del style={{
-                                color: "#989898"
-                            }} >{formatedRegularPrice}</del></p>
-                            <p>{formatedSalePrice}</p>
+                    <div className='desktop-cart-content-section-one'>
+                        <button className={`cross-btn ${isCartOpen ? 'hide-cross-btn' : ''}`} onClick={handleRomoveProduct}>
+                            <img src={crossBtn} alt='cross' />
+                        </button>
+                        <button className='save-for-leter' onClick={(e) => { e.stopPropagation(); handleWishList(productData) }}>
+                            {/* <img src={rotatedArrow} className={`${saveForLeter ? 'arrow-rotate' : ''}`} />  */}
+                            <FaArrowsRotate color='#595959' size={15} />
+                            Save For Later
+                        </button>
+                        <div className='desktop-name-and-single-price'>
+                            <h3>{cartProductName}</h3>
+                            {attributes && attributes.map((item, index) => {
+                                return (
+                                    <p className='desktop-product-extra-info'>{item?.options[0].name}</p>
+                                )
+                            })}
+                            <div className='cart-side-section-price-and-count'>
+                                <p><del style={{
+                                    color: "#595959", opacity: 0.8
+                                }} >{formatedRegularPrice}</del></p>
+                                <p>{formatedSalePrice}</p>
+                            </div>
+
+                            {/* <div className='desktop-card-protection-div'>
+                                <div className='guard-and-heading'>
+                                    <img effect='blur' src={guardIcon} alt='guard' className='protection-guard-icon' />
+                                    <div className='guard-title-and-details'>
+                                        <div className='guard-title-and-details-head'>
+                                            <h3 className='protection-guard-title'>Platinum Elite Furniture</h3>
+                                            <IoInformationCircle className='eye_icon' onClick={toggleDetails} />
+                                        </div>
+                                        <span className='protection-details-and-message'>
+                                            <p className='protection-price-message'>
+                                                {(cartProducts.is_all_protected === 1 || isProtected === 1) ? "Price shown in summary" : "$99"}
+                                            </p>
+                                            <div className={`detail-container ${isOpen ? 'open' : ''}`}>
+                                                <p className='protection-price-message detail'>
+                                                    Our Elite Furniture Protection Plan covers accidental stains and damage to your new fabric, leather, and wood (and other hard surfaces) furniture.
+                                                </p>
+                                                <Link>Details</Link>
+                                            </div>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                {cartProducts.is_all_protected === 1 ? <div className="protection-all-protected">
+                                    <img src={check} alt="" srcset="" />
+                                    <p>Protection Applied</p>
+                                </div>
+                                    : <div className='protection-btns-accept-and-cancel'>
+                                        <button
+                                            className={`protection-buttons protect-no-thanks ${isProtectionClicked === 'no-thanks' ? 'select-not-protection' : ''}`}
+                                            onClick={() => { handleProtectOrNotButtonClicked('no-thanks'); removeProtection() }}
+                                        >
+                                            No Thanks
+                                        </button>
+                                        <button
+                                            className={`protection-buttons protect-yes-protect ${isProtectionClicked === 'yes-protect' ? 'selected-yes-protect' : ''}`}
+                                            onClick={() => { handleProtectOrNotButtonClicked('yes-protect'); addProtection() }}
+                                        >
+                                            Yes Protect it
+                                        </button>
+                                    </div>}
+                            </div> */}
+
+                        </div>
+                        {/* <div className={`desktop-quantity-and-save-for-leter ${isCartOpen ? 'hide-quantity' : ''}`}>
+                            <div className='desktop-quantity'>
+                                <button onClick={handleDecreament}>
+                                    <img src={minusCharcol} alt='minus' />
+                                </button>
+                                <p>{quantity}</p>
+                                <button onClick={handleIncreament}>
+                                    <img src={plusCharcol} alt='plus' />
+                                </button>
+                            </div>
+                        </div> */}
+
+                        <div className={`desktop-total-price-and-remove-item ${isCartOpen ? 'hide-total-and-remove-item' : ''}`}>
+
+                            <div className='desktop-quantity'>
+                                <button onClick={handleDecreament}>
+                                    <img src={minusCharcol} alt='minus' />
+                                </button>
+                                <p className='cart-product-quantity'>{quantity}</p>
+                                <button onClick={handleIncreament}>
+                                    <img src={plusCharcol} alt='plus' />
+                                </button>
+                            </div>
+
+                            <p className='cart-product-card-total-price'>{formatedTotalPrice}</p>
+                            {/* <button className='save-for-leter' onClick={(e) => { e.stopPropagation(); handleWishList(productData) }}>
+                                <img src={rotatedArrow} className={`${saveForLeter ? 'arrow-rotate' : ''}`} /> Save For Later
+                            </button> */}
                         </div>
 
+                        <div className={isCartOpen ? 'cart-open-quantity-and-total-price' : 'cart-close-quantity-and-total-price'}>
+                            <div className='desktop-quantity'>
+                                <button onClick={handleDecreament}>
+                                    <img src={minusCharcol} alt='minus' />
+                                </button>
+                                <p>{quantity}</p>
+                                <button onClick={handleIncreament}>
+                                    <img src={plusCharcol} alt='plus' />
+                                </button>
+                            </div>
+                            <p className='cart-open-total-price'>{formatedTotalPrice}</p>
+                        </div>
+                    </div>
+                    <div className='desktop-cart-product-content-section-two'>
                         <div className='desktop-card-protection-div'>
                             <div className='guard-and-heading'>
                                 <img effect='blur' src={guardIcon} alt='guard' className='protection-guard-icon' />
                                 <div className='guard-title-and-details'>
                                     <div className='guard-title-and-details-head'>
                                         <h3 className='protection-guard-title'>Platinum Elite Furniture</h3>
-                                        <IoInformationCircle className='eye_icon' onClick={toggleDetails} />
+                                        {/* <IoInformationCircle className='eye_icon' onClick={toggleDetails} /> */}
                                     </div>
                                     <span className='protection-details-and-message'>
                                         <p className='protection-price-message'>
@@ -180,52 +280,35 @@ const CartItems = ({
                             {cartProducts.is_all_protected === 1 ? <div className="protection-all-protected">
                                 <img src={check} alt="" srcset="" />
                                 <p>Protection Applied</p>
-                            </div> 
-                            : <div className='protection-btns-accept-and-cancel'>
-                                <button
-                                    className={`protection-buttons protect-no-thanks ${isProtectionClicked === 'no-thanks' ? 'select-not-protection' : ''}`}
-                                    onClick={() => { handleProtectOrNotButtonClicked('no-thanks'); removeProtection() }}
-                                >
-                                    No Thanks
-                                </button>
-                                <button
-                                    className={`protection-buttons protect-yes-protect ${isProtectionClicked === 'yes-protect' ? 'selected-yes-protect' : ''}`}
-                                    onClick={() => { handleProtectOrNotButtonClicked('yes-protect'); addProtection() }}
-                                >
-                                    Yes Protect it
-                                </button>
-                            </div>}
+                            </div>
+                                : <div className='protection-btns-accept-and-cancel'>
+                                    {/* <button
+                                            className={`protection-buttons protect-no-thanks ${isProtectionClicked === 'no-thanks' ? 'select-not-protection' : ''}`}
+                                            onClick={() => { handleProtectOrNotButtonClicked('no-thanks'); removeProtection() }}
+                                        >
+                                            No Thanks
+                                        </button>
+                                        <button
+                                            className={`protection-buttons protect-yes-protect ${isProtectionClicked === 'yes-protect' ? 'selected-yes-protect' : ''}`}
+                                            onClick={() => { handleProtectOrNotButtonClicked('yes-protect'); addProtection() }}
+                                        >
+                                            Yes Protect it
+                                        </button> */}
+                                    <ToggleSwitch
+                                        id={`protection-toggle-${productData.product_uid}`}
+                                        checked={isProtectionClicked === 'yes-protect'}
+                                        onChange={() => {
+                                            if (isProtectionClicked === 'yes-protect') {
+                                                handleProtectOrNotButtonClicked('no-thanks');
+                                                removeProtection();
+                                            } else {
+                                                handleProtectOrNotButtonClicked('yes-protect');
+                                                addProtection();
+                                            }
+                                        }}
+                                    />
+                                </div>}
                         </div>
-
-                    </div>
-                    <div className={`desktop-quantity-and-save-for-leter ${isCartOpen ? 'hide-quantity' : ''}`}>
-                        <div className='desktop-quantity'>
-                            <button onClick={handleDecreament}>
-                                <img src={minusCharcol} alt='minus' />
-                            </button>
-                            <p>{quantity}</p>
-                            <button onClick={handleIncreament}>
-                                <img src={plusCharcol} alt='plus' />
-                            </button>
-                        </div>
-                    </div>
-                    <div className={`desktop-total-price-and-remove-item ${isCartOpen ? 'hide-total-and-remove-item' : ''}`}>
-                        <p>{formatedTotalPrice}</p>
-                        <button className='save-for-leter' onClick={(e) => { e.stopPropagation(); handleWishList(productData) }}>
-                            <img src={rotatedArrow} className={`${saveForLeter ? 'arrow-rotate' : ''}`} /> Save For Later
-                        </button>
-                    </div>
-                    <div className={isCartOpen ? 'cart-open-quantity-and-total-price' : 'cart-close-quantity-and-total-price'}>
-                        <div className='desktop-quantity'>
-                            <button onClick={handleDecreament}>
-                                <img src={minusCharcol} alt='minus' />
-                            </button>
-                            <p>{quantity}</p>
-                            <button onClick={handleIncreament}>
-                                <img src={plusCharcol} alt='plus' />
-                            </button>
-                        </div>
-                        <p className='cart-open-total-price'>{formatedTotalPrice}</p>
                     </div>
                 </div>
             </div>

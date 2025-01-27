@@ -73,14 +73,6 @@ const Cart = () => {
   const subTotalOfAllProducts = cart.map(item => item.product.sub_total);
   const subtotal = subTotalOfAllProducts.reduce((acc, value) => acc + value, 0)
 
-  // const formatePrice = (price) => {
-  //   return new Intl.NumberFormat('en-us', {
-  //     style: 'currency',
-  //     currency: 'USD'
-  //   }).format(price)
-  // }
-
-
   const protectionPrice = isCheck[0] ? 210 : 0;
   const assemblyPrice = isCheck[1] ? 250 : 0;
   const shipping = 109;
@@ -143,7 +135,6 @@ const Cart = () => {
   const handleQuickViewOpen = (item) => {
     setQuickView(true);
     setQuickViewProduct(item)
-
   }
 
   const handleQuickViewClose = () => {
@@ -151,14 +142,8 @@ const Cart = () => {
   }
 
   const navigateToCheckout = () => {
-
     navigate("/check-out");
   }
-
-
-  const handleProductClick = (item) => {
-    navigate(`/product/${item.slug}`, { state: item })
-  };
 
   // Slick
   let settings = {
@@ -256,7 +241,7 @@ const Cart = () => {
           <div className='cart-order-summery-inner-section'>
             <h3 className='cart-order-summary-heading'>Order Summary</h3>
 
-            <div className='proffesional-assembly-check-sec'>
+            {/* <div className='proffesional-assembly-check-sec'>
               <label className='order-summary-proffesional-check-item-label'>
                 <input
                   type="checkbox"
@@ -267,10 +252,10 @@ const Cart = () => {
                 Professional Assembly (+ $210)
               </label>
               <p className='order-summary-proffesional-check-item-detail'>Use professional assembly for all products and save up to $80</p>
-            </div>
+            </div> */}
 
             {/* {cartProducts.products.length > 1 ? ( */}
-            <div className='proffesional-assembly-check-sec'>
+            {/* <div className='proffesional-assembly-check-sec'>
               <label className='order-summary-proffesional-check-item-label'>
                 <input
                   type="checkbox"
@@ -281,7 +266,7 @@ const Cart = () => {
                 Elite Platinum Furniture Protection(+ $199)
               </label>
               <p className='order-summary-proffesional-check-item-detail'>Use professional assembly for all products and save up to $80</p>
-            </div>
+            </div> */}
 
             <div className='cart-order-summary-price-details'>
               {filteredOrderPriceDetails.map((price, index) => (
@@ -291,7 +276,7 @@ const Cart = () => {
                 </div>
               ))}
 
-              <div className='cart-order-summary-zip-code'>
+              {/* <div className='cart-order-summary-zip-code'>
                 <span className='cart-order-summary-zip-code-heading'>
                   <p>Deliver to:</p>
                   <h3 onClick={handleZipInput}>{info?.locationData.state} {info?.locationData.stateCode} <IoIosArrowDown className={`cart-order-summary-zip-arrow ${isZipUpdateOpen ? 'cart-order-summary-zip-arrow-rotate' : ''}`} size={20} /> </h3>
@@ -308,9 +293,9 @@ const Cart = () => {
                     <button className='cart-summary-update-zip-btn' onClick={async () => { await handleButtonClick(); }}>Update</button>
                   </div>
                 </div>
-              </div>
+              </div> */}
 
-              <div className="delivery-option-container">
+              {/* <div className="delivery-option-container">
                 <span className='order-summary-deliver-to'>
                   <p className='delivery-opt-heading' >Delivery Options :</p>
                   {selectedOption?.id === 'METHOD-2' ? <p className='delivery-opt-heading'>{formatedPrice(selectedOption?.cost)}</p> : <></>}
@@ -352,7 +337,7 @@ const Cart = () => {
                       </div>
                     </label>
                   ))}
-              </div>
+              </div> */}
 
               <div className='order-summary-coupon-div'>
                 <p onClick={handleCouponInput}>Add Coupon Code <IoIosArrowDown className={`cart-order-summary-coupon-arrow ${isCouponOpen ? 'cart-order-summary-coupon-arrow-rotate' : ''}`} size={20} /></p>
