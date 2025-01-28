@@ -19,6 +19,7 @@ import { useGlobalContext } from "./context/GlobalContext/globalContext";
 import Loader from "./UI/Components/Loader/Loader";
 import WarrantyModal from "./UI/Modals/warrantyModal";
 import Snowfall from "react-snowfall";
+import SnakBar from './Global-Components/SnakeBar/SnakBar';
 
 function App() {
   const [currentUrl, setCurrentUrl] = useState('/');

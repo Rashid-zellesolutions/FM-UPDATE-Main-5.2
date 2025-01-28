@@ -349,7 +349,6 @@ export const CartProvider = ({ children }) => {
             const quantity = item.quantity || 1;
             const isProtectedValue = isCartProtected ? 0 : (item.is_protected === 0 ? 0 : eachProtectionValue);
 
-
             // Calculate total price
             total += (salePrice * quantity) + isProtectedValue;
 

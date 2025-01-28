@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import { url } from "../../utils/api";
 
 const ActiveSalePageContext = createContext();
 
@@ -28,7 +29,7 @@ export const ActiveSalePageProvider = ({ children }) => {
 
     // Main function to fetch sales data
     const fetchData = async (endpoint) => {
-        const url = `https://fm.skyhub.pk/api/v1/sales-page/get${endpoint ? `?${new URLSearchParams(endpoint)}` : ''}`;
+        const api = `${url}/api/v1/sales-page/get${endpoint ? `?${new URLSearchParams(endpoint)}` : ''}`;
         const options = {
             method: 'GET',
             headers: {
@@ -38,7 +39,7 @@ export const ActiveSalePageProvider = ({ children }) => {
 
         try {
             setLoading(true);
-            const data = await fetchWithRetry(url, options);
+            const data = await fetchWithRetry(api, options);
            await fetchProductsByCategory(data?.data?.subCategory)
             setSalesData(data); // Store the fetched data in state
         } catch (error) {
@@ -57,7 +58,7 @@ export const ActiveSalePageProvider = ({ children }) => {
             return;
         }
 
-        const url = `https://fm.skyhub.pk/api/v1/products/by-category?categoryUid=${categoryUid}`;
+        const api = `${url}/api/v1/products/by-category?categoryUid=${categoryUid}`;
         const options = {
             method: 'GET',
             headers: {
@@ -67,7 +68,7 @@ export const ActiveSalePageProvider = ({ children }) => {
 
         try {
             setLoading(true);
-            const data = await fetchWithRetry(url, options);
+            const data = await fetchWithRetry(api, options);
             setProducts(data.products); // Store the fetched products in state
         } catch (error) {
             setError(error.message);

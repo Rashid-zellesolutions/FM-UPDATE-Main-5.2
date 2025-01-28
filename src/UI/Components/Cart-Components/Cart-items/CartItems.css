@@ -230,6 +230,7 @@
 }
 
 .desktop-name-and-single-price h3{
+    min-height: 36px;
     font-size: 15px;
     font-weight: 500;
     line-height: 18px;

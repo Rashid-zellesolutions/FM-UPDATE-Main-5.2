@@ -16,8 +16,13 @@ import ProductCardShimmer from '../../Components/Loaders/productCardShimmer/prod
 import { useList } from '../../../context/wishListContext/wishListContext'
 import { toast } from 'react-toastify'
 import { useGlobalContext } from '../../../context/GlobalContext/globalContext'
-import { formatedPrice } from '../../../utils/api';
+import { formatedPrice, url } from '../../../utils/api';
 import QuickView from '../../Components/QuickView/QuickView';
+
+import masterCard from '../../../Assets/icons/master.png';
+import visaCard from '../../../Assets/icons/visa.png'
+import americanExpressCard from '../../../Assets/icons/american-express.png';
+import discover from '../../../Assets/icons/discover.png'
 
 function SamplePrevArrow(props) {
   const { className, style, onClick } = props;
@@ -75,11 +80,6 @@ const Cart = () => {
 
   const protectionPrice = isCheck[0] ? 210 : 0;
   const assemblyPrice = isCheck[1] ? 250 : 0;
-  const shipping = 109;
-  const discountPrice = 123;
-  const taxPrice = 322;
-
-  const grandTotal = subtotal + protectionPrice + assemblyPrice + shipping + taxPrice - discountPrice;
 
   const handleZipInput = () => {
     setIsZipUpdateOpen(!isZipUpdateOpen)
@@ -90,7 +90,7 @@ const Cart = () => {
 
   const [latestProducts, setLatestProducts] = useState([]);
   const getLatestProducts = async () => {
-    const api = `https://fm.skyhub.pk/api/v1/products/get`;
+    const api = `${url}/api/v1/products/get`;
     try {
       const response = await axios.get(api);
       setLatestProducts(response.data.products)
@@ -223,10 +223,6 @@ const Cart = () => {
     return true; // Always include other items
   });
 
-  const [deliveryOptionIndex, setDeliveryOptionIndex] = useState(null);
-  const handleDeliveryOptionndex = (index) => {
-    setDeliveryOptionIndex(index)
-  }
 
   return (
     <div className='cart-main-container'>
@@ -269,16 +265,41 @@ const Cart = () => {
             </div> */}
 
             <div className='cart-order-summary-price-details'>
+              {isProfessionalAssembly ? (
+                <div className='if-professional-assembly-container'>
+                  <p className='if-professional-assembly-heading'>Professional Assembly</p>
+                  <p className='if-professional-assembly-value'>{formatedPrice(210)}</p>
+                </div>
+              ) : (
+                <></>
+              )}
+              {isCartProtected ? (
+                <div className='if-professional-assembly-container'>
+                  <p className='if-professional-assembly-heading'>Protect Entire Order</p>
+                  <p className='if-professional-assembly-value'>{formatedPrice(199)}</p>
+                </div>
+              ) : (
+                <></>
+              )}
               {filteredOrderPriceDetails.map((price, index) => (
                 <div key={index} className='cart-order-summary-price-detail-single-item'>
                   <p className='cart-order-summary-price-detail-single-item-title'>{price.title}</p>
                   <p className='cart-order-summary-price-detail-single-item-price'>{price.price}</p>
                 </div>
               ))}
+              <div className='cart-order-summary-price-detail-save-discount'>
+                <p>Savings</p>
+                <p>{formatedPrice(savings)}</p>
+              </div>
+              <div className='if-professional-assembly-container'>
+                <p className='if-professional-assembly-heading'>{selectedOption?.name}</p>
+                <p className='if-professional-assembly-value'>{selectedOption?.cost === 0 ? '' : selectedOption?.cost}</p>
+              </div>
 
-              {/* <div className='cart-order-summary-zip-code'>
+
+              <div className='cart-order-summary-zip-code'>
                 <span className='cart-order-summary-zip-code-heading'>
-                  <p>Deliver to:</p>
+                  <p>Calculated for:</p>
                   <h3 onClick={handleZipInput}>{info?.locationData.state} {info?.locationData.stateCode} <IoIosArrowDown className={`cart-order-summary-zip-arrow ${isZipUpdateOpen ? 'cart-order-summary-zip-arrow-rotate' : ''}`} size={20} /> </h3>
                 </span>
                 <div className={`cart-order-summary-zip-code-input-div ${isZipUpdateOpen ? 'show-zip-code-update-input' : ''}`}>
@@ -293,7 +314,7 @@ const Cart = () => {
                     <button className='cart-summary-update-zip-btn' onClick={async () => { await handleButtonClick(); }}>Update</button>
                   </div>
                 </div>
-              </div> */}
+              </div>
 
               {/* <div className="delivery-option-container">
                 <span className='order-summary-deliver-to'>
@@ -356,17 +377,37 @@ const Cart = () => {
                 <p className='cart-order-summary-price-detail-single-item-title'>Total</p>
                 <p className='cart-order-summary-price-detail-single-item-price'>{formatedPrice(CalculateGrandTotal())}</p>
               </div>
-              <div className='cart-order-summary-price-detail-save-discount'>
+              {/* <div className='cart-order-summary-price-detail-save-discount'>
                 <p>You Save</p>
                 <p>{formatedPrice(savings)}</p>
-              </div>
+              </div> */}
             </div>
 
             <button
               onClick={navigateToCheckout}
               className='cart-summary-proceed-btn'>
-              Proceed to checkout
+              Proceed to Checkout
             </button>
+
+            <div className='payment-card-container'>
+              <h3 className='payment-cards-heading'>Securely accepted at checkout</h3>
+              <div className='payment-cards-inner-container'>
+                {[masterCard, visaCard, discover, americanExpressCard, masterCard, americanExpressCard].map((item, index) => (
+                  <img src={item} alt='payment card' className='payment-card' />
+                ))}
+              </div>
+            </div>
+
+            <div className='financing-months-range-container'>
+              <h3 className='financing-month-range-heading'>$125/month for 48 months</h3>
+              <button className='financing-month-range-apply-button'>
+                Apply for Financing
+              </button>
+              <h3 className='financing-month-range-heading'>Cart will be shared with our home furnishing consultant.</h3>
+              <button className='financing-month-range-apply-button'>
+                Complete in Store
+              </button>
+            </div>
 
           </div>
         </div>
@@ -444,9 +485,9 @@ const Cart = () => {
           Proceed to checkout
         </button>
       </div>
-      
+
       <QuickView setQuickViewProduct={quickViewProduct} quickViewShow={quickViewClicked} quickViewClose={handleQuickViewClose} />
-        
+
     </div>
   )
 }

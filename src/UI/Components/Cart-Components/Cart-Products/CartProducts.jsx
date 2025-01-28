@@ -12,6 +12,7 @@ import LocationPopUp from '../../LocationPopUp/LocationPopUp';
 import guardIcon from '../../../../Assets/icons/guard-icon.png'
 import { formatedPrice } from '../../../../utils/api';
 import { useGlobalContext } from '../../../../context/GlobalContext/globalContext';
+import SnakBar from '../../../../Global-Components/SnakeBar/SnakBar';
 
 
 const CartProducts = () => {
@@ -94,6 +95,18 @@ const CartProducts = () => {
     const handleCloseSearch = () => {
         setSearchLocation(false)
     }
+
+    const [showSnakeBar, setShowSnakeBar] = useState(false);
+    const [snakeBarMessage, setSnakeBarMessage] = useState()
+    const handleShowSnakeToust = (name) => {
+        setShowSnakeBar(true)
+        setSnakeBarMessage(name)
+    }
+    const handleCloseSnakeBar = () => {
+        setShowSnakeBar(false)
+    }
+
+    
 
     return (
         <>
@@ -222,7 +235,10 @@ const CartProducts = () => {
                             handleSingleProtected={() => { }}
                             cartIndex={items.product_uid}
                             productsLength={cartProducts.products.length}
-                            handleRomoveProduct={() => removeFromCart(items.isVariable === 1 ? items.variation_uid : items.product_uid, items.isVariable === 1)}
+                            handleRomoveProduct={() => { 
+                                handleShowSnakeToust(items.name) ; 
+                                removeFromCart(items.isVariable === 1 ? items.variation_uid : items.product_uid, items.isVariable === 1)
+                            }}
                             cartProductName={items.name}
                             cartPRoductImage={items.image?.image_url}
                             cartProductTitle={items.name}
@@ -286,6 +302,12 @@ const CartProducts = () => {
                     handleCloseSearch={handleCloseSearch}
                     setLocationDetails={setLocationDetails}
                     locationDetails={locationDetails}
+                />
+                <SnakBar 
+                    message={snakeBarMessage}
+                    openSnakeBarProp={showSnakeBar}
+                    setOpenSnakeBar={setShowSnakeBar}
+                    onClick={handleCloseSnakeBar}
                 />
             </div>
         </>

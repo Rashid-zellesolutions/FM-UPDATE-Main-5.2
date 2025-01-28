@@ -297,7 +297,7 @@ const ProductCard = ({
                                     {tags[0].text}
                                 </div> :
                                 <div className='image-tag' >
-                                    <img src={"https://fm.skyhub.pk" + tags[0]?.image} alt="" srcset="" />
+                                    <img src={url + tags[0]?.image} alt="" srcset="" />
                                 </div>
                         }
                     </div>}
@@ -325,7 +325,7 @@ const ProductCard = ({
                                         <img
                                             key={index}
                                             onClick={(e) => { e.stopPropagation(); handleImageSelect(item.value) }}
-                                            src={"https://fm.skyhub.pk" + item.value}
+                                            src={url + item.value}
                                             alt=""
                                         />
                                     ))}

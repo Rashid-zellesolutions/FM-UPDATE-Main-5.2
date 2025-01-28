@@ -40,10 +40,6 @@ const CartItems = ({
     totalProducts
 }) => {
 
-    console.log("product data", productData)
-
-    console.log("total product on card page", totalProducts)
-
     // States and variables
     const {
         eachProtectionValue,

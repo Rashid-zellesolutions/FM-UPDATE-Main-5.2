@@ -292,7 +292,7 @@ const SingleProductStickySection = ({ productData }) => {
     country: ''
   });
 
-  console.log("product", Object.keys(product).length)
+  // console.log("product", Object.keys(product).length)
 
   return (
     <>

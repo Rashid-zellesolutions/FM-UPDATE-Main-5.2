@@ -385,7 +385,7 @@ const StoreLocator = () => {
                   <img src={directionIcon} alt='direction-icon' />
                 </button>
                 <div className='mobile-view-single-store-image-div'>
-                  <img src={`https://fm.skyhub.pk${item.images[0].image_url}`} alt='store profile' className='mobile-view-single-store-image' />
+                  <img src={`${url}${item.images[0].image_url}`} alt='store profile' className='mobile-view-single-store-image' />
                 </div>
                 <div className='mobile-view-single-store-details'>
                   <p>{item.address_1}</p>

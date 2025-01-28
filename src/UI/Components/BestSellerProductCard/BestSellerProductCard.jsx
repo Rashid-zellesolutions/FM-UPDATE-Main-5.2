@@ -4,7 +4,7 @@ import heartIcon from '../../../Assets/icons/like.png'
 import { VscHeartFilled } from "react-icons/vsc";
 import { useList } from '../../../context/wishListContext/wishListContext';
 import RatingReview from '../starRating/starRating';
-import { formatedPrice, truncateTitle } from '../../../utils/api';
+import { formatedPrice, truncateTitle, url } from '../../../utils/api';
 
 const BestSellerProductCard = (
     { 
@@ -18,7 +18,6 @@ const BestSellerProductCard = (
     }) => {
     
     // States and Variables
-    const url = 'https://fm.skyhub.pk/'
     const {isInWishList} = useList()
 
     // Functions

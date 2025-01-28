@@ -8,8 +8,8 @@
 .summary-left-section{
     display: flex;
     flex-direction: column;
-    width: 50%;
-    padding: 0px 50px 30px 60px;
+    width: 60%;
+    padding: 0px 20px 30px 60px;
     gap: 25px;
 }
 
@@ -112,17 +112,305 @@
 .summery-right-section-low-height{
     display: flex;
     flex-direction: column;
-    width: 50%;
-    height: 550px;
+    width: 40%;
+    height: 100%;
     overflow-x: hidden;
     overflow-y: auto;
-    background-color: #F6FAFE;
-    padding: 35px 72px 72px 72px;
+    /* background-color: #F6FAFE; */
+    padding: 35px 50px 72px 0px;
     gap: 50px;
 }
 
 .summery-right-section-low-height::-webkit-scrollbar{
     display: none;
+}
+
+.right-section-order-summary-main-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: start;
+    justify-content: start;
+    gap: 15px;
+    padding: 10px 0;
+}
+
+.right-section-order-summary-main-heading{
+    font-size: 20px;
+    line-height: 30px;
+    font-weight: 600;
+}
+
+.right-section-order-summary-products-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: start;
+    justify-content: start;
+    gap: 10px;
+}
+
+.right-section-order-summary-assembly-plan{
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 500;
+}
+
+.right-section-ordered-product-card{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+
+}
+
+.selected-products{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 15px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.right-section-ordered-product-card .selected-products:nth-last-child(1){
+    border-bottom: none;
+}
+
+.selected-single-product{
+    display: flex;
+    width: 100%;
+    gap: 15px;
+    cursor: pointer;
+}
+
+.selected-single-product img{
+    width: 95px;
+    height: 63px;
+    border: 1px solid #d7d7d7;
+}
+
+.selected-product-containt{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.selected-product-name-and-price{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.selected-product-name-and-price h3{
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 500;
+}
+
+.selected-product-name-and-price p{
+    font-size: 14px;
+    line-height: 21px;
+    font-weight: 400;
+}
+
+.order-summary-prices-container del{
+    font-size: 12px;
+    line-height: 15px;
+    font-weight: 400;
+    color: var(--text-color);
+    opacity: 0.5;
+}
+
+.order-summary-prices-container p{
+    font-size: 15px;
+    line-height: 15px;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.selected-product-color{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: start;
+    gap: 5px;
+}
+
+
+.selected-product-color p{
+    font-size: 12px;
+    line-height: 14px;
+    font-weight: 300;
+}
+
+.products-tax-and-total{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 15px 0 15px 15px;
+    gap: 10px;
+    border-top: 1px solid #d7d7d7;
+    border-bottom: 1px solid #d7d7d7;
+}
+
+.products-tax-and-total span{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.products-tax-and-total span p{
+    font-size: 14px;
+    line-height: 21px;
+    font-weight: 400;
+}
+
+.selected-product-total{
+    display: flex;
+    padding: 0 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+.selected-product-total span{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.selected-product-grand-total-price{
+    font-size: 20px;
+    line-height: 30px;
+    font-weight: 600;
+}
+
+.right-section-content-and-price{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.right-section-content{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: start;
+    justify-content: start;
+}
+
+.right-section-price{
+    display: flex;
+    align-items: end;
+    justify-content: end;
+    width: max-content;
+    height: 100%;
+}
+
+.right-section-show-more-button-container{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: end;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.show-more-products-button{
+    font-size: 15px;
+    line-height: 18px;
+    font-weight: 600;
+    text-decoration: underline;
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+.right-section-order-pricing-details{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: 10px;
+
+}
+
+.right-section-price-and-value{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.right-section-price-text{
+    font-size: 15px;
+    line-height: 19px;
+    font-weight: 400;
+}
+
+.right-section-price-text:nth-last-child(1){
+    font-weight: 600;
+}
+
+.right-section-total-value{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border-color);
+    border-top: 1px solid var(--border-color);
+}
+
+.right-section-total-price-text-and-value{
+    font-size: 15px;
+    line-height: 19px;
+    font-size: 600;
+}
+
+.right-section-total-price-text-and-value:nth-last-child(1){
+    font-weight: 600;
+}
+
+.right-section-order-place-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+    align-items: start;
+    justify-content: start;
+}
+
+.right-section-place-order-terms-and-rights{
+    font-size: 13px;
+    line-height: 18px;
+    font-weight: 400;
+    width: 100%;
+    gap: 5px;
+    display: flex;
+}
+
+.right-section-place-order-terms-and-rights a{
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+.right-section-place-order-button{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    background-color: var(--text-color);
+    font-size: 15px;
+    line-height: 18px;
+    font-weight: 500;
+    color: #FFF;
+    cursor: pointer;
 }
 
 @media only screen and (max-width: 1024px){

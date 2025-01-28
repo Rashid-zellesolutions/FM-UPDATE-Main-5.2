@@ -47,7 +47,7 @@
 .order-summary-selected-products-container::-webkit-scrollbar-button {
     display: none; /* Hide top and bottom arrows */
 }
-
+/* 
 .selected-products{
     display: flex;
     flex-direction: column;
@@ -165,7 +165,7 @@
     font-size: 20px;
     line-height: 30px;
     font-weight: 600;
-}
+} */
 
 /* Mobile styling */
 .mobile-view-main-heading{

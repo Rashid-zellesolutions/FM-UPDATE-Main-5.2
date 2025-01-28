@@ -24,7 +24,6 @@ const Nav = ({ navLinks, sale_data }) => {
         setDropdownOpen(null)
         setActiveIndex(location.pathname)
     }, [location])
-    console.log("nav links", navLinks)
 
     return (
         <div className='navbar'>

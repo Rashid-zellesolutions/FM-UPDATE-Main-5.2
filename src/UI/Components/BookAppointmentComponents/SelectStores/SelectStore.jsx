@@ -2,15 +2,16 @@ import React, { useEffect, useState } from 'react'
 import './SelectStore.css'
 import axios from 'axios';
 import arrowRight from '../../../../Assets/icons/arrow-right-white.png'
+import { url } from '../../../../utils/api';
 
 const SelectStore = () => {
 
     const [storesData, setStoresData] = useState()
     useEffect(() => {
         const fetchStores = async () => {
-            const api = `https://fm.skyhub.pk/api/v1/stores/get`;
+            const api = `/api/v1/stores/get`;
             try {
-                const response = await axios.get(api);
+                const response = await axios.get(`${url}${api}`);
                 setStoresData(response.data.data)
             } catch (error) {
                 console.error("Error fetching stores", error);
@@ -25,7 +26,7 @@ const SelectStore = () => {
             <div className='stores-list-container'>
                 {storesData && storesData.map((items, index) => (
                     <div className='single-store-card' key={index}>
-                        <img src={`https://fm.skyhub.pk${items.images[0].image_url}`} alt='store icon' className='single-store-card-img' />
+                        <img src={`${url}${items.images[0].image_url}`} alt='store icon' className='single-store-card-img' />
                         <p className='single-store-card-store-name'>{items.address_1}</p>
                     </div>
                 ))}

@@ -113,8 +113,6 @@ const QuickView = ({ setQuickViewProduct, quickViewClose, quickViewShow, }) => {
         }
     }
 
-    console.log("quick view data", setQuickViewProduct)
-
     return (
         // <div className={`quick-view-outer-overlay-container ${quickViewShow ? 'show-quick-view-outer-overlay' : ''}`}>
         <div className={`quick-view-main-container ${quickViewShow ? 'show-quick-view-modal' : ''}`} onClick={quickViewClose}>

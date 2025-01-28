@@ -164,7 +164,7 @@ export default function FurnitureAtEveryBudget() {
         <>
 
             <div className="cover_photo">
-                <img src="https://fm.skyhub.pk/uploads/media/Pages/home/slider/1731385502484_209_Main-Desktop-Banner-2-2048x545.webp" alt="Furniture Cover" />
+                <img src={`${url}/uploads/media/Pages/home/slider/1731385502484_209_Main-Desktop-Banner-2-2048x545.webp`} alt="Furniture Cover" />
             </div>
             <div className="furniture_at_every_budget">
 

@@ -3,6 +3,7 @@ import './BlogCard.css'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import arrowRight from '../../../../Assets/icons/blog-btn-arrow.png'
+import { url } from '../../../../utils/api'
 
 const BlogCard = (
   {
@@ -17,9 +18,9 @@ const BlogCard = (
   const [animButton, setAnimButton] = useState(null);
 
   const fetchVariableData = async () => {
-    const api = `https://fm.skyhub.pk/api/v1/products/get/468`
+    const api = `/api/v1/products/get/468`
     try {
-      const resposnse = await axios.get(api);
+      const resposnse = await axios.get(`${url}${api}`);
     } catch (error) {
       console.error("error", error);
     }
