@@ -58,8 +58,8 @@ const SingleProduct = () => {
   return (
     <div>
       <SingleProductStickySection productData={product} />
-      {product?.collection?.length > 0 && <SimillerProducts collection={product?.collection} />}
-      {product?.related_products?.length > 0 && <FrequentlyBought relatedProducts={product?.related_products} />}
+      {product?.collection?.length > 0 && <SimillerProducts isPadding={true} collection={product?.collection} />}
+      {product?.related_products?.length > 0 && <FrequentlyBought isPadding={true} relatedProducts={product?.related_products} />}
       <RatingAndReview rating={product?.average_rating} data={reviews} reviews={reviews} loading={loading} error={error} />
       {loading && <div>Loading reviews...</div>}
       {error && <div>{error}</div>}

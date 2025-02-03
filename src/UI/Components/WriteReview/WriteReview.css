@@ -12,6 +12,8 @@
     background-color: #f7f7f7;
 }
 
+
+
 .write_review {
     display: flex;
     flex-direction: column;
@@ -327,4 +329,261 @@
     .success_popup_review p{
         line-height: 18px !important;
     }
+}
+
+
+
+
+/* Write Review Modal */
+.write-review-modal{
+    display: flex;
+    width: 100%;
+    visibility: hidden;
+    opacity: 0;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    z-index: 9999999;
+    transition: all 0.3s ease-in-out;
+
+}
+
+.write-review-modal.show-review-modal{
+    opacity: 1;
+    visibility: visible;
+}
+
+/* .write-review-modal::-webkit-scrollbar{
+    display: none;
+} */
+
+.write-review-inner-section{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: auto;
+    border-radius: 5px;
+    padding: 20px;
+    height: 80%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    gap: 15px;
+    background-color: #FFFFFF;
+    position: relative;
+}
+
+.write-review-inner-section::-webkit-scrollbar{
+    display: none;
+}
+
+.write-review-modal-close-button{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: max-content;
+    padding: 5px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.review-modal-main-heading{
+    font-size: 24px;
+    line-height: 31px;
+    font-weight: 400;
+    color: var(--text-color);
+}
+
+.review-modal-head{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: start;
+    gap: 15px;
+}
+
+.review-modal-product-details{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: start;
+    justify-content: start;
+    gap: 4px;
+}
+
+.write-review-product-name{
+    font-size: 13px;
+    line-height: 16px;
+    font-weight: 400;
+    color: var(--text-color);
+    opacity: 0.7;
+}
+
+.write-review-comment-guide{
+    font-size: 13px;
+    line-height: 16px;
+    font-weight: 400;
+    color: var(--text-color);
+}
+
+.review-guideline{
+    font-size: 13px;
+    line-height: 16px;
+    font-weight: 400;
+    color: #4478C5;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.review-modal-head > img {
+    width: 180px;
+    height: auto;
+    object-fit: cover;
+}
+
+.review-overall-rating{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: start;
+    justify-content: start;
+    gap: 10px;
+}
+
+.review-overall-rating > h3 {
+    font-size: 15px;
+    line-height: 20px;
+    font-weight: 500;
+    color: var(--text-color);
+    position: relative;
+}
+
+.review-overall-rating > h3::before {
+    content: "*";
+    position: absolute;
+    top: 0;
+    right: -10px;
+    color: #DB202B;
+}
+
+.review-write-section{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+}
+
+.review-write-section > h3{
+    font-size: 15px;
+    line-height: 20px;
+    font-weight: 500;
+    width: max-content;
+    color: var(--text-color);
+    position: relative;
+}
+
+.review-write-section > h3::before{
+    content: "*";
+    position: absolute;
+    top: 0;
+    right: -10px;
+    color: #DB202B;
+}
+
+.review-write-section > textarea {
+    width: 100%;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+}
+
+.review-write-section > p {
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    width: 100%;
+    gap: 5px;
+    font-size: 12px;
+    line-height: 14px;
+    font-weight: 300;
+    color: var(--text-color);
+    opacity: 0.5;
+}
+
+.review-photos-or-video-container{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: start;
+    gap: 10px;
+}
+
+.review-photos-or-video-container > button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: max-content;
+    border: 1px solid #4478C5;
+    color: #4478C5;
+    border-radius: 5px;
+    cursor: pointer;
+    gap: 10px;
+    padding: 10px 20px;
+    background-color: transparent;
+}
+
+.gift-card-checkbox-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+    gap: 10px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 13px;
+    line-height: 18px;
+    font-weight: 400;
+    color: var(--text-color);
+}
+
+.gift-card-checkbox-container > input {
+    width: max-content;
+}
+
+.gift-card-checkbox-container > p{
+    color: #4478C5;
+    text-decoration: underline;
+}
+
+.submit-review-container{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    width: 100%;
+}
+
+.submit-review-container > button {
+    width: max-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    color: #fff;
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 500;
+    background-color: #4478C5;
+    border: 1px solid #4478C5;
+    border-radius: 5px;
+    cursor: pointer;
 }

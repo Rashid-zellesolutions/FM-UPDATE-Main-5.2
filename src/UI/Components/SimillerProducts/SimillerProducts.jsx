@@ -31,7 +31,7 @@ function SampleNextArrow(props) {
   )
 }
 
-const SimillerProducts = ({collection}) => {
+const SimillerProducts = ({collection, isPadding}) => {
     const simillerProducts = collection.map((item) => item);
     const [data, setData] = useState()
     const fetchData = async () => {
@@ -151,7 +151,7 @@ const SimillerProducts = ({collection}) => {
   };
     
   return (
-    <div className='similler-products-main-container'>
+    <div className={`similler-products-main-container ${isPadding ? 'add-padding' : ''}`}>
         <h3>Shop from this collection</h3>
 
         <div className='cart-related-products-slider-main-div'>

@@ -33,8 +33,10 @@ const RatingAndReview = ({ rating, data }) => {
         }
     }, [data]);
 
+    console.log("customer images", customerImages)
+
     return (
-        <div className='rating-and-customers-photos'>
+        <div className={`rating-and-customers-photos`}>
             <div className='rating-and-review-main-container'>
                 <h3>Rating & Reviews</h3>
                 {/* <p>Our <Link>Community Guidelines </Link> help customers write honest reviews.</p> */}
@@ -74,7 +76,7 @@ const RatingAndReview = ({ rating, data }) => {
 
             <div className='customer-images-section'>
                 <h3>Customer Photos</h3>
-                {data?.length > 0 ? <CustomerPhotos images={customerImages} /> :
+                {customerImages?.length > 0 ? <CustomerPhotos images={customerImages} /> :
 
                     <div className='customer-images-section-not'>
 

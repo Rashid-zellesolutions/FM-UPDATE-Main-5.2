@@ -12,7 +12,7 @@ import ProductCardShimmer from '../Loaders/productCardShimmer/productCardShimmer
 import { useList } from '../../../context/wishListContext/wishListContext';
 import { toast } from 'react-toastify';
 
-const FrequentlyBought = ({ relatedProducts }) => {
+const FrequentlyBought = ({ relatedProducts, isPadding }) => {
 
     // console.log("related products", relatedProducts)
     // console.log("core collections", collection);
@@ -122,7 +122,7 @@ const FrequentlyBought = ({ relatedProducts }) => {
 
 
     return (
-        <div className='frequently-bought-main'>
+        <div className={`frequently-bought-main ${isPadding ? 'add-padding' : ''}`}>
             <h3>You may also like</h3>
             <div className='frequently-bought-card'>
                 {data ? (

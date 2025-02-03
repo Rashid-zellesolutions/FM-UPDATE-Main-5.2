@@ -6,7 +6,10 @@
     background-color: #f7f7f7;
     margin-top: 35px;
     padding: 25px 60px 0 60px;
+    
 }
+
+
 
 .rating-and-review-main-container{
     display: flex;
@@ -167,14 +170,14 @@
         background-color: #fff;
         /* margin-top: 35px; */
         padding: 20px 10px;
+        
     }
+
     .rating-and-review-main-container {
         display: flex;
         flex-direction: column;
         width: 100%;
         background-color: #fff;
-        /* padding: var(--inner-padding); */
-        /* padding: 0px 0 0 60px; */
         gap: 10px;
     }
     .rating-and-review-main-container h3{

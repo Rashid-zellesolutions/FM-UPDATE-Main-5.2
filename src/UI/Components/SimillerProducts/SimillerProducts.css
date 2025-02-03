@@ -2,6 +2,10 @@
     display: flex;
     flex-direction: column;
     gap: 15px;
+    
+}
+
+.similler-products-main-container.add-padding{
     padding: var(--global-padding);
 }
 
@@ -77,8 +81,12 @@
         display: flex;
         flex-direction: column;
         gap: 0;
-        padding: 20px 10px;
+        
         /* padding: var(--global-padding); */
+    }
+
+    .similler-products-main-container.add-padding{
+        padding: 20px 10px;
     }
 
     .similler-products-main-container h3 {

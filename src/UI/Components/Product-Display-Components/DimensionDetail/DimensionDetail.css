@@ -1,0 +1,45 @@
+.dimension-detail-main-container{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    padding: 25px 0;
+}
+
+.dimension-detail-section{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    align-items: start;
+    justify-content: start;
+    gap: 5px;
+    padding: 25px 10px;
+    background-color: #f9f9f9;
+}
+
+.dimension-detail-section > h3{
+    font-size: 20px;
+    line-height: 30px;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.dimension-detail-section > p {
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: 400;
+    color: var(--text-color);
+}
+
+.dimension-detail-image-section{
+    display: flex;
+    width: 50%;
+    align-items: center;
+    justify-content: center;
+}
+
+.dimension-detail-image-section > img {
+    width: auto;
+    height: 120px;
+    object-fit: cover;
+}

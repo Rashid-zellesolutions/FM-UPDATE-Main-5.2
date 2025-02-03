@@ -25,6 +25,7 @@ import Contact from "../../UI/Pages/Contact/Contact";
 import OrderConfirmationPage from "../../UI/Pages/OrderConfirmationPage/OrderConfirmationPage";
 import ReturnPolicy from "../../UI/Pages/returnPolicy/ReturnPolicy";
 import AboutUs from "../../UI/Pages/AboutUs/AboutUs";
+import ProductDisplay from "../../UI/Pages/ProductDisplay/ProductDisplay";
 
 
 const routes = (
@@ -65,7 +66,8 @@ const routes = (
             // path='/single-product/:slug'
             path="/product/:slug"
             element={
-                <SingleProduct />
+                // <SingleProduct />
+                <ProductDisplay />
             }
         />
 
@@ -168,6 +170,10 @@ const routes = (
             path="/about-us"
             element={<AboutUs />}
         />
+        {/* <Route 
+            path="/product-display/:slug"
+            element={<ProductDisplay />}
+        /> */}
 
         <Route exact path="/order-confirmation/:_id" element={<OrderConfirmationPage />} />
 

@@ -1,0 +1,7 @@
+.product-display-page-main-container{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    padding: var(--global-padding);
+    gap: 25px;
+}

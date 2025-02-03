@@ -2,8 +2,12 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    padding: var(--global-padding);
+    
     gap: 25px;
+}
+
+.frequently-bought-main.add-padding {
+    padding: var(--global-padding);
 }
 
 .frequently-bought-main h3{
@@ -24,8 +28,10 @@
         display: flex;
         flex-direction: column;
         width: 100%;
-        padding: 20px 10px;
         gap: 15px;
+    }
+    .frequently-bought-main.add-padding{
+        padding: 20px 10px;
     }
     .frequently-bought-card {
         display: grid;

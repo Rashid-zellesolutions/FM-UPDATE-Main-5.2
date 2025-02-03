@@ -1,0 +1,36 @@
+.dimension-main-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    width: 100%;
+}
+
+.dimension-card{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--text-color);
+    padding: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.dimension-card.active-dimension{
+    background-color: #F0F0F0;
+}
+
+.dimension-card:hover{
+    background-color: #F0F0F0;
+}
+
+.dimension-card > p {
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: 400;
+    color: var(--text-color);
+}
