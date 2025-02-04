@@ -68,7 +68,7 @@ const ProductDescriptionTab = ({ id, descriptionRef, productData, addMarginTop }
             ))}
           </div>
 
-          <div className='product-extra-features-main-section'>
+          {/* <div className='product-extra-features-main-section'>
             <div className='additional-feature-head' onClick={handleShowAdditional}>
               <h3>Additional Features</h3>
               <button className={`additional-feature-arrow-button ${showAdditional ? 'additional-arrow-rotate' : ''}`}>
@@ -79,7 +79,7 @@ const ProductDescriptionTab = ({ id, descriptionRef, productData, addMarginTop }
                 <h3>Polyester upholstery</h3>
                 <p>100% polyester. This stain-resistant, easy-care fabric boasts a soft feel, yet it's tough enough for extensive, everyday use.</p>
             </div>
-          </div>
+          </div> */}
 
         </div>
       </div>

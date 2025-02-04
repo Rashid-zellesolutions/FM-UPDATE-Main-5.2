@@ -66,8 +66,8 @@ const routes = (
             // path='/single-product/:slug'
             path="/product/:slug"
             element={
-                // <SingleProduct />
-                <ProductDisplay />
+                <SingleProduct />
+                // <ProductDisplay />
             }
         />
 

@@ -45,7 +45,7 @@
 .product-detail-info-sticky{
     width: 100%;
     height: max-content;
-    padding: 15px 0;
+    padding: 0 0 15px 0;
     display: flex;
     flex-direction: column;
     /* gap: ; */
@@ -65,9 +65,9 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    gap: 10px;
     align-items: start;
     justify-content: start;
+    margin-bottom: 15px;
 }
 
 .product-detail-rating-and-share{
@@ -100,6 +100,182 @@
     font-weight: 500;
     padding-top: 4px;
 }
+
+/* Add To Card and Quantity Container */
+
+.add-cart-or-add-items-div {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+}
+
+.item-count {
+    display: flex;
+    height: 50px;
+}
+
+.minus-btn {
+    display: flex;
+    background-color: transparent;
+    border: none;
+    border-right: 1.5px solid var(--text-color);
+    padding: 0 5px;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    cursor: pointer;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border: 1px solid var(--text-color);
+}
+
+.minus-btn:focus {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+.minus-btn:hover {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border: 1px solid var(--text-color);
+    background-color: var(--text-color);
+}
+
+.minus-btn.disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.minus-icon{
+    color: var(--text-color) !important;
+    margin-top: -12px;
+}
+
+.minus-btn:hover .minus-icon{
+    color: #FFFFFF !important;
+}
+
+.item-count input {
+    width: 45px;
+    border: none;
+    outline: none;
+    text-align: center;
+    border-top: 1px solid var(--text-color);
+    border-bottom: 1px solid var(--text-color);
+    border-radius: 0;
+}
+
+.item-count input::-webkit-outer-spin-button,
+.item-count input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+.plus-btn {
+    display: flex;
+    background-color: transparent;
+    border: none;
+    border-left: 1.5px solid var(--text-color);
+    padding: 0 5px;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    cursor: pointer;
+    border: 1px solid var(--text-color);
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.plus-btn:focus {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.plus-btn:hover {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    background-color: var(--text-color);
+    border: 1px solid var(--text-color);
+
+}
+
+.plus-icon{
+    color: var(--text-color) !important;
+    transition: all 0.3s ease-in-out;
+}
+
+.plus-btn:hover .plus-icon{
+    color: #FFFFFF !important;
+}
+
+/* Add To Wish list */
+.product-details-add-to-wishlist-icon{
+    display: flex;
+    width: max-content;
+    height: 48px;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+
+.add-to-cart-btn {
+    display: flex;
+    width: 100%;
+    height: 50px;
+    border: 2px solid #595959;
+    border-radius: 8px;
+    align-items: center;
+    justify-content: center;
+    z-index: 9;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+    color: #595959;
+    background-color: white;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.2s, border-color 0.2s, opacity 0.2s;
+    position: relative;
+    text-decoration: none;
+}
+
+.add-to-cart-btn:hover {
+    background-color: var(--text-color);
+    color: white;
+    border: 2px solid var(--text-color);
+}
+
+.add-to-cart-btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 2px solid white;
+    border-radius: 8px;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.add-to-cart-btn:active,
+.add-to-cart-btn.loading {
+    transform: scale(0.95);
+    border-color: var(--tertiary-color);
+    opacity: 0.8;
+}
+
+.add-to-cart-btn:active::after,
+.add-to-cart-btn.loading::after {
+    opacity: 1;
+}
+
+/* Add to cart and quantity end */
 
 
 .product-detail-other-info{

@@ -22,7 +22,32 @@ import filledHeart from '../../../../Assets/icons/filled-heart.png';
 import { SiAdguard } from "react-icons/si";
 import DimensionDetail from '../DimensionDetail/DimensionDetail'
 
-const ProductDetailSticky = ({ productData }) => {
+import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
+import ShareProduct from '../../ShareProduct/ShareProduct'
+import CartSidePannel from '../../Cart-side-section/CartSidePannel'
+
+const ProductDetailSticky = (
+  { 
+    productData, 
+    decreaseLocalQuantity, 
+    quantity, 
+    handleQuantityChange ,
+    increaseLocalQuantity,
+    isLoading,
+    handleClick,
+    addToCart0,
+    isProtectionCheck,
+    handleAddToCartProduct,
+    cartProducts,
+    cartSection,
+    handleCartClose,
+    setCartSection,
+    removeFromCart,
+    decreamentQuantity,
+    increamentQuantity,
+    variationData,
+    setVariationData
+  }) => {
 
   // Get Product Data from previous route or api
   const {
@@ -79,14 +104,23 @@ const ProductDetailSticky = ({ productData }) => {
 
   useEffect(() => { }, [product])
 
-  const {
-    addToCart,
-    decreamentQuantity,
-    increamentQuantity,
-    removeFromCart,
-    addToCart0,
-    cartProducts
-  } = useCart();
+  // const {
+  //   addToCart,
+  //   decreamentQuantity,
+  //   increamentQuantity,
+  //   removeFromCart,
+  //   addToCart0,
+  //   cartProducts
+  // } = useCart();
+
+
+  // Share Product Modal
+  const [isSharePopup, setIsSharePopup] = useState(null);
+  const [selectedProduct, SetSelectedProduct] = useState()
+  const handleShareModal = (item) => {
+    setIsSharePopup(item.uid)
+    SetSelectedProduct(item)
+  }
 
 
   // Variation Select and auto select
@@ -95,7 +129,7 @@ const ProductDetailSticky = ({ productData }) => {
     setSelectedColor(value);
   }
 
-  const [variationData, setVariationData] = useState([])
+  // const [variationData, setVariationData] = useState([])
 
   const [selectVariation, setSelectVariation] = useState(0);
   const handleSelectVariation = (value) => {
@@ -113,23 +147,23 @@ const ProductDetailSticky = ({ productData }) => {
   };
 
   // Add To Cart Functionality
-  const [isLoading, setIsLoading] = useState(false);
-  const [isProtectionCheck, setIsProtectionCheck] = useState(true)
-  const [cartSection, setCartSection] = useState(false);
-  const [quantity, setQuantity] = useState(1)
+  // const [isLoading, setIsLoading] = useState(false);
+  // const [isProtectionCheck, setIsProtectionCheck] = useState(true)
+  // const [cartSection, setCartSection] = useState(false);
+  // const [quantity, setQuantity] = useState(1)
 
-  const decreaseLocalQuantity = () => {
-    setQuantity((prevQuantity) => Math.max(1, prevQuantity - 1));
-  }
+  // const decreaseLocalQuantity = () => {
+  //   setQuantity((prevQuantity) => Math.max(1, prevQuantity - 1));
+  // }
 
-  const increaseLocalQuantity = () => {
-    setQuantity(quantity + 1);
-  }
+  // const increaseLocalQuantity = () => {
+  //   setQuantity(quantity + 1);
+  // }
 
-  const handleQuantityChange = (e) => {
-    const { value } = e.target;
-    setQuantity(value)
-  }
+  // const handleQuantityChange = (e) => {
+  //   const { value } = e.target;
+  //   setQuantity(value)
+  // }
 
   // Add To WishList and Remove
   const { addToList, removeFromList, isInWishList } = useList()
@@ -142,26 +176,32 @@ const ProductDetailSticky = ({ productData }) => {
     }
   }
 
+  // const handleCartClose = () => {
+  //   setCartSection(false)
+  //   setQuantity(1)
+
+  // }
+
   // add to cart button click function
-  const handleClick = () => {
-    setIsLoading(true);
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
-  };
+  // const handleClick = () => {
+  //   setIsLoading(true);
+  //   setTimeout(() => {
+  //     setIsLoading(false);
+  //   }, 1000);
+  // };
 
-  const handleAddToCartProduct = (product) => {
-    setCartSection(true);
-    addToCart(product, quantity, !isProtectionCheck);
-  }
+  // const handleAddToCartProduct = (product) => {
+  //   setCartSection(true);
+  //   addToCart(product, quantity, !isProtectionCheck);
+  // }
 
-  console.log("single product detail", product)
+  // console.log("single product detail", product)
 
   return (
     <div className='product-detail-sticky-section-main-container'>
       <div className='product-detail-sticky-gallery-and-detail'>
         <div className='product-detail-product-gallery-section'>
-          <ProductGallery productImages={product?.images} />
+          <ProductGallery productData={product} selectedVariationData={selectedVariationData} productImages={product?.images} />
           <ProductDimension />
           <DimensionDetail />
         </div>
@@ -174,11 +214,9 @@ const ProductDetailSticky = ({ productData }) => {
               <p>SKU : {product.sku}</p>
               <div className='product-detail-rating-and-share'>
                 <RatingReview rating={(product?.average_rating)} disabled={true} size={"20px"} />
-                {/* <RatingReview rating={(4.5)} disabled={true} size={"20px"} /> */}
-
                 <span
                   className='single-product-share'
-                // onClick={() => handleShareModal(productData)}
+                  onClick={() => handleShareModal(productData)}
                 >
                   <FaShareSquare className='single-product-share-icon' size={20} />
                 </span>
@@ -232,7 +270,15 @@ const ProductDetailSticky = ({ productData }) => {
                     <FaPlus size={18} className='plus-icon' />
                   </button>
                 </div>
-                <img src={isInWishList(product.uid) ? filledHeart : redHeart} alt='red-heart-icon' className='red-heart-icon' onClick={(e) => { e.stopPropagation(); handleWishList(product) }} />
+                <div
+                  className='product-details-add-to-wishlist-icon'
+                  onClick={(e) => { e.stopPropagation(); handleWishList(product) }}
+                  style={{ border: isInWishList(product.uid) ? '1px solid red' : '1px solid #595959' }}
+                >
+                  {isInWishList(product.uid) ? <IoMdHeart size={30} color={isInWishList(product.uid) ? 'red' : '#595959'} />
+                    : <IoMdHeartEmpty size={30} />}
+                </div>
+                {/* <img src={isInWishList(product.uid) ? filledHeart : redHeart} alt='red-heart-icon' className='red-heart-icon' onClick={(e) => { e.stopPropagation(); handleWishList(product) }} /> */}
                 <button
                   className={`add-to-cart-btn ${isLoading ? 'loading' : ''}`}
                   onClick={() => {
@@ -246,9 +292,6 @@ const ProductDetailSticky = ({ productData }) => {
               </div>
 
             </div>
-          </div>
-
-          <div className='product-detail-other-info'>
 
             {Object.keys(product).length > 0 ? (
               <FinancingOptions />
@@ -262,6 +305,24 @@ const ProductDetailSticky = ({ productData }) => {
                 <div className='shimmer-financing-card-button'></div>
               </div>
             )}
+
+
+          </div>
+
+          <div className='product-detail-other-info'>
+
+            {/* {Object.keys(product).length > 0 ? (
+              <FinancingOptions />
+            ) : (
+              <div className='shimmer-financing-option'>
+                <div className='shimmer-financing-cards-sec'>
+                  <div className='shimmer-financing-card'></div>
+                  <div className='shimmer-financing-card'></div>
+                  <div className='shimmer-financing-card'></div>
+                </div>
+                <div className='shimmer-financing-card-button'></div>
+              </div>
+            )} */}
 
             {product.may_also_need && product.may_also_need.length > 0 ? <AlsoNeed productsUid={product.may_also_need} /> : <></>}
 
@@ -302,6 +363,22 @@ const ProductDetailSticky = ({ productData }) => {
           </div>
         </div>
       </div>
+      <ShareProduct
+        isSharePopup={isSharePopup}
+        setIsSharePopup={setIsSharePopup}
+        selectedProduct={selectedProduct}
+      />
+
+      <CartSidePannel
+        cartData={cartProducts}
+        addToCartClicked={cartSection}
+        handleCartSectionClose={handleCartClose}
+        setAddToCartClick={setCartSection}
+        removeFromCart={removeFromCart}
+        decreamentQuantity={decreamentQuantity}
+        increamentQuantity={increamentQuantity}
+      />
+
     </div>
   )
 }

@@ -53,8 +53,8 @@ export const CartProvider = ({ children }) => {
 
             const existingProduct =
                 product.type === "simple"
-                    ? updatedProducts.find((item) => item.product_uid === product.uid)
-                    : updatedProducts.find((item) => item.variation_uid === variationData.uid);
+                    ? updatedProducts.find((item) => item.product_uid === product?.uid)
+                    : updatedProducts.find((item) => item.variation_uid === variationData?.uid);
 
             if (existingProduct) {
                 return {
@@ -78,13 +78,13 @@ export const CartProvider = ({ children }) => {
                             product_uid: product?.uid,
                             name: product?.name,
                             isVariable: product?.type === "simple" ? 0 : 1,
-                            variation_uid: product?.type === "simple" ? 0 : variationData.uid,
+                            variation_uid: product?.type === "simple" ? 0 : variationData?.uid,
                             image: product?.type === "simple" ? product?.image : variationData?.images?.[0],
                             attributes: product.type === "simple" ? product.attributes : variationData?.attributes,
                             sale_price: product.type === "simple" ? product.sale_price : variationData?.sale_price,
                             regular_price: product.type === "simple" ? product.regular_price : variationData?.regular_price,
                             quantity: parseInt(quantity),
-                            sku: product.type === "simple" ? product.sku : variationData.sku,
+                            sku: product.type === "simple" ? product.sku : variationData?.sku,
                             is_protected: isProtected,
                         },
                     ],

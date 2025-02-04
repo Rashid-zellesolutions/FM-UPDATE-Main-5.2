@@ -9,6 +9,8 @@ import ProductReviewTab from '../../Components/Product-Display-Components/Produc
 import { useLocation, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { url } from '../../../utils/api';
+import { useCart } from '../../../context/cartContext/cartContext';
+import { useList } from '../../../context/wishListContext/wishListContext';
 
 const ProductDisplay = () => {
 
@@ -31,7 +33,7 @@ const ProductDisplay = () => {
   useEffect(() => {
     if (!product) {
       fetchProductBySlug(slug);
-    } 
+    }
   }, [product, slug]);
 
   useEffect(() => { fetchProductBySlug(slug) }, [slug])
@@ -45,10 +47,88 @@ const ProductDisplay = () => {
     Reviews: useRef(null),
   };
 
+  // Add To Cart Functionality
+  const {
+    addToCart,
+    decreamentQuantity,
+    increamentQuantity,
+    removeFromCart,
+    addToCart0,
+    cartProducts
+  } = useCart();
+
+  const [variationData, setVariationData] = useState([])
+  const [isLoading, setIsLoading] = useState(false);
+  const [isProtectionCheck, setIsProtectionCheck] = useState(true)
+  const [cartSection, setCartSection] = useState(false);
+  const [quantity, setQuantity] = useState(1)
+
+  const decreaseLocalQuantity = () => {
+    setQuantity((prevQuantity) => Math.max(1, prevQuantity - 1));
+  }
+
+  const increaseLocalQuantity = () => {
+    setQuantity(quantity + 1);
+  }
+
+  const handleQuantityChange = (e) => {
+    const { value } = e.target;
+    setQuantity(value)
+  }
+
+  const handleClick = () => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+  };
+
+  const handleAddToCartProduct = (product) => {
+    setCartSection(true);
+    addToCart(product, quantity, !isProtectionCheck);
+  }
+
+  const handleCartClose = () => {
+    setCartSection(false)
+    setQuantity(1)
+
+  }
+
   return (
     <div className='product-display-page-main-container'>
-      <ProductDetailSticky productData={product} />
-      <ProductStickyTabBar sectionRefs={sectionRefs} isSticky={isSticky} setIsSticky={setIsSticky} />
+      <ProductDetailSticky
+        productData={product}
+        decreaseLocalQuantity={decreaseLocalQuantity}
+        quantity={quantity}
+        handleQuantityChange={handleQuantityChange}
+        increaseLocalQuantity={increaseLocalQuantity}
+        isLoading={isLoading}
+        handleClick={handleClick}
+        addToCart0={addToCart0}
+        isProtectionCheck={isProtectionCheck}
+        handleAddToCartProduct={handleAddToCartProduct}
+        cartProducts={cartProducts}
+        cartSection={cartSection}
+        variationData={variationData}
+        setVariationData={setVariationData}
+        handleCartClose={handleCartClose}
+        setCartSection={setCartSection}
+        removeFromCart={removeFromCart}
+        decreamentQuantity={decreamentQuantity}
+        increamentQuantity={increamentQuantity}
+      />
+
+      <ProductStickyTabBar 
+        sectionRefs={sectionRefs} 
+        productData={product} 
+        isSticky={isSticky} 
+        setIsSticky={setIsSticky} 
+        variationData={variationData}
+        addToCart0={addToCart0}
+        handleAddToCartProduct={handleAddToCartProduct}
+        isProtectionCheck={isProtectionCheck}
+        quantity={quantity}
+      />
 
       <ProductDescriptionTab
         descriptionRef={sectionRefs.Description}

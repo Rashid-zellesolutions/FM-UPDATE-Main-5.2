@@ -483,6 +483,7 @@ const SingleProductStickySection = ({ productData }) => {
                         <FaPlus size={18} className='plus-icon' />
                       </button>
                     </div>
+                    
                     <img src={isInWishList(product.uid) ? filledHeart : redHeart} alt='red-heart-icon' className='red-heart-icon' onClick={(e) => { e.stopPropagation(); handleWishList(product) }} />
                     <button
                       className={`add-to-cart-btn ${isLoading ? 'loading' : ''}`}

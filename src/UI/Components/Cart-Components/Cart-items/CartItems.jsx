@@ -291,7 +291,7 @@ const CartItems = ({
                                             Yes Protect it
                                         </button> */}
                                     <ToggleSwitch
-                                        id={`protection-toggle-${productData.product_uid}`}
+                                        id={`protection-toggle-${productData.isVariable === 1 ? productData.variation_uid : productData.product_uid}`}
                                         checked={isProtectionClicked === 'yes-protect'}
                                         onChange={() => {
                                             if (isProtectionClicked === 'yes-protect') {

@@ -33,7 +33,7 @@ const RatingAndReview = ({ rating, data }) => {
         }
     }, [data]);
 
-    console.log("customer images", customerImages)
+    // console.log("customer images", customerImages)
 
     return (
         <div className={`rating-and-customers-photos`}>

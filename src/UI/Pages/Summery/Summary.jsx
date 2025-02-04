@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import './Summary.css';
 import OrderSummary from '../../Components/Summary-Components/OrderSummary/OrderSummary';
 import Coupon from '../../Components/Summary-Components/Coupon/Coupon';
@@ -15,9 +15,30 @@ import { formatedPrice, truncateTitle, url } from '../../../utils/api';
 import { useGlobalContext } from '../../../context/GlobalContext/globalContext';
 import { IoIosArrowDown } from "react-icons/io";
 import { Link } from 'react-router-dom';
+import DeliveryInfo from './DeliveryInfo/DeliveryInfo';
 
 
 const Summary = () => {
+
+  const deliveryInfoRef = useRef(null);
+
+  const handleDeliveryFormSubmit = () => {
+        console.log("Form submitted successfully!");
+    };
+
+  const handleContinueToPayment = () => {
+    if (deliveryInfoRef.current) {
+        const isValid = deliveryInfoRef.current.validateAndSubmit();
+        console.log("Validation result: ", isValid); // Debug log
+
+        if (!isValid) {
+            return; // Stop here if validation fails
+        }
+
+        // Proceed only if validation passes
+        handleTabOpen(1);
+    }
+};
 
   const checkoutSections = [
     { id: 1, name: 'Delivery', navOp: 'delivery' },
@@ -40,14 +61,9 @@ const Summary = () => {
     setThankyouState
   } = useMyOrders();
 
-  // const {
-  //   cartProducts,
-  //   subTotal,
-  // } = useCart()
-
   const [isCheck, setIsCheck] = useState({});
+
   const {
-    shippingMethods,
     info,
     zipCode,
     handleInputChange,
@@ -55,22 +71,13 @@ const Summary = () => {
     totalTax,
     calculateTotalTax,
     selectedOption,
-    handleChange,
-    getShippingMethods,
-    selectedShippingMethods,
-    setSelectedShippingMethods,
     CalculateGrandTotal
   } = useGlobalContext();
 
   const {
-    cart,
     subTotal,
     savings,
-    isCartProtected,
     cartProducts,
-    isProfessionalAssembly,
-    handleCartProtected,
-    handleCartAssembly,
   } = useCart();
 
   const protectionPrice = isCheck[0] ? 210 : 0;
@@ -146,7 +153,8 @@ const Summary = () => {
               <div className='shipping-details-and-coupen-show'>
                 {/* <ShippingDetails userInfoPayload={setOrderPayload} />
               <Coupon /> */}
-                <ShippingForm />
+                {/* <ShippingForm /> */}
+                <DeliveryInfo ref={deliveryInfoRef} onSubmit={handleDeliveryFormSubmit} />
               </div> :
               // selectedTab === 1 ?
               //   <div className='order-summery-and-proceed-btn'>
@@ -259,7 +267,11 @@ const Summary = () => {
                   By placing this order I agree to the Furniture Mecca 
                   <Link to={'/terms-and-conditions'}>Terms & Conditions</Link>
                 </span>
-                <button className='right-section-place-order-button'>Place Your Order</button>
+                {
+                  selectedTab === 0 ? <button onClick={handleContinueToPayment} className='right-section-place-order-button'>Continue</button>
+                  : <button className='right-section-place-order-button'>Place Your Order</button>
+                }
+                {/* <button className='right-section-place-order-button'>Place Your Order</button> */}
               </div>
             </div>
 

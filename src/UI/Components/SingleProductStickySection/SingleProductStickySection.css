@@ -502,6 +502,8 @@
     gap: 5px;
 }
 
+/* Share Product Icon */
+/* 
 .single-product-share{
     display: flex;
     align-items: center;
@@ -524,7 +526,9 @@
     line-height: 22px;
     font-weight: 500;
     padding-top: 4px;
-}
+} */
+
+/* Share Product End */
 
 .single-product-heading {
     font-size: 22px;
@@ -703,18 +707,17 @@
     font-weight: 600 !important;
 }
 
+/* Add To Card and Quantity Container */
+/* 
 .add-cart-or-add-items-div {
     display: flex;
     gap: 15px;
     width: 100%;
-    /* margin-bottom: 22px; */
 }
 
 .item-count {
     display: flex;
-    /* border: 1.5px solid var(--text-color); */
     height: 50px;
-    /* border-radius: 8px; */
 }
 
 .minus-btn {
@@ -733,7 +736,6 @@
 }
 
 .minus-btn:focus {
-    /* box-shadow: 0 0 10px rgba(195, 0, 0, 0.5);  */
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
 }
@@ -743,13 +745,11 @@
     border-bottom-left-radius: 8px;
     border: 1px solid var(--text-color);
     background-color: var(--text-color);
-    /* border: 1px solid var(--tertiary-color); */
 }
 
 .minus-btn.disabled {
     cursor: not-allowed;
     opacity: 0.5;
-    /* Visual indication that the button is disabled */
 }
 
 .minus-icon{
@@ -774,7 +774,6 @@
 .item-count input::-webkit-outer-spin-button,
 .item-count input::-webkit-inner-spin-button {
     -webkit-appearance: none;
-    /* Chrome, Safari, Edge, Opera */
     margin: 0;
 }
 
@@ -796,7 +795,6 @@
 }
 
 .plus-btn:focus {
-    /* box-shadow: 0 0 10px rgba(195, 0, 0, 0.5); */
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
 }
@@ -819,8 +817,6 @@
 }
 
 .red-heart-icon:hover {
-    /* box-shadow: 0 0 10px rgba(195, 0, 0, 0.5);  */
-    /* border-radius: 25px; */
     width: auto;
     height: 50px;
     object-fit: contain;
@@ -871,17 +867,13 @@
 .add-to-cart-btn:active,
 .add-to-cart-btn.loading {
     transform: scale(0.95);
-    border-color: var(--tertiary-color);
-    /* Outer border color */
     opacity: 0.8;
-    /* Fading effect */
 }
 
 .add-to-cart-btn:active::after,
 .add-to-cart-btn.loading::after {
     opacity: 1;
-    /* Ensure inner border remains visible */
-}
+} */
 
 /* Mobile styling */
 .mobile-view-sticky-main-container {
