@@ -34,3 +34,17 @@
     font-weight: 400;
     color: var(--text-color);
 }
+
+@media only screen and (max-width: 480px){
+    .dimension-main-container{
+        gap: 10px;
+    }
+    .dimension-card{
+        padding: 5px;
+    }
+
+    .dimension-card > p{
+        font-size: 8px;
+        line-height: 12px;
+    }
+}

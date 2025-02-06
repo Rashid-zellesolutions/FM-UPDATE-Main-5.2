@@ -43,3 +43,20 @@
     height: 120px;
     object-fit: cover;
 }
+
+@media only screen and (max-width: 480px){
+    .dimension-detail-main-container{
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+    }
+
+    .dimension-detail-section{
+        width: 100%;
+        padding: 10px;
+    }
+
+    .dimension-detail-image-section{
+        width: 100%;
+    }
+}

@@ -1,10 +1,10 @@
-.product-detail-sticky-section-main-container{
+.product-detail-sticky-section-main-container {
     display: flex;
     flex-direction: column;
     width: 100%;
 }
 
-.product-detail-sticky-gallery-and-detail{
+.product-detail-sticky-gallery-and-detail {
     display: flex;
     width: 100%;
     align-items: start;
@@ -13,7 +13,7 @@
     position: relative;
 }
 
-.product-detail-product-gallery-section{
+.product-detail-product-gallery-section {
     display: flex;
     flex-direction: column;
     width: 70%;
@@ -31,7 +31,7 @@
 
 /* Product detail section */
 
-.product-detail-product-info-section{
+.product-detail-product-info-section {
     width: 30%;
     height: auto;
     display: flex;
@@ -42,7 +42,7 @@
 
 /* Product detail sticky section */
 
-.product-detail-info-sticky{
+.product-detail-info-sticky {
     width: 100%;
     height: max-content;
     padding: 0 0 15px 0;
@@ -61,7 +61,7 @@
     border-bottom: 1px solid var(--border-color);
 }
 
-.product-detail-name-and-rating-etc{
+.product-detail-name-and-rating-etc {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -70,14 +70,14 @@
     margin-bottom: 15px;
 }
 
-.product-detail-rating-and-share{
+.product-detail-rating-and-share {
     display: flex;
     width: 100%;
     align-items: center;
     justify-content: space-between;
 }
 
-.single-product-share{
+.single-product-share {
     display: flex;
     align-items: center;
     justify-content: start;
@@ -86,15 +86,15 @@
     cursor: pointer;
 }
 
-.single-product-share-icon{
+.single-product-share-icon {
     color: var(--text-color);
 }
 
-.single-product-share-icon:hover{
-    color: #4478C5 ;
+.single-product-share-icon:hover {
+    color: #4478C5;
 }
 
-.single-product-share-text{
+.single-product-share-text {
     font-size: 15px;
     line-height: 22px;
     font-weight: 500;
@@ -146,12 +146,12 @@
     opacity: 0.5;
 }
 
-.minus-icon{
+.minus-icon {
     color: var(--text-color) !important;
     margin-top: -12px;
 }
 
-.minus-btn:hover .minus-icon{
+.minus-btn:hover .minus-icon {
     color: #FFFFFF !important;
 }
 
@@ -201,17 +201,17 @@
 
 }
 
-.plus-icon{
+.plus-icon {
     color: var(--text-color) !important;
     transition: all 0.3s ease-in-out;
 }
 
-.plus-btn:hover .plus-icon{
+.plus-btn:hover .plus-icon {
     color: #FFFFFF !important;
 }
 
 /* Add To Wish list */
-.product-details-add-to-wishlist-icon{
+.product-details-add-to-wishlist-icon {
     display: flex;
     width: max-content;
     height: 48px;
@@ -278,7 +278,7 @@
 /* Add to cart and quantity end */
 
 
-.product-detail-other-info{
+.product-detail-other-info {
     display: flex;
     flex-direction: column;
     align-items: start;
@@ -289,7 +289,7 @@
     background-color: #FFFFFF;
 }
 
-.product-details-protection-plan-container{
+.product-details-protection-plan-container {
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -299,14 +299,14 @@
     padding: 15px 0;
 }
 
-.product-details-protection-plan-container > h3 {
+.product-details-protection-plan-container>h3 {
     font-size: 20px;
     line-height: 22px;
     font-weight: 600;
     color: var(--text-color);
 }
 
-.product-details-protection-plan-details-and-add{
+.product-details-protection-plan-details-and-add {
     display: flex;
     width: 100%;
     align-items: center;
@@ -314,7 +314,7 @@
 
 }
 
-.product-details-protection-plan{
+.product-details-protection-plan {
     display: flex;
     align-items: center;
     justify-content: start;
@@ -322,7 +322,7 @@
     width: max-content;
 }
 
-.product-details-info{
+.product-details-info {
     display: flex;
     flex-direction: column;
     width: max-content;
@@ -331,37 +331,37 @@
     justify-content: start;
 }
 
-.product-details-info > p{
+.product-details-info>p {
     font-size: 16px;
     line-height: 20px;
     font-weight: 400;
     color: var(--text-color);
 }
 
-.product-details-info > span  {
+.product-details-info>span {
     display: flex;
     align-items: center;
     justify-content: start;
     gap: 5px;
 }
 
-.product-details-info > span > p{
+.product-details-info>span>p {
     font-size: 16px;
     line-height: 20px;
     font-weight: 400;
     color: var(--text-color);
 }
 
-.product-details-info > span > strong{
-font-size: 16px;
-line-height: 20px;
-font-weight: 400;
-color: #4478C5;
-text-decoration: underline;
-cursor: pointer;
+.product-details-info>span>strong {
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 400;
+    color: #4478C5;
+    text-decoration: underline;
+    cursor: pointer;
 }
 
-.product-detail-add-protection-plan-button{
+.product-detail-add-protection-plan-button {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -377,26 +377,26 @@ cursor: pointer;
     cursor: pointer;
 }
 
-.product-detail-add-protection-plan-button:hover{
+.product-detail-add-protection-plan-button:hover {
     background-color: #4478C5;
     color: #FFF;
 }
 
-.product-detail-chat-option-container{
+.product-detail-chat-option-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
 }
 
-.product-detail-chat-option-container > p{
+.product-detail-chat-option-container>p {
     font-size: 20px;
     line-height: 20px;
     font-weight: 500;
     color: var(--text-color);
 }
 
-.product-detail-chat-option-container > button {
+.product-detail-chat-option-container>button {
     display: flex;
     width: max-content;
     align-items: center;
@@ -413,7 +413,64 @@ cursor: pointer;
 
 }
 
-.product-detail-chat-option-container > button:hover{
+.product-detail-chat-option-container>button:hover {
     background-color: #4478C5;
     color: #FFFFFF;
+}
+
+@media only screen and (max-width: 480px) {
+    .product-detail-sticky-gallery-and-detail {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .product-detail-product-gallery-section {
+        width: 100%;
+        border-right: none;
+    }
+
+    .product-detail-product-info-section {
+        width: 100%;
+    }
+
+    .product-detail-product-gallery-section {
+        position: unset;
+    }
+
+    .product-detail-info-sticky {
+        position: unset;
+    }
+
+    .product-details-info>p {
+        font-size: 12px;
+        line-height: 15px;
+    }
+
+    .product-details-info>span>p {
+        font-size: 12px;
+        line-height: 15px;
+    }
+
+    .product-details-info>span>strong {
+        font-size: 14px;
+        line-height: 15px;
+    }
+
+    .product-detail-chat-option-container>p {
+        font-size: 12px;
+        line-height: 15px;
+    }
+
+    .product-detail-add-protection-plan-button{
+        font-size: 12px;
+        line-height: 14px;
+        padding: 5px 10px;
+    }
+
+    .product-detail-chat-option-container>button {
+        font-size: 12px;
+        line-height: 14px;
+        padding: 5px 10px;
+    }
+
 }

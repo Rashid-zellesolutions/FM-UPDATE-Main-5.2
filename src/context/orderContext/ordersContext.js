@@ -41,6 +41,8 @@ export const MyOrdersProvider = ({ children }) => {
         card_type: ''
     })
 
+    console.log("credit card data", creditCardData)
+
     const [orderPayload, setOrderPayload] = useState({
         status: 'pending',
         currency: "USD",
@@ -52,7 +54,7 @@ export const MyOrdersProvider = ({ children }) => {
             state: "",
             postal_code: "",
             country: "USA",
-            email: "",
+            email: "rashidpanhwer8@gmail.com",
             phone: ""
         },
         shipToDiffAdd: false,
@@ -161,6 +163,8 @@ export const MyOrdersProvider = ({ children }) => {
             },
         }));
         setEmptyField((prev) => ({ ...prev, [name]: "" }));
+
+        console.log("values change", orderPayload);
     };
 
     const handleNestedValueChangeShipping = (e) => {

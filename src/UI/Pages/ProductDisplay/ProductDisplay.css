@@ -5,3 +5,9 @@
     padding: var(--global-padding);
     gap: 25px;
 }
+
+@media only screen and (max-width: 480px){
+    .product-display-page-main-container{
+        padding: 20px 10px;
+    }
+}

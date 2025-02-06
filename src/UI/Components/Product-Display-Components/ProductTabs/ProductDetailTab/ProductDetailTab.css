@@ -92,3 +92,28 @@
     width: 380px;
     height: auto;
 }
+
+@media only screen and (max-width: 480px){
+    .product-detail-main-section{
+        flex-direction: column;
+    }
+    .product-detail-right-section{
+        width: 100%;
+    }
+
+    .product-detail-right-section-heading-container{
+        padding: 10px 0;
+    }
+
+    .product-detail-right-section-heading-container > h3 {
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+    .product-detail-left-section > img{
+        width: 250px;
+    }
+
+}

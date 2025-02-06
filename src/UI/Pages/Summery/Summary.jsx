@@ -269,7 +269,7 @@ const Summary = () => {
                 </span>
                 {
                   selectedTab === 0 ? <button onClick={handleContinueToPayment} className='right-section-place-order-button'>Continue</button>
-                  : <button className='right-section-place-order-button'>Place Your Order</button>
+                  : <button onClick={handleSubmit}  className='right-section-place-order-button'>Place Your Order</button>
                 }
                 {/* <button className='right-section-place-order-button'>Place Your Order</button> */}
               </div>

@@ -30,10 +30,13 @@ const PaymentOptions = ({ onSelectedLabel }) => {
     const checkPaymentMethodById = (id) => {
         const paymentMethod = activePaymentMethods?.find(pm => pm.id === id);
         if (paymentMethod) {
+            
             return paymentMethod;
         } else {
             return paymentMethod;
         }
+
+        
     };
 
     const detectCardType = (cardNumber) => {
