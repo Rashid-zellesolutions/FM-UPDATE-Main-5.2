@@ -188,9 +188,9 @@
 
 .product-title{
     background-color: transparent !important;
-    font-size: 17px !important;
-    font-weight: 400 !important;
-    line-height: 22px !important;
+    font-size: var(--sub-section-size) !important;
+    font-weight: var(--sub-section-weight) !important;
+    line-height: var(--sub-section-height) !important;
     margin-bottom: 10px !important;
     cursor: pointer;
     color: var(--text-color);
@@ -212,9 +212,9 @@
 
 .product-sku {
     background-color: transparent !important;
-    font-size: 11px;
-    font-weight: 400;
-    line-height: 14px;
+    font-size: var(--attribute-size);
+    font-weight: var(--attribute-weight);
+    line-height: var(--attribute-height);
     margin: 10px 0 0 0;
     padding: 0;
     cursor: pointer;
@@ -226,8 +226,9 @@
 
 .text-tag {
     padding: 5px 15px;
-    font-size: 12px;
-    font-weight: 500;
+    font-size: var(--attribute-size);
+    font-weight: var(--attribute-weight);
+    line-height: var(--attribute-height);
     display: inline-block;
 }
 
@@ -278,12 +279,13 @@
     line-height: 21px !important;
     font-weight: 600 !important;
     color: var(--text-color) !important;
+    opacity: 0.5;
 }
 
 .product-price-tag {
-    font-size: 19px !important;
-    line-height: 21px !important;
-    font-weight: 600 !important;
+    font-size: var(--section-size) !important;
+    line-height: var(--section-height) !important;
+    font-weight: var(--section-weight) !important;
     /* margin-top: 15px;
     margin-bottom: 10px; */
     color: var(--text-color) !important;
@@ -291,9 +293,9 @@
 }
 
 .product-del-price-with-sale-price {
-    font-size: 15px;
-    line-height: 21px;
-    font-weight: 500;
+    font-size: var(--sub-section-size);
+    line-height: var(--sub-section-height);
+    font-weight: var(--sub-section-weight);
     color: var(--text-color);
     opacity: 0.5;
 }

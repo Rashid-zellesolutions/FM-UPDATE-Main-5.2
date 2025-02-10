@@ -79,7 +79,7 @@
     display: flex;
     width: max-content;
     border: 1px solid var(--border-color);
-    padding: 8px;
+    padding: 5px 10px;
     cursor: pointer;
     border-radius: 8px;
 }
@@ -93,10 +93,10 @@
 }
 
 .select-type-attribute p{
-    font-size: 13px;
-    line-height: 18px;
-    font-weight: 400;
-    color: var(--text-color);
+    font-size: var(--content-one-size);
+    line-height: var(--content-one-height);
+    font-weight: var(--content-one-weight);
+    color: var(--text-white);
 }
 
 /* attribute image */

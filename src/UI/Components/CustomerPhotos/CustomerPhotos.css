@@ -82,6 +82,9 @@
       height: 30px;
       object-fit: contain;
   }
+  .slider-container{
+    padding: 0;
+  }
   .slide-image {
       width: auto;
       height: 100px;

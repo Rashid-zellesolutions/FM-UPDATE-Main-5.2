@@ -23,6 +23,33 @@
   --inner-padding: 35px 60px 0px 60px;
   --heading-line-height: 28px;
   --tertiary-color:#4487C5;
+
+
+  /* font sizings */
+
+  /* Section Sizing */
+  --section-size: 20px;
+  --section-weight: 500;
+  --section-height: 1.5;
+
+  /* sub section */
+  --sub-section-size: 15px;
+  --sub-section-weight: 500;
+  --sub-section-height: 1.5;
+
+  --content-one-size: 12px;
+  --content-one-weight: 500;
+  --content-one-height: 1.5;  
+
+  --content-two-weight: 400;
+
+  --attribute-size: 12px;
+  --attribute-weight: 500;
+  --attribute-height: 1.5;
+
+  --product-name: 15px;
+  --product-weight: 600;
+  --product-height: 1.3
 }
 
 *{
@@ -34,6 +61,7 @@
 body {
   font-family: var(--Poppins-font);
   color: var(--text-color) !important;
+  line-height: 1.5 !important;
 }
 
 body::-webkit-scrollbar {

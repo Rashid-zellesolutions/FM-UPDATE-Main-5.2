@@ -46,9 +46,9 @@
 
 @media only screen and (max-width: 480px){
     .dimension-detail-main-container{
-        display: flex;
-        flex-direction: column;
-        padding: 0;
+        display: none;
+        /* flex-direction: column;
+        padding: 0; */
     }
 
     .dimension-detail-section{

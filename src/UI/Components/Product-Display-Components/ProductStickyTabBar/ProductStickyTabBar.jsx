@@ -2,20 +2,21 @@ import React, { useEffect, useState } from 'react'
 import './ProductStickyTabBar.css'
 import { CiDeliveryTruck, CiLocationOn } from "react-icons/ci";
 import { useCart } from '../../../../context/cartContext/cartContext';
+import { formatedPrice } from '../../../../utils/api';
 
 const ProductStickyTabBar = (
-    { 
-        sectionRefs = {}, 
-        isSticky, 
-        setIsSticky, 
-        productData ,
+    {
+        sectionRefs = {},
+        isSticky,
+        setIsSticky,
+        productData,
         addToCart0,
         handleAddToCartProduct,
         variationData,
         isProtectionCheck,
         quantity
     }) => {
-    
+
 
     const tabBarItems = ['Description', 'Details', 'Recommendations', 'Reviews'];
     const [activeTab, setIsActiveTab] = useState('Description');
@@ -84,22 +85,48 @@ const ProductStickyTabBar = (
                         <div className='product-sticky-fixed-add-to-cart'>
                             <div className='product-detail-fixed-sale-price'>
                                 <p>Sale</p>
-                                <span>
+                                {productData.sale_price !== '' ? (
+                                    <span>
+                                        <h3>{formatedPrice(productData?.sale_price)}</h3>
+                                        <del>was {formatedPrice(productData?.regular_price)}</del>
+                                    </span>
+                                ) : (
+                                    <h3>{formatedPrice(productData?.regular_price)}</h3>
+                                )}
+                                {/* <span>
                                     <h3>$1999.00</h3>
                                     <del>was $2100.00</del>
-                                </span>
+                                </span> */}
                             </div>
                             <button
                                 onClick={() => {
                                     addToCart0(productData, variationData, !isProtectionCheck ? 1 : 0, quantity)
                                     handleAddToCartProduct(productData);
                                 }
-                            }
+                                }
                             >
                                 Add To Cart
                             </button>
                         </div>
                     </div>
+
+                    <div className='mobile-product-sticky-fixed-add-to-cart'>
+                        <div className='mobile-sticky-product-sale-and-price'>
+                            <h3>Sale</h3>
+                            <p>{formatedPrice(productData?.sale_price)}</p>
+                        </div>
+                        <button
+                            onClick={() => {
+                                addToCart0(productData, variationData, !isProtectionCheck ? 1 : 0, quantity)
+                                handleAddToCartProduct(productData);
+                            }
+                            }
+                        >
+                            Add To Cart
+                        </button>
+                    </div>
+
+
                     <div className='product-sticky-fixed-tabs-container'>
                         {tabBarItems.map((item, index) => (
                             <div

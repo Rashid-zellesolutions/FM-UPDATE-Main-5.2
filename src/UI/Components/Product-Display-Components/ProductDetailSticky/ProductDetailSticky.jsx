@@ -202,8 +202,8 @@ const ProductDetailSticky = (
       <div className='product-detail-sticky-gallery-and-detail'>
         <div className='product-detail-product-gallery-section'>
           <ProductGallery productData={product} selectedVariationData={selectedVariationData} productImages={product?.images} />
-          <ProductDimension />
-          <DimensionDetail />
+          <ProductDimension productData={product} variationData={selectedVariationData} />
+          <DimensionDetail  />
         </div>
 
         <div className='product-detail-product-info-section'>
@@ -257,7 +257,7 @@ const ProductDetailSticky = (
                 <div className='item-count'>
                   <button className={`minus-btn ${product.quantity === 1 ? 'disabled' : ''}`} onClick={decreaseLocalQuantity} disabled={product.quantity === 1}>
                     {/* <img src={minus} alt='minus btn' /> */}
-                    <FaWindowMinimize size={18} className='minus-icon' />
+                    <FaWindowMinimize size={15} className='minus-icon' />
                   </button>
 
                   <input
@@ -267,7 +267,7 @@ const ProductDetailSticky = (
                   />
                   <button className='plus-btn' onClick={increaseLocalQuantity}>
                     {/* <img src={plus} alt='plus btn' /> */}
-                    <FaPlus size={18} className='plus-icon' />
+                    <FaPlus size={15} className='plus-icon' />
                   </button>
                 </div>
                 <div
@@ -275,8 +275,8 @@ const ProductDetailSticky = (
                   onClick={(e) => { e.stopPropagation(); handleWishList(product) }}
                   style={{ border: isInWishList(product.uid) ? '1px solid red' : '1px solid #595959' }}
                 >
-                  {isInWishList(product.uid) ? <IoMdHeart size={30} color={isInWishList(product.uid) ? 'red' : '#595959'} />
-                    : <IoMdHeartEmpty size={30} />}
+                  {isInWishList(product.uid) ? <IoMdHeart size={20} color={isInWishList(product.uid) ? 'red' : '#595959'} />
+                    : <IoMdHeartEmpty size={20} />}
                 </div>
                 {/* <img src={isInWishList(product.uid) ? filledHeart : redHeart} alt='red-heart-icon' className='red-heart-icon' onClick={(e) => { e.stopPropagation(); handleWishList(product) }} /> */}
                 <button

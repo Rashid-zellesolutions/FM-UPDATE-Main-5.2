@@ -16,6 +16,7 @@ import SnakBar from '../../../../Global-Components/SnakeBar/SnakBar';
 
 
 const CartProducts = () => {
+
     const {
         cart,
         cartProducts,
@@ -102,6 +103,7 @@ const CartProducts = () => {
         setShowSnakeBar(true)
         setSnakeBarMessage(name)
     }
+
     const handleCloseSnakeBar = () => {
         setShowSnakeBar(false)
     }
@@ -111,16 +113,26 @@ const CartProducts = () => {
     return (
         <>
             <div className='cart-products-main-container'>
+
                 <div className='cart-products-heading'>
                     <Breadcrumb />
                     <h3>Cart ({cartProducts.products.length} items)</h3>
                 </div>
+
+
                 <div className='zipcode-and-protection-plan-container'>
                     <span className='update-zip-code-on-cart-page'>
                         <IoLocationOutline size={20} />
                         <p className='update-zip-on-cart-details'>Product availability and delivery options for 19134</p>
                         <p className='update-zip-on-cart-update-location' onClick={handleLocationModal}>Change Location</p>
                     </span>
+                    <div className='mobile-view-update-zip-on-cart-page'>
+                        <span> 
+                            <IoLocationOutline size={20} color='#595959' />
+                            <p>Product availability and delivery options for 19134</p>    
+                        </span>
+                        <p onClick={handleLocationModal}> Change Location </p>
+                    </div>
                     <div className='cart-protection-plan-container'>
                         <h3
                             className='protection-plan-on-cart-container'
@@ -164,6 +176,8 @@ const CartProducts = () => {
 
                     </div>
                 </div>
+
+
                 <div className={`cart-items ${isOpen ? 'low-width' : ''}`}>
                     <div className='cart-container-shipping-details'>
                         <h3 className='protection-plan-on-cart-container'>Choose Delivery Method</h3>

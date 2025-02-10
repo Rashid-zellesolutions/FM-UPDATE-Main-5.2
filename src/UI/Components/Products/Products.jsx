@@ -394,8 +394,9 @@ const Products = () => {
     };
 
     const handleNextPage = () => {
+        console.log("total pages", totalPages)
         console.log("next clicked")
-        if (activePage < totalPages) {
+        if (activePage < totalPages?.totalPages) {
             setActivePage(activePage + 1);
             setActivePageIndex(activePageIndex + 1);
         }

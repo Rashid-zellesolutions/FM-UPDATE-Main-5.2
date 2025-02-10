@@ -6,9 +6,9 @@
 }
 
 .might-need-main-container h3{
-    font-size: 20px;
-    line-height: 22px;
-    font-weight: 600;
+    font-size: var(--section-size);
+    line-height: var(--section-height);
+    font-weight: var(--section-weight);
 }
 
 .might-need-cards-main-container{
@@ -66,16 +66,16 @@
     gap: 0px;
 }
 
-.you-might-need-product-contant h3{
-    font-size: 13px;
-    line-height: 19px;
-    font-weight: 500;
+.you-might-need-product-contant > h3{
+    font-size: var(--sub-section-size);
+    line-height: var(--sub-section-height);
+    font-weight: var(--sub-section-weight);
 }
 
-.you-might-need-product-contant p{
-    font-size: 12px;
-    line-height: 22px;
-    font-weight: 400;
+.you-might-need-product-contant > p{
+    font-size: var(--attribute-size);
+    line-height: var(--attribute-height);
+    font-weight: var(--attribute-weight);
 }
 
 .also-need-prices-div{
@@ -87,17 +87,17 @@
 }
 
 .might-need-product-del-price{
-    font-size: 12px !important;
-    line-height: 22px !important;
-    font-weight: 500 !important;
+    font-size: var(--content-one-size) !important;
+    line-height: var(--content-one-height) !important;
+    font-weight: var(--content-two-weight) !important;
     opacity: 0.5 !important;
-    z-index: -9;
+    
 }
 
 .might-need-product-price{
-    font-size: 15px !important;
-    line-height: 22px !important;
-    font-weight: 500 !important;
+    font-size: var(--sub-section-size) !important;
+    line-height: var(--sub-section-height) !important;
+    font-weight: var(--sub-section-weight) !important;
 }
 
 .might-need-product-rating{

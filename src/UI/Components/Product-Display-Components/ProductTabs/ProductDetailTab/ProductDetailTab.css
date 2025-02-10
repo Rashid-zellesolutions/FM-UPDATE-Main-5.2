@@ -116,4 +116,27 @@
         width: 250px;
     }
 
+    .product-detail-right-section-items > span {
+        flex-direction: column;
+        gap: 0;
+        align-items: start;
+    }
+
+    .product-detail-right-section-items > span > h3 {
+        font-size: 14px;
+        line-height: 16px;
+        font-weight: 500;
+    }
+
+    .product-detail-right-section-items > span > p{
+        font-size: 12px;
+        line-height: 14px;
+        font-weight: 400;
+    }
+
+    .product-detail-right-section-items > p {
+        font-size: 13px;
+        line-height: 16px;
+    }
+
 }

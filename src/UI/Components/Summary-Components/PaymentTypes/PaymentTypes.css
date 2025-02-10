@@ -1,46 +1,46 @@
-.payment-types-main-container{
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    gap: 15px;
-    align-items: start;
-    justify-content: start;
+.payment-types-main-container {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 15px;
+  align-items: start;
+  justify-content: start;
 }
 
-.payment-type-heading-container{
-    display: flex;
-    align-items: center;
-    justify-content: start;
-    gap: 10px;
-    font-size: 20px;
-    line-height: 30px;
-    font-weight: 500;
-    color: var(--text-color);
+.payment-type-heading-container {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 10px;
+  font-size: 20px;
+  line-height: 30px;
+  font-weight: 500;
+  color: var(--text-color);
 }
 
 /* Payment select container */
 
-.payment-types-select-boxes-container{
-    display: grid;
-    grid-template-columns: auto auto auto;
-    width: 100%;
-    gap: 10px;
+.payment-types-select-boxes-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  width: 100%;
+  gap: 10px;
 }
 
-.payment-select-option{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: start;
-    font-size: 14px;
-    line-height: 24px;
-    font-weight: 400;
-    border: 1px solid var(--border-color);
-    color: var(--text-color);
-    padding: 5px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
+.payment-select-option {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+  font-size: 14px;
+  line-height: 24px;
+  font-weight: 400;
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+  padding: 5px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
 }
 
 /* Custom radio button */
@@ -81,7 +81,22 @@
   background-color: rgba(0, 0, 0, 0.05);
 }
 
-.payment-type-paypal-logo{
-    width: auto;
-    height: 20px;
+.payment-type-paypal-logo {
+  width: auto;
+  height: 20px;
+}
+
+@media only screen and (max-width: 480px) {
+  .payment-types-select-boxes-container {
+    display: grid;
+    grid-template-columns: auto auto;
+  }
+  .payment-select-option{
+    font-size: 12px;
+    line-height: 14px;
+    padding: 5px 10px;
+  }
+  .payment-type-paypal-logo{
+    height: 15px;
+  }
 }

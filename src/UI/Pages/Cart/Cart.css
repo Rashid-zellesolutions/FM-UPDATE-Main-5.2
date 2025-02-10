@@ -88,9 +88,9 @@
 }
 
 .cart-order-summary-heading {
-    font-size: 20px;
-    line-height: 30px;
-    font-weight: 600;
+    font-size: var(--section-size);
+    line-height: var(--section-height);
+    font-weight: var(--section-weight);
 }
 
 .cart-order-summary-sub-title {
@@ -161,7 +161,7 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    gap: 20px;
+    gap: 10px;
 }
 
 .if-professional-assembly-container{
@@ -172,15 +172,15 @@
 }
 
 .if-professional-assembly-heading{
-    font-size: 15px;
-    line-height: 18px;
-    font-weight: 500;
+    font-size: var(--content-one-size);
+    line-height: var(--content-one-height);
+    font-weight: var(--content-one-weight);
 }
 
 .if-professional-assembly-value{
-    font-size: 15px;
-    line-height: 18px;
-    font-weight: 600;
+    font-size: var(--sub-section-size);
+    line-height: var(--sub-section-height);
+    font-weight: var(--sub-section-weight);
 }
 
 .cart-order-summary-price-detail-single-item {
@@ -193,15 +193,15 @@
 
 
 .cart-order-summary-price-detail-single-item-title {
-    font-size: 15px;
-    line-height: 18px;
-    font-weight: 500;
+    font-size: var(--content-one-size);
+    line-height: var(--content-one-height);
+    font-weight: var(--content-two-weight);
 }
 
 .cart-order-summary-price-detail-single-item-price {
-    font-size: 15px;
-    line-height: 18px;
-    font-weight: 600;
+    font-size: var(--content-one-size);
+    line-height: var(--content-one-height);
+    font-weight: var(--content-one-weight);
 }
 
 .cart-order-summary-zip-code {
@@ -220,9 +220,9 @@
 }
 
 .cart-order-summary-zip-code-heading p {
-    font-size: 15px;
-    line-height: 18px;
-    font-weight: 500;
+    font-size: var(--content-one-size);
+    line-height: var(--content-one-height);
+    font-weight: var(--content-one-weight);
 }
 
 .cart-order-summary-zip-code-heading h3 {
@@ -230,9 +230,9 @@
     align-items: center;
     justify-content: start;
     gap: 5px;
-    font-weight: 500;
-    font-size: 15px;
-    line-height: 18px;
+    font-weight: var(--section-weight);
+    font-size: var(--sub-section-size);
+    line-height: var(--sub-section-height);
     color: var(--active-nav-item-color);
     cursor: pointer;
 }
@@ -306,9 +306,9 @@
 }
 
 .order-summary-coupon-div p {
-    font-size: 15px;
-    font-weight: 500;
-    line-height: 18px;
+    font-size: var(--content-one-size);
+    font-weight: var(--content-one-weight);
+    line-height: var(--content-one-height);
     display: flex;
     align-items: center;
     justify-content: start;
@@ -382,13 +382,13 @@ mobile-cart-order-summary-total{
 }
 
 .cart-order-summary-price-detail-save-discount p {
-    font-size: 15px;
-    line-height: 18px;
-    font-weight: 500;
+    font-size: var(--content-one-size);
+    line-height: var(--content-one-height);
+    font-weight: var(--content-two-weight);
 }
 
 .cart-order-summary-price-detail-save-discount p:nth-child(2) {
-    font-weight: 600;
+    font-weight: var(--content-one-weight);
 }
 
 .cart-summary-proceed-btn {
@@ -402,9 +402,9 @@ mobile-cart-order-summary-total{
     border-radius: 5px;
     border: none;
     outline: none;
-    font-weight: 500;
-    line-height: 22px;
-    font-size: 15px;
+    font-weight: var(--sub-section-weight);
+    line-height: var(--sub-section-height);
+    font-size: var(--sub-section-size);
     cursor: pointer;
     text-decoration: none;
 }
@@ -443,6 +443,13 @@ mobile-cart-order-summary-total{
     width: 100%;
     padding: var(--global-padding);
     margin-bottom: 35px;
+}
+
+.cart-related-products-display-section > h3 {
+    font-size: var(--section-size);
+    font-weight: var(--section-weight);
+    line-height: var(--section-height);
+    color: var(--text-color);
 }
 
 .cart-related-products-slider-main-div {
@@ -602,9 +609,9 @@ mobile-cart-order-summary-total{
 }
 
 .payment-cards-heading{
-    font-size: 16px;
-    line-height: 20px;
-    font-weight: 500;
+    font-size: var(--sub-section-size);
+    line-height: var(--sub-section-height);
+    font-weight: var(--sub-section-weight);
     color: var(--text-color);
 }
 
@@ -634,9 +641,9 @@ mobile-cart-order-summary-total{
 }
 
 .financing-month-range-heading{
-    font-size: 16px;
-    line-height: 20px;
-    font-weight: 500;
+    font-size: var(--content-one-size);
+    line-height: var(--content-one-height);
+    font-weight: var(--content-one-weight);
 }
 
 .financing-month-range-apply-button{
@@ -649,9 +656,9 @@ mobile-cart-order-summary-total{
     border: 1px solid var(--text-color);
     background-color: transparent;
     color: var(--text-color);
-    font-size: 15px;
-    line-height: 18px;
-    font-weight: 600;
+    font-size: var(--sub-section-size);
+    line-height: var(--sub-section-height);
+    font-weight: var(--sub-section-weight);
     cursor: pointer;
 }
 
@@ -737,6 +744,7 @@ mobile-cart-order-summary-total{
         width: 100%;
         height: auto;
         padding-top: 0px;
+        margin-top: 0px;
         /* border: 1px solid black; */
         position: relative;
     }

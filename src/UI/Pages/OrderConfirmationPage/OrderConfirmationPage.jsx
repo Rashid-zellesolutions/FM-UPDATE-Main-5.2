@@ -24,10 +24,10 @@ export default function OrderConfirmationPage() {
 
     const [currentUrl, setCurrentUrl] = useState('/order-confirmation/:_id');
     const location = useLocation();
-      useEffect(() => {
+    useEffect(() => {
         setCurrentUrl(location.pathname);
         console.log("current location", currentUrl)
-      }, [location]);
+    }, [location]);
 
     // Fetch order details based on _id
     useEffect(() => {
@@ -90,19 +90,26 @@ export default function OrderConfirmationPage() {
 
                     <div className="order_description_1_0">
                         <p className="order_no">Order: ORDER-{order.uid}</p> {/* Use order data */}
-                        <p className="order_placer">Thank you, {order.billing.first_name} {order.billing?.last_name}!</p> {/* Use order data */}
+                        {/* <p className="order_placer">
+                            Thank you, {order.billing.first_name} 
+                            {order.billing?.last_name}!
+                        </p>  */}
+                        <p className="order_placer">
+                            Thank you, {order.billing.first_name.charAt(0).toUpperCase() + order.billing.first_name.slice(1)}
+                            {order.billing?.last_name ? " " + order.billing.last_name.charAt(0).toUpperCase() + order.billing.last_name.slice(1) : ""}!
+                        </p>
                     </div>
                 </div>
 
                 <div className="order_description_1_1">
-                    <DeliveryLocationMap 
-                        address_info={`${order.shipping.address_1 === "" ? 
-                        order.billing.address_1 : order.shipping.address_1}, 
+                    <DeliveryLocationMap
+                        address_info={`${order.shipping.address_1 === "" ?
+                            order.billing.address_1 : order.shipping.address_1}, 
                         ${order.shipping.city === "" ? order.billing.city : order.shipping.city} 
                         ${order.shipping.state === "" ? order.billing.state : order.shipping.state},
                         US`}
                         width={'580px'}
-                        height={'290px'} 
+                        height={'290px'}
                     />
                     <p style={{ marginTop: "20px" }} className="heading2">Your Order is Confirmed</p>
                     <p style={{ marginBottom: "35px" }} className="para2">We’ve accepted your order, we are getting it ready. Come back to this page for updates on your shipment.</p>
@@ -182,7 +189,7 @@ export default function OrderConfirmationPage() {
                         <Link className="checkout-contact-item" to={'/contact-us'}>Contact us</Link>
                     </span>
                     <button className="checkout-continue-shopping-button" onClick={handleNavigate}>
-                        Continue Shopping
+                        Go To Home
                     </button>
                 </div>
 
@@ -190,7 +197,20 @@ export default function OrderConfirmationPage() {
             <div className="order_details">
                 <div className="cart_product_items">
                     {order.items.map((item, index) => (
-                        <CartItemOC image={item.image} name={item.name} quantity={item.quantity} price={item.total} sku={item.sku} key={index} item={item} options={item.attributes} cart_protected={order.cart_protected} is_protected={order.is_protected} protected_price={order.protected_price} />
+                        <CartItemOC
+                            image={item.image}
+                            name={item.name}
+                            quantity={item.quantity}
+                            price={item.total}
+                            sku={item.sku}
+                            key={index}
+                            item={item}
+                            regular_price={item?.regular_price}
+                            options={item.attributes}
+                            cart_protected={order.cart_protected}
+                            is_protected={order.is_protected}
+                            protected_price={order.protected_price}
+                        />
                     ))}
                 </div>
                 <div className="cart_product_calculations">

@@ -43,7 +43,7 @@ const RatingAndReview = ({ rating, data }) => {
                 <div className='rating-and-review-div'>
                     <div className='rating-div'>
                         <h3>{rating}</h3>
-                        <span>
+                        <span >
                             <RatingReview disabled={true} rating={rating} />
                         </span>
                         <p>{data.length} {data.length > 1 ? 'Reviews' : 'Review'}</p>

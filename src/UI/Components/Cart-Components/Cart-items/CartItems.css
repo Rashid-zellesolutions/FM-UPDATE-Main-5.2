@@ -167,12 +167,13 @@
     display: flex;
     width: auto;
     max-width: 200px;
-    height: 133px;
+    /* height: 133px; */
+    height: 100%;
 }
 
 .desktop-cart-product-image img {
     width: 100%;
-    height: 100%;
+    height: auto;
 }
 
 .desktop-cart-containt-section{
@@ -226,35 +227,35 @@
     justify-content: space-between;
     height: 100%;
     width: 50%;
-    gap: 5px;
+    /* gap: 5px; */
 }
 
 .desktop-name-and-single-price h3{
     min-height: 36px;
-    font-size: 15px;
-    font-weight: 500;
-    line-height: 18px;
-    color: #595959;
+    font-size: var(--sub-section-size);
+    font-weight: var(--sub-section-weight);
+    line-height: var(--sub-section-height);
+    color: var(--text-color);
 }
 
 .desktop-product-extra-info{
-    font-size: 12px !important;
-    line-height: 14px !important;
-    font-weight: 400 !important;
-    color: #595959 !important;
+    font-size: var(--attribute-size) !important;
+    line-height: var(--attribute-height) !important;
+    font-weight: var(--attribute-weight) !important;
+    color: var(--text-color) !important;
 }
 
 .cart-side-section-price-and-count p{
-    font-size: 18px !important;
-    font-weight: 600 !important;
-    line-height: 18px !important;
+    font-size: var(--section-size) !important;
+    font-weight: var(--section-weight) !important;
+    line-height: var(--section-height) !important;
     color: var(--text-color) !important;
 }
 
 .cart-side-section-price-and-count p:nth-child(1){
-    font-size: 15px !important;
-    font-weight: 500 !important;
-    line-height: 18px !important;
+    font-size: var(--sub-section-size) !important;
+    font-weight: var(--sub-section-weight) !important;
+    line-height: var(--sub-section-height) !important;
     color: var(--text-color) !important;
     opacity: 0.5;
 }
@@ -294,9 +295,11 @@
 }
 
 .protection-guard-title{
-    font-size: 12px !important;
-    line-height: 18px !important;
-    font-weight: 600 !important;
+    font-size: var(--sub-section-size) !important;
+    line-height: var(--sub-section-height) !important;
+    font-weight: var(--sub-section-weight) !important;
+    color: var(--text-color);
+    flex-shrink: 0;
 
 }
 .eye_icon.active{
@@ -338,9 +341,9 @@
 }
 
 .protection-price-message{
-    font-size: 10px !important;
-    line-height: 15px !important;
-    font-weight: 300 !important;
+    font-size: var(--content-one-size) !important;
+    line-height: var(content-one-height) !important;
+    font-weight: var(--content-one-weight) !important;
     color: var(--text-color) !important;
 }
 
@@ -487,9 +490,10 @@
     /* border-bottom: 1px solid var(--text-color); */
     background-color: transparent;
     color: var(--text-color);
-    font-size: 12px;
+    font-size: var(--content-one-size);
     text-decoration: underline;
-    font-weight: 600;
+    font-weight: var(--content-one-weight);
+    line-height: var(--content-one-height);
     cursor: pointer;
     position: absolute;
     top: 0;
@@ -550,9 +554,9 @@
 }
 
 .desktop-total-price-and-remove-item p{
-    font-size: 18px;
-    font-weight: 700;
-    line-height: 27px;
+    font-size: var(--section-size);
+    font-weight: var(--section-weight);
+    line-height: var(--section-height);
     color: var(--text-color);
     margin-right: 20px;
 }

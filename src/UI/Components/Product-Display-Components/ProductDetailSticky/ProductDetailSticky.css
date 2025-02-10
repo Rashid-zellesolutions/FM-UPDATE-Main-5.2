@@ -70,6 +70,19 @@
     margin-bottom: 15px;
 }
 
+.product-detail-name-and-rating-etc > h3 {
+    font-size: var(--section-size);
+    line-height: var(--section-height);
+    font-weight: var(--section-weight);
+    color: var(--text-color);
+}
+
+.product-detail-name-and-rating-etc > p {
+    font-size: var(--sub-section-size);
+    font-weight: var(--sub-section-weight);
+    line-height: var(--sub-section-height);
+}
+
 .product-detail-rating-and-share {
     display: flex;
     width: 100%;
@@ -101,17 +114,72 @@
     padding-top: 4px;
 }
 
+
+/* price */
+.single-product-prices{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: start;
+    gap: 5px;
+}
+
+.single-product-old-price{
+    font-size: var(--sub-section-size);
+    line-height: var(--sub-section-height);
+    font-weight: var(--sub-section-weight);
+    color: var(--text-color);
+    opacity: 0.5;
+}
+
+.single-product-new-price{
+    font-size: var(--section-size);
+    line-height: var(--section-height);
+    font-weight: var(--section-weight);
+    color: var(--text-color);
+}
+
+/* Attributes */
+.attribute-heading{
+    font-size: var(--attribute-size) !important;
+    line-height: var(--attribute-height) !important;
+    font-weight: var(--attribute-weight) !important;
+    color: var(--text-color) !important;
+}
+
+/* .select-type-attribute select-select-variation > p {
+    font-size: var(--sub-section-size) !important;
+    line-height: var(--sub-section-height) !important;
+    font-weight: var(--sub-section-weight) !important;
+    color: var(--text-white) !important;
+} */
+
+/* .select-type-attribute select-select-variation {
+    display: flex;
+    width: max-content;
+    border: 1px solid var(--border-color);
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 8px;
+} */
+
+/* .select-type-attribute p{
+    font-size: var(--content-one-size);
+    line-height: var(--content-one-height);
+    font-weight: var(--content-one-weight);
+    color: var(--text-white);
+} */
 /* Add To Card and Quantity Container */
 
 .add-cart-or-add-items-div {
     display: flex;
-    gap: 15px;
+    gap: 10px;
     width: 100%;
 }
 
 .item-count {
     display: flex;
-    height: 50px;
+    height: 40px;
 }
 
 .minus-btn {
@@ -214,7 +282,7 @@
 .product-details-add-to-wishlist-icon {
     display: flex;
     width: max-content;
-    height: 48px;
+    height: 40px;
     align-items: center;
     justify-content: center;
     padding: 0 10px;
@@ -226,16 +294,16 @@
 .add-to-cart-btn {
     display: flex;
     width: 100%;
-    height: 50px;
-    border: 2px solid #595959;
+    height: 40px;
+    border: 1px solid var(--text-color);
     border-radius: 8px;
     align-items: center;
     justify-content: center;
     z-index: 9;
-    font-size: 16px;
-    line-height: 24px;
-    font-weight: 400;
-    color: #595959;
+    font-size: var(--sub-section-size);
+    line-height: var(--sub-section-height);
+    font-weight: var(--sub-section-weight);
+    color: var(--text-color);
     background-color: white;
     cursor: pointer;
     outline: none;
@@ -247,7 +315,7 @@
 .add-to-cart-btn:hover {
     background-color: var(--text-color);
     color: white;
-    border: 2px solid var(--text-color);
+    border: 1px solid var(--text-color);
 }
 
 .add-to-cart-btn::after {
@@ -427,6 +495,8 @@
     .product-detail-product-gallery-section {
         width: 100%;
         border-right: none;
+        padding: 0;
+        gap: 10px;
     }
 
     .product-detail-product-info-section {
@@ -471,6 +541,17 @@
         font-size: 12px;
         line-height: 14px;
         padding: 5px 10px;
+    }
+
+    .minus-btn{
+        width: 35px;
+    }
+
+    .item-count input {
+        width: 35px;
+    }
+    .plus-btn{
+        width: 35px;
     }
 
 }

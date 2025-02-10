@@ -29,19 +29,19 @@
 
 .checkout-pages-toggle-nav span p{
     color: #A6A6A6;
-    font-size: 15px;
-    line-height: 22px;
-    font-weight: 600;
+    font-size: var(--sub-section-size);
+    line-height: var(--sub-section-height);
+    font-weight: var(--sub-section-weight);
     border-bottom: 2px solid #fff;
     transition: all 0.3s ease-in-out;
 }
 
 .checkout-pages-toggle-nav span.active-checkout-toggle p{
-    color: #595959;
+    color: var(--text-color);
 }
 
 .checkout-pages-toggle-nav span.active-checkout-toggle p:nth-child(2){
-    color: #595959;
+    color: var(--text-color);
     border-bottom: 2px solid var(--active-nav-item-color);
 }
 
@@ -131,14 +131,14 @@
     width: 100%;
     align-items: start;
     justify-content: start;
-    gap: 15px;
+    /* gap: 15px; */
     padding: 10px 0;
 }
 
 .right-section-order-summary-main-heading{
-    font-size: 20px;
-    line-height: 30px;
-    font-weight: 600;
+    font-size: var(--section-size);
+    line-height: var(--section-height);
+    font-weight: var(--section-weight);
 }
 
 .right-section-order-summary-products-container{
@@ -204,9 +204,9 @@
 }
 
 .selected-product-name-and-price h3{
-    font-size: 16px;
-    line-height: 20px;
-    font-weight: 500;
+    font-size: var(--sub-section-size);
+    line-height: var(--sub-section-height);
+    font-weight: var(--sub-section-weight);
 }
 
 .selected-product-name-and-price p{
@@ -216,17 +216,17 @@
 }
 
 .order-summary-prices-container del{
-    font-size: 12px;
-    line-height: 15px;
-    font-weight: 400;
+    font-size: var(--sub-section-size);
+    line-height: var(--sub-section-height);
+    font-weight: var(--sub-section-weight);
     color: var(--text-color);
     opacity: 0.5;
 }
 
 .order-summary-prices-container p{
-    font-size: 15px;
-    line-height: 15px;
-    font-weight: 500;
+    font-size: var(--section-size);
+    line-height: var(--section-height);
+    font-weight: var(--section-weight);
     color: var(--text-color);
 }
 
@@ -240,9 +240,10 @@
 
 
 .selected-product-color p{
-    font-size: 12px;
-    line-height: 14px;
-    font-weight: 300;
+    font-size: var(--attribute-size);
+    line-height: var(--attribute-height);
+    font-weight: var(--attribute-weight);
+    color: var(--text-color);
 }
 
 .products-tax-and-total{
@@ -321,9 +322,9 @@
 }
 
 .show-more-products-button{
-    font-size: 15px;
-    line-height: 18px;
-    font-weight: 600;
+    font-size: var(--sub-section-size);
+    line-height: var(--sub-section-height);
+    font-weight: var(--sub-section-weight);
     text-decoration: underline;
     color: var(--text-color);
     cursor: pointer;
@@ -333,7 +334,7 @@
     display: flex;
     width: 100%;
     flex-direction: column;
-    gap: 10px;
+    gap: 5px;
 
 }
 
@@ -345,13 +346,13 @@
 }
 
 .right-section-price-text{
-    font-size: 15px;
-    line-height: 19px;
-    font-weight: 400;
+    font-size: var(--content-one-size);
+    line-height: var(--content-one-height);
+    font-weight: var(--content-two-weight);
 }
 
 .right-section-price-text:nth-last-child(1){
-    font-weight: 600;
+    font-weight: var(--content-one--weight);
 }
 
 .right-section-total-value{
@@ -365,9 +366,10 @@
 }
 
 .right-section-total-price-text-and-value{
-    font-size: 15px;
-    line-height: 19px;
-    font-size: 600;
+    font-size: var(--sub-section-size);
+    line-height: var(--sub-section-height);
+    font-weight: var(--sub-section-weight);
+    color: var(--text-color);
 }
 
 .right-section-total-price-text-and-value:nth-last-child(1){
@@ -384,9 +386,9 @@
 }
 
 .right-section-place-order-terms-and-rights{
-    font-size: 13px;
-    line-height: 18px;
-    font-weight: 400;
+    font-size: var(--content-one-size);
+    line-height: var(--content-one-height);
+    font-weight: var(--content-two-weight);
     width: 100%;
     gap: 5px;
     display: flex;
@@ -394,7 +396,7 @@
 
 .right-section-place-order-terms-and-rights a{
     color: var(--text-color);
-    font-weight: 600;
+    font-weight: var(--content-one--weight);
 }
 
 .right-section-place-order-button{
@@ -406,10 +408,10 @@
     border: 1px solid var(--border-color);
     border-radius: 5px;
     background-color: var(--text-color);
-    font-size: 15px;
-    line-height: 18px;
-    font-weight: 500;
-    color: #FFF;
+    font-size: var(--sub-section-size);
+    line-height: var(--sub-section-height);
+    font-weight: var(--sub-section-weight);
+    color: var(--text-white);
     cursor: pointer;
 }
 
@@ -441,20 +443,54 @@
         flex-direction: column;
         width: 100%;
         height: auto;
-        padding: 30px 0px;
+        gap: 20px;
+        padding: 10px 0px;
     }
     .summary-left-section{
         width: 100%;
-        padding: 0 20px;
+        padding: 0 10px;
+        gap: 15px;
     }
     .checkout-pages-toggle-nav{
-        justify-content: start;
+        justify-content: center;
     }
-    .summary-right-section,
+    /* .summary-right-section,
     .summery-right-section-according-payment,
     .summery-right-section-low-height{
         display: none;
+    } */
+
+    .summery-right-section-low-height {
+        width: 100%;
+        padding: 0 10px;
     }
+
+    .right-section-order-summary-main-container{
+        gap: 10px;
+    }
+
+    .right-section-order-summary-main-heading{
+        font-size: 16px;
+        line-height: 20px;
+        font-weight: 500;
+    }
+
+    .selected-product-name-and-price h3{
+        font-size: 14px;
+        line-height: 15px;
+    }
+
+    .order-summary-prices-container del{
+        font-size: 10px;
+        line-height: 12px;
+        font-weight: 400;
+    }
+    .order-summary-prices-container p{
+        font-size: 12px;
+        line-height: 14px;
+        font-weight: 500;
+    }
+
     .checkout-pages-toggle-nav span p{
         font-size: 12px;
         line-height: 15px;
@@ -468,5 +504,20 @@
     }
     .order-summery-proceed-btn-div button {
         width: 100%;
+    }
+
+    .right-section-price-text{
+        font-size: 12px;
+        line-height: 15px;
+    }
+    .right-section-price-text:nth-last-child(1){
+        font-weight: 500;
+    }
+    .right-section-place-order-terms-and-rights{
+        font-size: 12px;
+        line-height: 15px;
+        font-weight: 400;
+        display: flex;
+        flex-direction: column;
     }
 }

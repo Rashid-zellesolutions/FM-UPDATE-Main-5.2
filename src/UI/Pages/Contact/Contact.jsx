@@ -52,6 +52,7 @@ const Contact = () => {
     ]
     return (
         <div className='contact-us-main-container'>
+
             <div className='contact-us-head'>
                 <h3 className='contact-us-main-heading'>Contact Us</h3>
                 <div className='contact-para'>
@@ -65,7 +66,9 @@ const Contact = () => {
                     <p>215 352 1600</p>
                 </div>
             </div>
+
             <div className='contact-us-body'>
+
                 <div className='contact-us-services'>
                     {servicesDetail.map((item, index) => (
                         <div className='contact-us-service-card'>
@@ -79,6 +82,7 @@ const Contact = () => {
                     ))}
 
                 </div>
+
                 <div className='contact-us-contact-form'>
                     <div className='contact-form-head'>
                         <h3>Didn't find what you're looking for?</h3>
@@ -138,7 +142,9 @@ const Contact = () => {
                         </button>
                     </div>
                 </div>
+
             </div>
+
             <div className='contact-us-payment-and-FAQ'>
                 {payAndFAQProcess.map((item, index) => (
                     <div className='contact-us-pay-and-faq-details'>
@@ -147,7 +153,6 @@ const Contact = () => {
                         <p>{item.details}</p>
                     </div>
                 ))}
-
             </div>
         </div>
     )

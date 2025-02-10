@@ -24,11 +24,11 @@
     justify-content: center;
     width: 100%;
     background: #FBCF52;
-    height: 47px;
-    font-size: 18px;
-    line-height: 27px;
-    font-weight: 600;
-    color: #595959;
+    height: 40px;
+    font-size: var(--sub-section-size);
+    line-height: var(--sub-section-height);
+    font-weight: var(--sub-section-weight);
+    color: var(--text-color);
     cursor: pointer;
     border-radius: 5px;
     outline: none;

@@ -1,4 +1,4 @@
-import React, { useState, useImperativeHandle, forwardRef, useEffect } from 'react'
+import React, { useState, useRef, useImperativeHandle, forwardRef, useEffect } from 'react'
 import './DeliveryInfo.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { url } from '../../../../utils/api';
@@ -214,9 +214,19 @@ const DeliveryInfo = forwardRef((props, ref) => {
 
 
     const navigate = useNavigate()
+    const signupEmailRef = useRef(null)
+    const firstNameRef = useRef(null)
+    const lastNameRef = useRef(null)
+    const emailRef = useRef(null)
+    const phoneRef = useRef(null)
+    const addressOneRef = useRef(null)
+    const addressTwoRef = useRef(null)
+    const cityRef = useRef(null)
+    const stateRef = useRef(null)
+    const postalCodeRef = useRef(null)
 
     const [focusedField, setFocusedField] = useState("");
-    const [email, setEmail] = useState("");
+    const [signupEmail, setSignupEmail] = useState("");
 
     const {
         orderPayload,
@@ -246,11 +256,11 @@ const DeliveryInfo = forwardRef((props, ref) => {
     };
 
     const handleNavigateToSignup = () => {
-        if (!email.trim()) {
+        if (!signupEmail.trim()) {
             setError((prev) => ({ ...prev, email: 'Email is required' }));
             return;
         }
-        if (!validateEmail(email)) {
+        if (!validateEmail(signupEmail)) {
             setError((prev) => ({ ...prev, email: 'Invalid email format' }));
             return;
         }
@@ -287,6 +297,8 @@ const DeliveryInfo = forwardRef((props, ref) => {
         validateAndSubmit: handleSubmitDeliveryInfo,
     }));
 
+    useEffect(() => {}, [orderPayload])
+
 
     return (
         <div className='delivery-form-main-container'>
@@ -294,17 +306,21 @@ const DeliveryInfo = forwardRef((props, ref) => {
 
             <div className='delivery-form-signup-container'>
                 <h3>Your Information</h3>
-                <div className={`input-container ${focusedField === 'email' || email ? "focused" : ""}`}>
+                <div 
+                    className={`input-container ${focusedField === 'signupEmail' || signupEmail ? "focused" : ""}`}
+                    onClick={() => signupEmailRef.current?.focus()}
+                >
                     <label className="floating-label">
                         {error.email ? <span className="error-message">{error.email}</span> : 'Email'}
                     </label>
                     <input
                         type="text"
                         className="input-field-email"
-                        onFocus={() => setFocusedField("email")}
+                        ref={signupEmailRef}
+                        onFocus={() => setFocusedField("signupEmail")}
                         onBlur={() => setFocusedField("")}
-                        onChange={(e) => setEmail(e.target.value)}
-                        value={email}
+                        onChange={(e) => setSignupEmail(e.target.value)}
+                        value={signupEmail}
                     />
 
                 </div>
@@ -317,14 +333,18 @@ const DeliveryInfo = forwardRef((props, ref) => {
 
                 <div className='delivery-info-input-first-and-last-name'>
 
-                    <div className={`delivery-input-container ${focusedField === 'first_name' || orderPayload.billing?.first_name ? "focused" : ""}`}>
+                    <div 
+                        className={`delivery-input-container ${focusedField === 'first_name' || orderPayload.billing?.first_name ? "focused" : ""}`}
+                        onClick={() => firstNameRef.current?.focus()}
+                    >
                         <label className="floating-label">
                             {error.name ? <span className='error-message'>{error.name}</span> : 'First Name'}
                         </label>
                         <input
                             type="text"
                             className="input-field-email"
-                            onFocus={() => setFocusedField("name")}
+                            ref={firstNameRef}
+                            onFocus={() => setFocusedField("first_name")}
                             onBlur={() => setFocusedField("")}
                             name='first_name'
                             value={orderPayload.billing?.first_name}
@@ -332,12 +352,13 @@ const DeliveryInfo = forwardRef((props, ref) => {
                         />
                     </div>
 
-                    <div className={`delivery-input-container ${focusedField === 'last_name' || orderPayload.billing?.last_name ? "focused" : ""}`}>
+                    <div onClick={() => lastNameRef.current?.focus()} className={`delivery-input-container ${focusedField === 'last_name' || orderPayload.billing?.last_name ? "focused" : ""}`}>
                         <label className="floating-label">
                             {error.last_name ? <span className='error-message'>{error.last_name}</span> : 'Last Name'}
                         </label>
                         <input
                             type="text"
+                            ref={lastNameRef}
                             className="input-field-email"
                             onFocus={() => setFocusedField("last_name")}
                             onBlur={() => setFocusedField("")}
@@ -346,6 +367,42 @@ const DeliveryInfo = forwardRef((props, ref) => {
                             value={orderPayload.billing?.last_name}
                         />
                     </div>
+                </div>
+
+                <div className='delivery-info-email-and-phone'>
+
+                    <div onClick={() => emailRef.current?.focus()} className={`delivery-input-container-email ${focusedField === 'email' || orderPayload.billing?.email ? "focused" : ""}`}>
+                        <label className="floating-label">
+                            {error.email ? <span className='error-message'>{error.email}</span> : 'Email'}
+                        </label>
+                        <input
+                            type="text"
+                            ref={emailRef}
+                            className="input-field-email"
+                            onFocus={() => setFocusedField("email")}
+                            onBlur={() => setFocusedField("")}
+                            name='email'
+                            value={orderPayload.billing?.email}
+                            onChange={handleNestedValueChange}
+                        />
+                    </div>
+
+                    <div onClick={() => phoneRef.current?.focus()} className={`delivery-input-container-phone ${focusedField === 'phone' || orderPayload.billing?.phone ? "focused" : ""}`}>
+                        <label className="floating-label">
+                            {error.phone ? <span className='error-message'>{error.phone}</span> : 'Phone'}
+                        </label>
+                        <input
+                            type="text"
+                            ref={phoneRef}
+                            className="input-field-email"
+                            onFocus={() => setFocusedField("phone")}
+                            onBlur={() => setFocusedField("")}
+                            name='phone'
+                            value={orderPayload.billing?.phone}
+                            onChange={handleNestedValueChange}
+                        />
+                    </div>
+
                 </div>
 
                 {/* <div className={`delivery-input-container ${focusedField === 'name' || deliveryInfo.name ? "focused" : ""}`}>
@@ -363,12 +420,13 @@ const DeliveryInfo = forwardRef((props, ref) => {
                     />
                 </div> */}
 
-                <div className={`delivery-input-container ${focusedField === 'address_1' || orderPayload.billing?.address_1 ? "focused" : ""}`}>
+                <div onClick={() => addressOneRef.current?.focus()} className={`delivery-input-container ${focusedField === 'address_1' || orderPayload.billing?.address_1 ? "focused" : ""}`}>
                     <label className="floating-label">
                         {error.address_1 ? <span className='error-message'>{error.address_1}</span> : 'Address'}
                     </label>
                     <input
                         type="text"
+                        ref={addressOneRef}
                         className="input-field-email"
                         onFocus={() => setFocusedField("address_1")}
                         onBlur={() => setFocusedField()}
@@ -378,10 +436,11 @@ const DeliveryInfo = forwardRef((props, ref) => {
                     />
                 </div>
 
-                <div className={`delivery-input-container ${focusedField === 'address2' || orderPayload.billing?.address2 ? "focused" : ""}`}>
+                <div onClick={() => addressTwoRef.current?.focus()} className={`delivery-input-container ${focusedField === 'address2' || orderPayload.billing?.address2 ? "focused" : ""}`}>
                     <label className="floating-label">Apt, Suite, Building, (Optional)</label>
                     <input
                         type="text"
+                        ref={addressTwoRef}
                         className="input-field-email"
                         onFocus={() => setFocusedField("address2")}
                         onBlur={() => setFocusedField("")}
@@ -393,12 +452,13 @@ const DeliveryInfo = forwardRef((props, ref) => {
 
                 <div className='delivery-options-city-and-state'>
 
-                    <div className={`delivery-input-container ${focusedField === 'city' || orderPayload.billing?.city ? "focused" : ""}`}>
+                    <div onClick={() => cityRef.current?.focus()} className={`delivery-input-container ${focusedField === 'city' || orderPayload.billing?.city ? "focused" : ""}`}>
                         <label className="floating-label">
                             {error.city ? <span className='error-message'>{error.city}</span> : 'City'}
                         </label>
                         <input
                             type="text"
+                            ref={cityRef}
                             className="input-field-email"
                             onFocus={() => setFocusedField('city')}
                             onBlur={() => setFocusedField("")}
@@ -408,12 +468,13 @@ const DeliveryInfo = forwardRef((props, ref) => {
                         />
                     </div>
 
-                    <div className={`delivery-input-container ${focusedField === 'state' || orderPayload.billing?.state ? "focused" : ""}`}>
+                    <div onClick={() => stateRef.current?.focus()} className={`delivery-input-container ${focusedField === 'state' || orderPayload.billing?.state ? "focused" : ""}`}>
                         <label className="floating-label">
                             {error.state ? <span className='error-message'>{error.state}</span> : 'State'}
                         </label>
                         <input
                             type="text"
+                            ref={stateRef}
                             className="input-field-email"
                             onFocus={() => setFocusedField("state")}
                             onBlur={() => setFocusedField("")}
@@ -427,12 +488,13 @@ const DeliveryInfo = forwardRef((props, ref) => {
 
                 <div className='delivery-zip-and-phone'>
 
-                    <div className={`delivery-input-container ${focusedField === 'postal_code' || orderPayload.billing?.postal_code ? "focused" : ""}`}>
+                    <div onClick={() => postalCodeRef.current?.focus()} className={`delivery-input-container-postal-code ${focusedField === 'postal_code' || orderPayload.billing?.postal_code ? "focused" : ""}`}>
                         <label className="floating-label">
                             {error.postal_code ? <span className='error-message'>{error.postal_code}</span> : 'Zip Code'}
                         </label>
                         <input
                             type="text"
+                            ref={postalCodeRef}
                             className="input-field-email"
                             onFocus={() => setFocusedField('postal_code')}
                             onBlur={() => setFocusedField("")}
@@ -443,7 +505,7 @@ const DeliveryInfo = forwardRef((props, ref) => {
                         />
                     </div>
 
-                    <div className={`delivery-input-container ${focusedField === 'phone' || orderPayload.billing?.phone ? "focused" : ""}`}>
+                    {/* <div className={`delivery-input-container ${focusedField === 'phone' || orderPayload.billing?.phone ? "focused" : ""}`}>
                         <label className="floating-label">
                             {error.phone ? <span className='error-message'>{error.phone}</span> : 'Phone'}
                         </label>
@@ -456,7 +518,7 @@ const DeliveryInfo = forwardRef((props, ref) => {
                             value={orderPayload.billing?.phone}
                             onChange={handleNestedValueChange}
                         />
-                    </div>
+                    </div> */}
 
                 </div>
             </div>

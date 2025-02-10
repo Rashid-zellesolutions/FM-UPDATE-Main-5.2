@@ -54,7 +54,7 @@ export const MyOrdersProvider = ({ children }) => {
             state: "",
             postal_code: "",
             country: "USA",
-            email: "rashidpanhwer8@gmail.com",
+            email: "",
             phone: ""
         },
         shipToDiffAdd: false,
