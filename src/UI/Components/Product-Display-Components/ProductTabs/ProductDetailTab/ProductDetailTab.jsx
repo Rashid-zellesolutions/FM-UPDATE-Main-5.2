@@ -15,7 +15,7 @@ const ProductDetailTab = ({id, detailsRef, productData}) => {
       <div className='product-detail-right-section'>
 
         <div className='product-detail-right-section-heading-container'>
-          <h3>Product details</h3>
+          <h3>Product Details</h3>
           <Link target='_blank'>
             Will This Fit?
           </Link>

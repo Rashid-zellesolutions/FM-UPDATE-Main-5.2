@@ -24,9 +24,9 @@
 
 .rating-and-review-main-container h3{
     color: var(--text-color);
-    font-size: 25px;
-    line-height: var(--heading-line-height);
-    font-weight: 600;
+    font-size: var(--section-size);
+    line-height: var(--section-height);
+    font-weight: var(--section-weight);
 }
 
 .rating-and-review-main-container p{
@@ -140,11 +140,11 @@
     gap: 25px;
 }
 
-.customer-images-section h3{
+.customer-images-section > h3{
     color: var(--text-color);
-    font-size: 25px;
-    line-height: var(--heading-line-height);
-    font-weight: 600;
+    font-size: var(--section-size);
+    line-height: var(--section-height);
+    font-weight: var(--section-weight);
 }
 
 .customer-images-section-not{
@@ -180,13 +180,13 @@
         background-color: #fff;
         gap: 10px;
     }
-    .rating-and-review-main-container h3{
+    .rating-and-review-main-container > h3{
         font-size: 15px;
         line-height: 18px;
         font-weight: 600;
         color: var(--text-color);
     }
-    .rating-and-review-main-container p {
+    .rating-and-review-main-container > p {
         color: var(--text-color);
         font-size: 12px;
         line-height: 18px;
@@ -195,12 +195,12 @@
     .rating-div{
         padding: 0 5px 0 0;
     }
-    .rating-div h3{
+    .rating-div > h3{
         font-size: 30px;
         line-height: 45px;
         font-weight: 400;
     }
-    .rating-div span img {
+    .rating-div > span > img {
         width: auto;
         height: 15px;
         object-fit: contain;

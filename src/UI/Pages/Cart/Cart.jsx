@@ -373,9 +373,9 @@ const Cart = () => {
             </div>
 
             <div className='cart-order-summary-total'>
-              <div className='cart-order-summary-price-detail-single-item'>
-                <p className='cart-order-summary-price-detail-single-item-title'>Total</p>
-                <p className='cart-order-summary-price-detail-single-item-price'>{formatedPrice(CalculateGrandTotal())}</p>
+              <div className='cart-order-summary-price-detail-single-item-total-container'>
+                <p className='cart-order-summary-price-detail-single-item-title-total'>Total</p>
+                <p className='cart-order-summary-price-detail-single-item-price-count'>{formatedPrice(CalculateGrandTotal())}</p>
               </div>
               {/* <div className='cart-order-summary-price-detail-save-discount'>
                 <p>You Save</p>

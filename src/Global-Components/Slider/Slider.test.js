@@ -1,21 +1,21 @@
 import React from 'react';
 import { render, fireEvent, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
-import Slider from './Slider';
+import Sliderr from './Slider';
 
-// Mock images and assets
-jest.mock('../../Assets/slider-images/slider-image-1.png', () => 'imageOne');
-jest.mock('../../Assets/slider-images/slider-image-2.png', () => 'imageTwo');
-jest.mock('../../Assets/slider-images/slider-image-3.png', () => 'imageThree');
-jest.mock('../../Assets/slider-images/sofa3.png', () => 'smallSizeImageOne');
-jest.mock('../../Assets/slider-images/sofa1.png', () => 'smallSizeImageTwo');
-jest.mock('../../Assets/slider-images/sofa2.png', () => 'smallSizeImageThree');
-jest.mock('../../Assets/icons/arrow-left.png', () => 'ArrowLeft');
-jest.mock('../../Assets/icons/arrow-right.png', () => 'ArrowRight');
-jest.mock('../../Assets/icons/arrow-left-red.png', () => 'arrowLeftRed');
-jest.mock('../../Assets/icons/arrow-right-red.png', () => 'arrowRightRed');
+// Mock assets
+jest.mock('../../Assets/Furniture Mecca/Landing Page/Slider/mobile-view-banner.png', () => 'imageOne');
+jest.mock('../../Assets/Furniture Mecca/Landing Page/Slider/sofa4.png', () => 'imageTwo');
+jest.mock('../../Assets/Furniture Mecca/Landing Page/Slider/sofa2.png', () => 'imageThree');
+jest.mock('../../Assets/Loader-animations/loader-check-two.gif', () => 'loaderGif');
 
-describe('Slider Component', () => {
+describe('Sliderr Component', () => {
+  const mockImages = [
+    { image_url: 'imageOne', link_url: 'product/1' },
+    { image_url: 'imageTwo', link_url: 'product/2' },
+    { image_url: 'imageThree', link_url: 'product/3' },
+  ];
+
   beforeEach(() => {
     jest.useFakeTimers();
   });
@@ -25,74 +25,65 @@ describe('Slider Component', () => {
     jest.useRealTimers();
   });
 
-  test('renders without crashing', () => {
-    render(<Slider />);
+  test('renders slider component without crashing', () => {
+    render(<Sliderr images={mockImages} />);
     expect(screen.getByAltText('slide 1')).toBeInTheDocument();
   });
 
-  test('displays the initial slide', () => {
-    render(<Slider />);
+  test('displays the first slide initially', () => {
+    render(<Sliderr images={mockImages} />);
     expect(screen.getByAltText('slide 1')).toBeInTheDocument();
   });
 
-  test('renders left and right arrow images', () => {
-    render(<Slider />);
-    expect(screen.getByAltText('arrow left')).toBeInTheDocument();
-    expect(screen.getByAltText('arrow right')).toBeInTheDocument();
-  });
-
-  test('automatically advances slides every 3 seconds', () => {
-    render(<Slider />);
+  test('automatically transitions slides every 3 seconds', () => {
+    render(<Sliderr images={mockImages} />);
     expect(screen.getByAltText('slide 1')).toBeInTheDocument();
+
     jest.advanceTimersByTime(3000);
+    expect(screen.getByAltText('slide 2')).toBeInTheDocument();
+
+    jest.advanceTimersByTime(3000);
+    expect(screen.getByAltText('slide 3')).toBeInTheDocument();
+  });
+
+  test('clicking right arrow navigates to the next slide', () => {
+    render(<Sliderr images={mockImages} />);
+    
+    fireEvent.click(screen.getByRole('button', { name: /next slide/i }));
     expect(screen.getByAltText('slide 2')).toBeInTheDocument();
   });
 
   test('clicking left arrow navigates to the previous slide', () => {
-    render(<Slider />);
-    fireEvent.click(screen.getByAltText('arrow left'));
-    expect(screen.getByAltText('slide 3')).toBeInTheDocument(); // Last slide
-  });
-
-  test('clicking right arrow navigates to the next slide', () => {
-    render(<Slider />);
-    fireEvent.click(screen.getByAltText('arrow right'));
-    expect(screen.getByAltText('slide 2')).toBeInTheDocument();
-  });
-
-  test('hovering over arrows changes their images', () => {
-    render(<Slider />);
-    const leftArrow = screen.getByAltText('arrow left');
-    const rightArrow = screen.getByAltText('arrow right');
-
-    fireEvent.mouseEnter(leftArrow);
-    expect(leftArrow).toHaveAttribute('src', 'arrowLeftRed');
-
-    fireEvent.mouseLeave(leftArrow);
-    expect(leftArrow).toHaveAttribute('src', 'ArrowLeft');
-
-    fireEvent.mouseEnter(rightArrow);
-    expect(rightArrow).toHaveAttribute('src', 'arrowRightRed');
-
-    fireEvent.mouseLeave(rightArrow);
-    expect(rightArrow).toHaveAttribute('src', 'ArrowRight');
-  });
-
-  test('slider loops correctly when navigating past the first or last slide', () => {
-    render(<Slider />);
-    fireEvent.click(screen.getByAltText('arrow left'));
-    expect(screen.getByAltText('slide 3')).toBeInTheDocument(); // Last slide
-
-    fireEvent.click(screen.getByAltText('arrow right'));
-    fireEvent.click(screen.getByAltText('arrow right'));
-    fireEvent.click(screen.getByAltText('arrow right'));
-    expect(screen.getByAltText('slide 1')).toBeInTheDocument(); // First slide
+    render(<Sliderr images={mockImages} />);
+    
+    fireEvent.click(screen.getByRole('button', { name: /previous slide/i }));
+    expect(screen.getByAltText('slide 3')).toBeInTheDocument(); // Last slide loops back
   });
 
   test('renders mobile view slides correctly', () => {
-    render(<Slider />);
-    expect(screen.getByAltText('slide 1')).toBeInTheDocument();
-    expect(screen.getByAltText('slide 2')).toBeInTheDocument();
-    expect(screen.getByAltText('slide 3')).toBeInTheDocument();
+    render(<Sliderr images={mockImages} />);
+    expect(screen.getAllByAltText(/slide/i)).toHaveLength(3);
+  });
+
+  test('renders the preloader before images load', () => {
+    render(<Sliderr images={mockImages} />);
+    expect(screen.getByAltText('loaderGif')).toBeInTheDocument();
+  });
+
+  test('removes the preloader after images load', () => {
+    render(<Sliderr images={mockImages} />);
+    
+    fireEvent.load(screen.getByAltText('slide 1'));
+    expect(screen.queryByAltText('loaderGif')).not.toBeInTheDocument();
+  });
+
+  test('loops correctly when navigating past the last slide', () => {
+    render(<Sliderr images={mockImages} />);
+    
+    fireEvent.click(screen.getByRole('button', { name: /next slide/i }));
+    fireEvent.click(screen.getByRole('button', { name: /next slide/i }));
+    fireEvent.click(screen.getByRole('button', { name: /next slide/i }));
+    
+    expect(screen.getByAltText('slide 1')).toBeInTheDocument(); // Back to first slide
   });
 });

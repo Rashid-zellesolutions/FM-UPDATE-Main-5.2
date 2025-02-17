@@ -230,12 +230,19 @@
     /* gap: 5px; */
 }
 
-.desktop-name-and-single-price h3{
+.desktop-name-and-single-price > h3{
     min-height: 36px;
     font-size: var(--sub-section-size);
     font-weight: var(--sub-section-weight);
     line-height: var(--sub-section-height);
     color: var(--text-color);
+}
+
+.cart-item-sku-tag{
+    font-size: var(--attribute-size) !important;
+    line-height: var(--attribute-height) !important;
+    font-weight: var(--attribute-weight) !important;
+    color: var(--text-color) !important;
 }
 
 .desktop-product-extra-info{
@@ -245,14 +252,14 @@
     color: var(--text-color) !important;
 }
 
-.cart-side-section-price-and-count p{
+.cart-side-section-price-and-count > p{
     font-size: var(--section-size) !important;
     font-weight: var(--section-weight) !important;
     line-height: var(--section-height) !important;
     color: var(--text-color) !important;
 }
 
-.cart-side-section-price-and-count p:nth-child(1){
+.cart-side-section-price-and-count > p:nth-child(1){
     font-size: var(--sub-section-size) !important;
     font-weight: var(--sub-section-weight) !important;
     line-height: var(--sub-section-height) !important;

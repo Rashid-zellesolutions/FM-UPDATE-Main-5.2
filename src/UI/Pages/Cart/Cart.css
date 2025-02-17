@@ -35,7 +35,7 @@
     flex-direction: column;
     width: 30%;
     height: auto;
-    padding-top: 90px;
+    padding-top: 73px;
     margin-top: 105px;
     /* border: 1px solid black; */
     position: relative;
@@ -204,6 +204,28 @@
     font-weight: var(--content-one-weight);
 }
 
+.cart-order-summary-price-detail-single-item-total-container{
+    display: flex;
+    width: 100%;
+    padding: 0;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 10px;
+    border-top: 2px solid var(--border-color);
+}
+
+.cart-order-summary-price-detail-single-item-title-total{
+    font-size: var(--sub-section-size);
+    line-height: var(--sub-section-height);
+    font-weight: var(--content-two-weight);
+}
+
+.cart-order-summary-price-detail-single-item-price-count{
+    font-size: var(--sub-section-size);
+    line-height: var(--sub-section-height);
+    font-weight: var(--sub-section-weight);
+}
+
 .cart-order-summary-zip-code {
     display: flex;
     flex-direction: column;
@@ -257,8 +279,8 @@
 }
 
 .cart-order-summary-zip-code-input-div.show-zip-code-update-input {
-    height: 75px;
-    padding: 15px 0;
+    height: 55px;
+    padding: 10px 0;
     visibility: visible;
 }
 
@@ -273,12 +295,15 @@
 }
 
 .cart-summary-update-zip-input {
-    height: 40px;
+    height: 35px;
     background-color: #fff;
     border: none;
     padding: 10px;
     outline: none;
     color: var(--text-color);
+    font-size: var(--content-one-size);
+    line-height: var(--content-one-height);
+    font-weight: var(--content-two-weight);
 }
 
 .cart-summary-update-zip-btn {
@@ -288,6 +313,7 @@
     background-color: var(--active-nav-item-color);
     color: #fff;
     cursor: pointer;
+
 }
 
 
@@ -609,9 +635,9 @@ mobile-cart-order-summary-total{
 }
 
 .payment-cards-heading{
-    font-size: var(--sub-section-size);
-    line-height: var(--sub-section-height);
-    font-weight: var(--sub-section-weight);
+    font-size: var(--content-one-size);
+    line-height: var(--content-one-height);
+    font-weight: var(--content-one-weight);
     color: var(--text-color);
 }
 

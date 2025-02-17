@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Products.css';
 import { Link, useLocation, useParams, useSearchParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
@@ -13,7 +13,6 @@ import { MdKeyboardArrowDown } from "react-icons/md";
 import { FaRegArrowAltCircleLeft } from "react-icons/fa";
 import { FaRegArrowAltCircleRight } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa6";
-import { IoIosArrowDown } from "react-icons/io";
 
 // Components
 
@@ -32,8 +31,7 @@ import { useList } from '../../../context/wishListContext/wishListContext';
 import { toast } from 'react-toastify';
 import DoubleRangeSlider from '../../../Global-Components/MultiRangeBar/MultiRange';
 import RatingReview from '../starRating/starRating';
-import { use } from 'react';
-import { set } from 'lodash';
+
 
 const Products = () => {
 
@@ -59,12 +57,6 @@ const Products = () => {
         }
     }, [])
     const [searchParams, setSearchParams] = useSearchParams();
-
-    useEffect(() => {
-        if (!searchParams.get("page")) {
-            setSearchParams({ page: "1" });
-        }
-    }, [searchParams, setSearchParams]);
 
     // state variables
     const [hideFilters, setHideFilters] = useState(false);
@@ -110,7 +102,7 @@ const Products = () => {
             } else {
                 // setPaginationLoading(true)
                 response = await axios.get(
-                    `${url}/api/v1/products/by-category?categorySlug=${subCategorySlug}&page=${activePage}`
+                    `${url}/api/v1/products/by-category?categorySlug=${subCategorySlug}&page=${activePage}&per_page=12`
                 );
             }
             const data = response.data.products;
@@ -128,30 +120,38 @@ const Products = () => {
         // setPaginationLoading(false)
     };
 
-
     const sortProducts = (criteria) => {
+        console.log("calling sort with value", criteria)
+        let sortedProducts = [...products];
         switch (criteria) {
             case 'Recent':
-                return setProducts(products.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)));
+                sortedProducts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+                break;
             case 'By Price (Low to High)':
-                return setProducts(products.sort((a, b) => a.sale_price - b.sale_price));
+                sortedProducts.sort((a, b) => a.sale_price - b.sale_price);
+                break
             case 'By Price (High to Low)':
-                return setProducts(products.sort((a, b) => b.sale_price - a.sale_price));
+                sortedProducts.sort((a, b) => b.sale_price - a.sale_price)
+                break;
             case 'Alphabetic (A to Z)':
-                return setProducts(products.sort((a, b) => a.name.localeCompare(b.name)));
+                sortedProducts.sort((a, b) => a.name.localeCompare(b.name));
+                break
             case 'Alphabetic (Z to A)':
-                return setProducts(products.sort((a, b) => b.name.localeCompare(a.name)));
+                sortedProducts.sort((a, b) => b.name.localeCompare(a.name));
+                break
             case 'By Ratings (Low to High)':
-                return setProducts(products.sort((a, b) => parseFloat(a.average_rating) - parseFloat(b.average_rating)));
+                sortedProducts.sort((a, b) => parseFloat(a.average_rating) - parseFloat(b.average_rating));
+                break
             case 'By Ratings (High to Low)':
-                return setProducts(products.sort((a, b) => parseFloat(b.average_rating) - parseFloat(a.average_rating)));
+                sortedProducts.sort((a, b) => parseFloat(b.average_rating) - parseFloat(a.average_rating));
+                break
 
             default:
-                return setProducts(products.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)));
+                sortedProducts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
         }
+        setProducts(sortedProducts)
 
     }
-
 
     // Fetch Filters
     const fetchFilters = async () => {
@@ -222,7 +222,7 @@ const Products = () => {
         { name: 'By Ratings (High to Low)' },
     ]
 
-    const [selectedRelevanceValue, setSelectedRelevanceValue] = useState(0)
+    const [selectedRelevanceValue, setSelectedRelevanceValue] = useState(relevanceData[0].name)
     const handleRelevance = () => {
         setRelevanceTrue(!relevanceTrue);
     }
@@ -384,21 +384,36 @@ const Products = () => {
     const handleActivePage = (index) => {
         setActivePage(index);
         setActivePageIndex(index);
+        if(index !== activePageIndex) {
+            window.scrollTo({top: 0, behavior: 'smooth'})
+            sortProducts(selectedRelevanceValue)
+        }
     }
 
     const handlePrevPage = () => {
         if (activePage > 1) {
             setActivePage(activePage - 1);
             setActivePageIndex(activePageIndex - 1);
+            sortProducts(selectedRelevanceValue)
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            })
+            
         }
     };
 
     const handleNextPage = () => {
-        console.log("total pages", totalPages)
-        console.log("next clicked")
+        
         if (activePage < totalPages?.totalPages) {
             setActivePage(activePage + 1);
             setActivePageIndex(activePageIndex + 1);
+            sortProducts(selectedRelevanceValue)
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            })
+            
         }
     };
 
@@ -479,7 +494,7 @@ const Products = () => {
                                     <h3 className='filters-heading'>Ratings</h3>
                                     {/* <img src={AddBtn} alt='btn' className={ratingOpen === 'rating-filter' ? 'rotate' : ''} /> */}
                                     <i className='add-button-round'>
-                                        <FaPlus color='#595959' className={isOpen === 'rating-filter' ? 'rotate' : ''} />
+                                        <FaPlus color='#595959' className={isOpen === 'rating-filter' ? 'rotate' : 'rotate-back'} />
                                     </i>
                                 </span>
                                 <div className={`single-filter-items-container ${ratingOpen === 'rating-filter' ? 'show-single-filter-icons' : ''}`}>
@@ -508,7 +523,7 @@ const Products = () => {
                                     <h3 className='filters-heading'>Product Type</h3>
                                     {/* <img src={AddBtn} alt='btn' className={categoryOpen === 'category-filter' ? 'rotate' : ''} /> */}
                                     <i className='add-button-round'>
-                                        <FaPlus color='#595959' className={isOpen === 'category-filter' ? 'rotate' : ''} />
+                                        <FaPlus color='#595959' className={isOpen === 'category-filter' ? 'rotate' : 'rotate-back'} />
                                     </i>
                                 </span>
                                 <div className={`single-filter-items-container ${categoryOpen === 'category-filter' ? 'show-single-filter-icons' : ''}`}>

@@ -1,0 +1,8 @@
+.product-recommendation-main-container{
+    display: flex;
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+    gap: 35px;
+    padding: 35px 0;
+}

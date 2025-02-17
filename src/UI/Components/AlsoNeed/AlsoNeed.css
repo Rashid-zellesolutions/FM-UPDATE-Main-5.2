@@ -3,6 +3,8 @@
     width: 100%;
     flex-direction: column;
     gap: 5px;
+    padding: 10px 0 0 0;
+    border-top: 1px solid var(--border-color);
 }
 
 .might-need-main-container h3{

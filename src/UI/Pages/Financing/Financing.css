@@ -56,6 +56,7 @@
     align-items: center;
     justify-content: center;
     gap: 50px;
+    
     padding: 35px;
 }
 .payment-solution-single-card > .desktopview{
@@ -89,13 +90,13 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: 30px;
-        padding: 30px 20px;
+        gap: 10px;
+        padding: 10px;
     }
     .payment-solution-single-card{
         width: 100%;
     }
-    .payment-solution-single-card h3{
+    .payment-solution-single-card > h3{
         font-size: 20px;
         line-height: 30px;
         font-weight: 600;
@@ -104,7 +105,7 @@
         display: flex;
         flex-wrap: nowrap;
         flex-direction: column;
-        gap: 20px;
-        padding: 35px 20px;
+        gap: 10px;
+        padding: 10px;
     }
 }

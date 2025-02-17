@@ -29,6 +29,7 @@ const CartItems = ({
     quantity,
     handleRomoveProduct,
     cartIndex,
+    sku,
     handleIncreament,
     handleDecreament,
     attributes,
@@ -114,6 +115,7 @@ const CartItems = ({
                         <img src={`${url}${cartPRoductImage}`} alt='product image' />
                     </div>
                     <div className='cart-product-details'>
+                        <p>SKU: {productData?.sku}</p>
                         <p>{cartProductColor}</p>
                         <p>{cartProductTitle}</p>
                         <div className='price-and-count'>
@@ -152,6 +154,7 @@ const CartItems = ({
                         </button>
                         <div className='desktop-name-and-single-price'>
                             <h3>{cartProductName}</h3>
+                            <p className='cart-item-sku-tag'>SKU: {productData?.sku}</p>
                             {attributes && attributes.map((item, index) => {
                                 return (
                                     <p className='desktop-product-extra-info'>{item?.options[0].name}</p>

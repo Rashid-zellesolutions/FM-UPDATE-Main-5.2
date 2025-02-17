@@ -275,6 +275,7 @@ export const MyOrdersProvider = ({ children }) => {
             if (response.status === 201) {
                 console.log("Order added successfully!");
                 // setThankyouState(true);
+                localStorage.removeItem('cart2')
 
                 // Update orderPlacedInfo with response data
                 setOrderPlacedInfo((prev) => ({
@@ -285,6 +286,7 @@ export const MyOrdersProvider = ({ children }) => {
                         ...response.data.order.billing, // Merge new billing details with existing
                     },
                 }));
+                
                 openLink(`${siteUrl}/order-confirmation/${response.data.order._id}`)
             }
         } catch (error) {

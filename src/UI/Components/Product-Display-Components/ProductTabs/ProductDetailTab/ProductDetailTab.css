@@ -22,16 +22,16 @@
 }
 
 .product-detail-right-section-heading-container > h3 {
-    font-size: 20px;
-    line-height: 30px;
-    font-weight: 600;
+    font-size: var(--section-size);
+    line-height: var(--section-height);
+    font-weight: var(--section-weight);
     color: var(--text-color);
 }
 
 .product-detail-right-section-heading-container > a {
-    font-size: 14px;
-    line-height: 18px;
-    font-weight: 400;
+    font-size: var(--sub-section-size);
+    line-height: var(--sub-section-height);
+    font-weight: var(--sub-section-weight);
     color: #4478C5;
     cursor: pointer;
 }
@@ -53,23 +53,23 @@
 }
 
 .product-detail-right-section-items > span > h3{
-    font-size: 16px;
-    line-height: 20px;
-    font-weight: 500;
+    font-size: var(--sub-section-size);
+    line-height: var(--sub-section-height);
+    font-weight: var(--sub-section-weight);
     color: var(--text-color);
 }
 
 .product-detail-right-section-items > span > p{
-    font-size: 13px;
-    line-height: 16px;
-    font-weight: 400;
+    font-size: var(--content-one-size);
+    line-height: var(--content-one-height);
+    font-weight: var(--content-two-weight);
     color: var(--text-color);
 }
 
 .product-detail-right-section-items > p{
-    font-size: 14px;
-    line-height: 18px;
-    font-weight: 400;
+    font-size: var(--content-one-size);
+    line-height: var(--content-one-height);
+    font-weight: var(--content-one-weight);
     color: #4478C5;
     text-decoration: underline;
     cursor: pointer;

@@ -20,22 +20,29 @@
 .footer-nav-link-heading {
     color: #fafafa;
     font-family: poppins, Sans-serif;
-    font-size: 20px;
-    font-weight: 600;
+    font-size: var(--sub-section-size);
+    line-height: var(--product-height);
+    font-weight: var(--sub-section-weight);
+    /* font-size: 20px; */
+    /* font-weight: 600; */
     text-transform: none;
     font-style: normal;
     text-decoration: none;
-    line-height: 30px;
+    /* line-height: 30px; */
     letter-spacing: 0;
     word-spacing: 0;
     margin-bottom: 12px;
 }
 
 .footer-nav-items{
-    font-weight: 400;
+    /* font-weight: 400;
     font-size: 14px;
-    line-height: 19px;
-    padding: 8px 10px 8px 0px;
+    line-height: 19px; */
+    font-size: var(--content-one-size);
+    line-height: var(--product-height);
+    font-weight: var(--content-two-weight);
+    padding: 5px 10px 5px 0px;
+    width: 120px;
 }
 
 .footer-nav-items a{
@@ -468,16 +475,16 @@
 }
 
 .footer-left-contact-section span p{
-    font-size: 18px;
-    line-height: 27px;
-    font-weight: 500;
+    font-size: var(--sub-section-size);
+    line-height: var(--sub-section-height);
+    font-weight: var(--sub-section-weight);
     color: var(--text-white);
 }
 
 .footer-left-contact-section span p a{
-    font-size: 18px;
-    line-height: 27px;
-    font-weight: 500;
+    font-size: var(--sub-section-size);
+    line-height: var(--sub-section-height);
+    font-weight: var(--sub-section-weight);
     color: var(--text-white);
 }
 
@@ -499,9 +506,9 @@
 }
 
 .left-section-location-section h3{
-    font-size: 20px;
-    line-height: 30px;
-    font-weight: 600;
+    font-size: var(--section-size);
+    line-height: var(--section-height);
+    font-weight: var(--section-weight);
     color: var(--text-white);
     margin-bottom: 30px;
 }
@@ -545,9 +552,9 @@
 }
 
 .near-store-details-section span p{
-    font-size: 14px;
-    line-height: 19px;
-    font-weight: 400;
+    font-size: var(--content-one-size);
+    line-height: var(--content-one-height);
+    font-weight: var(--content-two-weight);
     color: var(--text-white);
 }
 
@@ -563,9 +570,9 @@
 }
 
 .appointment-and-outlet-div a p{
-    font-size: 14px !important;
-    line-height: 21px !important;
-    font-weight: 600 !important;
+    font-size: var(--content-one-size) !important;
+    line-height: var(--content-one-height) !important;
+    font-weight: var(--content-one-weight) !important;
     color: var(--text-white) !important;
 }
 
@@ -583,9 +590,9 @@
 }
 
 .appointment-and-outlet-div span p{
-    font-size: 14px !important;
-    line-height: 21px !important;
-    font-weight: 600 !important;
+    font-size: var(--content-one-size) !important;
+    line-height: var(--content-one-height) !important;
+    font-weight: var(--content-one-weight) !important;
     color: var(--text-white) !important;
 }
 
@@ -619,9 +626,9 @@
 }
 
 .footer-right-get-scoop h3{
-    font-size: 20px;
-    line-height: 30px;
-    font-weight: 600;
+    font-size: var(--section-size);
+    line-height: var(--section-height);
+    font-weight: var(--section-weight);
     color: var(--text-white);
     margin-bottom: 10px;
 }
@@ -649,6 +656,9 @@
     border-radius: 5px;
     width: 287px;
     padding: 15px;
+    font-size: var(--content-one-size);
+    line-height: var(--content-one-height);
+    font-weight: var(--content-two-weight);
 }
 
 .footer-get-scoop-input-search button{
@@ -659,12 +669,15 @@
     border: none;
     outline: none;
     border-radius: 5px;
+    font-size: var(--sub-section-size);
+    line-height: var(--sub-section-height);
+    font-weight: var(--sub-section-weight);
 }
 
 .footer-get-scoop-and-conditions p{
-    font-size: 14px;
-    line-height: 21px;
-    font-weight: 400;
+    font-size: var(--content-one-size);
+    line-height: var(--content-one-height);
+    font-weight: var(--content-two-weight);
     color: var(--text-white);
 }
 
@@ -688,9 +701,9 @@
 
 
 .footer-costumer-care-and-about h3{
-    font-size: 20px;
-    line-height: 30px;
-    font-weight: 600;
+    font-size: var(--sub-section-size);
+    line-height: var(--sub-section-height);
+    font-weight: var(--sub-section-weight);
     color: var(--text-white);
     margin-bottom: 30px;
 }
@@ -699,9 +712,9 @@
 /* .about-and-care-link{} */
 
 .footer-costumer-care-and-about .about-and-care-link{
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 21px;
+    font-size: var(--content-one-size);
+    font-weight: var(--content-two-weight);
+    line-height: var(--content-one-height);
     text-decoration: none;
     color: var(--text-white);
     margin-bottom: 8px;

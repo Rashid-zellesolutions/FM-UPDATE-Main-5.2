@@ -8,8 +8,9 @@ import ProductGallery from '../ProductGallery/ProductGallery';
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { url } from '../../../../utils/api';
+import GalleryModal from '../GalleryModal/GalleryModal';
 
-const ProductDimension = ({ productData, variationData }) => {
+const ProductDimension = ({ productData, variationData, handleZoom }) => {
   const dimensionCards = [
     { icon: <RxDimensions size={25} />, title: 'Dimensions' },
     { icon: <FaRegImage size={25} />, title: 'Customer Photos' },
@@ -17,8 +18,13 @@ const ProductDimension = ({ productData, variationData }) => {
   ]
 
   const [dimensionIndex, setDimensionIndex] = useState(null)
-  const handleDimensionSelect = (index) => {
+  const handleDimensionSelect = (item, index) => {
     setDimensionIndex((prevIndex) => prevIndex === index ? null : index)
+    if(item.title === 'Dimensions'){
+      setDimensionModal(true)
+    }else if(item.title === 'Zoom'){
+      handleZoom()
+    }
   }
 
   const [dimensionModal, setDimensionModal] = useState(false);
@@ -38,7 +44,6 @@ const ProductDimension = ({ productData, variationData }) => {
     }
   }, [dimensionModal])
 
-  console.log("variation data", variationData)
 
   const [activeIndex, setActiveIndex] = useState(0); // For main slider image
   const [thumbActiveIndex, setThumbActiveIndex] = useState(0); // For active thumbnail
@@ -138,7 +143,7 @@ const ProductDimension = ({ productData, variationData }) => {
           <div
             key={index}
             className={`dimension-card ${dimensionIndex === index ? 'active-dimension' : ''}`}
-            onClick={() => handleDimensionSelect(index)}
+            onClick={() => handleDimensionSelect(item, index)}
           >
             {item.icon}
             <p>{item.title}</p>
@@ -152,7 +157,7 @@ const ProductDimension = ({ productData, variationData }) => {
       </div>
 
 
-      <div className={`dimension-modal-main-container ${dimensionModal ? 'show-dimension-modal' : ''}`}>
+      {/* <div className={`dimension-modal-main-container ${dimensionModal ? 'show-dimension-modal' : ''}`}>
         <div className='dimension-modal-inner-container'>
           <button className='dimension-modal-close-button' onClick={handleCloseDimensionModal}>
             <RxCross2 size={25} color='#595959' />
@@ -226,7 +231,18 @@ const ProductDimension = ({ productData, variationData }) => {
           </div>
 
         </div>
-      </div>
+      </div> */}
+      <GalleryModal 
+        dimensionModal={dimensionModal}
+        handleCloseDimensionModal={handleCloseDimensionModal}
+        productData={productData} 
+        variationData={variationData}
+        handleNextImage={handleNextImage}
+        handlePrevImage={handlePrevImage}
+        activeIndex={activeIndex}
+        handleThumbnailClick={handleThumbnailClick}
+        thumbActiveIndex={thumbActiveIndex}
+      />
     </>
   )
 }

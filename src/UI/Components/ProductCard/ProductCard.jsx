@@ -199,6 +199,8 @@ const ProductCard = ({
 
     const { isInWishList } = useList();
 
+    console.log("tags atributes", url + tags[1]?.image)
+
     return (
         <>
             <div
@@ -212,7 +214,23 @@ const ProductCard = ({
                     <div className='product-main-image-container'>
 
                         <div className='tag-and-heart' onClick={(e) => e.stopPropagation()}>
-                            {stock?.is_stock_manage === 0 && <h4 className={allow_back_order === 1 ? "stock-label back" : "stock-label out"}>{allow_back_order === 1 ? "Back Order" : "Out of Stock"}</h4>}
+                            {
+                                stock?.is_stock_manage === 0 ? (
+                                    <h4 className={allow_back_order === 1 ? "stock-label back" : "stock-label out"}>{allow_back_order === 1 ? "Back Order" : "Out of Stock"}</h4>
+                                ) : (
+                                     tags?.length > 1 && <div className="product-tagging">
+                                        {
+                                            tags[1] && tags[1].type.toLowerCase() === "text" ?
+                                                <div className='text-tag' style={{ backgroundColor: tags[1].bg_color, color: tags[1].text_color }} >
+                                                    {tags[1].text}
+                                                </div> :
+                                                <div className='image-tag' >
+                                                    <img src={url + tags[1]?.image} alt="" srcset="" />
+                                                </div>
+                                        }
+                                    </div>
+                                ) 
+                            }
                             <p className='percent-label'>{percent}</p>
                             {
                                 isInWishList(singleProductData.uid) ?
@@ -238,55 +256,60 @@ const ProductCard = ({
                             }
 
                         </div>
+                        <div className='product-card-product-image-inner-container'>
+                            <img src={`${url}${selectedColorImage
+                                ? mainImageHoverIndex === singleProductData.uid
+                                    ? hoveredImage
+                                    : selectedColorImage
+                                : mainImage
+                                }`}
+                                alt='product img'
+                                className='product-main-img'
+                                effect='blur'
+                                onLoad={() => { setImageLoaded(true) }}
+                            />
+                            {
+                                !isImageLoaded && <div className="image_shimmer_loader">
+                                    <ProductCardImageShimmer />
+                                </div>
+                            }
 
-                        <img src={`${url}${selectedColorImage
-                            ? mainImageHoverIndex === singleProductData.uid
-                                ? hoveredImage
-                                : selectedColorImage
-                            : mainImage
-                            }`}
-                            alt='product img'
-                            className='product-main-img'
-                            effect='blur'
-                            onLoad={() => { setImageLoaded(true) }}
-                        />
-                        {
-                            !isImageLoaded && <div className="image_shimmer_loader">
-                                <ProductCardImageShimmer />
-                            </div>
-                        }
 
-                        <div className='overlay-buttons'>
-                            <button
-                                className={`overlay-button 
+                            <div className='overlay-buttons'>
+                                <button
+                                    className={`overlay-button 
                                     ${cartClicked ? 'loading' : ''}
                                     `
-                                }
-                                onClick={(e) => {
-                                    e.stopPropagation();
-                                    handleQuickView()
-                                }
-                                }
-                                onMouseEnter={handleMouseEnter}
-                                onMouseLeave={handleMouseLeave}
-                            >
-                                <BsCart3 />
-                                Add to cart
-                            </button>
-                            <button
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    handleCardClick(singleProductData);
-                                }
-                                }
-                                className='overlay-button'
-                                onMouseEnter={handleQuickViewHover}
-                                onMouseLeave={handlQuickViewLeave}
-                            >
-                                <IoEyeOutline />
-                                View Product
-                            </button>
+                                    }
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        handleQuickView()
+                                    }
+                                    }
+                                    onMouseEnter={handleMouseEnter}
+                                    onMouseLeave={handleMouseLeave}
+                                >
+                                    <BsCart3 />
+                                    Add to cart
+                                </button>
+                                <button
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        handleCardClick(singleProductData);
+                                    }
+                                    }
+                                    className='overlay-button'
+                                    onMouseEnter={handleQuickViewHover}
+                                    onMouseLeave={handlQuickViewLeave}
+                                >
+                                    <IoEyeOutline />
+                                    View Product
+                                </button>
+                            </div>
+
                         </div>
+
+                        <h3 className='product-title' > {ProductTitle} </h3>
 
                     </div>
 
@@ -302,7 +325,7 @@ const ProductCard = ({
                         }
                     </div>}
                     <p className='product-sku' onClick={handleCardClick}>SKU : {ProductSku}</p>
-                    <h3 className='product-title' > {ProductTitle} </h3>
+                    {/* <h3 className='product-title' > {ProductTitle} </h3> */}
                     <div className='product-rating-stars-div'>
                         <RatingReview rating={parseFloat(reviewCount)} size={"12px"} disabled={true} />
                     </div>

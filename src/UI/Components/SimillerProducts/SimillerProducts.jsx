@@ -152,7 +152,7 @@ const SimillerProducts = ({collection, isPadding}) => {
     
   return (
     <div className={`similler-products-main-container ${isPadding ? 'add-padding' : ''}`}>
-        <h3>Shop from this collection</h3>
+        <h3>Shop From This Collection</h3>
 
         <div className='cart-related-products-slider-main-div'>
           <Slider {...settings}>

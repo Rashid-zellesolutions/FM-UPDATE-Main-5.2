@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import './ProductDetailSticky.css'
 import ProductGallery from '../ProductGallery/ProductGallery'
 import ProductDimension from '../ProductDimenson/ProductDimension'
@@ -11,7 +11,7 @@ import { FaShareSquare } from 'react-icons/fa'
 import { useCart } from '../../../../context/cartContext/cartContext'
 import axios from 'axios'
 import { formatedPrice, url } from '../../../../utils/api'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import AlsoNeed from '../../AlsoNeed/AlsoNeed'
 import SizeVariant from '../../SizeVariant/SizeVariant'
 import { FaPlus, FaWindowMinimize } from 'react-icons/fa6'
@@ -25,18 +25,19 @@ import DimensionDetail from '../DimensionDetail/DimensionDetail'
 import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
 import ShareProduct from '../../ShareProduct/ShareProduct'
 import CartSidePannel from '../../Cart-side-section/CartSidePannel'
+import { useGlobalContext } from '../../../../context/GlobalContext/globalContext'
 
 const ProductDetailSticky = (
-  { 
-    productData, 
-    decreaseLocalQuantity, 
-    quantity, 
-    handleQuantityChange ,
+  {
+    productData,
+    decreaseLocalQuantity,
+    quantity,
+    handleQuantityChange,
     increaseLocalQuantity,
     isLoading,
     handleClick,
     addToCart0,
-    isProtectionCheck,
+    // isProtectionCheck,
     handleAddToCartProduct,
     cartProducts,
     cartSection,
@@ -48,6 +49,8 @@ const ProductDetailSticky = (
     variationData,
     setVariationData
   }) => {
+
+  const navigate = useNavigate()
 
   // Get Product Data from previous route or api
   const {
@@ -104,16 +107,6 @@ const ProductDetailSticky = (
 
   useEffect(() => { }, [product])
 
-  // const {
-  //   addToCart,
-  //   decreamentQuantity,
-  //   increamentQuantity,
-  //   removeFromCart,
-  //   addToCart0,
-  //   cartProducts
-  // } = useCart();
-
-
   // Share Product Modal
   const [isSharePopup, setIsSharePopup] = useState(null);
   const [selectedProduct, SetSelectedProduct] = useState()
@@ -121,7 +114,6 @@ const ProductDetailSticky = (
     setIsSharePopup(item.uid)
     SetSelectedProduct(item)
   }
-
 
   // Variation Select and auto select
   const [selectedColor, setSelectedColor] = useState();
@@ -146,24 +138,30 @@ const ProductDetailSticky = (
 
   };
 
-  // Add To Cart Functionality
-  // const [isLoading, setIsLoading] = useState(false);
-  // const [isProtectionCheck, setIsProtectionCheck] = useState(true)
-  // const [cartSection, setCartSection] = useState(false);
-  // const [quantity, setQuantity] = useState(1)
+  // Protection Plan
+  const { setWarrantyModalState } = useGlobalContext();
+  const [isSingleProtectionChecked, setIsSingleProtectionChecked] = useState(false);
+  const [isProtected, setIsProtected] = useState(true)
+  const handleWarrantyModal = () => {
+    setWarrantyModalState(true)
+  }
 
-  // const decreaseLocalQuantity = () => {
-  //   setQuantity((prevQuantity) => Math.max(1, prevQuantity - 1));
-  // }
+  const [protectionCheck, setProtectionCheck] = useState(false)
 
-  // const increaseLocalQuantity = () => {
-  //   setQuantity(quantity + 1);
-  // }
+  const handleProtection = (key, isChecked) => {
+    console.log("value is check", isChecked)
+    setProtectionCheck(!protectionCheck)
+    if (key === 'single-protection') {
+      setIsSingleProtectionChecked(isChecked);
+      console.log("is protected on first", isSingleProtectionChecked)
+      setIsProtected(isSingleProtectionChecked)
+      console.log("is protected after value change", isProtected)
+    }
+  };
 
-  // const handleQuantityChange = (e) => {
-  //   const { value } = e.target;
-  //   setQuantity(value)
-  // }
+  useEffect(() => {
+    console.log("protect value", isSingleProtectionChecked)
+  }, [isSingleProtectionChecked,])
 
   // Add To WishList and Remove
   const { addToList, removeFromList, isInWishList } = useList()
@@ -176,34 +174,69 @@ const ProductDetailSticky = (
     }
   }
 
-  // const handleCartClose = () => {
-  //   setCartSection(false)
-  //   setQuantity(1)
+  const handleNavigate = () => {
+    navigate('/contact-us')
+  }
 
-  // }
+  // Zoom gallery
 
-  // add to cart button click function
-  // const handleClick = () => {
-  //   setIsLoading(true);
-  //   setTimeout(() => {
-  //     setIsLoading(false);
-  //   }, 1000);
-  // };
+  const [zoomIn, setZoomIn] = useState(false);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [dragging, setDragging] = useState(false);
+  const [startPos, setStartPos] = useState({ x: 0, y: 0 });
+  const [isClick, setIsClick] = useState(false);
 
-  // const handleAddToCartProduct = (product) => {
-  //   setCartSection(true);
-  //   addToCart(product, quantity, !isProtectionCheck);
-  // }
+  const handleZoomImage = () => {
+    console.log("zoom func call")
+    setZoomIn(!zoomIn);
+    if (!isClick) {
+      setPosition({ x: 0, y: 0 }); // Reset position when zooming out
+    }
+  };
 
-  // console.log("single product detail", product)
+  const handleMouseDown = (e) => {
+    if (!zoomIn) return;
+    setDragging(true);
+    setIsClick(true);
+    setStartPos({ x: e.clientX - position.x, y: e.clientY - position.y });
+  };
+
+  const handleMouseMove = (e) => {
+    if (!dragging || !zoomIn) return;
+    e.preventDefault();
+
+    const newX = e.clientX - startPos.x;
+    const newY = e.clientY - startPos.y;
+
+    setPosition({ x: newX, y: newY });
+    setIsClick(false);
+  };
+
+  const handleMouseUp = () => {
+    setDragging(false);
+  };
 
   return (
     <div className='product-detail-sticky-section-main-container'>
       <div className='product-detail-sticky-gallery-and-detail'>
         <div className='product-detail-product-gallery-section'>
-          <ProductGallery productData={product} selectedVariationData={selectedVariationData} productImages={product?.images} />
-          <ProductDimension productData={product} variationData={selectedVariationData} />
-          <DimensionDetail  />
+          <ProductGallery
+            productData={product}
+            selectedVariationData={selectedVariationData}
+            productImages={product?.images}
+            zoomIn={zoomIn}
+            setZoomIn={setZoomIn}
+            handleMouseMove={handleMouseMove}
+            handleMouseDown={handleMouseDown}
+            handleMouseUp={handleMouseUp}
+            dragging={dragging}
+            setDragging={setDragging}
+            position={position}
+            setPosition={setPosition}
+
+          />
+          <ProductDimension productData={product} handleZoom={handleZoomImage} variationData={selectedVariationData} />
+          <DimensionDetail />
         </div>
 
         <div className='product-detail-product-info-section'>
@@ -283,7 +316,7 @@ const ProductDetailSticky = (
                   className={`add-to-cart-btn ${isLoading ? 'loading' : ''}`}
                   onClick={() => {
                     handleClick();
-                    addToCart0(product, variationData, !isProtectionCheck ? 1 : 0, quantity)
+                    addToCart0(product, variationData, !isProtected ? 1 : 0, quantity)
                     handleAddToCartProduct(product);
                   }
                   }>
@@ -338,7 +371,7 @@ const ProductDetailSticky = (
 
                     <span>
                       <p>+$499.95</p>
-                      <strong>
+                      <strong onClick={handleWarrantyModal}>
                         What's Covered
                       </strong>
                     </span>
@@ -347,15 +380,26 @@ const ProductDetailSticky = (
 
                 </div>
 
-                <button className='product-detail-add-protection-plan-button'>
-                  Add
-                </button>
+                {protectionCheck ? (
+                  <button
+                    onClick={() => handleProtection('single-protection', false)}
+                    className='product-detail-add-protection-plan-button'>
+                    Applied
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => handleProtection('single-protection', true)}
+                    className='product-detail-add-protection-plan-button'>
+                    Add
+                  </button>
+                )}
+
 
               </div>
 
               <div className='product-detail-chat-option-container'>
                 <p>Product Question?</p>
-                <button>Chat With Us</button>
+                <button onClick={handleNavigate}>Contact Us</button>
               </div>
 
             </div>

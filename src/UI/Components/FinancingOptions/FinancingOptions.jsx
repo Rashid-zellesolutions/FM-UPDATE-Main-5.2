@@ -16,7 +16,7 @@ const FinancingOptions = () => {
 
             </div>
             <button className='no-credit-button'>
-                No Credit need Financing
+                No Credit Need Financing
             </button>
         </div>
     )

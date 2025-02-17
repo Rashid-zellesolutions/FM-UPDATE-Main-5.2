@@ -1,4 +1,4 @@
-.finance-service-category-card{
+.finance-service-category-card {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -14,11 +14,11 @@
     cursor: pointer;
 }
 
-.marginTop{
+.marginTop {
     margin-top: 15px;
 }
 
-.finance-service-category-card-icon-div{
+.finance-service-category-card-icon-div {
     background-color: #FAFAFA;
     padding: 28px;
     display: flex;
@@ -27,53 +27,61 @@
     border-radius: 50%;
 }
 
-.finance-service-category-card-icon-div img{
+.finance-service-category-card-icon-div img {
     width: auto;
     height: auto;
     object-fit: contain;
 }
 
-.finance-service-category-card-detail-div{
+.finance-service-category-card-detail-div {
     display: flex;
     flex-direction: column;
     width: 100%;
     gap: 10px;
 }
 
-.finance-service-category-card-detail-div h3{
+.finance-service-category-card-detail-div h3 {
     font-size: 20px;
     line-height: 30px;
     font-weight: 600;
     color: var(--text-color);
 }
 
-.finance-service-category-card-detail-div p{
+.finance-service-category-card-detail-div p {
     font-size: 16px;
     line-height: 20px;
     font-weight: 400;
     color: var(--text-color);
 }
 
-@media only screen and (max-width: 480px){
-    .finance-service-category-card{
+@media only screen and (max-width: 480px) {
+    .finance-service-category-card {
         width: 100%;
         height: 170px;
         gap: 15px;
     }
-    .finance-service-category-card-icon-div{
+
+    .finance-service-category-card-icon-div {
         padding: 15px;
     }
-    .finance-service-category-card-icon-div img{
+
+    .finance-service-category-card-icon-div img {
         width: auto;
         height: 24px;
         object-fit: contain;
     }
-    .finance-service-category-card-detail-div h3{
+
+    .finance-service-category-card-detail-div h3 {
         font-size: 15px;
         line-height: 22px;
     }
-    .finance-service-category-card-detail-div p{
+
+    .finance-service-category-card-detail-div p {
         font-size: 12px;
         line-height: 14px;
+    }
+
+    .marginTop {
+        margin-top: 0px;
     }
 }

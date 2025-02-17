@@ -36,7 +36,7 @@
     height: auto;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    /* gap: 15px; */
 }
 
 
@@ -58,7 +58,7 @@
     flex-grow: 1;
     overflow: hidden;
     background-color: #FFFFFF;
-    border-bottom: 1px solid var(--border-color);
+    /* border-bottom: 1px solid var(--border-color); */
 }
 
 .product-detail-name-and-rating-etc {
@@ -78,9 +78,9 @@
 }
 
 .product-detail-name-and-rating-etc > p {
-    font-size: var(--sub-section-size);
-    font-weight: var(--sub-section-weight);
-    line-height: var(--sub-section-height);
+    font-size: var(--attribute-size);
+    font-weight: var(--attribute-weight);
+    line-height: var(--attribute-height);
 }
 
 .product-detail-rating-and-share {
@@ -368,9 +368,9 @@
 }
 
 .product-details-protection-plan-container>h3 {
-    font-size: 20px;
-    line-height: 22px;
-    font-weight: 600;
+    font-size: var(--sub-section-size);
+    line-height: var(--sub-section-height);
+    font-weight: var(--sub-section-weight);
     color: var(--text-color);
 }
 
@@ -400,9 +400,9 @@
 }
 
 .product-details-info>p {
-    font-size: 16px;
-    line-height: 20px;
-    font-weight: 400;
+    font-size: var(--content-one-size);
+    line-height: var(--content-one-height);
+    font-weight: var(--content-two-weight);
     color: var(--text-color);
 }
 
@@ -414,16 +414,16 @@
 }
 
 .product-details-info>span>p {
-    font-size: 16px;
-    line-height: 20px;
-    font-weight: 400;
+    font-size: var(--content-one-size);
+    line-height: var(--content-one-height);
+    font-weight: var(--content-two-weight);
     color: var(--text-color);
 }
 
 .product-details-info>span>strong {
-    font-size: 16px;
-    line-height: 20px;
-    font-weight: 400;
+    font-size: var(--content-one-size);
+    line-height: var(--content-one-height);
+    font-weight: var(--content-one-weight);
     color: #4478C5;
     text-decoration: underline;
     cursor: pointer;
@@ -439,9 +439,9 @@
     border-radius: 5px;
     background-color: transparent;
     color: #4478C5;
-    font-size: 16px;
-    line-height: 20px;
-    font-weight: 500;
+    font-size: var(--sub-section-size);
+    line-height: var(--sub-section-height);
+    font-weight: var(--sub-section-weight);
     cursor: pointer;
 }
 
@@ -458,9 +458,9 @@
 }
 
 .product-detail-chat-option-container>p {
-    font-size: 20px;
-    line-height: 20px;
-    font-weight: 500;
+    font-size: var(--content-one-size);
+    line-height: var(--content-one-height);
+    font-weight: var(--content-one-weight);
     color: var(--text-color);
 }
 
@@ -474,9 +474,9 @@
     border-radius: 15px;
     cursor: pointer;
     color: #4478C5;
-    font-size: 16px;
-    line-height: 20px;
-    font-weight: 500;
+    font-size: var(--sub-section-size);
+    line-height: var(--sub-section-height);
+    font-weight: var(--sub-section-weight);
     padding: 5px 15px;
 
 }

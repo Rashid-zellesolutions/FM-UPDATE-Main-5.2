@@ -81,7 +81,8 @@
     border: 1px solid var(--border-color);
     padding: 5px 10px;
     cursor: pointer;
-    border-radius: 8px;
+    border-radius: 4px;
+    color: var(--text-color);
 }
 
 .select-type-attribute.select-select-variation{
@@ -96,7 +97,7 @@
     font-size: var(--content-one-size);
     line-height: var(--content-one-height);
     font-weight: var(--content-one-weight);
-    color: var(--text-white);
+    color: var(--text-color);
 }
 
 /* attribute image */

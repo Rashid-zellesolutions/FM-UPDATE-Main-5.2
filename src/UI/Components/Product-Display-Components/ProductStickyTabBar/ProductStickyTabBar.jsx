@@ -3,6 +3,8 @@ import './ProductStickyTabBar.css'
 import { CiDeliveryTruck, CiLocationOn } from "react-icons/ci";
 import { useCart } from '../../../../context/cartContext/cartContext';
 import { formatedPrice } from '../../../../utils/api';
+import LocationPopUp from '../../LocationPopUp/LocationPopUp';
+import Weekdays from 'react-calendar/dist/cjs/MonthView/Weekdays.js';
 
 const ProductStickyTabBar = (
     {
@@ -20,6 +22,7 @@ const ProductStickyTabBar = (
 
     const tabBarItems = ['Description', 'Details', 'Recommendations', 'Reviews'];
     const [activeTab, setIsActiveTab] = useState('Description');
+    const [searchLocation, setSearchLocation] = useState(false);
     // const [isSticky, setIsSticky] = useState(false);
 
     useEffect(() => {
@@ -59,11 +62,30 @@ const ProductStickyTabBar = (
         }
     }
 
+    const [locationDetails, setLocationDetails] = useState({
+        zipCode: '',
+        city: '',
+        state: '',
+        country: ''
+      });
 
-    console.log("product data", productData);
-    console.log("product variation data", variationData);
-    console.log("product is protected", isProtectionCheck);
-    console.log("product quantity", quantity);
+    const handleSearchModal = () => {
+    setSearchLocation(true)
+  }
+
+  const handleCloseSearch = () => {
+    setSearchLocation(false)
+  }
+
+  const getDeliveryDate = () => {
+    const options = {weekday: "long", month: "long", day: "numeric"};
+    const today = new Date();
+
+    const optionWithTimeZone = {...options, timeZone: "America/New_York"};
+
+    today.setDate(today.getDate() + 5);
+    return today.toLocaleDateString("en-us", optionWithTimeZone)
+  }
 
     return (
         <>
@@ -75,8 +97,8 @@ const ProductStickyTabBar = (
                             <span className='product-sticky-fixed-delivery-detail'>
                                 <CiDeliveryTruck size={20} color='#595959' />
                                 <p>Get it by</p>
-                                <strong>Wednesday, February 5</strong>
-                                <i>
+                                <strong>{getDeliveryDate()}</strong>
+                                <i onClick={handleSearchModal}>
                                     <CiLocationOn scale={20} />
                                     <p>19134</p>
                                 </i>
@@ -151,6 +173,14 @@ const ProductStickyTabBar = (
                     ))}
                 </div>
             </div>
+
+            {/* Location Modal */}
+            <LocationPopUp
+                searchLocation={searchLocation}
+                handleCloseSearch={handleCloseSearch}
+                setLocationDetails={setLocationDetails}
+                locationDetails={locationDetails}
+            />
         </>
 
     )

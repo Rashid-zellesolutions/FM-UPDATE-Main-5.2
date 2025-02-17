@@ -49,14 +49,14 @@ const Sliderr = ({ images, height }) => {
     // Custom arrows
     const CustomPrevArrow = ({ onClick }) => (
         <div className="arrow left-arrow" onClick={onClick} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-            {/* <img src={isHovered ? arrowLeftRed : ArrowLeft} alt="arrow left" /> */}
+            
             <IoChevronBack />
         </div>
     );
 
     const CustomNextArrow = ({ onClick }) => (
         <div className="arrow right-arrow" onClick={onClick} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-            {/* <img src={isHovered ? arrowRightRed : ArrowRight} alt="arrow right" /> */}
+            
             <IoChevronForward />
         </div>
     );

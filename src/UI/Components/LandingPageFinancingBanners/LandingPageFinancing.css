@@ -75,7 +75,7 @@
     color: var(--text-color);
     border: 1px solid var(--border-color);
     padding: 0px 65px;
-    height: 60px;
+    height: 40px;
     border-radius: 100px;
     cursor: pointer;
     display: flex;
@@ -84,9 +84,9 @@
 
 }
 
-.financing-page-buttons-div-column a img{
+.financing-page-buttons-div-column > a > img{
     width: auto;
-    height: 40px;
+    height: 25px;
     object-fit: contain;
 }
 

@@ -71,15 +71,15 @@ const Nav = ({ navLinks, sale_data }) => {
             )}
 
 
-            <div className='mobile-navbar'>
+            {navLinks?.length > 0 ? (
+                <div className='mobile-navbar'>
+                    {navLinks.map((item, index) => {
+                        return <h3 key={index} onMouseEnter={() => item.subCategories.length > 0 && handleMouseEnter(index)}
+                            onMouseLeave={handleMouseLeave}
+                            className={`mobile-nav-link ${activeIndex === item.link ? 'active' : ''}`}>
+                            <Link to={`/${item.category_slug}`} > {item.category} </Link>
 
-                {navLinks.map((item, index) => {
-                    return <h3 key={index} onMouseEnter={() => item.subCategories.length > 0 && handleMouseEnter(index)}
-                        onMouseLeave={handleMouseLeave}
-                        className={`mobile-nav-link ${activeIndex === item.link ? 'active' : ''}`}>
-                        <Link to={`/${item.category_slug}`} > {item.category} </Link>
-
-                        {/* {dropdownOpen === index && (
+                            {/* {dropdownOpen === index && (
                             <div className='dropdown'>
                                 <DropdownMenu
                                     parentCategorySlug={item.category_slug}
@@ -89,9 +89,17 @@ const Nav = ({ navLinks, sale_data }) => {
                                 />
                             </div>
                         )} */}
-                    </h3>
-                })}
-            </div>
+                        </h3>
+                    })}
+                </div>
+            ) : (
+                    <div className='mobile-shimmer-nav-item-container'>
+                        {Array.from({ length: 4 }).map((_, index) => (
+                            <div className='mobile-nav-item-shimmer'></div>
+                        ))}
+                    </div>
+            )}
+            
         </div>
     )
 }

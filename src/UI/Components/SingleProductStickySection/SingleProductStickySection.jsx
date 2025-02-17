@@ -539,7 +539,7 @@ const SingleProductStickySection = ({ productData }) => {
                 </div>
               )}
               {product.may_also_need && product.may_also_need.length > 0 ? <AlsoNeed productsUid={product.may_also_need} /> : <></>}
-
+ 
               {Object.keys(product).length > 0 ? (
                 <WhatWeOffer key={"single-protection"} isProtected={isProtectionCheck} setIsProtected={setIsProtectionCheck} />
               ) : (

@@ -210,6 +210,7 @@
     flex-shrink: 0;
     height: 100%;
     overflow: hidden;
+    position: relative;
     width: 100%;
     max-width: 100%;
     aspect-ratio: 1162 / 731;
@@ -218,12 +219,14 @@
 
 .product-gallery-main-slider-image {
     width: 100%;
-    /* Ensure images take up full width of their container */
     height: 100%;
-    /* object-fit: cover; */
-    /* Ensures the image covers the container without distortion */
+    transition: transform 0.3s ease;
+    user-select: none;
 }
 
+.scale-slider-image {
+    cursor: grab;
+}
 /* Navigation Arrows */
 
 .disabled {

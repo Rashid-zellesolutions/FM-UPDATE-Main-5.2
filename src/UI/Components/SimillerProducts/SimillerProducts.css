@@ -10,9 +10,9 @@
 }
 
 .similler-products-main-container h3 {
-    font-size: 25px;
-    line-height: var(--heading-line-height);
-    font-weight: 600;
+    font-size: var(--section-size);
+    line-height: var(--section-height);
+    font-weight: var(--section-weight);
     color: var(--text-color);
 }
 

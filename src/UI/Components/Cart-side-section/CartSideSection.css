@@ -30,7 +30,8 @@
     width: 100%;
 }
 
-.cart-side-section-product-item-name h3{
+.cart-side-section-product-item-name > h3{
+    width: 90%;
     font-size: 15px !important;
     font-weight: 500;
     line-height: 18px;

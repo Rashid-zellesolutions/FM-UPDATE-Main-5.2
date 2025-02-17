@@ -271,3 +271,119 @@ textarea {
     color: var(--text-color);
     outline: none;
 }
+
+@media only screen and (max-width: 480px){
+    .contact-us-main-container{
+        padding: 20px 10px;
+        gap: 15px;
+    }
+    
+    .contact-us-body{
+        flex-direction: column;
+        gap: 0;
+    }
+    .contact-us-head{
+        gap: 5px;
+    }
+    .contact-us-services{
+        width: 100%;
+        gap: 15px;
+    }
+
+    .contact-us-contact-form{
+        width: 100%;
+        padding: 15px;
+        gap: 10px;
+    }
+    .contact-form-combined-inputs{
+        gap: 10px;
+    }
+    label{
+        gap: 0;
+        font-size: var(--content-one-size);
+        line-height: var(--content-one-height);
+        font-weight: var(--content-two-weight);
+    }
+    input{
+        font-size: var(--content-one-size);
+        line-height: var(--content-one-height);
+        font-weight: var(--content-two-weight);
+    }
+
+    .contact-us-payment-and-FAQ{
+        gap: 10px;
+        flex-direction: column;
+    }
+    .contact-us-pay-and-faq-details{
+        gap: 5px;
+        padding: 10px;
+        width: 100%;
+    }
+
+    /* All Typo */
+    .costumer-care-service-details{
+        gap: 5px;
+    }
+    .contact-form-head{
+        gap: 5px;
+    }
+    .contact-us-main-heading{
+        font-size: var(--section-size);
+        line-height: var(--section-height);
+        font-weight: var(--section-weight);
+    }
+
+    .contact-para > p {
+        font-size: var(--content-one-size);
+        line-height: var(--content-one-height);
+        font-weight: var(--content-two-weight);
+    }
+
+    .costumer-care-service-icon{
+        width: 20px;
+    }
+
+    .costumer-care-service-details > h3{
+        font-size: var(--sub-section-size);
+        line-height: var(--sub-section-height);
+        font-weight: var(--sub-section-weight);
+    }
+    .costumer-care-service-details > p {
+        font-size: var(--content-one-size);
+        line-height: var(--content-one-height);
+        font-weight: var(--content-two-weight);
+    }
+
+    .contact-form-head > h3 {
+        font-size: var(--sub-section-size);
+        line-height: var(--sub-section-height);
+        font-weight: var(--sub-section-weight);
+    }
+
+    .contact-form-head > p {
+        font-size: var(--content-one-size);
+        line-height: var(--content-one-height);
+        font-weight: var(--content-two-weight);
+    }
+
+    .form-submit-button-div button{
+        font-size: var(--sub-section-size);
+        line-height: var(--sub-section-height);
+        font-weight: var(--sub-section-weight);
+        /* height: 25px; */
+    }
+
+    .contact-us-pay-and-faq-details img{
+        width: 40px;
+    }
+    .contact-us-pay-and-faq-details > h3 {
+        font-size: var(--sub-section-size);
+        line-height: var(--sub-section-height);
+        font-weight: var(--sub-section-weight);
+    }
+    .contact-us-pay-and-faq-details p{
+        font-size: var(--content-one-size);
+        line-height: var(--content-one-height);
+        font-weight: var(--content-two-weight);
+    }
+}

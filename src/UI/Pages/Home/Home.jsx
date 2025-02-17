@@ -21,12 +21,14 @@ import Comparision from '../../Components/Comparision/Comparision';
 import DealOfTheDay from '../../Components/DealOfTheDay/DealOfTheDay';
 import TrendingNow from '../../Components/TrendingNow/TrendingNow';
 import FurnitureForBudget from '../../Components/FurnitureForBudget/FurnitureForBudget';
-import AnnouncmentBanners from '../../Components/AnnouncmentBanner/AnnouncmentBanner';
 import MobileFinancingSlider from '../../Components/FinanceBannerSlider/MobileFinancingSlider';
 import FinanceBanner2 from '../../Components/FinanceBannerSlider/FinanceBanner2';
 import InstaTwoImageGallery from '../../Components/InstaTwoImageGallery/InstaTwoImageGallery';
 import { useLPContentContext } from '../../../context/LPContentContext/LPContentContext';
 import LandingPageFinancing from '../../Components/LandingPageFinancingBanners/LandingPageFinancing';
+
+
+
 
 
 
@@ -125,7 +127,7 @@ const Home = () => {
       {landingPageFOEB && (
         <FurnitureForBudget budgetCardData={landingPageFOEB} />
       )}
-      
+
 
       <GetTheScop />
       <BlogSlider />

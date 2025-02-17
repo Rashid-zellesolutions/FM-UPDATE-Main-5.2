@@ -18,16 +18,16 @@
 }
 
 .dimension-detail-section > h3{
-    font-size: 20px;
-    line-height: 30px;
-    font-weight: 500;
+    font-size: var(--sub-section-size);
+    line-height: var(--sub-section-height);
+    font-weight: var(--sub-section-weight);
     color: var(--text-color);
 }
 
 .dimension-detail-section > p {
-    font-size: 16px;
-    line-height: 22px;
-    font-weight: 400;
+    font-size: var(--content-one-size);
+    line-height: var(--content-one-height);
+    font-weight: var(--content-one-weight);
     color: var(--text-color);
 }
 

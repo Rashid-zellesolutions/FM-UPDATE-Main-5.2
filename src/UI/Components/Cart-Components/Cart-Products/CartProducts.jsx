@@ -108,6 +108,8 @@ const CartProducts = () => {
         setShowSnakeBar(false)
     }
 
+    console.log("sku find", cartProducts?.products[0]?.sku)
+
     
 
     return (
@@ -245,6 +247,7 @@ const CartProducts = () => {
                             attributes={items.attributes}
                             onlyMobile={false}
                             productData={items}
+                            sku={items.sku}
                             issingleProtected={issingleProtected}
                             handleSingleProtected={() => { }}
                             cartIndex={items.product_uid}
