@@ -32,9 +32,7 @@ const ProductDimension = ({ productData, variationData, handleZoom }) => {
     setDimensionModal(true);
   }
 
-  const handleCloseDimensionModal = () => {
-    setDimensionModal(false);
-  }
+  
 
   useEffect(() => {
     if (dimensionModal) {
@@ -135,6 +133,12 @@ const ProductDimension = ({ productData, variationData, handleZoom }) => {
             return newIndex;
         });
     };
+
+  const handleCloseDimensionModal = () => {
+    setDimensionModal(false);
+    setActiveIndex(0)
+    setThumbActiveIndex(0)
+  }
 
   return (
     <>

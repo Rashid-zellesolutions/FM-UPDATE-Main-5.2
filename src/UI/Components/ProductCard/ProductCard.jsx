@@ -199,7 +199,6 @@ const ProductCard = ({
 
     const { isInWishList } = useList();
 
-    console.log("tags atributes", url + tags[1]?.image)
 
     return (
         <>
@@ -309,7 +308,7 @@ const ProductCard = ({
 
                         </div>
 
-                        <h3 className='product-title' > {ProductTitle} </h3>
+                        {/* <h3 className='product-title' > {ProductTitle} </h3> */}
 
                     </div>
 
@@ -325,7 +324,7 @@ const ProductCard = ({
                         }
                     </div>}
                     <p className='product-sku' onClick={handleCardClick}>SKU : {ProductSku}</p>
-                    {/* <h3 className='product-title' > {ProductTitle} </h3> */}
+                    <h3 className='product-title' > {ProductTitle} </h3>
                     <div className='product-rating-stars-div'>
                         <RatingReview rating={parseFloat(reviewCount)} size={"12px"} disabled={true} />
                     </div>

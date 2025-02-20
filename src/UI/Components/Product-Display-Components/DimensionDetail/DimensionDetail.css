@@ -1,9 +1,10 @@
 .dimension-detail-main-container{
     display: flex;
     width: 100%;
-    align-items: center;
-    justify-content: center;
+    align-items: start;
+    justify-content: start;
     padding: 25px 0;
+    gap: 30px;
 }
 
 .dimension-detail-section{
@@ -36,11 +37,12 @@
     width: 50%;
     align-items: center;
     justify-content: center;
+    border: 1px solid var(--border-color);
 }
 
 .dimension-detail-image-section > img {
     width: auto;
-    height: 120px;
+    height: 260px;
     object-fit: cover;
 }
 

@@ -5,30 +5,7 @@ import { url } from '../../../utils/api';
 
 const CategoriesGetScop = ({ isTrue, text, contentImages }) => {
 
-    const mobileProductText = [
-        {
-            heading: 'Furniture Mecca’s Affordable Living Room Furniture',
-            para: `It’s the room where you and your loved ones spend so much time,
-            so I've made sure that comfort and value are key with my living room furniture! 
-            Sink into my seating and enjoy little luxuries, like USB ports and cup holders on select collections. 
-            And I want you to get more bang for your buck, so I always like to throw in decorative pillows into the 
-            price wherever I can!`
-        },
-        {
-            heading: 'How to Choose Living Room Furniture',
-            para: `It’s the room where you and your loved ones spend so much time, so I've made sure that 
-            comfort and value are key with my living room furniture! Sink into my seating and enjoy little luxuries, 
-            like USB ports and cup holders on select collections. And I want you to get more bang for your buck, so 
-            I always like to throw in decorative pillows into the price wherever I can!`
-        },
-        {
-            heading: 'What Living Room Furniture Matches my Style?',
-            para: `It’s the room where you and your loved ones spend so much time, so I've made sure that 
-            comfort and value are key with my living room furniture! Sink into my seating and enjoy little luxuries, 
-            like USB ports and cup holders on select collections. And I want you to get more bang for your buck, so I 
-            always like to throw in decorative pillows into the price wherever I can!`
-        }
-    ]
+    
 
     return (
         <div className='scop-main-container'>

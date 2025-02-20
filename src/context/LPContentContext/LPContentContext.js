@@ -1,55 +1,3 @@
-// import { createContext, useContext, useState, useEffect } from "react";
-// import { url } from "../../utils/api";
-
-// const LPContentContext = createContext();
-
-// export const LPContentProvider = ({ children }) => {
-//   const [data, setData] = useState(null);  // Store API data
-//   const [loading, setLoading] = useState(true);  // Loading state
-//   const [error, setError] = useState(null);
-//   const [landingPageCategories, setLandingPageCategories] = useState([]);
-//   const [landingPageFOEB, setLandingPageFOEB] = useState([]);
-
-//   const postData = async () => {
-//     if (data === null) {
-//       try {
-//         const response = await fetch(`${url}/api/v1/content1/get`, {
-//           method: 'GET',
-//           headers: {
-//             'Content-Type': 'application/json',
-//           }// Data to send
-//         });
-//         const result = await response.json();
-//         setData(result);
-//         setLandingPageCategories(result.landingPageContent.sectional_schema.shop_by_category);
-//         setLandingPageFOEB(result.landingPageContent.sectional_schema.furniture_for_every_budget);
-//         // console.log(result)
-//       } catch (error) {
-//         setError(error.message);
-//       } finally {
-//         setLoading(false);
-//       }
-//     } else {
-
-//     }
-//   };
-
-
-//   return (
-//     <LPContentContext.Provider value={{
-//       postData, data, loading, landingPageCategories, landingPageFOEB, setLandingPageFOEB
-//     }}>
-//       {children}
-//     </LPContentContext.Provider>
-//   );
-// }
-
-// export const useLPContentContext = () => {
-//   return useContext(LPContentContext);
-// };
-
-
-
 import { createContext, useContext, useState, useEffect } from "react";
 import { url } from "../../utils/api";
 import axios from "axios";
@@ -72,9 +20,14 @@ export const LPContentProvider = ({ children }) => {
   const getHomeSliderImages = async () => {
     try {
       const response = await axios.get(`${url}/api/v1/pages/home/slider/get`)
-      setSlides(response.data.homeSliders || [])
+      if(response.status === 200) {
+        console.log("slider response on landing page", response)
+        setSlides(response.data.homeSliders || [])
+      } else {
+        console.log(`UnExpected Error ${response.status} `)
+      }
     } catch (error) {
-      console.error(error);
+      console.error("UnExpected Server Error",error);
     }
   }
 
@@ -113,8 +66,11 @@ export const LPContentProvider = ({ children }) => {
 
   const getTrendingProductsData = async () => {
     try {
+      if(trendingNow === null) {
         const response = await axios.get(`${url}/api/v1/pages/home/trending-now/get`);
-        setTrendingNow(response.data?.data);
+        setTrendingNow(response.data?.data)
+      }
+        
     } catch (error) {
         console.error(error);
     }
@@ -123,9 +79,13 @@ export const LPContentProvider = ({ children }) => {
 const [financingBanners, setFinancingBanners] = useState([])
 const getFinanceBannerImagesFromApi = async () => {
   try {
-      const response = await axios.get(`${url}/api/v1/pages/home/finance-slider/get`);
+      if(financingBanners === null) {
+        const response = await axios.get(`${url}/api/v1/pages/home/finance-slider/get`);
+  
+        setFinancingBanners(response?.data?.homeSliders)
+      }
+      
       // console.log("finance images", response.data.homeSliders)
-      setFinancingBanners(response.data.homeSliders)
   } catch (error) {
       console.log("error", error);
   }
@@ -133,6 +93,7 @@ const getFinanceBannerImagesFromApi = async () => {
 
 
 
+  // set handling
   const postData = async () => {
     if (data === null) {
       try {
@@ -143,10 +104,10 @@ const getFinanceBannerImagesFromApi = async () => {
           }
         });
         const result = await response.json();
-        setData(result);
-        setLandingPageCategories(result.landingPageContent.sectional_schema.shop_by_category);
-        setLandingPageFOEB(result.landingPageContent.sectional_schema.furniture_for_every_budget);
-        // console.log(result)
+          setData(result);
+          setLandingPageCategories(result.landingPageContent.sectional_schema.shop_by_category);
+          setLandingPageFOEB(result.landingPageContent.sectional_schema.furniture_for_every_budget);
+          setLoading(false)
       } catch (error) {
         setError(error.message);
       } finally {

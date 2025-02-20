@@ -236,7 +236,8 @@ const ProductDetailSticky = (
 
           />
           <ProductDimension productData={product} handleZoom={handleZoomImage} variationData={selectedVariationData} />
-          <DimensionDetail />
+          {product?.dimension_image && <DimensionDetail productData={product} />}
+          
         </div>
 
         <div className='product-detail-product-info-section'>

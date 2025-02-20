@@ -77,9 +77,12 @@ const Home = () => {
       getTrendingProductsData();
     }
     if(!financingBanners.length){
-      getFinanceBannerImagesFromApi()
+      getFinanceBannerImagesFromApi();
     }
-  }, [slides,data,content2,featuredProducts,trendingNow,financingBanners]);
+  }, []);
+
+
+  console.log("tranding now data check", trendingNow);
   
   const navigate = useNavigate();
 

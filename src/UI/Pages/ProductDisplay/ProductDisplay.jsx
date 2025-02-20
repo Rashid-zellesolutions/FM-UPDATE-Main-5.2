@@ -38,7 +38,7 @@ const ProductDisplay = () => {
 
   useEffect(() => { fetchProductBySlug(slug) }, [slug])
 
-
+  console.log("single Product Data", product)
 
   const sectionRefs = {
     Description: useRef(null),
