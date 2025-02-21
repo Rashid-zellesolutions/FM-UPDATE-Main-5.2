@@ -4,6 +4,8 @@
     flex-direction: column;
     padding: var(--global-padding);
     gap: 25px;
+    max-width: 1800px;
+    margin: auto;
 }
 
 @media only screen and (max-width: 480px){

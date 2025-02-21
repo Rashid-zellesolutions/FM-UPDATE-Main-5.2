@@ -14,7 +14,7 @@ const DimensionDetail = ({productData}) => {
         <p>L: 88.5" x W: 37.5" x H: 37"</p> */}
         <div dangerouslySetInnerHTML={{ __html: productData?.weight_dimension }} ></div>
       </div>
-      {productData?.dimension_image?.image_url !== "" && (
+      {productData?.dimension_image && (
         <div className='dimension-detail-image-section'>
           <img src={`${url}${productData?.dimension_image?.image_url}`} alt='dimension' />
         </div>

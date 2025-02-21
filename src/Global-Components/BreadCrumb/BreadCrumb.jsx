@@ -35,7 +35,7 @@ const Breadcrumb = ({ category, productName, sku, categorySlug }) => {
                 {/* Home Link */}
                 <li style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
                     <Link to="/">
-                        <FaHouseChimney style={{ height: "20px", width: "20px" }} />
+                        <FaHouseChimney style={{ height: "20px", width: "20px", marginTop: "4px" }} />
                     </Link>
                 </li>
 
@@ -73,7 +73,8 @@ const Breadcrumb = ({ category, productName, sku, categorySlug }) => {
                                 {
                                     display: "flex",
                                     alignItems: "center",
-                                    justifyContent: "center"
+                                    justifyContent: "center",
+                                    gap: "10px",
                                 }
                             }
                             key={routeTo}
@@ -82,7 +83,7 @@ const Breadcrumb = ({ category, productName, sku, categorySlug }) => {
                                 <img
                                     src={rightArrow}
                                     style={
-                                        { height: "12px", width: "12px" }
+                                        { height: "8px", width: "10px" }
                                     }
                                     alt="arrow"
                                 />
@@ -90,14 +91,14 @@ const Breadcrumb = ({ category, productName, sku, categorySlug }) => {
                             {index === fullPathNames.length - 1 ? (
                                 <span
                                     className={`bread_links_sub active ${index === fullPathNames.length - 1 ? 'active-last-bread-link' : ''}`}
-                                    style={{ marginLeft: "5px", fontSize: "16px", marginBottom: "1px" }}
+                                    style={{ marginLeft: "10px", fontSize: "13px", marginBottom: "1px" }}
                                 >
                                     {name}
                                 </span>
                             ) : (
                                 <Link
                                     className="bread_links_sub"
-                                    style={{ marginLeft: "5px", fontSize: "16px", marginBottom: "1px" }}
+                                    style={{ marginLeft: "0px", fontSize: "14px", marginBottom: "1px", }}
                                     to={routeTo}
                                 >
                                     {name}

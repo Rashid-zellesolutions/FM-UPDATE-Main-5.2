@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './ProductArchive.css';
 
 
@@ -8,6 +8,8 @@ import Products from '../../Components/Products/Products';
 import RelatedCategories from '../../Components/Related-categories-Tags/RelatedCategories';
 
 const ProductArchive = ({productArchiveHading}) => {
+
+  
   
   return (
     <div>

@@ -38,11 +38,11 @@ function SampleNextArrow(props) {
   )
 }
 
-const DealOfTheDay = () => {
+const DealOfTheDay = ({ dealEndTime, setDealEndTime, allProducts, setAllProducts }) => {
 
   const navigate = useNavigate();
 
-  const [dealEndTime, setDealEndTime] = useState(null); 
+  // const [dealEndTime, setDealEndTime] = useState(null); 
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
   const calculateTimeLeft = () => {
@@ -87,7 +87,7 @@ const DealOfTheDay = () => {
   // Destructure timeLeft
   const { days, hours, minutes, seconds } = timeLeft;
 
-  const [allProducts, setAllProducts] = useState([])
+  // const [allProducts, setAllProducts] = useState([])
   const getDealOfTheMonthProducts = async () => {
     const api = `/api/v1/products/get-deal-of-month-products?limit=10`
     try {
@@ -100,7 +100,9 @@ const DealOfTheDay = () => {
   }
 
   useEffect(() => {
-    getDealOfTheMonthProducts()
+    if(!allProducts.length) {
+      getDealOfTheMonthProducts()
+    }
   }, []);
 
   const getPublishedProducts = () => {

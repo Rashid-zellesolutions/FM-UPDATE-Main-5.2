@@ -11,6 +11,7 @@ import axios from 'axios';
 import { url } from '../../../utils/api';
 import { useCart } from '../../../context/cartContext/cartContext';
 import { useList } from '../../../context/wishListContext/wishListContext';
+import Breadcrumb from '../../../Global-Components/BreadCrumb/BreadCrumb';
 
 const ProductDisplay = () => {
 
@@ -96,6 +97,7 @@ const ProductDisplay = () => {
 
   return (
     <div className='product-display-page-main-container'>
+      <Breadcrumb />
       <ProductDetailSticky
         productData={product}
         decreaseLocalQuantity={decreaseLocalQuantity}

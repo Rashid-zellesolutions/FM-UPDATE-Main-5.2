@@ -41,7 +41,7 @@ export const MyOrdersProvider = ({ children }) => {
         card_type: ''
     })
 
-    console.log("credit card data", creditCardData)
+    // console.log("credit card data", creditCardData)
 
     const [orderPayload, setOrderPayload] = useState({
         status: 'pending',

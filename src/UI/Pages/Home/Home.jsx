@@ -35,15 +35,15 @@ import LandingPageFinancing from '../../Components/LandingPageFinancingBanners/L
 
 const Home = () => {
   const [currentUrl, setCurrentUrl] = useState('/');
-  const { postData, 
-    data, 
-    landingPageCategories, 
+  const { postData,
+    data,
+    landingPageCategories,
     landingPageFOEB,
     content2,
     setContent2,
     featuredProducts,
     setFeaturedProducts,
-    slides, 
+    slides,
     setSlides,
     getHomeSliderImages,
     getLandingPageContent2,
@@ -51,8 +51,23 @@ const Home = () => {
     trendingNow,
     getTrendingProductsData,
     financingBanners,
-    getFinanceBannerImagesFromApi
-   } = useLPContentContext();
+    getFinanceBannerImagesFromApi,
+    // getDealOfTheMonthProducts,
+    allProducts,
+    setAllProducts,
+    dealEndTime,
+    setDealEndTime,
+    bestSellerProducts,
+    setBestSellerProducts,
+    // currentSlug,
+    // setCurrentSlug,
+    bestSellerNav1,
+    setBestSellerNav1,
+    // getBestSellerProducts,
+    // getBestSellerData,
+    // sellingLoader,
+    // setSellingLoader,
+  } = useLPContentContext();
 
   const location = useLocation();
   useEffect(() => {
@@ -73,17 +88,23 @@ const Home = () => {
     if (!featuredProducts.length) {
       getFeaturedProducts();
     }
-    if(!trendingNow){
+    if (!trendingNow) {
       getTrendingProductsData();
     }
-    if(!financingBanners.length){
+    if (!financingBanners.length) {
       getFinanceBannerImagesFromApi();
     }
+    // if (!allProducts.length) {
+    //   getDealOfTheMonthProducts()
+    // }
+    // if(!bestSellerProducts.length) {
+    //   getBestSellerProducts()
+    // }
   }, []);
 
 
-  console.log("tranding now data check", trendingNow);
-  
+  // console.log("tranding now data check", trendingNow);
+
   const navigate = useNavigate();
 
   const handleNavigate = (slug, item) => {
@@ -102,17 +123,22 @@ const Home = () => {
       <FinanceBannerSlider images={financingBanners} />
       <MobileFinancingSlider />
       <LandingPageFinancing />
-      <TrendingNow data={trendingNow? trendingNow : null} />
+      <TrendingNow data={trendingNow ? trendingNow : null} />
 
-      <BestSellerSlider />
-      
+      <BestSellerSlider
+        allProducts={bestSellerProducts}
+        setAllProducts={setBestSellerProducts}
+        bestSellerNav1={bestSellerNav1}
+        setBestSellerNav1={setBestSellerNav1}
+      />
+
       {content2?.section_2 && (
         <FinanceBanner2
           heading={content2.section_2?.heading}
           image={content2.section_2?.image}
           mobileImage={content2.section_2?.mobile_image}
         />
-      )} 
+      )}
 
       {content2?.section_1 && (
         <Comparision
@@ -126,7 +152,12 @@ const Home = () => {
       {featuredProducts &&
         (<ProductSlider cardData={featuredProducts} />)
       }
-      <DealOfTheDay />
+      <DealOfTheDay
+        allProducts={allProducts}
+        setAllProducts={setAllProducts}
+        dealEndTime={dealEndTime}
+        setDealEndTime={setDealEndTime}
+      />
       {landingPageFOEB && (
         <FurnitureForBudget budgetCardData={landingPageFOEB} />
       )}

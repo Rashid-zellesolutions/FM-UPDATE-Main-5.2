@@ -42,28 +42,34 @@ function BestSellerNextArrow(props) {
 
 
 
-const BestSellerSlider = () => {
+const BestSellerSlider = (
+    { 
+        allProducts,
+        setAllProducts,
+        bestSellerNav1,
+        setBestSellerNav1
+     }) => {
 
     // States and Variables
     const navigate = useNavigate()
-    const [allProducts, setAllProducts] = useState([])
-    const [bestSellerNav1, setBestSellerNav1] = useState([
-        {
-            heading: "Living Room",
-            image: BestSellerSliderMainBanner,
-            slug: "living-room"
-        },
-        {
-            heading: "Bedroom",
-            image: BestSellerSliderMainBanner,
-            slug: "bedroom"
-        },
-        {
-            heading: "Dining Room",
-            image: BestSellerSliderMainBanner,
-            slug: "dining-room"
-        },
-    ]);
+    // const [allProducts, setAllProducts] = useState([])
+    // const [bestSellerNav1, setBestSellerNav1] = useState([
+    //     {
+    //         heading: "Living Room",
+    //         image: BestSellerSliderMainBanner,
+    //         slug: "living-room"
+    //     },
+    //     {
+    //         heading: "Bedroom",
+    //         image: BestSellerSliderMainBanner,
+    //         slug: "bedroom"
+    //     },
+    //     {
+    //         heading: "Dining Room",
+    //         image: BestSellerSliderMainBanner,
+    //         slug: "dining-room"
+    //     },
+    // ]);
     const [currentSlug, setCurrentSlug] = useState();
     const [loading, setLoading] = useState(false);
 
@@ -94,9 +100,15 @@ const BestSellerSlider = () => {
         }
     }
 
+    // console.log("All Products", allProducts)
+
     useEffect(() => {
-        getBestSellerData()
+        if(!allProducts.length){
+            getBestSellerData()
+        }
     }, [])
+
+    // console.log("Best Seller Prop Data", allProducts)
 
     const [currentIndex, setCurrentIndex] = useState(0);
     const [cardsPerPage] = useState(6);

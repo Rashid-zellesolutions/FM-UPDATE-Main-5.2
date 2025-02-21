@@ -23,6 +23,7 @@
   --inner-padding: 35px 60px 0px 60px;
   --heading-line-height: 28px;
   --tertiary-color:#4487C5;
+  --tick-color: #595959;
 
 
   /* font sizings */
@@ -50,6 +51,8 @@
   --product-name: 15px;
   --product-weight: 600;
   --product-height: 1.3
+
+  
 }
 
 *{

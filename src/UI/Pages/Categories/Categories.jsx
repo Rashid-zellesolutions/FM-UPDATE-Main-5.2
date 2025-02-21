@@ -14,12 +14,6 @@ import { useSEOContext } from '../../../context/SEOcontext/SEOcontext';
 import { useLPContentContext } from '../../../context/LPContentContext/LPContentContext';
 
 const Categories = ({
-  categoriesMainImage,
-  mobileViewMainImage,
-  categoryCartTitle,
-  categoryCardData,
-  newArrival,
-  showPromotionsBaneers
 }) => {
 
   const { categorySlug } = useParams();
@@ -27,15 +21,26 @@ const Categories = ({
   const location = useLocation();
   // const { width } = ScreenSizer();
   const [loading, setLoading] = useState(false);
-  const [categoryPageData, setCategoryPageData] = useState();
-  const [categoryData, setCategoryData] = useState();
-  const [bestSelling, setBestSelling] = useState();
-  const [error, setError] = useState(null);
-  const [paragraph, setParagraph] = useState(null);
+  // const [categoryPageData, setCategoryPageData] = useState();
+  // const [categoryData, setCategoryData] = useState();
+  // const [bestSelling, setBestSelling] = useState();
+  // const [paragraph, setParagraph] = useState(null);
   const { setTitle, setDescription, setImage } = useSEOContext();
   const [contentImages, setContentImages] = useState([]);
+  const [error, setError] = useState(null);
 
-  const {financingBanners,getFinanceBannerImagesFromApi} = useLPContentContext();
+  const {
+    financingBanners,
+    getFinanceBannerImagesFromApi,
+    categoryPageData,
+    setCategoryPageData,
+    categoryData,
+    setCategoryData,
+    bestSelling,
+    setBestSelling,
+    paragraph,
+    setParagraph
+  } = useLPContentContext();
 
   useEffect(() => {
     if(!financingBanners.length){
@@ -77,6 +82,7 @@ const Categories = ({
         }// Data to send
       });
       const result = await response.json();
+      console.log("Category Page Data response ", result)
       setCategoryData(result.categories[0])
       
       setTitle(result.categories[0].meta.title);
@@ -90,11 +96,13 @@ const Categories = ({
   };
 
   useEffect(() => {
+    
     getPageData();
     getCategoryData();
   }, [categorySlug]);
 
   useEffect(() => {
+    
     getPageData();
     if (!location.state) {
       getCategoryData();

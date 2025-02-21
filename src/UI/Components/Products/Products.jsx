@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import './Products.css';
 import { Link, useLocation, useParams, useSearchParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
@@ -31,6 +31,7 @@ import { useList } from '../../../context/wishListContext/wishListContext';
 import { toast } from 'react-toastify';
 import DoubleRangeSlider from '../../../Global-Components/MultiRangeBar/MultiRange';
 import RatingReview from '../starRating/starRating';
+import ProductCardTwo from '../ProductCardTwo/ProductCardTwo';
 
 
 const Products = () => {
@@ -384,8 +385,8 @@ const Products = () => {
     const handleActivePage = (index) => {
         setActivePage(index);
         setActivePageIndex(index);
-        if(index !== activePageIndex) {
-            window.scrollTo({top: 0, behavior: 'smooth'})
+        if (index !== activePageIndex) {
+            window.scrollTo({ top: 0, behavior: 'smooth' })
             sortProducts(selectedRelevanceValue)
         }
     }
@@ -399,12 +400,12 @@ const Products = () => {
                 top: 0,
                 behavior: 'smooth'
             })
-            
+
         }
     };
 
     const handleNextPage = () => {
-        
+
         if (activePage < totalPages?.totalPages) {
             setActivePage(activePage + 1);
             setActivePageIndex(activePageIndex + 1);
@@ -413,7 +414,7 @@ const Products = () => {
                 top: 0,
                 behavior: 'smooth'
             })
-            
+
         }
     };
 
@@ -423,12 +424,60 @@ const Products = () => {
     }, [activePageIndex]);
 
 
+    // Sub Categories show
+    const { categorySlug } = useParams();
+    const [subCategories, setSubCategories] = useState([])
+
+    const getSubCategories = async () => {
+        const api = `/api/v1/sub-category/get/${categorySlug}`
+        const pathName = window.location.pathname; // "/living-room/living-room-sets"
+        const segments = pathName.split("/");
+        const extractedValue = segments[2];
+        try {
+            const response = await axios.get(`${url}${api}`);
+            if(response.status === 200) {
+                const result = response.data.sub_categories
+                const filteredData = result.filter((item) => item.slug !== extractedValue)
+                setSubCategories(filteredData)
+            } else {
+                console.log("UnExpected Error", response.status)
+            }
+        } catch (error) {
+            console.log("UnExpected Server Error", error);
+        }
+    }
+
+    useEffect(() => { 
+            getSubCategories() 
+        
+    }, [subCategorySlug])
+
+    useEffect(() => { console.log("sub Categories Called", subCategories) } , [subCategories])
+
+
+
+
+
+
+
+    const handleNavigate = (slug) => {
+        navigate(`/${categorySlug}/${slug}`)
+    }
+
 
 
 
     return (
         <div className='products-main-container'>
             <Breadcrumb category={products.categories} />
+            <div className='product-archive-sub-categories-container'>
+                {subCategories.map((item, index) => (
+                    <div className='product-archive-single-sub-category' onClick={() => handleNavigate(item.slug)}>
+                        <img src={`${url}${item.image2}`} alt='sub category' />
+                        {/* <p>{item.name}</p> */}
+                    </div>
+                ))}
+            </div>
 
             <div className='products-and-filter-container'>
                 {/* Filters side bar section code */}
@@ -623,7 +672,7 @@ const Products = () => {
 
                         {products && products?.length > 0 ? (
                             products?.map((item, index) => {
-                                return <ProductCard
+                                return <ProductCardTwo
                                     key={index}
                                     slug={item.slug}
                                     singleProductData={item}

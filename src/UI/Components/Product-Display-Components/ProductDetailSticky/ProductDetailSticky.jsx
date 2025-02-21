@@ -216,6 +216,8 @@ const ProductDetailSticky = (
     setDragging(false);
   };
 
+  console.log("product data", product);
+
   return (
     <div className='product-detail-sticky-section-main-container'>
       <div className='product-detail-sticky-gallery-and-detail'>
@@ -236,7 +238,7 @@ const ProductDetailSticky = (
 
           />
           <ProductDimension productData={product} handleZoom={handleZoomImage} variationData={selectedVariationData} />
-          {product?.dimension_image && <DimensionDetail productData={product} />}
+          {product?.weight_dimension && <DimensionDetail productData={product} />}
           
         </div>
 
