@@ -1,31 +1,32 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './ProductDetailSticky.css'
 import ProductGallery from '../ProductGallery/ProductGallery'
 import ProductDimension from '../ProductDimenson/ProductDimension'
-import SingleProductFAQ from '../../SingleProductFAQ/SingleProductFAQ'
-import WhatWeOffer from '../../WhatWeOffer/WhatWeOffer'
-import FinancingOptions from '../../FinancingOptions/FinancingOptions'
 import { useProductPage } from '../../../../context/ProductPageContext/productPageContext'
 import RatingReview from '../../starRating/starRating'
 import { FaShareSquare } from 'react-icons/fa'
-import { useCart } from '../../../../context/cartContext/cartContext'
 import axios from 'axios'
 import { formatedPrice, url } from '../../../../utils/api'
 import { useNavigate, useParams } from 'react-router-dom'
 import AlsoNeed from '../../AlsoNeed/AlsoNeed'
 import SizeVariant from '../../SizeVariant/SizeVariant'
-import { FaPlus, FaWindowMinimize } from 'react-icons/fa6'
+import { FaLocationDot, FaPlus, FaWindowMinimize } from 'react-icons/fa6'
 import { useList } from '../../../../context/wishListContext/wishListContext'
+import { SlCalender } from "react-icons/sl";
 
-import redHeart from '../../../../Assets/icons/red-heart.png'
-import filledHeart from '../../../../Assets/icons/filled-heart.png';
 import { SiAdguard } from "react-icons/si";
 import DimensionDetail from '../DimensionDetail/DimensionDetail'
+
+import { IoCallOutline, IoChatbubbleOutline } from "react-icons/io5";
 
 import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
 import ShareProduct from '../../ShareProduct/ShareProduct'
 import CartSidePannel from '../../Cart-side-section/CartSidePannel'
 import { useGlobalContext } from '../../../../context/GlobalContext/globalContext'
+import { PiStorefrontLight } from "react-icons/pi";
+import {MdOutlineKeyboardArrowDown } from 'react-icons/md'
+import AppointmentModal from '../../../../Global-Components/AppointmentModal/AppointmentModal'
+
 
 const ProductDetailSticky = (
   {
@@ -216,7 +217,33 @@ const ProductDetailSticky = (
     setDragging(false);
   };
 
-  console.log("product data", product);
+  const [showMiles, setShowMiles] = useState(false);
+  const handleMilesDropdown = () => {
+    setShowMiles(!showMiles)
+  }
+
+  const contectInfo = [
+    { title: 'Call', icon: <IoCallOutline size={15} color='#595959' />},
+    { title: 'Chat', icon: <IoChatbubbleOutline size={15} color='#595959' />},
+    { title: 'Visit', icon: <PiStorefrontLight size={15} color='#595959' />},
+  ]
+
+  const [appointmentModal, setAppointmentModal] = useState(false);
+  const handleShowAppointmentModal = () => {
+    setAppointmentModal(true);
+  }
+
+  const handleCloseAppointmentModal = () => {
+    setAppointmentModal(false)
+  }
+
+  useEffect(() => {
+    if(appointmentModal === true) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  } , [appointmentModal])
 
   return (
     <div className='product-detail-sticky-section-main-container'>
@@ -239,7 +266,7 @@ const ProductDetailSticky = (
           />
           <ProductDimension productData={product} handleZoom={handleZoomImage} variationData={selectedVariationData} />
           {product?.weight_dimension && <DimensionDetail productData={product} />}
-          
+
         </div>
 
         <div className='product-detail-product-info-section'>
@@ -329,7 +356,7 @@ const ProductDetailSticky = (
 
             </div>
 
-            {Object.keys(product).length > 0 ? (
+            {/* {Object.keys(product).length > 0 ? (
               <FinancingOptions />
             ) : (
               <div className='shimmer-financing-option'>
@@ -340,7 +367,7 @@ const ProductDetailSticky = (
                 </div>
                 <div className='shimmer-financing-card-button'></div>
               </div>
-            )}
+            )} */}
 
 
           </div>
@@ -361,6 +388,16 @@ const ProductDetailSticky = (
             )} */}
 
             {product.may_also_need && product.may_also_need.length > 0 ? <AlsoNeed productsUid={product.may_also_need} /> : <></>}
+
+            <div className='back-in-order-container'>
+              <p>
+                Back in stock 2/28/2025. Order now! We'll contact you to schedule delivery once your item is ready.
+              </p>
+              <span>
+                <FaLocationDot size={17} color='#4487C5' />
+                <p>19134</p>
+              </span>
+            </div>
 
             <div className='product-details-protection-plan-container'>
               <h3>Protect Your Investment</h3>
@@ -407,6 +444,60 @@ const ProductDetailSticky = (
 
             </div>
 
+            <div className='see-in-person-container'>
+
+              <div className='see-it-in-person-head'>
+                <PiStorefrontLight size={20} color='#595959' />
+                <h3>See it in Person</h3>
+              </div>
+
+              <div className='see-it-in-person-body'>
+
+                <p>This collection is on display in 3 stores within</p>
+
+                <div className='see-it-in-person-distance-and-zip'>
+
+                  <div className='see-it-in-person-distance-drop-down'>
+                    <span onClick={handleMilesDropdown}>
+                      <p>50 MILES</p>
+                      <MdOutlineKeyboardArrowDown size={15} color='#4487C5' />
+                    </span>
+                    <div className={`miles-dropdown-body ${showMiles ? 'show-miles-dropdown' : ''}`}>
+                      <p>50 MILES</p>
+                      <p>100 MILES</p>
+                      <p>200 MILES</p>
+                    </div>
+                  </div>
+
+                  <p>of</p>
+
+                  <span>
+                    <FaLocationDot size={17} color='#4487C5' />
+                    <p>19134</p>
+                  </span>
+
+                </div>
+
+              </div>
+
+              <div className='see-it-in-person-book-appointment-container'>
+                <SlCalender size={20} color='#4487C5' />
+                <p onClick={handleShowAppointmentModal}>MAKE AN APPOINTMENT</p>
+              </div>
+
+              <div className='talk-with-expert-main-container'>
+                <p>Talk with an Expert</p>
+                <div className='talk-with-expert-options'>
+                  {contectInfo.map((item, index) => (
+                    <button key={index}>
+                      {item.icon}
+                      {item.title}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
@@ -424,6 +515,11 @@ const ProductDetailSticky = (
         removeFromCart={removeFromCart}
         decreamentQuantity={decreamentQuantity}
         increamentQuantity={increamentQuantity}
+      />
+
+      <AppointmentModal 
+        showAppointMentModal={appointmentModal}
+        handleCloseModal={handleCloseAppointmentModal}
       />
 
     </div>

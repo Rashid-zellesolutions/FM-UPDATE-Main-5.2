@@ -230,14 +230,7 @@ const DeliveryInfo = forwardRef((props, ref) => {
 
     const {
         orderPayload,
-        emptyField,
-        setEmptyField,
         handleNestedValueChange,
-        setOrderPayload,
-        handleNestedValueChangeShipping,
-        loading,
-        handleClickTop,
-        handleTabOpen
     } = useMyOrders();
 
     const [error, setError] = useState({

@@ -90,7 +90,12 @@ const ProductDetailTab = ({id, detailsRef, productData}) => {
 
       </div>
       <div className='product-detail-left-section'>
-        <img src={`${url}${productData?.image?.image_url}`} alt='detail' />
+        {productData?.dimension_image?.image_url ? (
+          <img src={`${url}${productData?.dimension_image?.image_url}`} alt='dimension' />
+        ) : (
+            <img src={`${url}${productData?.image?.image_url}`} alt='detail' />
+        )}
+        
       </div>
     </div>
   )

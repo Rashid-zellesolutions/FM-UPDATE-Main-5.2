@@ -12,6 +12,7 @@ const DimensionDetail = ({productData}) => {
       <div className='dimension-detail-section'>
         {/* <h3>Dimension (In): </h3>
         <p>L: 88.5" x W: 37.5" x H: 37"</p> */}
+        <h3>Dimensions (in)</h3>
         <div dangerouslySetInnerHTML={{ __html: productData?.weight_dimension }} ></div>
       </div>
       {productData?.dimension_image && (

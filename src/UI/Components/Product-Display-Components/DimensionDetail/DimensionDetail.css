@@ -19,9 +19,9 @@
 }
 
 .dimension-detail-section > h3{
-    font-size: var(--sub-section-size);
-    line-height: var(--sub-section-height);
-    font-weight: var(--sub-section-weight);
+    font-size: var(--section-size);
+    line-height: var(--section-height);
+    font-weight: var(--section-weight);
     color: var(--text-color);
 }
 

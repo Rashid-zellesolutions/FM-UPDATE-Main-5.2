@@ -1,0 +1,82 @@
+.date-time-tab-main-container {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.date-time-tab-calender-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60%;
+}
+
+.date-time-tab-times-slots {
+    display: flex;
+    width: 40%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.single-time-slot {
+    /* padding: 5px 10px; */
+    width: 200px;
+    height: 40px;
+    border: 1px solid #4487C5;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    color: #4487C5;
+    font-size: var(--sub-section-size);
+    line-height: var(--sub-section-height);
+    font-weight: var(--sub-section-weight);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.single-time-slot:hover{
+    background-color: #4487C5;
+    color: #fff;
+}
+
+
+
+/* Calender Styling */
+.date-time-tab-calender-section .react-calendar__navigation {
+    /* border-bottom: 1px solid var(--border-color) !important; */
+    margin-bottom: 0px !important;
+}
+
+.react-calendar__month-view__weekdays {
+    font-weight: 400 !important;
+}
+
+.react-calendar__tile--weekend {
+  color: inherit !important; /* or set to your desired color */
+}
+
+.custom-tile {
+  border: 1px solid var(--border-color) !important; /* adjust color and style as needed */
+}
+
+.react-calendar__month-view__weekdays__weekday abbr[title] {
+    text-decoration: none !important;
+}
+
+.react-calendar__month-view__days .react-calendar__tile react-calendar__month-view__days__day {
+    border: 1px solid var(--border-color) !important;
+}
+.react-calendar__month-view__weekdays__weekday {
+    border: 1px solid var(--border-color) !important;
+}
+
+.react-calendar__tile--active {
+    border-radius: 0px !important;
+}
+

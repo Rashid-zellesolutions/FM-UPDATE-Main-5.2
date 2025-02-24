@@ -144,8 +144,6 @@ export const LPContentProvider = ({ children }) => {
       } finally {
         setLoading(false);
       }
-    } else {
-
     }
   };
 

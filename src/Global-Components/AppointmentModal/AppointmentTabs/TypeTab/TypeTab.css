@@ -1,0 +1,106 @@
+.type-tab-main-container {
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    flex-direction: column;
+    width: 100%;
+    gap: 30px;
+}
+
+.type-tab-main-container > h3 {
+    font-size: var(--sub-section-size);
+    line-height: var(--sub-section-height);
+    font-weight: var(--sub-section-weight);
+}
+
+.type-options-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    width: 100%;
+}
+
+.type-option {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.type-option:hover {
+    background-color: #f0f0f0;
+
+}
+
+.type-option > p {
+    font-size: var(--content-one-size);
+    line-height: var(--content-one-height);
+    font-weight: var(--content-two-weight);
+    color: var(--text-color);
+}
+
+.type-option-title-and-icon {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 10px;
+    width: 100%;
+}
+
+.type-option-title-and-icon > p {
+    font-size: var(--content-one-size);
+    line-height: var(--content-one-height);
+    font-weight: var(--content-two-weight);
+    color: var(--text-color);
+}
+
+.type-categories-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    width: 100%;
+    height: max-content;
+    gap: 10px;
+}
+
+.type-category {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.type-category:hover {
+    background-color: #f0f0f0;
+}
+
+.type-category > p {
+    font-size: var(--content-one-size);
+    line-height: var(--content-one-height);
+    font-weight: var(--content-two-weight);
+    color: var(--text-color);
+}
+
+.type-submit-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 50px;
+    color: #fff;
+    background-color: #4487C5;
+    font-size: var(--sub-section-size);
+    line-height: var(--sub-section-height);
+    font-weight: var(--sub-section-weight);
+    border: none !important;
+    cursor: pointer;
+
+}

@@ -45,8 +45,8 @@ const ProductDescriptionTab = ({ id, descriptionRef, productData, addMarginTop }
           <img src={`${url}${productData?.image?.image_url}`} alt='product' />
         </div>
         <div className='product-description'>
-          <h3>Description</h3>
-          <div dangerouslySetInnerHTML={{ __html: truncatedDescription }} ></div>
+          
+          <div dangerouslySetInnerHTML={{ __html: productData?.description }} ></div>
         </div>
       </div>
 

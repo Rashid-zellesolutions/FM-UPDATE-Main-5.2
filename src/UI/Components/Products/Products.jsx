@@ -12,7 +12,7 @@ import heart from '../../../Assets/icons/heart-vector.png'
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { FaRegArrowAltCircleLeft } from "react-icons/fa";
 import { FaRegArrowAltCircleRight } from "react-icons/fa";
-import { FaPlus } from "react-icons/fa6";
+import { FaPlus, FaTruck, FaLocationDot } from "react-icons/fa6";
 
 // Components
 
@@ -465,6 +465,27 @@ const Products = () => {
     }
 
 
+    const getDeliveryDate = () => {
+        const options = { weekday: "long", month: "short", day: "numeric" };
+        const today = new Date();
+
+        const optionWithTimeZone = { ...options, timeZone: "America/New_York" };
+
+        today.setDate(today.getDate() + 3);
+        return today.toLocaleDateString("en-us", optionWithTimeZone);
+    }
+
+    const [isLocationCheck, setIsLocationCheck] = useState(false);
+    const [isDeliveryCheck, setIsDeliveryCheck] = useState(false)
+    const handleLocationToggler = (e) => {
+        setIsLocationCheck(e.target.checked);
+    }
+
+    const handleDeliveryToggler = (e) => {
+        setIsDeliveryCheck(e.target.checked);
+    }
+
+
 
 
     return (
@@ -638,6 +659,41 @@ const Products = () => {
 
                         </div> */}
 
+                        <div className="toggler-main-container">
+
+                            <div className='location-toggler'>
+                                <div className='location-toggler-button'>
+                                    <label className="toggle14">
+                                        <input type="checkbox" checked={isDeliveryCheck} onChange={handleDeliveryToggler} />
+                                        <span className="slider">
+                                            <span className="circle"></span>
+                                        </span>
+                                    </label>
+                                </div>
+                                <FaTruck size={20} color={isDeliveryCheck ? '#4487C5' : 'rgba(89, 89, 89, 0.5)'} />
+                                <span>
+                                    <p>Get it by</p>
+                                    <h3 style={{ color: `${isDeliveryCheck ? '#4487C5' : '#595959'}`}}>{getDeliveryDate()}</h3>
+                                </span>
+                            </div>
+
+                            <div className='location-toggler'>
+                                <div className='location-toggler-button'>
+                                    <label className="toggle14">
+                                        <input type="checkbox" checked={isLocationCheck} onChange={handleLocationToggler} />
+                                        <span className="slider">
+                                            <span className="circle"></span>
+                                        </span>
+                                    </label>
+                                </div>
+                                <FaLocationDot size={20} color={isLocationCheck ? '#4487C5' : 'rgba(89, 89, 89, 0.5)'} />
+                                <span>
+                                    <p>See it in Person</p>
+                                    <h3 style={{ color: `${isLocationCheck ? '#4487C5' : '#595959'}` }}>Venango</h3>
+                                </span>
+                            </div>
+                        </div>
+
                         <div className='relevance-container'>
                             <div className='relevance-filters-body'>
                                 <div className='relevance-filter-heading' onClick={handleRelevance}>
@@ -770,6 +826,7 @@ const Products = () => {
                     </div>
                 </div>
             </div>
+
             {/* Mobile view product section */}
             <div className='mobile-view-product-and-filter-section'>
                 <div className='mobile-view-filters-section'>
@@ -808,19 +865,21 @@ const Products = () => {
                             ))
                     ) : (
                         products.map((item, index) => {
-                            return <ProductCard
+                            return <ProductCardTwo
                                 key={index}
                                 slug={item.slug}
                                 singleProductData={item}
-                                maxWidthAccordingToComp="100%"
-                                // justWidth={'310px'}
-                                percent={'-12%'}
-                                tagIcon={item.productTag ? item.productTag : item.heart}
+                                maxWidthAccordingToComp={"100%"}
+                                justWidth={'100%'}
+                                percent={'12%'}
+                                colTwo={selectedGrid === 'single-col' ? false : true}
+                                tagIcon={item.productTag ? item.productTag : heart}
                                 tagClass={item.productTag ? 'tag-img' : 'heart-icon'}
                                 mainImage={`${item.image.image_url}`}
                                 productCardContainerClass="product-card"
                                 ProductSku={item.sku}
                                 tags={item.tags}
+                                allow_back_order={item?.allow_back_order}
                                 ProductTitle={truncateTitle(item.name, maxLength)}
                                 stars={[
                                     { icon: star, title: 'filled' },
@@ -840,6 +899,7 @@ const Products = () => {
                                 stock={item.manage_stock}
                                 attributes={item.attributes}
                                 handleCardClick={() => handleProductClick(item)}
+                                handleQuickView={() => handleQuickViewOpen(item)}
                                 handleWishListclick={() => handleWishList(item)}
                             />
                         })

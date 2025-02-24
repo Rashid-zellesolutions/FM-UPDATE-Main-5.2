@@ -32,14 +32,15 @@
 
 .react-calendar__tile--now {
     background: transparent !important;
-    border: 1px solid var(--active-nav-item-color) !important;
-    border-radius: 5px !important;
+    /* border: 1px solid var(--active-nav-item-color) !important; */
+    /* border-radius: 5px !important; */;
 }
 
 .react-calendar__tile--active {
-    background: var(--active-nav-item-color) !important;
+    background: #4487C5 !important;
     color: white !important;
-    border-radius: 5px !important;
+    border-radius: 0px !important;
+    border:  1px solid #4487C5 !important;
 }
 
 .react-calendar__navigation button:nth-child(1){

@@ -348,11 +348,11 @@
 .filters-section{
     display: flex;
     flex-direction: column;
-    width: 30%;
+    width: 25%;
     height: max-content;
     gap: 30px;
-    padding-right: 15px;
-    border-right: 1px solid var(--border-color);
+    /* padding-right: 15px; */
+    /* border-right: 1px solid var(--border-color); */
     /* transition: height 0.5s ease-in-out; */
     overflow-y: auto;
     overflow-x: hidden;
@@ -716,9 +716,11 @@ label {
     display: flex;
     flex-direction: column;
     height: max-content;
+    border-left: 1px solid var(--border-color);
     width: 100%;
     /* flex-grow: 1; */
     gap: 15px;
+    padding-left: 9px;
     transition: all 0.5s ease-in-out;
 }
 
@@ -747,10 +749,11 @@ label {
     gap: 20px;
     align-items: center;
     justify-content: start;
+    flex-shrink: 0;
 }
 
 .total-product-count-shimmer{
-    width: 280px;
+    width: 220px;
     height: 20px;
     border-radius: 10px;
     background-color: #f0f0f0;
@@ -890,6 +893,112 @@ label {
     background-color: var(--border-color);
 } */
 
+/* Toggler container styling */
+.toggler-main-container{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    width: 100%; 
+    gap: 20px;
+    padding: 0 20px;
+    /* flex-shrink: 0; */
+}
+
+.location-toggler{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    gap: 5px;
+    width: max-content;
+    flex-shrink: 0;
+}
+
+.location-toggler > span {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    gap: 0px;
+}
+
+.location-toggler > span > p {
+    font-size: 12px;
+    line-height: 12px;
+    font-weight: 400;
+    color: var(--text-color);
+}
+
+.location-toggler > span > h3 {
+    font-size: 13px;
+    line-height: 15px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.location-toggler-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 100%;
+    /* margin-top: 12px; */
+}
+
+
+
+.toggle14 {
+  position: relative;
+}
+.toggle14 input {
+  display: none;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.toggle14 .slider {
+  position: absolute;
+  cursor: pointer;
+  width: 30px;
+  height: 16px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: all 0.4s;
+  border-radius: 20px;
+  background-color: rgba(89, 89, 89, 0.3);
+}
+.toggle14 .slider .circle {
+  position: absolute;
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+  left: 3px;
+  top: 2px;
+  transition: 0.4s;
+  background-color: #f5f5f5;
+  border: 3px solid #f5f5f5;
+}
+.toggle14 input:checked + .slider .circle {
+  box-shadow: 10px 10px 100px #f0f0f0;
+}
+.toggle14 input:checked + .slider {
+  background-color: rgba(68, 135, 197, 1);
+}
+.toggle14 input:focus + .slider {
+  box-shadow: 10px 10px 100px #9a9999;
+}
+.toggle14 input:checked + .slider .circle {
+  left: 50%;
+  top: 2px;
+  box-shadow: none;
+  transform: rotate(360deg);
+  border: 6px solid rgba(68, 135, 197, 0.2);
+}
+
+
+
+
 .relevance-container{
     display: flex;
     flex-direction: column;
@@ -897,8 +1006,9 @@ label {
     align-items: center;
     background-color: #FDFDFD;
     border: 1px solid #F0F0F0;
-    padding: 10px;
+    padding: 5px 10px;
     border-radius: 5px;
+    flex-shrink: 0;
 }
 
 .relevance-filters-body{
@@ -954,9 +1064,9 @@ label {
     height: 0;
     overflow: hidden;
     flex-direction: column;
-    gap: 5px;
+    gap: 0px !important;
     position: absolute;
-    top: 40px;
+    top: 30px;
     left: -11px;
     z-index: 999;
     background-color: #FDFDFD;
@@ -967,8 +1077,8 @@ label {
 }
 
 .relevance-filter-items.show-relevance-items{
-    height: 270px;
-    padding: 10px;
+    height: 205px;
+    padding: 0 !important;
     border: 1px solid #F0F0F0;
 }
 
@@ -978,9 +1088,9 @@ label {
     justify-content: start;
     width: 100%;
     cursor: pointer;
-    padding: 5px;
-    border: 1px solid var(--border-color);
-    border-radius: 5px;
+    padding: 5px 10px;
+    border: none !important;
+    border-radius: 0px !important;
     background-color: #FDFDFD;
 }
 
@@ -1392,7 +1502,7 @@ label {
 
 .mobile-view-product-single-column .product-card {
     max-width: 460px !important;
-    padding: 20px;
+    padding: 10px;
 }
 
 .mobile-view-product-single-column .product-card-data .product-main-img{
