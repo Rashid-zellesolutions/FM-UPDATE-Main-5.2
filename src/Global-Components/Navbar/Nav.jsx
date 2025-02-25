@@ -25,6 +25,7 @@ const Nav = ({ navLinks, sale_data }) => {
         setActiveIndex(location.pathname)
     }, [location])
 
+
     return (
         <div className='navbar'>
             {navLinks?.length > 0 ? (
@@ -32,11 +33,12 @@ const Nav = ({ navLinks, sale_data }) => {
                     {navLinks.map((item, index) => {
                         return <h3 key={index} onMouseEnter={() => item.subCategories.length > 0 && handleMouseEnter(index)}
                             onMouseLeave={handleMouseLeave}
-                            className={`nav-item ${activeIndex === item.link ? 'active' : ''}`}>
-                            <Link to={`/${item.category_slug}`} className='nav-link'> {item.category} </Link>
+                            className={`nav-item ${activeIndex === `/${item.category_slug}` ? 'active' : ''}`}>
+                            
+                            <Link to={`/${item.category_slug}`} className={`nav-link ${activeIndex === `/${item.category_slug}` ? 'active-nav-link' : ''}`}> {item.category} </Link>
 
-                            {dropdownOpen === index && (
-                                <div className='dropdown'>
+                            {/* {dropdownOpen === index && ( */}
+                                <div className={`dropdown ${dropdownOpen === index ? 'show-drop-down' : ''}`}>
                                     <DropdownMenu
                                         parentCategorySlug={item.category_slug}
                                         navHeading={item.category}
@@ -44,7 +46,7 @@ const Nav = ({ navLinks, sale_data }) => {
                                         products={item.products}
                                     />
                                 </div>
-                            )}
+                             {/* )} */}
                         </h3>
                     })}
 

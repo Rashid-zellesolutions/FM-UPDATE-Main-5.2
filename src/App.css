@@ -22,7 +22,7 @@
     right: 30px;
     background-color: #edf1f3;
     cursor: pointer;
-    z-index: 99;
+    z-index: 999999;
     max-height: max-content;
     animation: float 3s ease-in-out infinite;
     transition: all 0.3s;

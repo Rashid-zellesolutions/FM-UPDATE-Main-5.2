@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react'
 import './FrequentlyBought.css';
 import { useSelector } from 'react-redux';
-import ProductCard from '../ProductCard/ProductCard';
+// import ProductCard from '../ProductCard/ProductCard';
 import { useNavigate } from 'react-router-dom';
 import { useProducts } from '../../../context/productsContext/productContext';
 import axios from 'axios';
+import star from '../../../Assets/icons/black-star.png'
 import { url } from '../../../utils/api';
 import heart from '../../../Assets/icons/heart-vector.png'
-import ProductCardTwo from '../ProductCard/ProductCard';
+// import ProductCardTwo from '../ProductCardTwo/ProductCardTwo';
 import ProductCardShimmer from '../Loaders/productCardShimmer/productCardShimmer';
 import { useList } from '../../../context/wishListContext/wishListContext';
 import { toast } from 'react-toastify';
+import ProductCardTwo from '../ProductCardTwo/ProductCardTwo';
 
 const FrequentlyBought = ({ relatedProducts, isPadding }) => {
 
@@ -120,6 +122,18 @@ const FrequentlyBought = ({ relatedProducts, isPadding }) => {
         }
     }
 
+    const [quickViewClicked, setQuickView] = useState(false);
+    const [quickViewProduct, setQuickViewProduct] = useState({})
+    const handleQuickViewOpen = (item) => {
+        setQuickView(true);
+        setQuickViewProduct(item)
+    }
+    const handleQuickViewClose = () => { setQuickView(false) }
+
+    const handleProductClick = (item) => {
+        navigate(`/product/${item.slug}`, { state: item });
+    };
+
 
     return (
         <div className={`frequently-bought-main ${isPadding ? 'add-padding' : ''}`}>
@@ -127,39 +141,73 @@ const FrequentlyBought = ({ relatedProducts, isPadding }) => {
             <div className='frequently-bought-card'>
                 {data ? (
                     data && data.slice(0, 5).map((item, index) => (
-                    <ProductCard
-                        key={item.uid}
-                        maxWidthAccordingToComp={'100%'} justWidth={'100%'}
-                        // tagIcon={item.productTag ? item.productTag : item.heart}
-                        tagIcon={heart}
-                        tagClass={` ${item.productTag ? 'tag-img' : 'heart-icon'}`}
-                        tagDivClass={`${item.productTag ? 'product-tag-div' : 'heart-icon-div'}`}
-                        mainImage={hoveredIndex === index && item.image.image_url ? item.hoverImage : item.image.image_url}
-                        productCardContainerClass={`product-card ${hideFilters ? 'card-width-increase' : ''}`}
-                        mouseEnter={() => handleImageHover(index)}
-                        mouseLeave={handleImageHoverLeave}
-                        ProductTitle={truncateTitle(item.name, maxLength)}
-                        stars={item.ratingStars}
-                        reviewCount={'200'}
-                        lowPriceAddvertisement={item.lowPriceAddvertisement}
-                        priceTag={item.regular_price}
-                        financingAdd={item.financingAdd}
-                        learnMore={item.learnMore}
-                        colorVariation={item.colorVariation}
-                        mainIndex={index}
-                        percent={'12%'}
-                        deliveryTime={item.deliveryTime}
-                        selectedColorIndices={selectedColorIndices}
-                        handleVariantColor={() => handleVariantImageClick(index, colorIndex)}
-                        borderLeft={index % 4 === 3}
-                        stock={item.manage_stock}
+                    <ProductCardTwo
+                            key={index}
+                            slug={item.slug}
+                            singleProductData={item}
+                            maxWidthAccordingToComp={"100%"}
+                            justWidth={'100%'}
+                            percent={'12%'}
+                            showOnPage={false}
+                            // colTwo={selectedGrid === 'single-col' ? false : true}
+                            tagIcon={item.productTag ? item.productTag : heart}
+                            tagClass={item.productTag ? 'tag-img' : 'heart-icon'}
+                            mainImage={`${item.image.image_url}`}
+                            productCardContainerClass="product-card"
+                            ProductSku={item.sku}
+                            tags={item.tags}
+                            allow_back_order={item?.allow_back_order}
+                            ProductTitle={truncateTitle(item.name, maxLength)}
+                            stars={[
+                                { icon: star, title: 'filled' },
+                                { icon: star, title: 'filled' },
+                                { icon: star, title: 'filled' },
+                                { icon: star, title: 'filled' },
+                                { icon: star, title: 'filled' },
+                            ]}
+                            reviewCount={item.reviewCount}
+                            lowPriceAddvertisement={item.lowPriceAddvertisement}
+                            priceTag={item.regular_price}
+                            sale_price={item.sale_price}
+                            financingAdd={item.financingAdd}
+                            learnMore={item.learnMore}
+                            mainIndex={index}
+                            deliveryTime={item.deliveryTime}
+                            stock={item.manage_stock}
+                            attributes={item.attributes}
+                            handleCardClick={() => handleProductClick(item)}
+                            handleQuickView={() => handleQuickViewOpen(item)}
+                            handleWishListclick={() => handleWishList(item)}
+                        // key={item.uid}
+                        // maxWidthAccordingToComp={'100%'} justWidth={'100%'}
+                        // tagIcon={heart}
+                        // tagClass={` ${item.productTag ? 'tag-img' : 'heart-icon'}`}
+                        // tagDivClass={`${item.productTag ? 'product-tag-div' : 'heart-icon-div'}`}
+                        // mainImage={hoveredIndex === index && item.image.image_url ? item.hoverImage : item.image.image_url}
+                        // productCardContainerClass={`product-card ${hideFilters ? 'card-width-increase' : ''}`}
+                        // mouseEnter={() => handleImageHover(index)}
+                        // mouseLeave={handleImageHoverLeave}
+                        // ProductTitle={truncateTitle(item.name, maxLength)}
+                        // stars={item.ratingStars}
+                        // reviewCount={'200'}
+                        // lowPriceAddvertisement={item.lowPriceAddvertisement}
+                        // priceTag={item.regular_price}
+                        // financingAdd={item.financingAdd}
+                        // learnMore={item.learnMore}
+                        // colorVariation={item.colorVariation}
+                        // mainIndex={index}
+                        // percent={'12%'}
+                        // deliveryTime={item.deliveryTime}
+                        // selectedColorIndices={selectedColorIndices}
+                        // handleVariantColor={() => handleVariantImageClick(index, colorIndex)}
+                        // borderLeft={index % 4 === 3}
+                        // stock={item.manage_stock}
+                        // singleProductData={item}
+                        // attributes={item.attributes}
+                        // ProductSku={item.sku}
+                        // sale_price={item.sale_price}
+                        // handleWishListclick={() => handleWishList(item)}
                         // handleCardClick={() => handleCardClick(item)}
-                        singleProductData={item}
-                        attributes={item.attributes}
-                        ProductSku={item.sku}
-                        sale_price={item.sale_price}
-                        handleWishListclick={() => handleWishList(item)}
-                        handleCardClick={() => handleCardClick(item)}
                     />
                 ))
                 ) : (
@@ -168,7 +216,7 @@ const FrequentlyBought = ({ relatedProducts, isPadding }) => {
                     ))
                 )}
                 {data && data.slice(0, 5).map((item, index) => (
-                    <ProductCard
+                    <ProductCardTwo
                         key={item.uid}
                         maxWidthAccordingToComp={'100%'} justWidth={'100%'}
                         // tagIcon={item.productTag ? item.productTag : item.heart}

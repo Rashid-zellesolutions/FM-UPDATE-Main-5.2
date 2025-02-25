@@ -32,6 +32,7 @@ import { toast } from 'react-toastify';
 import DoubleRangeSlider from '../../../Global-Components/MultiRangeBar/MultiRange';
 import RatingReview from '../starRating/starRating';
 import ProductCardTwo from '../ProductCardTwo/ProductCardTwo';
+import { useProductArchive } from '../../../context/ActiveSalePageContext/productArchiveContext';
 
 
 const Products = () => {
@@ -43,6 +44,19 @@ const Products = () => {
         decreamentQuantity,
         removeFromCart,
     } = useCart();
+
+    const { 
+        products, 
+        setProducts, 
+        activePage, 
+        setActivePage, 
+        activePageIndex, 
+        setActivePageIndex,
+        // priceRange,
+        // setPriceRange,
+        allFilters,
+        setAllFilters,
+    } = useProductArchive()
 
     const { subCategorySlug } = useParams();
     const location = useLocation();
@@ -66,17 +80,17 @@ const Products = () => {
     // const [showAllFilters, setShowAllFilters] = useState(false);
     const [addToCartClicked, setAddToCartClicked] = useState(false);
     const [quickViewClicked, setQuickView] = useState(false);
-    const [products, setProducts] = useState([]);
+    // const [products, setProducts] = useState([]);
     const [colors, setColors] = useState([]);
 
     const [mobileFilters, setMobileFilters] = useState(false);
 
     const [totalPages, setTotalPages] = useState()
-    const [activePage, setActivePage] = useState(1);
+    // const [activePage, setActivePage] = useState(1);
 
     const [priceRange, setPriceRange] = useState([130, 900]);
 
-    const [allFilters, setAllFilters] = useState();
+    // const [allFilters, setAllFilters] = useState();
 
     const [quickViewProduct, setQuickViewProduct] = useState({})
 
@@ -96,7 +110,7 @@ const Products = () => {
         const queryApi = `/api/v1/products/by-name?name`;
 
         try {
-            setProducts([])
+            // setProducts([])
             let response;
             if (query) {
                 response = await axios.get(`${url}${queryApi}=${query}`);
@@ -111,6 +125,7 @@ const Products = () => {
 
             setProducts(data);
             setColors(colors)
+
 
             fetchFilters();
             setSearchParams({ page: activePage })
@@ -176,7 +191,7 @@ const Products = () => {
     const filterProducts = async (filter) => {
         const api = `/api/v1/products/by-category?categorySlug=${subCategorySlug}&page=${activePage}&${filter}`;
         try {
-            setProducts([])
+            // setProducts([])
             const response = await axios.get(`${url}${api}`)
             setProducts(response.data.products)
             setTotalPages(response.data.pagination)
@@ -187,12 +202,18 @@ const Products = () => {
 
     // useEffects
     useEffect(() => {
-        fetchFilters();
+        console.log("price range", priceRange)
+        // if(allFilters?.length === 0 && priceRange?.length === 0) {
+            fetchFilters();
+        // }
     }, []);
 
     useEffect(() => {
         // Re-Fetch Products when user enter Query
-        fetchProductData()
+        console.log("proucts", products)
+        // if(products?.length === 0) {
+            fetchProductData()
+        // }
     }, [query, subCategorySlug]);
 
     const handleCartSectionClose = () => {
@@ -380,7 +401,7 @@ const Products = () => {
     }, [colorValue, categoryValue, ratingValue])
 
     // Pagination
-    const [activePageIndex, setActivePageIndex] = useState(1);
+    // const [activePageIndex, setActivePageIndex] = useState(1);
 
     const handleActivePage = (index) => {
         setActivePage(index);
@@ -414,13 +435,20 @@ const Products = () => {
                 top: 0,
                 behavior: 'smooth'
             })
-
+            // setTimeout(() => {
+            //     window.scrollTo({
+            //         top: 0,
+            //         behavior: 'smooth'
+            //     });
+            // }, 0);
         }
     };
 
 
     useEffect(() => {
-        fetchProductData(activePage)
+        // if(activePageIndex !== activePage){
+            fetchProductData(activePage)
+        // }
     }, [activePageIndex]);
 
 
@@ -493,7 +521,7 @@ const Products = () => {
             <Breadcrumb category={products.categories} />
             <div className='product-archive-sub-categories-container'>
                 {subCategories.map((item, index) => (
-                    <div className='product-archive-single-sub-category' onClick={() => handleNavigate(item.slug)}>
+                    <div key={index} className='product-archive-single-sub-category' onClick={() => handleNavigate(item.slug)}>
                         <img src={`${url}${item.image2}`} alt='sub category' />
                         {/* <p>{item.name}</p> */}
                     </div>
@@ -732,6 +760,7 @@ const Products = () => {
                                     key={index}
                                     slug={item.slug}
                                     singleProductData={item}
+                                    showOnPage={true}
                                     maxWidthAccordingToComp={"100%"}
                                     justWidth={hideFilters ? '310px' : '100%'}
                                     tagIcon={item.productTag ? item.productTag : heart}
@@ -871,6 +900,7 @@ const Products = () => {
                                 singleProductData={item}
                                 maxWidthAccordingToComp={"100%"}
                                 justWidth={'100%'}
+                                showOnPage={true}
                                 percent={'12%'}
                                 colTwo={selectedGrid === 'single-col' ? false : true}
                                 tagIcon={item.productTag ? item.productTag : heart}

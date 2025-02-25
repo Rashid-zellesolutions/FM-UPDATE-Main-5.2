@@ -3,10 +3,12 @@ import './Category.css';
 import Breadcrumb from '../../../Global-Components/BreadCrumb/BreadCrumb';
 import CategoryShimmer from '../Loaders/Category/categoryShimmer';
 import { url } from '../../../utils/api';
+import { Link } from 'react-router-dom';
 
-const Category = ({ title, categoryData, handleNavigate }) => {
+const Category = ({ title, categoryData, handleNavigate, categorySlug }) => {
  const [isloaded,setIsLoaded] = useState(false);
-  // console.log("CAtegory Data", categoryData)
+  console.log("CAtegory Slug", categorySlug)
+
   return (
 
     <div className='category-main-container'>
@@ -18,14 +20,16 @@ const Category = ({ title, categoryData, handleNavigate }) => {
         {categoryData && categoryData.length > 0 ? (
           categoryData.map((item, index) => (
            <>
+              <Link to={categorySlug !== undefined ? `/${categorySlug}/${item.slug}` : `/${item.slug}` } state={item}>
             <img
               key={index}
-              onClick={() => handleNavigate(item.slug, item)}
+              // onClick={() => handleNavigate(item.slug, item)}
               src={url + item.image}
               alt='img'
               effect='blur'
               onLoad={()=>{setIsLoaded(true)}}
             />
+            </Link>
             {!isloaded &&  <CategoryShimmer/>}
            </>
           ))

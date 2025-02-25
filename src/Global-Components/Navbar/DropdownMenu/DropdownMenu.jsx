@@ -52,7 +52,6 @@ const DropdownMenu = (
                                         <p className='price-sale-price'>{formatedPrice(item.sale_price)}</p>
                                     </span> 
                                 }
-                                {/* <p className='price new'>${item.sale_price}</p> */}
                             </div>
                         </div>
                     })}

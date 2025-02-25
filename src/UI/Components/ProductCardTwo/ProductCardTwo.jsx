@@ -30,7 +30,8 @@ const ProductCardTwo = ({
     handleCardClick,
     handleWishListclick,
     attributes,
-    colTwo
+    colTwo,
+    showOnPage,
 }) => {
 
     const [isImageLoaded, setImageLoaded] = useState(false);
@@ -203,7 +204,7 @@ const ProductCardTwo = ({
                 <div className='product-card-data'
                     onClick={() => handleCardClick(singleProductData)}
                 >
-                    <div className='product-cart-top-tags-container'>
+                    <div className={`product-cart-top-tags-container ${showOnPage ? 'show-product-cart-top-tags' : ''}`}>
                         <div className='tag-and-heart' onClick={(e) => e.stopPropagation()}>
                             
                             {tags?.length > 0 && <div className="product-tagging">
@@ -314,6 +315,30 @@ const ProductCardTwo = ({
 
 
                         <div className='product-card-product-image-inner-container'>
+                            <div className={`product-image-wishlist-icon-container ${!showOnPage ? 'show-product-wishlist-icon' : ''}`}>
+                                {
+                                    isInWishList(singleProductData.uid) ?
+                                        <VscHeartFilled
+                                            size={25}
+                                            className='wishlist-heart'
+                                            style={{ color: '#C61B1A' }}
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                handleWishListclick(singleProductData)
+                                            }}
+                                        />
+                                        :
+                                        <VscHeart
+                                            size={25}
+                                            className='wishlist-heart'
+                                            style={{ float: 'right', color: '#C61B1A' }}
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                handleWishListclick(singleProductData)
+                                            }}
+                                        />
+                                }
+                            </div>
                             <img src={`${url}${selectedColorImage
                                 ? mainImageHoverIndex === singleProductData.uid
                                     ? hoveredImage
@@ -359,7 +384,7 @@ const ProductCardTwo = ({
                                         </div>
                                 }
                             </div>} */}
-                            {/* <p className={`product-sku ${colTwo ? 'apply-col-two-styling' : ''}`} onClick={handleCardClick}>SKU : {ProductSku}</p> */}
+                            <p className={`product-sku ${colTwo ? 'apply-col-two-styling' : showOnPage ? 'show-product-sku' : ''}`} onClick={handleCardClick}>SKU : {ProductSku}</p>
 
                             <h3 className={`product-title ${colTwo ? 'apply-col-two-styling' : ''}`}> {ProductTitle} </h3>
 
@@ -461,27 +486,27 @@ const ProductCardTwo = ({
                         {/* <p className='product-sku' onClick={handleCardClick}>SKU : {ProductSku}</p> */}
                         {/* <h3 className='product-title' > {ProductTitle} </h3> */}
 
-                        <div className='product-card-rating-price-and-quick-view'>
+                        {/* <div className='product-card-rating-price-and-quick-view'>
                             <div className='product-card-rating-and-price'>
 
-                                {/* <div className='product-rating-stars-div'>
+                                <div className='product-rating-stars-div'>
                                     <RatingReview rating={parseFloat(reviewCount)} size={"12px"} disabled={true} />
-                                </div> */}
+                                </div>
 
-                                {/* {
+                                {
                                     sale_price === "0" ?
                                         <h3 className='product-price-del'>${priceTag}</h3> :
                                         <h3 className='product-price-tag'> ${sale_price} <del className='product-del-price-with-sale-price'>${priceTag}</del>  </h3>
-                                } */}
+                                }
 
-                                {/* <span>
+                                <span>
                                     <p>or $35/week for 48 mos</p>
                                     <GoInfo />
-                                </span> */}
+                                </span>
 
                             </div>
 
-                            {/* <div className='product-card-quick-view-container'>
+                            <div className='product-card-quick-view-container'>
                                 <div className='product-rating-stars-div'>
                                     <RatingReview rating={parseFloat(reviewCount)} size={"12px"} disabled={true} />
                                 </div>
@@ -492,8 +517,8 @@ const ProductCardTwo = ({
                                 >
                                     Quick View
                                 </button>
-                            </div> */}
-                        </div>
+                            </div>
+                        </div> */}
 
                         <div className={`product-card-get-it-by-container ${colTwo ? 'apply-col-two-styling' : ''}`}>
 
@@ -516,7 +541,7 @@ const ProductCardTwo = ({
                                             <h3 className={`product-price-tag ${colTwo ? 'apply-col-two-styling' : ''}`}> <p className='product-price-starting-at'>Starting At</p> ${sale_price} <del className='product-del-price-with-sale-price'>${priceTag}</del>  </h3>
                                     }
 
-                                    <span>
+                                    <span className={`product-card-installment-plan ${showOnPage ? 'show-installment-plan' : ''}`}>
                                         <p className={`installment-plan-detail ${colTwo ? 'apply-col-two-styling' : ''}`}>or $35/week for 48 mos</p>
                                         <GoInfo />
                                     </span>
@@ -524,7 +549,7 @@ const ProductCardTwo = ({
                                 </div>
 
 
-                                <span>
+                                <span className={`product-card-get-it-by-title ${showOnPage ? 'show-product-card-get-it-by-title' : ''}`}>
                                     <p className={`get-it-by ${colTwo ? 'apply-col-two-styling' : ''}`}>Get it By</p>
                                     <h3 className={`get-by-delivery ${colTwo ? 'apply-col-two-styling' : ''}`}>{getDeliveryDate()}</h3>
                                 </span>

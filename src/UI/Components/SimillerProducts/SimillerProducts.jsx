@@ -13,6 +13,7 @@ import star from '../../../Assets/icons/black-star.png'
 import leftArrow from '../../../Assets/icons/arrow-left-charcol.png'
 import rightArrow from '../../../Assets/icons/arrow-right-charcol.png'
 import { toast } from 'react-toastify'
+import ProductCardTwo from '../ProductCardTwo/ProductCardTwo'
 
 const SamplePrevArrow = (props) => {
   const { className, style, onClick } = props;
@@ -149,6 +150,10 @@ const SimillerProducts = ({collection, isPadding}) => {
       }
     ]
   };
+
+  const handleProductClick = (item) => {
+    navigate(`/product/${item.slug}`, { state: item });
+  };
     
   return (
     <div className={`similler-products-main-container ${isPadding ? 'add-padding' : ''}`}>
@@ -159,41 +164,77 @@ const SimillerProducts = ({collection, isPadding}) => {
             {data ? (
               data.map((item, index) => (
               <div key={index} className='cart-latest-product-cards-container'>
-                <ProductCard
-                  key={index}
-                  slug={item.slug}
-                  singleProductData={item}
-                  maxWidthAccordingToComp="98%"
-                  tagIcon={item.productTag ? item.productTag : heart}
-                  tagClass={item.productTag ? 'tag-img' : 'heart-icon'}
-                  mainImage={`${item.image.image_url}`}
-                  productCardContainerClass="product-card"
-                  ProductSku={item.sku}
-                  tags={item.tags}
-                  ProductTitle={truncateTitle(item.name, maxLength)}
-                  stars={[
-                    { icon: star, title: 'filled' },
-                    { icon: star, title: 'filled' },
-                    { icon: star, title: 'filled' },
-                    { icon: star, title: 'filled' },
-                    { icon: star, title: 'filled' },
-                  ]}
-                  reviewCount={item.reviewCount}
-                  lowPriceAddvertisement={item.lowPriceAddvertisement}
-                  priceTag={item.regular_price}
-                  sale_price={item.sale_price}
-                  percent={'12%'}
-                  financingAdd={item.financingAdd}
-                  learnMore={item.learnMore}
-                  mainIndex={index}
-                  deliveryTime={item.deliveryTime}
-                  stock={item.manage_stock}
-                  attributes={item.attributes}
-                  handleCardClick={() => handleCardClick(item)}
-                  handleQuickView={() => handleQuickViewOpen(item)}
-                  type={item.type}
-                  variation={item.variations}
-                  handleWishListclick={() => handleWishList(item)}
+                <ProductCardTwo
+                    key={index}
+                    slug={item.slug}
+                    singleProductData={item}
+                    maxWidthAccordingToComp={"98%"}
+                    justWidth={'100%'}
+                    showOnPage={false}
+                    percent={'12%'}
+                    // colTwo={selectedGrid === 'single-col' ? false : true}
+                    tagIcon={item.productTag ? item.productTag : heart}
+                    tagClass={item.productTag ? 'tag-img' : 'heart-icon'}
+                    mainImage={`${item.image.image_url}`}
+                    productCardContainerClass="product-card"
+                    ProductSku={item.sku}
+                    tags={item.tags}
+                    allow_back_order={item?.allow_back_order}
+                    ProductTitle={truncateTitle(item.name, maxLength)}
+                    stars={[
+                      { icon: star, title: 'filled' },
+                      { icon: star, title: 'filled' },
+                      { icon: star, title: 'filled' },
+                      { icon: star, title: 'filled' },
+                      { icon: star, title: 'filled' },
+                    ]}
+                    reviewCount={item.reviewCount}
+                    lowPriceAddvertisement={item.lowPriceAddvertisement}
+                    priceTag={item.regular_price}
+                    sale_price={item.sale_price}
+                    financingAdd={item.financingAdd}
+                    learnMore={item.learnMore}
+                    mainIndex={index}
+                    deliveryTime={item.deliveryTime}
+                    stock={item.manage_stock}
+                    attributes={item.attributes}
+                    handleCardClick={() => handleProductClick(item)}
+                    handleQuickView={() => handleQuickViewOpen(item)}
+                    handleWishListclick={() => handleWishList(item)}
+                  // key={index}
+                  // slug={item.slug}
+                  // singleProductData={item}
+                  // maxWidthAccordingToComp="98%"
+                  // tagIcon={item.productTag ? item.productTag : heart}
+                  // tagClass={item.productTag ? 'tag-img' : 'heart-icon'}
+                  // mainImage={`${item.image.image_url}`}
+                  // productCardContainerClass="product-card"
+                  // ProductSku={item.sku}
+                  // tags={item.tags}
+                  // ProductTitle={truncateTitle(item.name, maxLength)}
+                  // stars={[
+                  //   { icon: star, title: 'filled' },
+                  //   { icon: star, title: 'filled' },
+                  //   { icon: star, title: 'filled' },
+                  //   { icon: star, title: 'filled' },
+                  //   { icon: star, title: 'filled' },
+                  // ]}
+                  // reviewCount={item.reviewCount}
+                  // lowPriceAddvertisement={item.lowPriceAddvertisement}
+                  // priceTag={item.regular_price}
+                  // sale_price={item.sale_price}
+                  // percent={'12%'}
+                  // financingAdd={item.financingAdd}
+                  // learnMore={item.learnMore}
+                  // mainIndex={index}
+                  // deliveryTime={item.deliveryTime}
+                  // stock={item.manage_stock}
+                  // attributes={item.attributes}
+                  // handleCardClick={() => handleCardClick(item)}
+                  // handleQuickView={() => handleQuickViewOpen(item)}
+                  // type={item.type}
+                  // variation={item.variations}
+                  // handleWishListclick={() => handleWishList(item)}
                 />
               </div>
             ))

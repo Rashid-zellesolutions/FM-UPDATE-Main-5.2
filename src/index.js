@@ -24,6 +24,7 @@ import { ActiveSalePageProvider } from './context/ActiveSalePageContext/ActiveSa
 import { BlogsProvider } from './context/BlogsContext/blogsContext';
 import { UserDashboardCtxProvider } from './context/userDashboardContext/userDashboard';
 import ScrollRestoration from './utils/ScrollToTop/ScrollToTop';
+import { ProductArchiveProvider } from './context/ActiveSalePageContext/productArchiveContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -48,6 +49,7 @@ root.render(
                               <MyOrdersProvider>
                                 <ProductPageProvider>
                                   <VariationProvider>
+                                    <ProductArchiveProvider>
                                     <Provider store={store}>
                                       <Router>
                                         <ScrollToTop>
@@ -56,6 +58,7 @@ root.render(
                                         </ScrollToTop>
                                       </Router>
                                     </Provider>
+                                    </ProductArchiveProvider>
                                   </VariationProvider>
                                 </ProductPageProvider>
                               </MyOrdersProvider>

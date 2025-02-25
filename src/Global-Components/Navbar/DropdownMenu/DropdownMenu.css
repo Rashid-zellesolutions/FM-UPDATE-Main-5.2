@@ -2,13 +2,21 @@
     display: flex;
     justify-content: center;
     width: 100%;
+    height: auto;
+    /* max-height: 100%; */
     padding: 25px 50px;
     gap: 15px;
-    background-color: var(--bg-color);
+    /* background-color: var(--bg-color); */
+    /* background: rgba(249,249,2490. 0.9); */
+    background-color: #f1f1f1;
     z-index: 22222;
     overflow-y: auto;
     overflow-x: hidden;
     flex-wrap: nowrap;
+}
+
+.mattresses-main-div::-webkit-scrollbar {
+    display: none;
 }
 
 .menu-links{
@@ -20,9 +28,10 @@
 }
 
 .living-room-heading{
-    font-size: 22px;
-    font-weight: 500;
-    line-height: 26px;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.5;
+    letter-spacing: 1px;
     position: relative;
     padding-left: 20px; 
     padding-bottom: 0px;
@@ -32,7 +41,7 @@
     justify-content: start;
 }
 
-.living-room-heading::before {
+/* .living-room-heading::before {
     content: '';
     position: absolute;
     left: 0;
@@ -41,7 +50,7 @@
     width: 10px; 
     height: 10px; 
     background-color: var(--text-color); 
-}
+} */
 
 .mattresses-links-div{
     display: flex;
@@ -51,17 +60,17 @@
 
 .mattres-links{
     padding: 5px 20px;
-    font-size: 15px;
+    font-size: 12px;
     font-weight: 400;
-    line-height: 18px;
+    line-height: 1.5;
     letter-spacing: normal;
     color: var(--text-color);
 }
 
 .mattres-links a{
-    font-size: 15px;
+    font-size: 12px;
     font-weight: 400;
-    line-height: 18px;
+    line-height: 1.5;
     color: var(--text-color);
     text-decoration: none;
 }
@@ -88,7 +97,7 @@
     display: flex;
     flex-direction: column;
     position: relative;
-    width: 315px !important;
+    /* width: 315px !important; */
     height: auto;
     gap: 10px;
 }
@@ -97,7 +106,7 @@
     width: 100%;
     height: 210px;
     cursor: pointer;
-    object-fit: cover;
+    /* object-fit: cover; */
 }
 
 .mattress-image > .pricing{
@@ -112,11 +121,15 @@
 
 .image-title a{
     color: var(--text-color);
-    font-size: 18px !important;
+    /* font-size: 18px !important;
     line-height: 20px !important;
-    font-weight: 500 !important;
-    letter-spacing: normal !important;
-    text-decoration: none !important;
+    font-weight: 500 !important; */
+    /* letter-spacing: normal !important;
+    text-decoration: none !important; */
+    font-size: 13px;
+    line-height: 13px;
+    font-weight: 500;
+    letter-spacing: 1px;
 }
 
 .pricing{

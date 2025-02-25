@@ -116,7 +116,7 @@ const Categories = ({
   return (
     <>
       <LatestModulerBanner customWidth={false} showBanners={false} mainImgShow={true} mobileMainImage={url + (location.state ? location.state?.bannerImage2 : categoryData?.bannerImage2)}  /* { url+(location.state? location.state?.bannerImage2 : categoryData?.bannerImage2) } */ mainImage={url + (location.state ? location.state?.bannerImage : categoryData?.bannerImage)} />
-      <Category title={location.state ? location.state?.name : categoryData?.name} categoryData={categoryPageData} handleNavigate={handleNavigate} />
+      <Category title={location.state ? location.state?.name : categoryData?.name} categorySlug={categorySlug} categoryData={categoryPageData} handleNavigate={handleNavigate} />
       {bestSelling &&  (<BestSeller categoryData={bestSelling} />) }
       
       <ShipBanner bannerImg={shipBanner} showBanner={false} paddindTrue={false} />

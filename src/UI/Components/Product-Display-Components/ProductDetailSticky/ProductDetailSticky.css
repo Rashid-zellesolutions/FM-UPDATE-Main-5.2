@@ -650,7 +650,7 @@
     align-items: center;
     justify-content: start;
     gap: 5px;
-
+    cursor: pointer;
 }
 
 .see-it-in-person-distance-and-zip > span > p {

@@ -26,6 +26,7 @@ import { useGlobalContext } from '../../../../context/GlobalContext/globalContex
 import { PiStorefrontLight } from "react-icons/pi";
 import {MdOutlineKeyboardArrowDown } from 'react-icons/md'
 import AppointmentModal from '../../../../Global-Components/AppointmentModal/AppointmentModal'
+import LocationPopUp from '../../LocationPopUp/LocationPopUp'
 
 
 const ProductDetailSticky = (
@@ -218,6 +219,12 @@ const ProductDetailSticky = (
   };
 
   const [showMiles, setShowMiles] = useState(false);
+  const milesData = [
+    {distance: '50 MILES'},
+    {distance: '100 MILES'},
+    {distance: '200 MILES'},
+  ]
+  const [miles, setMiles] = useState(milesData[0].distance);
   const handleMilesDropdown = () => {
     setShowMiles(!showMiles)
   }
@@ -244,6 +251,15 @@ const ProductDetailSticky = (
       document.body.style.overflow = 'auto';
     }
   } , [appointmentModal])
+
+  const [showLocation, setShowLocation] = useState(false);
+  const [locationData, setLocationData] = useState();
+  const handleOpenLocationModal = () => {
+    setShowLocation(true);
+  }
+  const handleCloseLocationModal = () => {
+    setShowLocation(false);
+  }
 
   return (
     <div className='product-detail-sticky-section-main-container'>
@@ -393,7 +409,7 @@ const ProductDetailSticky = (
               <p>
                 Back in stock 2/28/2025. Order now! We'll contact you to schedule delivery once your item is ready.
               </p>
-              <span>
+              <span onClick={handleOpenLocationModal}>
                 <FaLocationDot size={17} color='#4487C5' />
                 <p>19134</p>
               </span>
@@ -459,19 +475,22 @@ const ProductDetailSticky = (
 
                   <div className='see-it-in-person-distance-drop-down'>
                     <span onClick={handleMilesDropdown}>
-                      <p>50 MILES</p>
+                      <p>{miles}</p>
                       <MdOutlineKeyboardArrowDown size={15} color='#4487C5' />
                     </span>
                     <div className={`miles-dropdown-body ${showMiles ? 'show-miles-dropdown' : ''}`}>
-                      <p>50 MILES</p>
-                      <p>100 MILES</p>
-                      <p>200 MILES</p>
+                      {milesData.map((item, index) => (
+                        <p key={index} onClick={() => {
+                          setMiles(item.distance);
+                          
+                        }}>{item.distance}</p>
+                      ))}
                     </div>
                   </div>
 
                   <p>of</p>
 
-                  <span>
+                  <span onClick={handleOpenLocationModal}>
                     <FaLocationDot size={17} color='#4487C5' />
                     <p>19134</p>
                   </span>
@@ -520,6 +539,13 @@ const ProductDetailSticky = (
       <AppointmentModal 
         showAppointMentModal={appointmentModal}
         handleCloseModal={handleCloseAppointmentModal}
+      />
+
+      <LocationPopUp 
+        searchLocation={showLocation}
+        handleCloseSearch={handleCloseLocationModal}
+        locationDetails={locationData}
+        setLocationDetails={setLocationData}
       />
 
     </div>
