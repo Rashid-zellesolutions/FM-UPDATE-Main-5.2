@@ -31,7 +31,6 @@ const DashboardTabs = ({ data }) => {
                 }
             );
             if (response.status === 200) {
-                //   console.log("Billing address data:", response.data.data);
 
                 setUserData(response.data.data)
                 setTrigerApi(false)

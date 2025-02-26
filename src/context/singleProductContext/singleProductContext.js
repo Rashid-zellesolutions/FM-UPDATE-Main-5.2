@@ -18,7 +18,6 @@ export const SingleProductProvider = ({children}) => {
 
     useEffect(() => {
         localStorage.setItem('singleProduct', JSON.stringify(singleProduct));
-        // console.log("cart storage", cart)
     }, [singleProduct])
 
     const addSingleProduct = (product) => {
@@ -29,7 +28,6 @@ export const SingleProductProvider = ({children}) => {
         }))
     }
 
-    // console.log("check for context", singleProduct)
     // increase quantity function
     const increaseQuantity = () => {
         setSingleProduct((prevState) => {
@@ -38,7 +36,6 @@ export const SingleProductProvider = ({children}) => {
             }
             return prevState; // in case product is null or empty
         })
-        // console.log("quantity increase")
     }
 
     // descrease qauntity function
@@ -49,7 +46,6 @@ export const SingleProductProvider = ({children}) => {
             }
             return prevState;
         })
-        //  console.log("quantity increase")
     }
 
     return (

@@ -18,18 +18,17 @@ import { useSEOContext } from "./context/SEOcontext/SEOcontext";
 import { useGlobalContext } from "./context/GlobalContext/globalContext";
 import Loader from "./UI/Components/Loader/Loader";
 import WarrantyModal from "./UI/Modals/warrantyModal";
-import Snowfall from "react-snowfall";
-import SnakBar from './Global-Components/SnakeBar/SnakBar';
 
 function App() {
+  
   const [currentUrl, setCurrentUrl] = useState('/');
   const location = useLocation();
   const checkPage = window.location.pathname; // Get the current path
   const checkoutPage = /^\/order-confirmation\/[a-zA-Z0-9]+$/.test(checkPage);
+
   useEffect(() => {
     setCurrentUrl(location.pathname);
   }, [location]);
-
 
   const {
     title,

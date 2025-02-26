@@ -25,11 +25,8 @@ const PaymentTypes = ({selectedPaymentType, setSelectedPaymentType, onSelectLabe
         const checkPaymentMethodById = (id) => {
             const paymentMethod = activePaymentMethods?.find(pm => pm.id === id);
             if (paymentMethod) {
-                console.log("payment method func if", paymentMethod)
-                console.log("active payment methods", activePaymentMethods)
                 return paymentMethod;
             } else {
-                console.log("payment method func else", paymentMethod)
                 return paymentMethod;
             }
         };
@@ -40,13 +37,10 @@ const PaymentTypes = ({selectedPaymentType, setSelectedPaymentType, onSelectLabe
         setSelectedPaymentType(type);
         onSelectLabel(type)
         checkPaymentMethodById(type.paymentMethodId)
-        console.log("selected payment type", type)
-        console.log("selected payment method", activePaymentMethods)
     }
 
     const handlePaymentMethod = (type) => {
         onSelectLabel(type)
-        console.log("selected payment type", type)
     }
 
   return (

@@ -1,25 +1,3 @@
-// import { createContext, useContext, useState } from "react";
-
-// const ProductArchiveContext = createContext();
-
-// export const MyProductArchiveContext = ({children}) => {
-//     const [products, setProducts] = useState([]);
-//     const [activePage, setActivePage] = useState(1);
-//   return (
-//     <ProductArchiveContext.Provider value={{
-//         products, 
-//         setProducts, 
-//         activePage, 
-//         setActivePage
-//     }}>
-//       {children}
-//     </ProductArchiveContext.Provider>
-//   )
-// }
-
-// export const useProductArchive = () => useContext(ProductArchiveContext);
-
-
 // ProductArchiveContext.js
 import { createContext, useContext, useState } from "react";
 
@@ -30,7 +8,7 @@ export const ProductArchiveProvider = ({ children }) => {
   const [activePage, setActivePage] = useState(1);
   const [activePageIndex, setActivePageIndex] = useState(1);
 
-  // const [priceRange, setPriceRange] = useState([130, 900]);
+  const [priceRange, setPriceRange] = useState([130, 900]);
   
       const [allFilters, setAllFilters] = useState();
 
@@ -43,8 +21,8 @@ export const ProductArchiveProvider = ({ children }) => {
         setActivePage,
         activePageIndex,
         setActivePageIndex,
-        // priceRange,
-        // setPriceRange,
+        priceRange,
+        setPriceRange,
         allFilters,
         setAllFilters,
       }}

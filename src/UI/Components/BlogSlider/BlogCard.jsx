@@ -52,7 +52,7 @@ const BlogCard = (
             </div>
             <div className='blog-para-and-see-more'>
                 <p>
-                {start.length > 200 ? `${start.substring(0, 200)}...` : start}
+                {start?.length > 200 ? `${start.substring(0, 200)}...` : start}
                 </p>
                 <button>
                     Read more

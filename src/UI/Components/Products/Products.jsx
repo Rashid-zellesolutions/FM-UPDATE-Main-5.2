@@ -33,6 +33,7 @@ import DoubleRangeSlider from '../../../Global-Components/MultiRangeBar/MultiRan
 import RatingReview from '../starRating/starRating';
 import ProductCardTwo from '../ProductCardTwo/ProductCardTwo';
 import { useProductArchive } from '../../../context/ActiveSalePageContext/productArchiveContext';
+import { filter } from 'lodash';
 
 
 const Products = () => {
@@ -52,10 +53,10 @@ const Products = () => {
         setActivePage, 
         activePageIndex, 
         setActivePageIndex,
-        // priceRange,
-        // setPriceRange,
         allFilters,
         setAllFilters,
+        priceRange,
+        setPriceRange,
     } = useProductArchive()
 
     const { subCategorySlug } = useParams();
@@ -88,7 +89,7 @@ const Products = () => {
     const [totalPages, setTotalPages] = useState()
     // const [activePage, setActivePage] = useState(1);
 
-    const [priceRange, setPriceRange] = useState([130, 900]);
+    // const [priceRange, setPriceRange] = useState([130, 900]);
 
     // const [allFilters, setAllFilters] = useState();
 
@@ -137,7 +138,6 @@ const Products = () => {
     };
 
     const sortProducts = (criteria) => {
-        console.log("calling sort with value", criteria)
         let sortedProducts = [...products];
         switch (criteria) {
             case 'Recent':
@@ -188,6 +188,8 @@ const Products = () => {
         }
     }
 
+    
+
     const filterProducts = async (filter) => {
         const api = `/api/v1/products/by-category?categorySlug=${subCategorySlug}&page=${activePage}&${filter}`;
         try {
@@ -200,21 +202,33 @@ const Products = () => {
         }
     }
 
-    // useEffects
     useEffect(() => {
-        console.log("price range", priceRange)
-        // if(allFilters?.length === 0 && priceRange?.length === 0) {
+
+        // Check if allFilters is empty OR price is at its default value
+        const isDefaultPrice = priceRange[0] === 130 && priceRange[1] === 900;
+        const isFiltersEmpty = allFilters && Object.keys(allFilters).length === 0;
+
+        if (isDefaultPrice || isFiltersEmpty) {
             fetchFilters();
-        // }
-    }, []);
+        }
+    }, [priceRange, allFilters]);
+
+    // useEffect(() => {
+    //         fetchProductData()
+    // }, [query]);
+
+    const shouldFetch = useRef(true); // Track if fetch should run
 
     useEffect(() => {
-        // Re-Fetch Products when user enter Query
-        console.log("proucts", products)
-        // if(products?.length === 0) {
-            fetchProductData()
-        // }
-    }, [query, subCategorySlug]);
+        if (!shouldFetch.current) return; // Prevent fetching on mount if navigating back
+        fetchProductData();
+    }, [query]); // Only depends on query
+
+    useEffect(() => {
+        return () => {
+            shouldFetch.current = false; // Disable fetching when navigating away
+        };
+    }, []); // Runs only on unmount
 
     const handleCartSectionClose = () => {
         setAddToCartClicked(false)
@@ -480,7 +494,7 @@ const Products = () => {
         
     }, [subCategorySlug])
 
-    useEffect(() => { console.log("sub Categories Called", subCategories) } , [subCategories])
+    useEffect(() => {  } , [subCategories])
 
 
 

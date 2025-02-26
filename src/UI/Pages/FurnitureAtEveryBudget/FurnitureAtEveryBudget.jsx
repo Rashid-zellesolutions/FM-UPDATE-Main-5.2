@@ -106,20 +106,17 @@ export default function FurnitureAtEveryBudget() {
 
         setVariationPayload(selectedAttr)
 
-        // console.log("selected payload according to variatons on parent", variationPayload)
     }
 
     const [selectVariation, setSelectVariation] = useState(0);
     const handleSelectVariation = (value) => {
         setSelectVariation(value);
-        // console.log("selected value on parend ", selectVariation)
         getVariationMatch()
     }
 
     const [selectedColor, setSelectedColor] = useState();
     const handleSelectColor = (value) => {
         setSelectedColor(value)
-        // console.log("selected color on parent", selectedColor)
         getVariationMatch()
     }
 
@@ -127,7 +124,6 @@ export default function FurnitureAtEveryBudget() {
         const defAttImage = data?.variations?.find(attr =>
             attr.uid === data.default_variation
         )
-        // console.log("defould attribute on size variant", defAttImage)
         const defAttrColor = defAttImage?.attributes?.find(attribute =>
             attribute?.type === 'color' &&
             attribute?.options?.some(option => option?.value)

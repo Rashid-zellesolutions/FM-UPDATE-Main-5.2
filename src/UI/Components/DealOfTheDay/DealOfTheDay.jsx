@@ -141,8 +141,6 @@ const DealOfTheDay = ({ dealEndTime, setDealEndTime, allProducts, setAllProducts
     navigate(`/product/${items.slug}`, { state: items })
   }
 
-  // console.log("all products of deal", allProducts)
-
   let productCount = 0
   const publishedProductsLength = allProducts.filter(product => product.status === 'published')
   productCount = publishedProductsLength.length;

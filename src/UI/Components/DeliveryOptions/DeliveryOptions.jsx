@@ -8,7 +8,6 @@ import { IoLocation } from "react-icons/io5";
 const DeliveryOptions = () => {
   const { info ,shippingMethods} = useGlobalContext();
   useEffect(()=>{
-    // console.log(shippingMethods,"haerae are")
   },[shippingMethods])
   return (
     <div className='delivery-options-main'>

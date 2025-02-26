@@ -96,7 +96,7 @@ const ProductCardTwo = ({
 
     }
 
-    useEffect(() => { console.log("Selected Color", selectedColor) }, [selectedColor])
+    useEffect(() => {  }, [selectedColor])
 
     const handleImageSelect = (image) => {
         setSelectedImage(image)

@@ -24,7 +24,6 @@ const MobileViewProductFilters = (
         // tempRange, setTampRange
     }) => {
 
-    // console.log("FILTERS DATA", filtersData)
 
     const handleFiltersClose = () => {
         setMobileFilters(false)
@@ -51,7 +50,6 @@ const MobileViewProductFilters = (
 
     // useEffect(() => {
     //     setTampRange([filtersData?.priceRange?.minPrice, filtersData?.priceRange?.maxPrice])
-    //     console.log("price range on effect", tempRange)
     // }, [])
 
 
@@ -59,8 +57,6 @@ const MobileViewProductFilters = (
 
     //     setTampRange(newRange)
     //     // handlePriceRange(tempRange)
-    //     console.log("temp range", newRange)
-    //     // console.log("price range filter call", newRange)
     // }
 
 

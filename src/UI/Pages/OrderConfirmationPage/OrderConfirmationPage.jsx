@@ -26,7 +26,6 @@ export default function OrderConfirmationPage() {
     const location = useLocation();
     useEffect(() => {
         setCurrentUrl(location.pathname);
-        console.log("current location", currentUrl)
     }, [location]);
 
     // Fetch order details based on _id
@@ -34,7 +33,6 @@ export default function OrderConfirmationPage() {
         const fetchOrderDetails = async () => {
             try {
                 const response = await axios.get(`${url}/api/v1/orders/get_by_id?_id=${_id}`);
-                console.log(response, "order response is here")
                 setOrder(response.data.order); // Store order data in state
                 setLoading(false);
             } catch (error) {

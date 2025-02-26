@@ -26,8 +26,6 @@ const CartProducts = () => {
         calculateTotalPrice,
         removeProtection,
         addSingleProtection,
-        subTotal,
-        savings,
         isCartProtected,
         isProfessionalAssembly,
         handleCartProtected,
@@ -35,19 +33,9 @@ const CartProducts = () => {
     } = useCart()
 
     const {
-        shippingMethods,
-        info,
-        zipCode,
-        handleInputChange,
-        handleButtonClick,
-        totalTax,
-        calculateTotalTax,
         selectedOption,
         handleChange,
-        getShippingMethods,
         selectedShippingMethods,
-        setSelectedShippingMethods,
-        CalculateGrandTotal
     } = useGlobalContext();
 
     const [locationDetails, setLocationDetails] = useState({
@@ -107,10 +95,6 @@ const CartProducts = () => {
     const handleCloseSnakeBar = () => {
         setShowSnakeBar(false)
     }
-
-    console.log("sku find", cartProducts?.products[0]?.sku)
-
-    
 
     return (
         <>

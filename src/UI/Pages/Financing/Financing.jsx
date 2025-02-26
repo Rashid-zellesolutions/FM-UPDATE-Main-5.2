@@ -58,7 +58,6 @@ const Financing = () => {
     const getFinancingPageData = async () => {
         try {
             const response = await axios.get(`${url}/api/v1/pages/financing/get`);
-            console.log(response, "here is financing page");
             setFinancingPageData(response.data.financingPage || []);
         } catch (error) {
             console.error(error);

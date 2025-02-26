@@ -100,7 +100,6 @@ const BestSellerSlider = (
         }
     }
 
-    // console.log("All Products", allProducts)
 
     useEffect(() => {
         if(!allProducts.length){
@@ -108,7 +107,6 @@ const BestSellerSlider = (
         }
     }, [])
 
-    // console.log("Best Seller Prop Data", allProducts)
 
     const [currentIndex, setCurrentIndex] = useState(0);
     const [cardsPerPage] = useState(6);

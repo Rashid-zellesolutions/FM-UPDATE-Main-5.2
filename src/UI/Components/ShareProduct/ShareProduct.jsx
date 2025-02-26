@@ -17,8 +17,6 @@ import { Link } from 'react-router-dom';
 
 const ShareProduct = ({ isSharePopup, setIsSharePopup, selectedUid, selectedProduct }) => {
 
-    // console.log("selected product uid in share modal", selectedProduct?.uid)
-    // console.log("selected product uid in share modal", isSharePopup)
     const copyRef = useRef()
     let generatedLink = `https://furnituremecca.zellesolutions.com/product/${selectedProduct?.slug}`
 

@@ -198,7 +198,6 @@ const DeliveryInfo = forwardRef((props, ref) => {
 
     //     if (Object.keys(newErrors).length > 0) {
     //         setError((prev) => ({ ...prev, ...newErrors }));
-    //         console.log("Errors found: ", newErrors);
     //         return false
     //     }
 
@@ -281,7 +280,6 @@ const DeliveryInfo = forwardRef((props, ref) => {
         }
 
         setError({});
-        console.log("order payload", orderPayload)
         props.onSubmit();
         return true;
     }

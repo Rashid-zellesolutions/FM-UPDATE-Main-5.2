@@ -41,7 +41,6 @@ export const MyOrdersProvider = ({ children }) => {
         card_type: ''
     })
 
-    // console.log("credit card data", creditCardData)
 
     const [orderPayload, setOrderPayload] = useState({
         status: 'pending',
@@ -164,7 +163,6 @@ export const MyOrdersProvider = ({ children }) => {
         }));
         setEmptyField((prev) => ({ ...prev, [name]: "" }));
 
-        console.log("values change", orderPayload);
     };
 
     const handleNestedValueChangeShipping = (e) => {
@@ -273,7 +271,6 @@ export const MyOrdersProvider = ({ children }) => {
             const response = await axios.post(`${url}${api}`, updatedPayload);
 
             if (response.status === 201) {
-                console.log("Order added successfully!");
                 // setThankyouState(true);
                 localStorage.removeItem('cart2')
 

@@ -5,7 +5,6 @@ import { url } from "../../../utils/api";
 
 export default function CartItemOC({image,name,quantity, regular_price, options,sku,price,cart_protected,is_protected,protected_price}) {
     
-    console.log("options", options)
     return(
         <>
             {/* <div className="cartItemOc">

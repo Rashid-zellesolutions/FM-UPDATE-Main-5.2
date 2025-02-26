@@ -13,7 +13,6 @@ export const ProductPageProvider = ({ children }) => {
     }
     
     useEffect(()=>{
-        // console.log(singleProductData,"single product data context",selectedVariationUid,"selected Variation uid")
     },[singleProductData])
     
     return (

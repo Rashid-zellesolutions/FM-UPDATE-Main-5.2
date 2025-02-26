@@ -9,8 +9,6 @@ const DoubleRangeSlider = (
     initialRange,
     setInitialRange,
     onRangeChange,
-    minLabel = "Min Price",
-    maxLabel = "Max Price"
   }) => {
 
   const isDragging = useRef(false);
@@ -38,14 +36,6 @@ const DoubleRangeSlider = (
     }
   }
 
-  // const handleMouseLeave = useCallback(() => {
-  //   onRangeChange(initialRange)
-  //   console.log("mouse up func call")
-  // }, [initialRange, onRangeChange]);
-
-  // useEffect(() => {
-    
-  // }, [handleMouseLeave])
 
   return (
     <div className="slider-container">

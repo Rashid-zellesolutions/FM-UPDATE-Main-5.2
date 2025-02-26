@@ -20,7 +20,6 @@ const PaymentMethod = ({ handleSubmitOrder }) => {
   const [selectedLabel, setSelectedLabel] = useState('')
   const { setOrderPayload } = useMyOrders()
   const handleSelectedLabel = (method) => {
-    console.log(method, "selected method");
     setSelectedLabel(method);
     setOrderPayload((prev) => ({
       ...prev,

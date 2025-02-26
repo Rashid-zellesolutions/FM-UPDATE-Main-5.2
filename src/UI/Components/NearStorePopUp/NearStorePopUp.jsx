@@ -66,7 +66,6 @@ const NearStorePopUp = ({ isOpen, setIsOpen, handleCloseNearBy }) => {
     const [error, setError] = useState(null);
 
     const getCurrentLocation = async () => {
-        console.log("working lan")
         if (!navigator.geolocation) {
             setError("Geolocation is not supported by this browser.");
             return;

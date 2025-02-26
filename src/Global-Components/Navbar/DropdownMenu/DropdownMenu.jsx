@@ -19,7 +19,6 @@ const DropdownMenu = (
     }
 
     const handleNavigate = (item) => {
-        console.log("nav product", item)
         navigate(`/product/${item.slug}`, { state: item });
     }
 

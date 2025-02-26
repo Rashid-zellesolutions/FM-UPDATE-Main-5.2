@@ -23,13 +23,11 @@ const Summary = () => {
   const deliveryInfoRef = useRef(null);
 
   const handleDeliveryFormSubmit = () => {
-        console.log("Form submitted successfully!");
     };
 
   const handleContinueToPayment = () => {
     if (deliveryInfoRef.current) {
         const isValid = deliveryInfoRef.current.validateAndSubmit();
-        console.log("Validation result: ", isValid); // Debug log
 
         if (!isValid) {
             return; // Stop here if validation fails

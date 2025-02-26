@@ -17,7 +17,6 @@ const ReturnPolicy = () => {
         });
         const result = await response.json();
         setReturnPolicy(result.returnPolicy.content)
-        // console.log("result", result)
       } catch (error) {
         console.error("UnExpected Server Error", error);
       }

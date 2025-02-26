@@ -15,6 +15,7 @@ const AllBlogs = ({blogData}) => {
     navigate(`/single-blog/${item.slug}`, {state:  item});
   }
 
+
   return (
     <div className='blog-page-blog-cards-main-container'>
       {blogData && blogData.length >= 0 ? (
@@ -22,11 +23,11 @@ const AllBlogs = ({blogData}) => {
         <div key={index} className='blog-cards-col'>
           <BlogCard
             singleBlog={item} 
-            blogMainImage={`${url}${item.img}`}
+            blogMainImage={`${url}${item.image.image_url}`}
             ind={index}
-            blogCategory={item.category}
+            blogCategory={item.category.name}
             blogTitle={item.title}
-            blogPostDate={item.postDate}
+            blogPostDate={item.publishedDate}
             navigateToSinglePage={() => handleNavigate(item)}
           />
         </div>  

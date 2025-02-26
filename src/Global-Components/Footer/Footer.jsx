@@ -80,7 +80,6 @@ const Footer = ({ notLandingPage, checkoutPage }) => {
                 email,
             });
 
-            console.log(response);
 
             // Handle success
             if (response.status === 201) {

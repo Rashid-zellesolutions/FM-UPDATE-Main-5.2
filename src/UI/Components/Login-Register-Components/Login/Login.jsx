@@ -103,7 +103,6 @@ const Login = ({ signupclicked, setSignupclicked }) => {
       const result = await response.json();
 
       if (response.ok) {
-        console.log(result, "here is the resposne");
         setToken(result.token,result?.data?._id)
         setLoginEmail('');
         setLoginPassword('');

@@ -52,7 +52,6 @@ const DealOfTheDayCard = ({
       return title.length > maxLength ? title.slice(0, maxLength) + '...' : title 
       
     };
-    // console.log("deal day data", url,productImage)
     const {isInWishList} = useList()
     return (
       <div 

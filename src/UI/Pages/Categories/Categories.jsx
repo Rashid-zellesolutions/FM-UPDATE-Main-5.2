@@ -64,7 +64,6 @@ const Categories = ({
       setBestSelling(result.bestSelling);
       setParagraph(result.content); 
       setContentImages(result.content_images);
-      // console.log("result ", result)
     } catch (error) {
       setError(error.message);
     } finally {
@@ -82,7 +81,6 @@ const Categories = ({
         }// Data to send
       });
       const result = await response.json();
-      console.log("Category Page Data response ", result)
       setCategoryData(result.categories[0])
       
       setTitle(result.categories[0].meta.title);

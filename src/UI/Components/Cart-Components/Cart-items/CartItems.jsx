@@ -88,15 +88,12 @@ const CartItems = ({
 
     const { addToList, removeFromList, isInWishList } = useList()
     const handleWishList = (item) => {
-        console.log("item uid", item)
-        console.log("item uid type", item.isVariable === 1 ? item.variation_uid : item.product_uid, item.isVariable === 1)
 
         if (isInWishList(item?.product_uid)) {
             removeFromList(item?.product_uid)
         } else {
             addToList(item)
             handleRomoveProduct();
-            console.log("item added in wish list and deleted from cart")
         }
     }
 

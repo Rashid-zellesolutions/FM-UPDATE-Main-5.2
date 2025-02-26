@@ -31,15 +31,12 @@ const LoginRegister = () => {
                       authorization: `${token}`,
                   },
               });
-              console.log("here is data2",response)
               if (response.ok) {
                   const data = await response.json();
                   setUserToken(token);
                   setIsTokenValid(true);
-                  console.log("Token is valid:", data);
                   setMainLoader(false);
                   navigate("/user-dashboard")
-                  console.log("here is data",data)
               } else {
                   console.warn("Token is invalid or expired. Removing it.");
                   localStorage.removeItem('userToken');

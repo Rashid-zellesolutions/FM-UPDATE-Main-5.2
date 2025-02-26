@@ -62,7 +62,6 @@ export const GlobalContextProvider = ({ children }) => {
       }
 
       const data = await response.json();
-      //   console.log("API Response:", data);
       return data.places[0]; // You can return the data for further processing
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -87,7 +86,6 @@ export const GlobalContextProvider = ({ children }) => {
       }
 
       const data = await response.json();
-      // console.log("API Response:", data);
       return data.data; // You can return the data for further processing
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -145,7 +143,6 @@ export const GlobalContextProvider = ({ children }) => {
 
     var data = using === "code" ? await getStoresByDistance1("code", zip) : using === "latlng" ? await getStoresByDistance1("latlng", "", lat, lng) : await getStoresByDistance1();
 
-    // console.log("near store data", data)
     if (data) {
       // Sort the data based on the 'distance' attribute
       const sortedData = data.sort((a, b) => {
@@ -179,7 +176,6 @@ export const GlobalContextProvider = ({ children }) => {
   }
 
   const [selectedOption, setSelectedOption] = useState(null);
-  // console.log("selected options", selectedOption);
 
   const handleChange = (e, option) => {
     setSelectedOption(option);
@@ -199,13 +195,11 @@ export const GlobalContextProvider = ({ children }) => {
       if (method3 && method3.cost === 0) {
         selectedMethods.push(method3);
       }
-      // console.log("selected methods with method 1 ", selectedMethods)
       setSelectedOption(method1);
       setSelectedShippingMethods(selectedMethods)
       return;
 
     }
-    // console.log("medhot 1 shipping", method1)
 
     // If METHOD-1 is applied, no other methods will be shown
     // if (selectedMethods.length === 1) {
@@ -245,7 +239,6 @@ export const GlobalContextProvider = ({ children }) => {
 
   const handleButtonClick = async () => {
     const data = await getStateByPostalCode(zipCode);
-    // console.log(data)
     if (data) {
       updateLocationData({
         zipCode: zipCode,
@@ -288,7 +281,6 @@ export const GlobalContextProvider = ({ children }) => {
   function CalculateGrandTotal() {
     const subTotal1 = parseFloat(subTotal || 0); // Ensure subTotal is parsed as a number
     const taxValue = parseFloat(totalTax?.tax_value || 0); // Ensure tax_value is parsed as a number
-    // console.log(subTotal1,taxValue,getShippingInfo(selectedOption)?.cost,"here are subtotal & tax")
     return subTotal + calculateTotalTax(subTotal1, taxValue) + getShippingInfo(selectedOption)?.cost;
   }
 

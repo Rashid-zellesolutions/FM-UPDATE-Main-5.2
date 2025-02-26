@@ -105,7 +105,6 @@ const AddressesTab = ({ userAddresses, setTrigerPoint }) => {
         const response = await axios.put(`${url}${billingApi}`, billingPayload);
         if (response.status === 200) {
           setTrigerPoint(true)
-          console.log("update billing address detail successfully", response);
         } else {
           console.error("Request response failed");
         }
@@ -114,7 +113,6 @@ const AddressesTab = ({ userAddresses, setTrigerPoint }) => {
         const response = await axios.put(`${url}${shippingApi}`, shippingPayload);
         if (response.status === 200) {
           setTrigerPoint(true)
-          console.log("update shipping address detail successfully", response);
         } else {
           console.error("Request response failed");
         }

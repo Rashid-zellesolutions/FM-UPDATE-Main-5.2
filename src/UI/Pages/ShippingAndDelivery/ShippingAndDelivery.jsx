@@ -17,7 +17,6 @@ const ShippingAndDelivery = () => {
         });
         const result = await response.json();
         setShippingAndDelivery(result.shippingDelivery.content)
-        // console.log("result", result)
       } catch (error) {
         console.error("UnExpected Server Error", error);
       }

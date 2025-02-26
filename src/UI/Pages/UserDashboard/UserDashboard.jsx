@@ -26,7 +26,6 @@ const UserDashboard = () => {
             authorization: `${token}`,
           },
         });
-        console.log("here is data2", response)
         if (response.ok) {
           const data = await response.json();
           const response2 = await fetch(`${url}/api/v1/web-users/get/${id}`, {
@@ -37,7 +36,6 @@ const UserDashboard = () => {
           });
           if (response2.ok) {
             const data = await response2.json();
-            console.log(data,"here is rep")
             setUserData(data.data)
             setIsTokenValid(true);
             setMainLoader(false);

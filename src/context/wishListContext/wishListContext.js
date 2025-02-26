@@ -19,7 +19,6 @@ export const WishListProvider = ({children}) => {
     // save cart to local storage when eer it changes
     useEffect(() => {
         localStorage.setItem('wishList', JSON.stringify(wishList));
-        // console.log("cart storage", cart)
     }, [wishList])
 
     // Add item to the wishlist if it doesn't already exist

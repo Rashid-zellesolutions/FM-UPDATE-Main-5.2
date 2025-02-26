@@ -14,10 +14,6 @@ export const addQuantityIntoProduct = (uid, setState, state) => {
                 }
             };
             
-            // Log the updated product after modifying its quantity
-            console.log("Updated product with quantity:", updatedProducts[uid]);
-            console.log("uid", uid)
-            
             return updatedProducts;
         });
     };

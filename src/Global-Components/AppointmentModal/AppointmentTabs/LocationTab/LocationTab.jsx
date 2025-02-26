@@ -8,83 +8,6 @@ import { url } from '../../../../utils/api';
 
 const LocationTab = ({selectedTab, setSelectedTab}) => {
 
-  // const nearStores = [
-  //   {
-  //     name: 'Roosevelt Blvd',
-  //     miles: '2.5',
-  //     address: '4640 Roosevelt Blvd, Philadelphia, PA 19124',
-  //     phone: '215 533 5011 ',
-  //     timings: [
-  //       {day: 'Monday', time: '10:00 AM - 9:00 PM'},
-  //       {day: 'Tuesday', time: '10:00 AM - 9:00 PM'},
-  //       {day: 'Wednesday', time: '10:00 AM - 8:00 PM'},
-  //       {day: 'Thursday', time: '10:00 AM - 9:00 PM'},
-  //       {day: 'Friday', time: '10:00 AM - 8:00 PM'},
-  //       {day: 'Saturday', time: '10:00 AM - 8:00 PM'},
-  //       {day: 'Sunday', time: '11:00 AM - 6:00 PM'},
-  //     ]
-  //   },
-  //   {
-  //     name: 'Columbus Boulevard',
-  //     miles: '5.5',
-  //     address: `2110 S. Christopher Columbus Blvd. Philadelphia, PA 19148`,
-  //     phone: '267-773-5211 ',
-  //     timings: [
-  //       {day: 'Monday', time: '10:00 AM - 9:00 PM'},
-  //       {day: 'Tuesday', time: '10:00 AM - 9:00 PM'},
-  //       {day: 'Wednesday', time: '10:00 AM - 8:00 PM'},
-  //       {day: 'Thursday', time: '10:00 AM - 9:00 PM'},
-  //       {day: 'Friday', time: '10:00 AM - 8:00 PM'},
-  //       {day: 'Saturday', time: '10:00 AM - 8:00 PM'},
-  //       {day: 'Sunday', time: '11:00 AM - 6:00 PM'},
-  //     ]
-  //   },
-  //   {
-  //     name: 'Roosevelt Blvd',
-  //     miles: '2.5',
-  //     address: '4640 Roosevelt Blvd, Philadelphia, PA 19124',
-  //     phone: '215 533 5011 ',
-  //     timings: [
-  //       {day: 'Monday', time: '10:00 AM - 9:00 PM'},
-  //       {day: 'Tuesday', time: '10:00 AM - 9:00 PM'},
-  //       {day: 'Wednesday', time: '10:00 AM - 8:00 PM'},
-  //       {day: 'Thursday', time: '10:00 AM - 9:00 PM'},
-  //       {day: 'Friday', time: '10:00 AM - 8:00 PM'},
-  //       {day: 'Saturday', time: '10:00 AM - 8:00 PM'},
-  //       {day: 'Sunday', time: '11:00 AM - 6:00 PM'},
-  //     ]
-  //   },
-  //   {
-  //     name: 'Roosevelt Blvd',
-  //     miles: '2.5',
-  //     address: '4640 Roosevelt Blvd, Philadelphia, PA 19124',
-  //     phone: '215 533 5011 ',
-  //     timings: [
-  //       {day: 'Monday', time: '10:00 AM - 9:00 PM'},
-  //       {day: 'Tuesday', time: '10:00 AM - 9:00 PM'},
-  //       {day: 'Wednesday', time: '10:00 AM - 8:00 PM'},
-  //       {day: 'Thursday', time: '10:00 AM - 9:00 PM'},
-  //       {day: 'Friday', time: '10:00 AM - 8:00 PM'},
-  //       {day: 'Saturday', time: '10:00 AM - 8:00 PM'},
-  //       {day: 'Sunday', time: '11:00 AM - 6:00 PM'},
-  //     ]
-  //   },
-  //   {
-  //     name: 'Roosevelt Blvd',
-  //     miles: '2.5',
-  //     address: '4640 Roosevelt Blvd, Philadelphia, PA 19124',
-  //     phone: '215 533 5011 ',
-  //     timings: [
-  //       {day: 'Monday', time: '10:00 AM - 9:00 PM'},
-  //       {day: 'Tuesday', time: '10:00 AM - 9:00 PM'},
-  //       {day: 'Wednesday', time: '10:00 AM - 8:00 PM'},
-  //       {day: 'Thursday', time: '10:00 AM - 9:00 PM'},
-  //       {day: 'Friday', time: '10:00 AM - 8:00 PM'},
-  //       {day: 'Saturday', time: '10:00 AM - 8:00 PM'},
-  //       {day: 'Sunday', time: '11:00 AM - 6:00 PM'},
-  //     ]
-  //   },
-  // ]
 
   const [nearStores, setNearStores] = useState([]);
 
@@ -92,9 +15,7 @@ const LocationTab = ({selectedTab, setSelectedTab}) => {
     const api = `/api/v1/stores/get`;
     try {
       const response = await axios.get(url+api);
-      console.log("res response ", response)
       if(response.status === 200) {
-        console.log("Response", response);
         setNearStores(response.data.data);
       }else {
         console.error("Error Fetching Stores Data", response.status);

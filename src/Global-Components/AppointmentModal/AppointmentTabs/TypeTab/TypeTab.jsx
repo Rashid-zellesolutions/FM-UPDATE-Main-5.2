@@ -5,7 +5,6 @@ import { CiVideoOn } from "react-icons/ci";
 
 const TypeTab = ({selectedTab, setSelectedTab}) => {
 
-  console.log("Select Tab", selectedTab)
 
   const chatOptions = [
     {id: 1, title: 'In-Store', description: 'Select a showroom to meet with a Home Furnishing Consultant', icon: <IoStorefrontOutline size={20} color='#4487C5' />},

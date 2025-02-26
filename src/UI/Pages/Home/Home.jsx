@@ -103,7 +103,6 @@ const Home = () => {
   }, []);
 
 
-  // console.log("tranding now data check", trendingNow);
 
   const navigate = useNavigate();
 

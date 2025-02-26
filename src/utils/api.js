@@ -1,5 +1,5 @@
-// export const url = `https://fm.skyhub.pk`
-export const url = `https://fm.zellehost.com`
+export const url = `https://fm.skyhub.pk`
+// export const url = `https://fm.zellehost.com`
 // export const url = `http://localhost:8080`
 export const siteUrl = `https://furnituremecca.zellesolutions.com`
 // export const url = `https://furniture-mecca-apis.vercel.app`
@@ -70,7 +70,6 @@ export const transformReviewData = (reviews) => {
     }
   });
 
-  // console.log(result,"here is result",reviews)
 
   return result;
 };
@@ -149,7 +148,6 @@ export async function getGoogleStoreDetails(placeId) {
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-    console.log(response, "placeId")
     return await response.json();
   } catch (error) {
     console.error("An error occurred:", error);

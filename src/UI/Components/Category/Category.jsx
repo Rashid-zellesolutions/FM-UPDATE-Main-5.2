@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom';
 
 const Category = ({ title, categoryData, handleNavigate, categorySlug }) => {
  const [isloaded,setIsLoaded] = useState(false);
-  console.log("CAtegory Slug", categorySlug)
 
   return (
 

@@ -15,10 +15,9 @@
 //     const getFinanceBannerImagesFRomApi = async () => {
 //         try {
 //             const response = await axios.get(`${url}/api/v1/pages/home/finance-slider/get`);
-//             // console.log("finance images", response.data.homeSliders)
 //             setIMages(response.data.homeSliders)
 //         } catch (error) {
-//             console.log("error", error);
+//             console.error("error", error);
 //         }
 //     }
 //     useEffect(() => {

@@ -199,36 +199,6 @@ const ProductGallery = (
         });
     };
 
-    // const handleZoomImage = () => {
-    //     console.log("zoom func call")
-    //     setZoomIn(!zoomIn);
-    //     if (!isClick) {
-    //         setPosition({ x: 0, y: 0 }); // Reset position when zooming out
-    //     }
-    // };
-
-    // const handleMouseDown = (e) => {
-    //     if (!zoomIn) return;
-    //     setDragging(true);
-    //     setIsClick(true);
-    //     setStartPos({ x: e.clientX - position.x, y: e.clientY - position.y });
-    // };
-
-    // const handleMouseMove = (e) => {
-    //     if (!dragging || !zoomIn) return;
-    //     e.preventDefault();
-
-    //     const newX = e.clientX - startPos.x;
-    //     const newY = e.clientY - startPos.y;
-
-    //     setPosition({ x: newX, y: newY });
-    //     setIsClick(false);
-    // };
-
-    // const handleMouseUp = () => {
-    //     setDragging(false);
-    // };
-
     return (
         <>
             <div className='product-gallery-main-container'>

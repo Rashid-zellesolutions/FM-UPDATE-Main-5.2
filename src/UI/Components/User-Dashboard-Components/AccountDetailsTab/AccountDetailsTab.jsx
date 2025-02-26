@@ -15,7 +15,6 @@ const AccountDetailsTab = () => {
   }
   const handleUpdateUserDetails = () => {
     setUserDetails(updatedUserDetails)
-    console.log("updated user details", updatedUserDetails)
   }
   return (
     <div className='account-details-main-section'>

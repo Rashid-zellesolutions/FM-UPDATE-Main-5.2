@@ -70,7 +70,6 @@ function StoreLocationMap({ storesData,selectedLocation }) {
   });
 
   const [location, setLocation] = useState(null);
-  console.log("stores Data in map ", storesData)
   // const 
 
   // const handleMarkerClick = (location) => {

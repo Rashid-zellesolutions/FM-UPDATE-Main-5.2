@@ -54,7 +54,6 @@ const SimillerProducts = ({collection, isPadding}) => {
     const getchMyCollectionProducts = async () => {
         const products = await fetchData();
         setData(products);
-        // console.log("my colection data", data);
     }
     useEffect(() => {
         getchMyCollectionProducts()

@@ -44,7 +44,6 @@ const CreditCard = () => {
 
 
     useEffect(() => {
-        console.log(activePaymentMethods, "here are active payment");
 
     }, [activePaymentMethods])
 
@@ -128,7 +127,6 @@ const CreditCard = () => {
                                     card_number: formattedValue,
                                     card_type: cardType, // Set the detected card type
                                 }));
-                                console.log(creditCardData, "data")
                             }}
 
                         />

@@ -20,7 +20,6 @@ import RatingReview from '../starRating/starRating';
 
 const QuickView = ({ setQuickViewProduct, quickViewClose, quickViewShow, }) => {
 
-    // console.log("quick view set show", setQuickViewShow)
 
     const {
         cart,
@@ -97,7 +96,6 @@ const QuickView = ({ setQuickViewProduct, quickViewClose, quickViewShow, }) => {
     const notifyRemove = (str) => toast.error(str)
 
     const handleWishList = (item) => {
-        console.log("item", item)
         if (isInWishList(item.uid)) {
             removeFromList(item.uid);
             notifyRemove('Removed from wish list', {

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './SingleBlog.css'
 import BlogHead from '../../Components/Blogs-Components/BlogsHead/BlogHead'
 import { Link, useLocation, useParams, useNavigate } from 'react-router-dom'
@@ -18,13 +18,34 @@ const SingleBlog = () => {
     const location = useLocation()
     const navigate = useNavigate();
     const { slug } = useParams();
-    const {blogs} = useBlog();
+
+    const {
+        blogs,
+        fetchBlogCategories,
+        blogCategories,
+        setBlogCategories,
+        fetchBlogs,
+        activeCategory,
+        setActiveCategory
+    } = useBlog();
+
+
+    
+
     let singleBlog = location.state || {}
     if (!singleBlog.slug) {
         // If `singleBlog` is not available in `location.state`, find it in the `blogs` array
-        singleBlog = blogs.find((blog) => blog.slug === parseInt(slug)) || {};
+        
+        singleBlog = blogs.find((blog) => blog.slug === slug) || {};
     }
-    console.log("single blog", singleBlog)
+
+    useEffect(() => {
+        fetchBlogCategories()
+    }, [])
+
+    useEffect(() => {
+        fetchBlogs(singleBlog?.category?._id)
+    }, [])
 
     const socialLinks = [
         { icon: facebook, link: '#' },
@@ -34,17 +55,15 @@ const SingleBlog = () => {
         { icon: mail, link: '#' },
     ]
 
-    const extractTextFromHTML = (htmlContent) => {
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(htmlContent, 'text/html');
-        return doc.body.textContent || doc.body.innerText
-    }
-    // const { blogs } = useBlog()
-    const filteredBlogs = blogs.filter((item) => item.slug !== singleBlog.slug);
+    
+
+    const filteredBlogs = blogs.filter((item) => item.slug !== singleBlog?.[0]?.slug);
+
+    
 
     const getSurroundingBlogs = (slug) => {
         const currentIndex = blogs.findIndex((item) => item.slug === slug); // Find the index of the current blog
-        console.log("current blog index", currentIndex);
+        
 
         if (currentIndex === -1) {
             return { beforeId: null, afterId: null }; // If the blog is not found
@@ -57,23 +76,17 @@ const SingleBlog = () => {
 
         return { beforeIndex, afterIndex };
 
-        // Calculate beforeIndex and afterIndex
-    // const beforeIndex = currentIndex === 0 ? null : currentIndex - 1; // If first blog, no previous
-    // const afterIndex = currentIndex + 1 < blogs.length ? currentIndex + 1 : null; // If last blog, no next
-
-    // return { beforeIndex, afterIndex };
     };
 
 
     // const { beforeId, afterId } = getSurroundingBlogs(singleBlog.id);
     const { beforeIndex, afterIndex } = getSurroundingBlogs(singleBlog.slug);
-    console.log("beforeIndex", beforeIndex);
-    console.log("afterIndex", afterIndex);
+    
 
     const navigateToSingleBlog = (item) => {
-        console.log("item", item)
         navigate(`/single-blog/${item.slug}`, { state: item });
     }
+
 
 
 
@@ -83,17 +96,19 @@ const SingleBlog = () => {
                 <h3 className='single-blog-main-heading'>Exciting Blogs Created by <span> Furniture Mecca </span></h3>
                 <h3 className='mobile-view-single-blog-main-heading'>Exciting Blogs</h3>
             </div>
-            <BlogHead />
+            <BlogHead blogCategories={blogCategories} />
+
             <div className='single-blog-content-section'>
+
                 <div className='single-blog-left-content'>
                     <div className='single-blog-title-and-publish-date'>
                         <h3 className='single-blog-name'>{singleBlog.title}</h3>
-                        <p className='single-blog-post-date'>{singleBlog.postDate}</p>
+                        <p className='single-blog-post-date'>{singleBlog.publishedDate}</p>
                     </div>
                     <div className='single-blog-main-image-div'>
-                        <img src={`${url}${singleBlog?.img}`} alt='single-blog-image' className='single-blog-main-image' />
+                        <img src={`${url}${singleBlog?.image?.image_url}`} alt='single-blog-image' className='single-blog-main-image' />
                     </div>
-                    <div className='single-blog-columns' dangerouslySetInnerHTML={{ __html: singleBlog.blogDescription }}>
+                    <div className='single-blog-columns' dangerouslySetInnerHTML={{ __html: singleBlog.content }}>
                     </div>
                     <div className='single-blog-social-links-div'>
                         <p>Share this: </p>
@@ -106,10 +121,10 @@ const SingleBlog = () => {
                         </div>
                     </div>
                     <div className='prev-and-next-blog-section' >
-                        <div className='prev-single-blog' onClick={() => navigateToSingleBlog(blogs[beforeIndex])}>
+                        <div className='prev-single-blog' onClick={() => navigateToSingleBlog(blogs?.[beforeIndex])}>
                             <p>Previous Blog</p>
                             {beforeIndex !== null ? (
-                                <h3>{blogs[beforeIndex].title}</h3> // Show the title of the "before" blog
+                                <h3>{blogs?.[beforeIndex]?.title}</h3> // Show the title of the "before" blog
                             ) : (
                                 <h3>No Prev Blog</h3>
                             )}
@@ -117,17 +132,18 @@ const SingleBlog = () => {
                         Bob’s Supports Operation Homefront Transitional Housing (Apartments)
                     </h3> */}
                         </div>
-                        <div className='next-single-blog' onClick={() => navigateToSingleBlog(blogs[afterIndex])}>
+                        <div className='next-single-blog' onClick={() => navigateToSingleBlog(blogs?.[afterIndex])}>
                             <p>Next Blog</p>
                             {afterIndex !== null ? (
-                                <h3>{blogs[afterIndex].title}</h3> // Show the title of the "before" blog
+                                <h3>{blogs?.[afterIndex]?.title}</h3> // Show the title of the "before" blog
                             ) : (
-                                <h3>No Prev Blog</h3>
+                                <h3>No Next Blog</h3>
                             )}
                             {/* <h3>Bob’s Supports Operation Homefront Transitional Housing (Apartments)</h3> */}
                         </div>
                     </div>
                 </div>
+
                 <div className='single-blog-right-content'>
                     <TrandingBlogs blogs={filteredBlogs} />
                     <FirstToKnow />

@@ -98,7 +98,6 @@ export const MyOrdersProvider = ({ children }) => {
           }
       
           const data = await response.json();
-          console.log("API Response:", data);
           setLoader(false)
           return data; // You can return the data for further processing
         } catch (error) {

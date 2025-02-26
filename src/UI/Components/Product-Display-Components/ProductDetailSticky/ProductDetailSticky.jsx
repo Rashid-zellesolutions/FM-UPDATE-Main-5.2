@@ -151,18 +151,14 @@ const ProductDetailSticky = (
   const [protectionCheck, setProtectionCheck] = useState(false)
 
   const handleProtection = (key, isChecked) => {
-    console.log("value is check", isChecked)
     setProtectionCheck(!protectionCheck)
     if (key === 'single-protection') {
       setIsSingleProtectionChecked(isChecked);
-      console.log("is protected on first", isSingleProtectionChecked)
       setIsProtected(isSingleProtectionChecked)
-      console.log("is protected after value change", isProtected)
     }
   };
 
   useEffect(() => {
-    console.log("protect value", isSingleProtectionChecked)
   }, [isSingleProtectionChecked,])
 
   // Add To WishList and Remove
@@ -189,7 +185,6 @@ const ProductDetailSticky = (
   const [isClick, setIsClick] = useState(false);
 
   const handleZoomImage = () => {
-    console.log("zoom func call")
     setZoomIn(!zoomIn);
     if (!isClick) {
       setPosition({ x: 0, y: 0 }); // Reset position when zooming out
@@ -264,6 +259,7 @@ const ProductDetailSticky = (
   return (
     <div className='product-detail-sticky-section-main-container'>
       <div className='product-detail-sticky-gallery-and-detail'>
+
         <div className='product-detail-product-gallery-section'>
           <ProductGallery
             productData={product}
@@ -291,6 +287,7 @@ const ProductDetailSticky = (
             <div className='product-detail-name-and-rating-etc'>
               <h3>{product?.name}</h3>
               <p>SKU : {product.sku}</p>
+              
               <div className='product-detail-rating-and-share'>
                 <RatingReview rating={(product?.average_rating)} disabled={true} size={"20px"} />
                 <span

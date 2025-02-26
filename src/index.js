@@ -23,13 +23,11 @@ import { GlobalContextProvider } from './context/GlobalContext/globalContext';
 import { ActiveSalePageProvider } from './context/ActiveSalePageContext/ActiveSalePageContext';
 import { BlogsProvider } from './context/BlogsContext/blogsContext';
 import { UserDashboardCtxProvider } from './context/userDashboardContext/userDashboard';
-import ScrollRestoration from './utils/ScrollToTop/ScrollToTop';
 import { ProductArchiveProvider } from './context/ActiveSalePageContext/productArchiveContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    {/* <APILoadingStatus key={AIzaSyD8f3iK7p7riixIlOhI63h_uGGGguP4Vr0}> */}
     <HelmetProvider>
       <UserDashboardCtxProvider>
       <SEOctxProvider>
@@ -41,7 +39,6 @@ root.render(
                   <LPContentProvider>
                     <OrderProvivder>
                       <NavigationProvider>
-                        {/* <SingleProductProvider> */}
                         <AddCartProvider>
                           <ProductProvider>
 
@@ -53,7 +50,6 @@ root.render(
                                     <Provider store={store}>
                                       <Router>
                                         <ScrollToTop>
-                                        {/* <ScrollRestoration /> */}
                                           <App />
                                         </ScrollToTop>
                                       </Router>
@@ -66,7 +62,6 @@ root.render(
 
                           </ProductProvider>
                         </AddCartProvider>
-                        {/* </SingleProductProvider> */}
                       </NavigationProvider>
                     </OrderProvivder>
                   </LPContentProvider>
@@ -78,10 +73,5 @@ root.render(
       </SEOctxProvider>
       </UserDashboardCtxProvider>
     </HelmetProvider>
-    {/* </APILoadingStatus> */}
   </React.StrictMode>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals

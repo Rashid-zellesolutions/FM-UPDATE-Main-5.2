@@ -27,13 +27,10 @@ export const CartProvider = ({ children }) => {
 
     const handleCartProtected = () => {
         setIsCartProtected(!isCartProtected);
-        console.log("handle cart protected", isCartProtected)
         setCartProducts((prevCart) => ({
             ...prevCart,
             is_all_protected: prevCart.is_all_protected === 0 ? 1 : 0,
         }));
-        console.log("cart protection data", cartProducts)
-        console.log("cart protection", isCartProtected)
     }
 
     const handleCartAssembly = () => {
@@ -120,12 +117,10 @@ export const CartProvider = ({ children }) => {
     // save cart to local storage when eer it changes
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(cart));
-        // console.log("cart storage", cart)
     }, [cart])
     // save cart to local storage when eer it changes
     useEffect(() => {
         localStorage.setItem('cart2', JSON.stringify(cartProducts));
-        // console.log("cart storage", cart)
     }, [cartProducts])
 
     const resetCart = () => {
@@ -152,7 +147,6 @@ export const CartProvider = ({ children }) => {
 
     useEffect(() => {
         localStorage.setItem('singleProduct', JSON.stringify(singleProduct));
-        // console.log("cart storage", cart)
     }, [singleProduct])
 
     const addSingleProduct = (product) => {
@@ -189,7 +183,6 @@ export const CartProvider = ({ children }) => {
                         total_price: parseFloat(product.regular_price) * (product.quantity || 1)
                     }
                 };
-                // console.log("new quantity added from local", cart)
                 return [...prevCart, newProduct]
 
             }
@@ -355,7 +348,6 @@ export const CartProvider = ({ children }) => {
             // Calculate savings
             savings += (regularPrice - salePrice) * quantity;
         });
-        // console.log(total, savings, (isProfessionalAssembly ? professionalAssemblyValue : 0), (isCartProtected ? totalProtectionValue : 0), "here uis total")
         setSubTotal(total + (isCartProtected ? totalProtectionValue : 0) + (isProfessionalAssembly ? professionalAssemblyValue : 0));
 
         // Assuming you have a state or method to update the savings

@@ -15,10 +15,10 @@ const TrandingBlogs = ({blogs}) => {
             <div className='tranding-blogs-cards'>
                 {blogs?.map((item, index) => (
                     <div className='tranding-single-blog-card' onClick={() => navigateToSingleBlog(item)}>
-                        <img src={`${url}${item.img}`} alt='imm' className='tranding-blog-man-image' />
+                        <img src={`${url}${item.image.image_url}`} alt='imm' className='tranding-blog-man-image' />
                         <div className='tranding-blog-content'>
                             <h3 className='tranding-blog-name'>{item.title}</h3>
-                            <p className='tranding-blog-post-date'>{item.postDate}</p>
+                            <p className='tranding-blog-post-date'>{item.publishedDate}</p>
                         </div>
                     </div>
                 ))}

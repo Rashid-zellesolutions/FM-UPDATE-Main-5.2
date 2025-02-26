@@ -15,7 +15,6 @@ const LoginMobileView = ({mobileSignupClicked, handleRegisteView}) => {
 
     const handleSubmitLogin = async (e) => {
         e.preventDefault();
-        console.log('login button clicked');
         // Simple validation for the form
        
         setError('');
@@ -36,7 +35,6 @@ const LoginMobileView = ({mobileSignupClicked, handleRegisteView}) => {
           const result = await response.json();
     
           if (response.ok) {
-            console.log(result, "here is the resposne");
             setToken(result.token,result?.data?._id)
             setLoginEmail('');
             setLoginPassword('');
@@ -55,7 +53,6 @@ const LoginMobileView = ({mobileSignupClicked, handleRegisteView}) => {
           setLoading(false);
           setLoading(false);
         }
-        console.log("after logic run")
       };
 
   return (

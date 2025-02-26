@@ -52,7 +52,6 @@ export default function WriteReview({ product_id, productData, review_enable, pr
 
             if (response.ok) {
                 const result = await response.json();
-                console.log('Review Submitted Successfully:', result);
                 setLoading(false);
                 setSuccessPopup(true);
                 setName("")

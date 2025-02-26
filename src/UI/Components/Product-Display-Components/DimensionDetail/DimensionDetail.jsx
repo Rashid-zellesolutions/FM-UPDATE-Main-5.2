@@ -4,7 +4,6 @@ import dimensionImage from '../../../../Assets/dimention-image.webp'
 import { url } from '../../../../utils/api';
 
 const DimensionDetail = ({productData}) => {
-  console.log("product dimentions image", productData)
   // weight_dimension
 
   return (

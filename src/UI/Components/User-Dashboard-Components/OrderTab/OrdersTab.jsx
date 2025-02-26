@@ -142,7 +142,6 @@ const OrdersTab = () => {
     setViewProductModal(true);
     setSelectedProductData(data);
   }
-  console.log("selected product data", selectedProductData);
   return (
     <div className='dash-orders-main-container'>
         {loading && <Loader /> }

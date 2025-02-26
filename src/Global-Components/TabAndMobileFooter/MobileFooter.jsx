@@ -31,7 +31,6 @@ const MobileFooter = ({ checkoutPage }) => {
             let response;
             response = await axios.get(api);
             const stores = response.data.data;
-            //   console.log(response,"here isth")
             setGoogleRating(stores)
         } catch (error) {
             console.error("Error fetching stores data", error);

@@ -20,9 +20,7 @@ const WhatWeOffer = ({isProtected, setIsProtected}) => {
     const handleCheckboxChange = (key, isChecked) => {
         if (key === 'single-protection') {
             setIsSingleProtectionChecked(isChecked);
-            console.log("is protected on first", isSingleProtectionChecked)
             setIsProtected(isSingleProtectionChecked)
-            console.log("is protected after value change", isProtected)
         }
     };
 

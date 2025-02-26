@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -40,7 +40,21 @@ function SampleNextArrow(props) {
 const BlogSlider = () => {
 
   const navigate = useNavigate()
-  const { blogs } = useBlog()
+  const { 
+    blogs,
+    fetchBlogCategories,
+    blogCategories,
+    setBlogCategories,
+    fetchBlogs,
+    activeCategory,
+    setActiveCategory
+   } = useBlog()
+
+   useEffect(() => {
+    fetchBlogs(null)
+   }, [])
+
+
 
   const maxLength = 50;
 
@@ -97,21 +111,21 @@ const BlogSlider = () => {
         turning your home into a haven filled with both charm and character.
       </p>
       <div className='blogs-slider-main-container'>
-        {blogs && blogs.length > 0 ? (
+        {blogs && blogs?.length > 0 ? (
           <Slider {...settings}>
-            {blogs.map((item, index) => (
+            {blogs && blogs.map((item, index) => (
               <div key={index} className='blog-cards-container'>
                 <BlogCard
                   key={index}
                   navigateToSingleBlog={() => handleNavigateToSingleBlog(item)}
-                  img={item.img}
-                  category={item.category}
+                  img={item.image.image_url}
+                  category={item.category.name}
                   title={truncateTitle(item.title, maxLength)}
-                  createdBy={item.createdBy}
-                  comments={item.comments}
-                  date={item.date}
-                  month={item.month}
-                  start={item.start}
+                  createdBy={item.author}
+                  // comments={item.comments}
+                  // date={item.date}
+                  // month={item.month}
+                  // start={item.start}
                 />
               </div>
             ))}

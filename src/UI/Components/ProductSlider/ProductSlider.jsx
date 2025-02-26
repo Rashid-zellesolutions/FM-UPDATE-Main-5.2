@@ -49,14 +49,11 @@ const ProductSlider = ({ cardData }) => {
   const { addToCart } = useCart()
 
   const handleCardClicked = (item) => {
-    // console.log("item clicked", item)
     // addSingleProduct(item)
     addSingleProduct(item)
     addToCart(item)
     navigate(`/product/${item.slug}`, { state: item })
     // addQuantityIntoProduct(item.uid, setAllProducts, allProducts)
-    // console.log("product uid", item.uid)
-    // console.log("added quantity into payload", allProducts)
 
   }
 

@@ -59,7 +59,6 @@ const PaymentOptions = ({ onSelectedLabel }) => {
     };
 
     useEffect(() => {
-        console.log(activePaymentMethods, "here are active payment");
 
     }, [activePaymentMethods])
 
@@ -133,7 +132,6 @@ const PaymentOptions = ({ onSelectedLabel }) => {
                                     card_number: formattedValue,
                                     card_type: cardType, // Set the detected card type
                                 }));
-                                console.log(creditCardData, "data")
                             }}
                         />
                     </label>
