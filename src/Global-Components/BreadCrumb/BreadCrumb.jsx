@@ -29,9 +29,13 @@ const Breadcrumb = ({ category, productName, sku, categorySlug }) => {
         return null; // Don't show anything if on the home page
     }
 
+    const pagePath = window.location.pathname
+    const basePath = pagePath.split('/')[1]; // Extracts "product"
+    const result = `/${basePath}`;
+
     return (
         <nav>
-            <ol className="bread-crumb-list">
+            <ol className={`bread-crumb-list ${result === '/product' ? 'hide-breadcrumb' : ''}`}>
                 {/* Home Link */}
                 <li style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
                     <Link to="/">

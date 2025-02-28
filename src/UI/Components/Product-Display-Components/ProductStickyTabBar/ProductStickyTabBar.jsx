@@ -19,18 +19,22 @@ const ProductStickyTabBar = (
         quantity
     }) => {
 
+    useEffect(() => { console.log("isSticky value check", isSticky) }, [isSticky])
+
+        
+
 
     const tabBarItems = ['Description', 'Details', 'Recommendations', 'Reviews'];
     const [activeTab, setIsActiveTab] = useState('Description');
     const [searchLocation, setSearchLocation] = useState(false);
     // const [isSticky, setIsSticky] = useState(false);
-
+ 
     useEffect(() => {
         const handleScroll = () => {
             const container = document.querySelector('.product-sticky-tab-bar-main-container');
             if (container) {
                 const rect = container.getBoundingClientRect();
-                if (rect.top <= 0) {
+                if (rect.top <= 51) {
                     setIsSticky(true);
                 } else {
                     setIsSticky(false);
@@ -50,6 +54,17 @@ const ProductStickyTabBar = (
             })
             setIsActiveTab(currentTab)
             // setPrevScrollY(currentScrollY);
+
+            // ✅ NEW: If "Reviews" tab is reached via scrolling, scroll the tab container to the last position
+            const tabContainer = document.querySelector('.product-sticky-fixed-tabs-container');
+            if (tabContainer) {
+                if (currentTab === 'Reviews') {
+                    tabContainer.scrollLeft = tabContainer.scrollWidth; // ✅ Scroll to last tab when reaching "Reviews"
+                } else if (currentTab === 'Description') {
+                    tabContainer.scrollLeft = 0; // ✅ Scroll back to the first tab when reaching "Description"
+                }
+            }
+
         }
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll)
@@ -59,6 +74,16 @@ const ProductStickyTabBar = (
         const section = sectionRefs[tab]?.current;
         if (section) {
             section.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        }
+
+        // ✅ NEW: Scroll the tab container to the last position if "Reviews" is clicked
+        const tabContainer = document.querySelector('.product-sticky-fixed-tabs-container');
+        if (tabContainer) {
+            if (tab === 'Reviews') {
+                tabContainer.scrollLeft = tabContainer.scrollWidth; // ✅ Moves to the last tab when "Reviews" is clicked
+            } else if (tab === 'Description') {
+                tabContainer.scrollLeft = 0; // ✅ Moves to the first tab when "Description" is clicked
+            }
         }
     }
 
@@ -115,10 +140,6 @@ const ProductStickyTabBar = (
                                 ) : (
                                     <h3>{formatedPrice(productData?.regular_price)}</h3>
                                 )}
-                                {/* <span>
-                                    <h3>$1999.00</h3>
-                                    <del>was $2100.00</del>
-                                </span> */}
                             </div>
                             <button
                                 onClick={() => {
@@ -132,7 +153,7 @@ const ProductStickyTabBar = (
                         </div>
                     </div>
 
-                    <div className='mobile-product-sticky-fixed-add-to-cart'>
+                    {/* <div className='mobile-product-sticky-fixed-add-to-cart'>
                         <div className='mobile-sticky-product-sale-and-price'>
                             <h3>Sale</h3>
                             <p>{formatedPrice(productData?.sale_price)}</p>
@@ -146,7 +167,7 @@ const ProductStickyTabBar = (
                         >
                             Add To Cart
                         </button>
-                    </div>
+                    </div> */}
 
 
                     <div className='product-sticky-fixed-tabs-container'>
@@ -161,6 +182,8 @@ const ProductStickyTabBar = (
                         ))}
                     </div>
                 </div>}
+
+
                 <div className='product-sticky-tab-bar'>
                     {tabBarItems.map((item, index) => (
                         <div

@@ -40,7 +40,7 @@
     transition: all 0.3s ease-in-out;
 }
 
-.single-time-slot:hover{
+.single-time-slot:hover {
     background-color: #4487C5;
     color: #fff;
 }
@@ -58,11 +58,13 @@
 }
 
 .react-calendar__tile--weekend {
-  color: inherit !important; /* or set to your desired color */
+    color: inherit !important;
+    /* or set to your desired color */
 }
 
 .custom-tile {
-  border: 1px solid var(--border-color) !important; /* adjust color and style as needed */
+    border: 1px solid var(--border-color) !important;
+    /* adjust color and style as needed */
 }
 
 .react-calendar__month-view__weekdays__weekday abbr[title] {
@@ -72,6 +74,7 @@
 .react-calendar__month-view__days .react-calendar__tile react-calendar__month-view__days__day {
     border: 1px solid var(--border-color) !important;
 }
+
 .react-calendar__month-view__weekdays__weekday {
     border: 1px solid var(--border-color) !important;
 }
@@ -80,3 +83,23 @@
     border-radius: 0px !important;
 }
 
+
+
+@media only screen and (max-width: 480px) {
+    .date-time-tab-main-container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .date-time-tab-calender-section {
+        width: 100%;
+    }
+
+    .date-time-tab-times-slots {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+}

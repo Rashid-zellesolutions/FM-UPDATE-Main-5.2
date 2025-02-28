@@ -28,6 +28,10 @@
         padding: 0 10px;
     }
 
+    .bread-crumb-list.hide-breadcrumb {
+        display: none;
+    }
+
     .bread-crumb-list li a {
         font-size: 9px;
     }

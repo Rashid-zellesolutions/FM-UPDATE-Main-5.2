@@ -34,6 +34,7 @@ import RatingReview from '../starRating/starRating';
 import ProductCardTwo from '../ProductCardTwo/ProductCardTwo';
 import { useProductArchive } from '../../../context/ActiveSalePageContext/productArchiveContext';
 import { filter } from 'lodash';
+import SortModal from '../../Modals/SortModal/SortModal';
 
 
 const Products = () => {
@@ -46,12 +47,12 @@ const Products = () => {
         removeFromCart,
     } = useCart();
 
-    const { 
-        products, 
-        setProducts, 
-        activePage, 
-        setActivePage, 
-        activePageIndex, 
+    const {
+        products,
+        setProducts,
+        activePage,
+        setActivePage,
+        activePageIndex,
         setActivePageIndex,
         allFilters,
         setAllFilters,
@@ -72,6 +73,7 @@ const Products = () => {
             setViewAccording('false')
         }
     }, [])
+
     const [searchParams, setSearchParams] = useSearchParams();
 
     // state variables
@@ -127,7 +129,6 @@ const Products = () => {
             setProducts(data);
             setColors(colors)
 
-
             fetchFilters();
             setSearchParams({ page: activePage })
         } catch (error) {
@@ -166,7 +167,6 @@ const Products = () => {
                 sortedProducts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
         }
         setProducts(sortedProducts)
-
     }
 
     // Fetch Filters
@@ -187,8 +187,6 @@ const Products = () => {
             console.error("Server Error");
         }
     }
-
-    
 
     const filterProducts = async (filter) => {
         const api = `/api/v1/products/by-category?categorySlug=${subCategorySlug}&page=${activePage}&${filter}`;
@@ -213,10 +211,6 @@ const Products = () => {
         }
     }, [priceRange, allFilters]);
 
-    // useEffect(() => {
-    //         fetchProductData()
-    // }, [query]);
-
     const shouldFetch = useRef(true); // Track if fetch should run
 
     useEffect(() => {
@@ -238,6 +232,7 @@ const Products = () => {
         setQuickView(true);
         setQuickViewProduct(item)
     }
+
     const handleQuickViewClose = () => { setQuickView(false) }
 
     const handleProductClick = (item) => {
@@ -279,6 +274,7 @@ const Products = () => {
         setActiveGrid(grid);
         setSelectedGrid(grid)
     }
+
     const handleMobileFilters = () => {
         setMobileFilters(true)
     }
@@ -371,7 +367,6 @@ const Products = () => {
             params.delete('rating');
         }
 
-
         const currentPage = searchParams.get('page');
         params.set('page', currentPage);
 
@@ -414,9 +409,6 @@ const Products = () => {
     useEffect(() => {
     }, [colorValue, categoryValue, ratingValue])
 
-    // Pagination
-    // const [activePageIndex, setActivePageIndex] = useState(1);
-
     const handleActivePage = (index) => {
         setActivePage(index);
         setActivePageIndex(index);
@@ -449,20 +441,12 @@ const Products = () => {
                 top: 0,
                 behavior: 'smooth'
             })
-            // setTimeout(() => {
-            //     window.scrollTo({
-            //         top: 0,
-            //         behavior: 'smooth'
-            //     });
-            // }, 0);
         }
     };
 
 
     useEffect(() => {
-        // if(activePageIndex !== activePage){
-            fetchProductData(activePage)
-        // }
+        fetchProductData(activePage)
     }, [activePageIndex]);
 
 
@@ -477,7 +461,7 @@ const Products = () => {
         const extractedValue = segments[2];
         try {
             const response = await axios.get(`${url}${api}`);
-            if(response.status === 200) {
+            if (response.status === 200) {
                 const result = response.data.sub_categories
                 const filteredData = result.filter((item) => item.slug !== extractedValue)
                 setSubCategories(filteredData)
@@ -489,23 +473,15 @@ const Products = () => {
         }
     }
 
-    useEffect(() => { 
-            getSubCategories() 
-        
+    useEffect(() => {
+        getSubCategories()
     }, [subCategorySlug])
 
-    useEffect(() => {  } , [subCategories])
-
-
-
-
-
-
+    useEffect(() => { }, [subCategories])
 
     const handleNavigate = (slug) => {
         navigate(`/${categorySlug}/${slug}`)
     }
-
 
     const getDeliveryDate = () => {
         const options = { weekday: "long", month: "short", day: "numeric" };
@@ -527,8 +503,17 @@ const Products = () => {
         setIsDeliveryCheck(e.target.checked);
     }
 
+    const [showSortModal, setShowSortModal] = useState(false);
+    const [selectedOption, setSelectedOption] = useState('')
+    const handleOpenSortModal = () => {
+        setShowSortModal(true)
+    }
 
+    const handleCloseSortModal = () => {
+        setShowSortModal(false)
+    }
 
+    useEffect(() => {console.log("Selected Sort Option", selectedOption)})
 
     return (
         <div className='products-main-container'>
@@ -715,7 +700,7 @@ const Products = () => {
                                 <FaTruck size={20} color={isDeliveryCheck ? '#4487C5' : 'rgba(89, 89, 89, 0.5)'} />
                                 <span>
                                     <p>Get it by</p>
-                                    <h3 style={{ color: `${isDeliveryCheck ? '#4487C5' : '#595959'}`}}>{getDeliveryDate()}</h3>
+                                    <h3 style={{ color: `${isDeliveryCheck ? '#4487C5' : '#595959'}` }}>{getDeliveryDate()}</h3>
                                 </span>
                             </div>
 
@@ -837,15 +822,26 @@ const Products = () => {
                                     />
                                     Prev
                                 </span>
-                                {Array.from({ length: totalPages?.totalPages }).map((_, index) => (
-                                    <span
-                                        key={index}
-                                        onClick={() => handleActivePage(index + 1)}
-                                        className={activePageIndex === index + 1 ? 'active-page-span' : ''}
-                                    >
-                                        {index + 1}
-                                    </span>
-                                ))}
+                                {Array.from({ length: totalPages?.totalPages }).map((_, index) => {
+
+                                    const pageNumber = index + 1;
+                                    const shouldShow =
+                                        pageNumber === activePageIndex ||
+                                        pageNumber === activePageIndex - 1 ||
+                                        pageNumber === activePageIndex + 1 ||
+                                        (activePageIndex === 1 && pageNumber === 3) ||
+                                        (activePageIndex === totalPages?.totalPages && pageNumber === totalPages?.totalPages - 2);
+
+                                    return shouldShow ? (
+                                        <span
+                                            key={pageNumber}
+                                            onClick={() => handleActivePage(pageNumber)}
+                                            className={activePageIndex === pageNumber ? 'active-page-span' : ''}
+                                        >
+                                            {pageNumber}
+                                        </span>
+                                    ) : null;
+                                })}
                                 <span
                                     className={activePageIndex === totalPages?.totalPages ? 'disabled' : ''}
                                     onClick={handleNextPage}
@@ -872,7 +868,9 @@ const Products = () => {
 
             {/* Mobile view product section */}
             <div className='mobile-view-product-and-filter-section'>
+
                 <div className='mobile-view-filters-section'>
+
                     <div className='mobile-view-filter-head'>
                         <div className='mobile-view-product-count'>
                             <p>214 items</p>
@@ -886,17 +884,20 @@ const Products = () => {
                             </div>
                         </div>
                     </div>
+
                     <div className='mobile-view-filter-body'>
                         <button className='mobile-view-show-filters' onClick={handleMobileFilters}>
                             <img src={filterHumberger} alt='filter' />
                             Show Filter
                         </button>
-                        <button className={`mobile-view-sort-btn`}>
+                        <button className={`mobile-view-sort-btn`} onClick={handleOpenSortModal}>
                             <img src={arrowUpDown} alt='arrow up down' />
                             Sort
                         </button>
                     </div>
+
                 </div>
+
                 <div className={`${selectedGrid === 'single-col' ? 'mobile-view-product-single-column' : 'mobile-view-products-main-container'} `}>
 
                     {products.length === 0 ? (
@@ -969,15 +970,28 @@ const Products = () => {
                             />
                             <p className='hide-on-mob'> Previous </p>
                         </span>
-                        {Array.from({ length: totalPages?.totalPages }).map((_, index) => (
-                            <span
-                                key={index}
-                                onClick={() => handleActivePage(index + 1)}
-                                className={activePageIndex === index + 1 ? 'active-page-span' : ''}
-                            >
-                                {index + 1}
-                            </span>
-                        ))}
+
+                        {Array.from({ length: totalPages?.totalPages }).map((_, index) => {
+
+                            const pageNumber = index + 1;
+                            const shouldShow =
+                                pageNumber === activePageIndex ||
+                                pageNumber === activePageIndex - 1 ||
+                                pageNumber === activePageIndex + 1 ||
+                                (activePageIndex === 1 && pageNumber === 3) ||
+                                (activePageIndex === totalPages?.totalPages && pageNumber === totalPages?.totalPages - 2);
+
+                            return shouldShow ? (
+                                <span
+                                    key={pageNumber}
+                                    onClick={() => handleActivePage(pageNumber)}
+                                    className={activePageIndex === pageNumber ? 'active-page-span' : ''}
+                                >
+                                    {pageNumber}
+                                </span>
+                            ) : null;
+                        })}
+
                         <span
                             className={activePageIndex === totalPages?.totalPages ? 'disabled' : ''}
                             onClick={handleNextPage}
@@ -995,6 +1009,7 @@ const Products = () => {
                                 }}
                             />
                         </span>
+
                     </div>
                 </div>
 
@@ -1019,7 +1034,11 @@ const Products = () => {
                 increamentQuantity={increamentQuantity}
             />
 
-            <QuickView setQuickViewProduct={quickViewProduct} quickViewShow={quickViewClicked} quickViewClose={handleQuickViewClose} />
+            <QuickView 
+                setQuickViewProduct={quickViewProduct} 
+                quickViewShow={quickViewClicked} 
+                quickViewClose={handleQuickViewClose} 
+            />
 
             {/*Mobile view filters  */}
             <MobileViewProductFilters
@@ -1037,6 +1056,12 @@ const Products = () => {
                 handleRating={handleRatingFilter}
                 handleCategory={handleCategorySelect}
                 handlePriceRange={handleRangeChange}
+            />
+
+            <SortModal 
+                isOpenSort={showSortModal}
+                handleCloseSortModal={handleCloseSortModal}
+                setSelectedOption={setSelectedOption}
             />
         </div>
     )

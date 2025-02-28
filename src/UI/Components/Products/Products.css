@@ -19,10 +19,10 @@
     align-items: center;
     justify-content: start;
     width: 100%;
-    gap: 15px;
+    gap: 10px;
     overflow-y: hidden;
     overflow-x: auto;
-    padding: 15px;
+    padding: 10px;
     background-color: transparent;
 }
 
@@ -37,7 +37,9 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    max-width: 120px;
+    /* max-width: 120px; */
+    max-width: 90px;
+    flex-shrink: 0;
     height: auto;
     /* background-color: #fff; */
     border-radius: 5px;

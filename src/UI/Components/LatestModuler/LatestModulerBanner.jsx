@@ -7,10 +7,11 @@ import installmentBanner from '../../../Assets/Furniture Mecca/Landing Page/Pay 
 // import fullBed from '../../../Assets/to-be-change/hp-fourth_hero_mat_desktop_1b_3200x1388.png';
 import mobileViewFullBed from '../../../Assets/images/Rectangle 703.png'
 import loader from "../../../Assets/Loader-animations/loader-check-two.gif"
+import { url } from '../../../utils/api';
 
 const LatestModulerBanner = ({ images, mobileMainImage, customWidth, mainImage, mainImgShow, showBanners, paddingTop }) => {
   const [imagePreloader, setImagePreloader] = useState(false);
-
+  console.log("Mobile View Main Banner", mobileMainImage)
 
 
   return (
@@ -39,8 +40,14 @@ const LatestModulerBanner = ({ images, mobileMainImage, customWidth, mainImage, 
       <div className={`full-width-container ${customWidth ? 'hide' : ''}`}>
         
         <div className={`dining-image-div ${mainImgShow ? 'show-main-img' : ''}`}>
-          <img onLoad={() => setImagePreloader(true)} src={mainImage} alt='dining image' className='desktop-main-banner' />
-          <img onLoad={() => setImagePreloader(true)} src={mobileMainImage} alt='mobile-main-image' className='mobile-main-banner' />
+          <img onLoad={() => setImagePreloader(true)} src={mainImage} alt='dining ' className='desktop-main-banner' />
+          {mobileMainImage !== undefined ? (
+            <img onLoad={() => setImagePreloader(true)} src={url + mobileMainImage} alt='mobile-main-image' className='mobile-main-banner' />
+          ) : (
+            <div className='mobile-view-main-banner-shimmer'></div>
+          )}
+          
+
           {!imagePreloader && <div className='image_preloader'>
             <img src={loader} alt="" srcset="" />
           </div>}

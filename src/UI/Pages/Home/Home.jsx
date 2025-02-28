@@ -26,12 +26,7 @@ import FinanceBanner2 from '../../Components/FinanceBannerSlider/FinanceBanner2'
 import InstaTwoImageGallery from '../../Components/InstaTwoImageGallery/InstaTwoImageGallery';
 import { useLPContentContext } from '../../../context/LPContentContext/LPContentContext';
 import LandingPageFinancing from '../../Components/LandingPageFinancingBanners/LandingPageFinancing';
-
-
-
-
-
-
+import { useBlog } from '../../../context/BlogsContext/blogsContext';
 
 const Home = () => {
   const [currentUrl, setCurrentUrl] = useState('/');
@@ -69,11 +64,14 @@ const Home = () => {
     // setSellingLoader,
   } = useLPContentContext();
 
+  const {blogs} = useBlog()
+
+  console.log("blogs on landing page", blogs)
+
   const location = useLocation();
   useEffect(() => {
     setCurrentUrl(location.pathname);
   }, [location]);
-
 
   useEffect(() => {
     if (!slides.length) {
@@ -102,16 +100,10 @@ const Home = () => {
     // }
   }, []);
 
-
-
   const navigate = useNavigate();
-
   const handleNavigate = (slug, item) => {
     navigate(`/${slug}`, { state: item });
   };
-
-
-
 
   return (
     <div className='home-page-main-container'>
@@ -147,7 +139,6 @@ const Home = () => {
         />
       )}
 
-
       {featuredProducts &&
         (<ProductSlider cardData={featuredProducts} />)
       }
@@ -161,9 +152,9 @@ const Home = () => {
         <FurnitureForBudget budgetCardData={landingPageFOEB} />
       )}
 
-
       <GetTheScop />
-      <BlogSlider />
+      {blogs?.length > 0 && <BlogSlider />}
+      
       <InstaGallery />
       <InstaTwoImageGallery />
     </div>

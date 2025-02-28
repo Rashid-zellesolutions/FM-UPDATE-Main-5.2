@@ -38,7 +38,7 @@ const DoubleRangeSlider = (
 
 
   return (
-    <div className="slider-container">
+    <div className="multi-range-slider-container">
       <div className="price-filter-heading-container">
         <h3 className="filters-heading">Price</h3>
       </div>

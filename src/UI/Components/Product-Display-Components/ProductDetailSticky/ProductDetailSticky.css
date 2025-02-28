@@ -787,3 +787,28 @@
     }
 
 }
+
+
+
+/* Product Detail Sticky Section */
+.add-to-cart-sticky-section{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    z-index: 999999999;
+    background-color: #F9F9F9;
+    border-bottom: 1px solid var(--border-color);
+    /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
+}
+
+@media only screen and (max-width: 480px){
+    .add-to-cart-sticky-section {
+        display: none;
+    }
+    .add-to-cart-sticky-section.show-sticky-add-to-cart{
+        display: flex;
+    }
+}

@@ -10,7 +10,6 @@ import { useLocation, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { url } from '../../../utils/api';
 import { useCart } from '../../../context/cartContext/cartContext';
-import { useList } from '../../../context/wishListContext/wishListContext';
 import Breadcrumb from '../../../Global-Components/BreadCrumb/BreadCrumb';
 
 const ProductDisplay = () => {
@@ -117,6 +116,7 @@ const ProductDisplay = () => {
         removeFromCart={removeFromCart}
         decreamentQuantity={decreamentQuantity}
         increamentQuantity={increamentQuantity}
+        isSticky={isSticky}
       />
 
       <ProductStickyTabBar 

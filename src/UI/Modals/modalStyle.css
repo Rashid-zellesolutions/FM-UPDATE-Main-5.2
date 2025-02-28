@@ -119,3 +119,9 @@
     z-index: 1000;
     flex-direction: column;
   }
+
+@media only screen and (max-width: 480px){
+  .global_modal {
+    width: 95%;
+  }
+}

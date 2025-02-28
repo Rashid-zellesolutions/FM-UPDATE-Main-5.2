@@ -1,9 +1,9 @@
-export const url = `https://fm.skyhub.pk`
-// export const url = `https://fm.zellehost.com`
+// export const url = `https://fm.skyhub.pk`
+export const url = `https://fm.zellehost.com`
+// export const url = `http://fm_api.myfurnituremecca.com`;
 // export const url = `http://localhost:8080`
 export const siteUrl = `https://furnituremecca.zellesolutions.com`
 // export const url = `https://furniture-mecca-apis.vercel.app`
-
 
 export function formatTime(stateName, timestamp) {
   const stateTimeZones = {

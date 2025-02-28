@@ -1,96 +1,95 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./WriteReview.css";
 import RatingReview from "../starRating/starRating";
-import { IoImages } from "react-icons/io5";
-import { RiCloseLine } from "react-icons/ri";
-import loader from "../../../Assets/Loader-animations/loader-check-two.gif"
-import thumb from "../../../Assets/thumbs-up.png"
 import { IoIosClose } from "react-icons/io";
 import productImage from '../../../Assets/Furniture Mecca/product page/try these/B560__02 2.png'
 import { url } from "../../../utils/api";
-import { FaStar } from "react-icons/fa";
 import { IoInformationCircleOutline } from "react-icons/io5";
 import { CiCamera, CiYoutube } from "react-icons/ci";
+import axios from "axios";
+import { formatDate } from "react-calendar/dist/cjs/shared/dateFormatter.js";
 
 
 export default function WriteReview({ product_id, productData, review_enable, product_name, product_permalink, }) {
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [review, setReview] = useState('');
-    const [rating, setRating] = useState(1);
-    const [images, setImages] = useState([]);
 
-    const [successPopup, setSuccessPopup] = useState(false)
-    const [loading, setLoading] = useState(false)
-    const [showReviewSection, setReviewSectionState] = useState(false);
+    const [reviewData, setReviewData] = useState(
+        {
+            "product_id": 0,
+            "product_permalink": "",
+            "product_name": "",
+            "reviewer": "",
+            "reviewer_email": "",
+            "review_title": "",
+            "review": "",
+            "rating": 0,
+            "helpful": 0,
+        },
+    )
+    const [remainingTime, setRemainingTime] = useState(0)
+    const [loading, setLoading] = useState(false);
+    const checkToken = async () => {
+        const token = localStorage.getItem('userToken');
+        if(token) {
+            try {
+                setLoading(true)
+                const response = await fetch(`${url}/api/v1/web-users/verify-token`, {
+                    method: "GET",
+                    headers: {
+                        authorization: `${token}`
+                    }
+                })
+                
+                if(response.ok) {
+                    const result = await response.json()
+                    setRemainingTime(result?.remainingTime)
+                    const userId = localStorage.getItem('uuid');
+                    if(userId) {
+                        try {
+                            const response2 = await fetch(`${url}/api/v1/web-users/get/${userId}`, {
+                                method: 'GET',
+                                headers: {
+                                    authorization: `${token}`
+                                }
+                            })
+                            if(response2.ok) {
+                                const userResult = await response2.json();
+                                setReviewData((prevData) => ({
+                                    ...prevData,
+                                    reviewer: `${userResult?.data?.first_name} ${userResult?.data?.last_name}`,  // Set your desired name
+                                    reviewer_email: userResult?.data?.email // Set your desired email
+                                }));
+                            }
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
 
-        // Create FormData object to send data with files
-        const formData = new FormData();
-        formData.append("reviewer", name);
-        formData.append("reviewer_email", email);
-        formData.append("review", review);
-        formData.append("rating", rating);
-        formData.append("product_id", product_id);
-        formData.append("product_name", product_name);
-        formData.append("product_permalink", product_permalink);
-        formData.append("verified", false);
-
-        // Append each selected image file to FormData
-        images.forEach(image => {
-            formData.append("images", image); // 'images' is the key on the backend
-        });
-
-        try {
-            setLoading(true);
-            const response = await fetch(`${url}/api/v1/reviews/add`, {
-                method: "POST",
-                body: formData, // Send the form data
-            });
-
-            if (response.ok) {
-                const result = await response.json();
-                setLoading(false);
-                setSuccessPopup(true);
-                setName("")
-                setEmail("")
-                setReview("")
-                setRating(1)
-                // Handle success (e.g., show a success message, clear form)
-            } else {
-                const error = await response.json();
-                console.error('Error:', error.message);
-                setLoading(false);
-                alert("Something Went Wrong");
-                // Handle error (e.g., show an error message)
+                        } catch (error) {
+                            localStorage.removeItem('uuid');
+                        }
+                    }
+                }
+            } catch (error) {
+                localStorage.removeItem('userToken');
+                setLoading(false)
+            } finally {
+                setLoading(false)
             }
-        } catch (error) {
-            console.error('Error sending review:', error);
-            setLoading(false);
-            alert("Something Went Wrong");
         }
-    };
+    }
 
-    const handleImageChange = (e) => {
-        const files = e.target.files;
-        if (files.length + images.length <= 5) { // Ensure no more than 5 images
-            const newImages = [...images];
-            for (let i = 0; i < files.length; i++) {
-                newImages.push(files[i]); // Store file references
-            }
-            setImages(newImages); // Update the images state
-        } else {
-            alert("You can upload up to 5 images only.");
-        }
-    };
 
-    // Function to handle removing an image from the preview
-    const handleImageRemove = (index) => {
-        const newImages = images.filter((_, i) => i !== index); // Remove the image at the specified index
-        setImages(newImages); // Update the images state
-    };
+
+    useEffect(() => {checkToken()}, [])
+
+
+    const [ratingCount, setRating] = useState(1);
+    useEffect(() => {
+        setReviewData((prevData) => ({
+            ...prevData,
+            rating: ratingCount,
+            product_id: productData?.uid,
+            product_name: productData?.name,
+            product_permalink: productData?.permalink
+        }))
+    }, [ratingCount])
 
     const [writeReview, setWriteReview] = useState(false);
     const handleWriteReview = () => {
@@ -108,296 +107,123 @@ export default function WriteReview({ product_id, productData, review_enable, pr
         }
     }, [writeReview])
 
-    const [hover, setHover] = useState(0);
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        setReviewData((prevData) => ({
+            ...prevData,
+            [name]: value
+        }));
+    };
+
+    // Function to handle button click & trigger file input
+    const fileInputRef = useRef(null);
+    const [images, setImages] = useState([])
+    // const handleImageSelect = () => {
+    //     fileInputRef.current.click();
+    // };
+
+    // const handleFileChange = (e) => {
+    //     const files = e.target.files;
+    //     if (files.length + images.length <= 5) { // Ensure no more than 5 images
+    //         const newImages = [...images];
+    //         for (let i = 0; i < files.length; i++) {
+    //             newImages.push(files[i]); // Store file references
+    //         }
+    //         setImages(newImages); // Update the images state
+    //     } else {
+    //         alert("You can upload up to 5 images only.");
+    //     }
+    // };
+
+    const handleImageChange = (e) => {
+        const files = e.target.files;
+        if (files.length + images.length <= 5) { // Ensure no more than 5 images
+            const newImages = [...images];
+            for (let i = 0; i < files.length; i++) {
+                newImages.push(files[i]); // Store file references
+            }
+            setImages(newImages); // Update the images state
+        } else {
+            alert("You can upload up to 5 images only.");
+        }
+    };
+
+    useEffect(() => { console.log("selected images", images) }, [images])
+    
+
+    const handleSubmitReview = async (e) => {
+       
+
+        const formData = new FormData();
+
+
+        formData.append("product_id", reviewData.product_id);
+        formData.append("product_permalink", reviewData.product_permalink);
+        formData.append("product_name", reviewData.product_name);
+        formData.append("reviewer", reviewData.reviewer);
+        formData.append("reviewer_email", reviewData.reviewer_email);
+        formData.append("review_title", reviewData.review_title);
+        formData.append("review", reviewData.review);
+        formData.append("rating", reviewData.rating);
+        formData.append("helpful", reviewData.helpful);
+
+        // Append multiple images correctly
+        images.forEach(image => {
+            formData.append("images", image); // 'images' is the key on the backend
+        });
+
+        // Debugging: Log FormData before sending
+        for (let pair of formData.entries()) {
+            console.log("pair image",pair[0], pair[1]);
+        }
+        
+
+        console.log("Payload before sending:", Object.fromEntries(formData.entries()))
+        const api = `/api/v1/reviews/add`
+        try {
+            const reviewResponse = await axios.post(`${url}${api}`, formatDate);
+            console.log("response send", reviewResponse);
+        } catch (error) {
+            console.error("UnExpected Server Error", error);
+        }
+    }
+
+    const [isChecked, setIsChecked] = useState(false);
+    const handleCheckboxChange = (event) => {
+        setIsChecked(event.target.checked);
+    };
+
+    const handleSubmit = () => {
+        if (isChecked) {
+            handleSubmitReview()
+            setWriteReview(false)
+            setReviewData(
+                {
+                    "product_id": 0,
+                    "product_permalink": "",
+                    "product_name": "",
+                    "reviewer": "",
+                    "reviewer_email": "",
+                    "review_title": "",
+                    "review": "",
+                    "rating": 0,
+                    "helpful": 0,
+                    "images": [],
+                },
+            )
+            // Add your form submission logic here
+        } else {
+        }
+    };
+
+    const [showGuideLine, setShowGuideLine] = useState(false);
+    const handleShowGuideline = () => {
+        setShowGuideLine(!showGuideLine);
+    }
+
 
 
     return (
-        // <div className={`write_review_main`}>
-        //      {!showReviewSection && review_enable === 1 ? <button onClick={() => { setReviewSectionState(true) }} className="write_review_btn">Write a Review</button>
-        //         : <div className={`write_review ${showReviewSection ? "open" : ""}`}>
-
-        //             <h3>Write a Review</h3>
-        //             <form className="desktop_write_review_form" onSubmit={handleSubmit}>
-
-        //                 <div className="write_review_left">
-        //                     <div className="form-group">
-        //                         <p className="review_add_label">Give Score</p>
-        //                         <RatingReview rating={rating} setRating={setRating} />
-        //                     </div>
-        //                     <div className="form-group">
-        //                         <label className="review_add_label" htmlFor="review">Write Review</label>
-        //                         <textarea
-        //                             id="review"
-        //                             value={review}
-        //                             onChange={(e) => setReview(e.target.value)}
-        //                             required
-        //                             style={{ height: "165px" }}
-        //                         ></textarea>
-        //                     </div>
-        //                 </div>
-
-        //                 <div className="write_review_right">
-        //                     <div className="form-group">
-        //                         <label className="review_add_label" htmlFor="name">Name</label>
-        //                         <input
-        //                             type="text"
-        //                             id="name"
-        //                             value={name}
-        //                             onChange={(e) => setName(e.target.value)}
-        //                             required
-        //                         />
-        //                     </div>
-        //                     <div className="form-group">
-        //                         <label className="review_add_label" htmlFor="email">Email</label>
-        //                         <input
-        //                             type="email"
-        //                             id="email"
-        //                             value={email}
-        //                             onChange={(e) => setEmail(e.target.value)}
-        //                             required
-        //                         />
-        //                     </div>
-
-        //                     //Image Upload
-        //                     <div className="form-group">
-        //                         <label className="review_add_label" htmlFor="images">Upload Images (up to 5)</label>
-        //                         <div style={{ display: "flex", gap: "5px" }}>
-        //                             <div className="image-preview-container">
-        //                                 {images.map((image, index) => (
-        //                                     <div key={index} className="image-preview">
-        //                                         <img
-        //                                             src={URL.createObjectURL(image)} // Create URL for preview
-        //                                             alt={`Preview ${index + 1}`}
-        //                                             style={{ width: '100px', height: '100px', objectFit: 'cover' }}
-        //                                         />
-        //                                         <button
-        //                                             type="button"
-        //                                             className="remove-image-button"
-        //                                             onClick={() => handleImageRemove(index)}
-        //                                         >
-        //                                             <RiCloseLine />
-        //                                         </button>
-        //                                     </div>
-        //                                 ))}
-        //                             </div>
-        //                             <input
-        //                                 name="images"
-        //                                 type="file"
-        //                                 id="images"
-        //                                 accept="image/*"
-        //                                 multiple // Allows for multiple file selection
-        //                                 onChange={handleImageChange} // Handle image selection
-        //                                 className="image_upload_review"
-        //                                 hidden // Hide the default file input element
-        //                             />
-        //                             <label htmlFor="images" className="image-upload-label">
-        //                                 <p className="icon"> <IoImages /> </p>
-        //                                 <p className="text">{images.length > 0 ? "Add More" : "Add Images"}</p>
-        //                             </label>
-        //                         </div>
-        //                     </div>
-
-        //                     <div style={{ width: '100%', display: "flex", justifyContent: "flex-end" }}>
-        //                         <button className="button_add_label" type="submit">Submit Review</button>
-        //                     </div>
-        //                 </div>
-
-        //             </form>
-
-        //             <form className="mobile_write_review_form" onSubmit={handleSubmit}>
-        //                 <div className="mobile_write_review_inner_container">
-
-        //                     <div className="mobile_form-group">
-        //                         <p className="review_add_label">Give Score</p>
-        //                         <RatingReview rating={rating} setRating={setRating} />
-        //                     </div>
-
-        //                     <div className="mobile-form-group">
-        //                         <label className="review_add_label" htmlFor="name">Name</label>
-        //                         <input
-        //                             type="text"
-        //                             id="name"
-        //                             value={name}
-        //                             onChange={(e) => setName(e.target.value)}
-        //                             required
-        //                         />
-        //                     </div>
-        //                     <div className="mobile-form-group">
-        //                         <label className="review_add_label" htmlFor="email">Email</label>
-        //                         <input
-        //                             type="email"
-        //                             id="email"
-        //                             value={email}
-        //                             onChange={(e) => setEmail(e.target.value)}
-        //                             required
-        //                         />
-        //                     </div>
-
-        //                     <div className="mobile-form-group">
-        //                         <label className="review_add_label" htmlFor="review">Write Review</label>
-        //                         <textarea
-        //                             id="review"
-        //                             value={review}
-        //                             onChange={(e) => setReview(e.target.value)}
-        //                             required
-        //                             style={{ height: "165px" }}
-        //                         ></textarea>
-        //                     </div>
-
-        //                     <div className="form-group">
-        //                         <label className="review_add_label" htmlFor="images">Upload Images (up to 5)</label>
-        //                         <div style={{ display: "flex", gap: "5px" }}>
-        //                             <div className="image-preview-container">
-        //                                 {images.map((image, index) => (
-        //                                     <div key={index} className="image-preview">
-        //                                         <img
-        //                                             src={URL.createObjectURL(image)} // Create URL for preview
-        //                                             alt={`Preview ${index + 1}`}
-        //                                             style={{ width: '100px', height: '100px', objectFit: 'cover' }}
-        //                                         />
-        //                                         <button
-        //                                             type="button"
-        //                                             className="remove-image-button"
-        //                                             onClick={() => handleImageRemove(index)}
-        //                                         >
-        //                                             <RiCloseLine />
-        //                                         </button>
-        //                                     </div>
-        //                                 ))}
-        //                             </div>
-        //                             <input
-        //                                 name="images"
-        //                                 type="file"
-        //                                 id="images"
-        //                                 accept="image/*"
-        //                                 multiple // Allows for multiple file selection
-        //                                 onChange={handleImageChange} // Handle image selection
-        //                                 className="image_upload_review"
-        //                                 hidden // Hide the default file input element
-        //                             />
-        //                             <label htmlFor="images" className="image-upload-label">
-        //                                 <p className="icon"> <IoImages /> </p>
-        //                                 <p className="text">{images.length > 0 ? "Add More" : "Add Images"}</p>
-        //                             </label>
-        //                         </div>
-        //                     </div>
-        //                     <div style={{ width: '100%', display: "flex", justifyContent: "flex-end" }}>
-        //                         <button className="button_add_label" type="submit">Submit Review</button>
-        //                     </div>
-        //                 </div>
-
-        //                 // Commint this section
-        //                  <div className="write_review_left">
-        //             <div className="form-group">
-        //                 <p className="review_add_label">Give Score</p>
-        //                 <RatingReview rating={rating} setRating={setRating} />
-        //             </div>
-        //             <div className="form-group">
-        //                 <label className="review_add_label" htmlFor="review">Write Review</label>
-        //                 <textarea
-        //                     id="review"
-        //                     value={review}
-        //                     onChange={(e) => setReview(e.target.value)}
-        //                     required
-        //                     style={{ height: "165px" }}
-        //                 ></textarea>
-        //             </div>
-        //         </div> 
-        //         // till here
-
-        //                 //from here
-        //                 <div className="write_review_right">
-        //             <div className="form-group">
-        //                 <label className="review_add_label" htmlFor="name">Name</label>
-        //                 <input
-        //                     type="text"
-        //                     id="name"
-        //                     value={name}
-        //                     onChange={(e) => setName(e.target.value)}
-        //                     required
-        //                 />
-        //             </div>
-        //             <div className="form-group">
-        //                 <label className="review_add_label" htmlFor="email">Email</label>
-        //                 <input
-        //                     type="email"
-        //                     id="email"
-        //                     value={email}
-        //                     onChange={(e) => setEmail(e.target.value)}
-        //                     required
-        //                 />
-        //             </div>
-
-
-        //             <div className="form-group">
-        //                 <label className="review_add_label" htmlFor="images">Upload Images (up to 5)</label>
-        //                 <div style={{ display: "flex", gap: "5px" }}>
-        //                     <div className="image-preview-container">
-        //                         {images.map((image, index) => (
-        //                             <div key={index} className="image-preview">
-        //                                 <img
-        //                                     src={URL.createObjectURL(image)} // Create URL for preview
-        //                                     alt={`Preview ${index + 1}`}
-        //                                     style={{ width: '100px', height: '100px', objectFit: 'cover' }}
-        //                                 />
-        //                                 <button
-        //                                     type="button"
-        //                                     className="remove-image-button"
-        //                                     onClick={() => handleImageRemove(index)}
-        //                                 >
-        //                                     <RiCloseLine />
-        //                                 </button>
-        //                             </div>
-        //                         ))}
-        //                     </div>
-        //                     <input
-        //                         name="images"
-        //                         type="file"
-        //                         id="images"
-        //                         accept="image/*"
-        //                         multiple // Allows for multiple file selection
-        //                         onChange={handleImageChange} // Handle image selection
-        //                         className="image_upload_review"
-        //                         hidden // Hide the default file input element
-        //                     />
-        //                     <label htmlFor="images" className="image-upload-label">
-        //                         <p className="icon"> <IoImages /> </p>
-        //                         <p className="text">{images.length > 0 ? "Add More" : "Add Images"}</p>
-        //                     </label>
-        //                 </div>
-        //             </div>
-
-        //             <div style={{ width: '100%', display: "flex", justifyContent: "flex-end" }}>
-        //                 <button className="button_add_label" type="submit">Submit Review</button>
-        //             </div>
-        //         </div>
-        //         // till here
-
-        //             </form>
-
-        //             {loading && <div className="review_loader">
-        //                 <img src={loader} alt="" />
-        //                 <p>Submitting Review</p>
-        //                 <p>Please Wait...</p>
-        //             </div>
-        //             }
-        //             {successPopup && <div className="review_success">
-        //                 <div className="success_popup_review">
-        //                     <img src={thumb} alt="" srcset="" />
-        //                     <h3>FANTASTIC! THANK YOU FOR SUBMITTING A REVIEW</h3>
-        //                     <p>Your review was sent successfully and is now waiting for our staff to publish it.</p>
-        //                     <button
-        //                         type="button"
-        //                         className="remove-success-button"
-        //                         onClick={() => setSuccessPopup(false)}
-        //                     >
-        //                         <RiCloseLine style={{ fontSize: "15px !important" }} />
-        //                     </button>
-        //                 </div>
-        //             </div>}
-        //         </div>
-        //     } 
-        // </div>
         <>
             <div className="write_review_main">
                 <button onClick={handleWriteReview} className="write_review_btn">Write a Review</button>
@@ -416,33 +242,92 @@ export default function WriteReview({ product_id, productData, review_enable, pr
                         <div className="review-modal-product-details">
                             <p className="write-review-product-name">{productData?.name}</p>
                             <p className="write-review-comment-guide">Your feedback will help other shoppers make good choices, and we'll use it to improve our products.</p>
-                            <p className="review-guideline">Review guideline</p>
+                            <p className="review-guideline" onClick={handleShowGuideline}>{showGuideLine ? 'Hide Guidelines' : 'Review Guidelines'}</p>
+                            <div className={`review-guideline-details ${showGuideLine ? 'show-review-guideline' : ''}`}>
+                                <p>
+                                    We value your input and invite you to rate and review your purchases. Be sure to explain why you like or dislike the product and focus on the product's features and your own experience using it.
+
+                                    If you wish to comment about product selection, pricing, ordering, delivery or other issues, please contact our customer support.
+
+                                    Please refrain from including any of the following in your review:
+
+                                    Obscene or discriminatory language
+                                    Critical or inappropriate comments about other reviews and shoppers
+                                    Advertising, spam, references to other websites or retailers
+                                    Personal information such as email addresses, phone numbers or physical addresses
+                                    All reviews are subject to our store's Terms of Use.
+                                </p>
+                            </div>
                         </div>
                         <img src={productImage} alt="product" />
                     </div>
 
+
+                    <div className={`mobile-view-review-guideline-details ${showGuideLine ? 'mobile-view-show-review-guideline' : ''}`}>
+                        <p>
+                            We value your input and invite you to rate and review your purchases. Be sure to explain why you like or dislike the product and focus on the product's features and your own experience using it.
+
+                            If you wish to comment about product selection, pricing, ordering, delivery or other issues, please contact our customer support.
+
+                            Please refrain from including any of the following in your review:
+
+                            Obscene or discriminatory language
+                            Critical or inappropriate comments about other reviews and shoppers
+                            Advertising, spam, references to other websites or retailers
+                            Personal information such as email addresses, phone numbers or physical addresses
+                            All reviews are subject to our store's Terms of Use.
+                        </p>
+                    </div>
+
+                    
+
+                    {remainingTime === 0 ? (
+                        <div className="user-email-and-name-container">
+
+                            <div className="review-write-section">
+                                <h3>Name</h3>
+                                <input 
+                                    type="text" 
+                                    placeholder="Enter Your Name" 
+                                    name="reviewer" 
+                                    value={reviewData.reviewer} 
+                                    onChange={handleChange} 
+                                />
+
+                            </div>
+
+                            <div className="review-write-section">
+                                <h3>Email</h3>
+                                <input 
+                                    type="text" 
+                                    placeholder="Enter Email Address" 
+                                    name="reviewer_email" 
+                                    value={reviewData.reviewer_email}
+                                    onChange={handleChange} 
+                                />
+
+                            </div>
+
+                        </div>
+                    ): (<></>)}
+
+                    
+
                     <div className="review-overall-rating">
                         <h3>Overall rating</h3>
-                        {/* <div className="write-review-stars">
-                            {[1, 2, 3, 4, 5].map((star) => (
-                                <FaStar
-                                    key={star}
-                                    size={20}
-                                    onMouseEnter={() => setHover(star)} // Highlight stars on hover
-                                    onMouseLeave={() => setHover(0)} // Reset when not hovering
-                                    onClick={() => setRating(star)} // Set the selected rating
-                                    color={star <= (hover || rating) ? "#ffc107" : "#e4e5e9"} // Fill logic
-                                    style={{ cursor: "pointer", transition: "color 0.2s" }}
-                                />
-                            ))}
-                        </div> */}
-                        <RatingReview rating={rating} setRating={setRating} />
+                        <RatingReview rating={ratingCount} setRating={setRating} />
                         {/* <RatingReview rating={(productData?.average_rating)} disabled={true} size={"20px"} /> */}
                     </div>
 
                     <div className="review-write-section">
                         <h3>Review</h3>
-                        <textarea rows={4} maxLength={150}/>
+                        <textarea 
+                            rows={4}
+                            maxLength={150}
+                            name="review"
+                            value={reviewData.review}
+                            onChange={handleChange}
+                        />
                         <p>
                             <IoInformationCircleOutline size={20} />
                             Make your review great: Describe what you liked, what you didn’t 
@@ -452,7 +337,13 @@ export default function WriteReview({ product_id, productData, review_enable, pr
 
                     <div className="review-write-section">
                         <h3>Review Title</h3>
-                        <input type="text" maxLength={15}  />
+                        <input 
+                            type="text" 
+                            maxLength={15}  
+                            name="review_title"
+                            value={reviewData.review_title}
+                            onChange={handleChange}
+                        />
                         <p>
                             <IoInformationCircleOutline size={20} />
                             Your overall impression (150 characters or less)
@@ -462,14 +353,24 @@ export default function WriteReview({ product_id, productData, review_enable, pr
                     <div className="review-write-section">
                         <h3>Photos or videos</h3>
                         <div className="review-photos-or-video-container">
-                            <button>
+                            <input
+                                name="images"
+                                type="file"
+                                id="images"
+                                accept="image/*"
+                                multiple // Allows for multiple file selection
+                                onChange={handleImageChange} // Handle image selection
+                                // className="image_upload_review"
+                                hidden // Hide the default file input element
+                            />
+                            <label htmlFor="images">
                                 <CiCamera size={20} color="#4478C5" />
                                 Add Photo
-                            </button>
-                            <button>
+                            </label>
+                            {/* <button>
                                 <CiYoutube size={20} color="#4478C5" />
                                 Add Video
-                            </button>
+                            </button> */}
                         </div>
                         <p>
                             <IoInformationCircleOutline size={20} />
@@ -477,14 +378,18 @@ export default function WriteReview({ product_id, productData, review_enable, pr
                         </p>
                     </div>
 
-                    <label className="gift-card-checkbox-container">
-                        <input type="checkbox" />
+                    {/* <label className="gift-card-checkbox-container">
+                        <input 
+                            type="checkbox" 
+                            checked={isChecked}
+                            onChange={handleCheckboxChange}
+                        />
                         Enter my name into the drawing to win a gift card. 
                         <p>Sweepstakes Rules & Regulations</p>
-                    </label>
+                    </label> */}
 
                     <div className="submit-review-container">
-                        <button >
+                        <button onClick={handleSubmit} disabled={!isChecked}>
                             Submit
                         </button>
                     </div>

@@ -76,6 +76,7 @@
     border-radius: 10px;
     padding: 5px;
     cursor: pointer;
+    flex-shrink: 0;
 }
 
 .type-category:hover {
@@ -103,4 +104,15 @@
     border: none !important;
     cursor: pointer;
 
+}
+
+@media only screen and (max-width: 480px){
+    .type-options-container{
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+    }
+    .type-option {
+        width: 100% !important;
+    }
 }

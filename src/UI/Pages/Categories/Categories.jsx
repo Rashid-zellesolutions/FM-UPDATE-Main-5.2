@@ -19,12 +19,7 @@ const Categories = ({
   const { categorySlug } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
-  // const { width } = ScreenSizer();
   const [loading, setLoading] = useState(false);
-  // const [categoryPageData, setCategoryPageData] = useState();
-  // const [categoryData, setCategoryData] = useState();
-  // const [bestSelling, setBestSelling] = useState();
-  // const [paragraph, setParagraph] = useState(null);
   const { setTitle, setDescription, setImage } = useSEOContext();
   const [contentImages, setContentImages] = useState([]);
   const [error, setError] = useState(null);
@@ -94,13 +89,11 @@ const Categories = ({
   };
 
   useEffect(() => {
-    
     getPageData();
     getCategoryData();
   }, [categorySlug]);
 
   useEffect(() => {
-    
     getPageData();
     if (!location.state) {
       getCategoryData();
@@ -113,11 +106,11 @@ const Categories = ({
 
   return (
     <>
-      <LatestModulerBanner customWidth={false} showBanners={false} mainImgShow={true} mobileMainImage={url + (location.state ? location.state?.bannerImage2 : categoryData?.bannerImage2)}  /* { url+(location.state? location.state?.bannerImage2 : categoryData?.bannerImage2) } */ mainImage={url + (location.state ? location.state?.bannerImage : categoryData?.bannerImage)} />
+      <LatestModulerBanner customWidth={false} showBanners={false} mainImgShow={true} mobileMainImage={location.state ? location.state?.bannerImage2 : categoryData?.bannerImage2}  /* { url+(location.state? location.state?.bannerImage2 : categoryData?.bannerImage2) } */ mainImage={url + (location.state ? location.state?.bannerImage : categoryData?.bannerImage)} />
       <Category title={location.state ? location.state?.name : categoryData?.name} categorySlug={categorySlug} categoryData={categoryPageData} handleNavigate={handleNavigate} />
       {bestSelling &&  (<BestSeller categoryData={bestSelling} />) }
       
-      <ShipBanner bannerImg={shipBanner} showBanner={false} paddindTrue={false} />
+      {/* <ShipBanner bannerImg={shipBanner} showBanner={false} paddindTrue={false} /> */}
       <CategoriesGetScop text={paragraph} contentImages={contentImages} isTrue={true} />
       {/* <LatestModulerBanner customWidth={false} showBanners={true} paddingTop={true} mainImgShow={false} /> */}
       <FinanceBannerSlider images={financingBanners} />

@@ -51,7 +51,7 @@
     background-color: #FFC107 !important;
 }
 
-.product-wishlist-icon-container{
+.product-wishlist-icon-container {
     display: flex;
     width: 100%;
     align-items: center;
@@ -76,6 +76,8 @@
 .wishlist-heart {
     cursor: pointer;
     position: unset !important;
+    width: 25px;
+    height: 25px;
     /* top: 15px;
     right: 10px; */
 }
@@ -116,6 +118,7 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    width: 100%;
     height: 100%;
 
     padding-bottom: 10px;
@@ -138,7 +141,7 @@
     height: 100%;
 }
 
-.product-cart-top-tags-container{
+.product-cart-top-tags-container {
     display: none;
     align-items: center;
     justify-content: space-between;
@@ -285,9 +288,13 @@
 
 .product-title {
     background-color: transparent !important;
-    font-size: var(--sub-section-size) !important;
+    /* font-size: var(--sub-section-size) !important; */
+    /* font-size: (12px, 1.2vw, 50px) !important; */
+    font-size: clamp(14px, calc(1vw + 0.2rem), 50px) !important;
+
     font-weight: var(--sub-section-weight) !important;
-    line-height: var(--sub-section-height) !important;
+    /* line-height: var(--sub-section-height) !important; */
+    line-height: clamp(16px, calc(1vw + 0.2rem), 50px) !important;
     /* line-height: 22px !important; */
     margin-bottom: 10px !important;
     cursor: pointer;
@@ -296,14 +303,14 @@
     text-decoration: none;
     /* Remove or adjust the height property if needed */
     /* height: 100% !important; */
-    
+
     /* For multiline ellipsis: */
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
     overflow: hidden;
     text-overflow: ellipsis;
-    
+
     /* Optionally, enforce a fixed height based on your line-height for consistency */
     max-height: calc(var(--sub-section-height) * 2);
 }
@@ -328,7 +335,9 @@
     display: none !important;
     background-color: transparent !important;
     /* font-size: var(--attribute-size); */
-    font-size: 10px !important;
+    /* font-size: 10px !important; */
+    font-size: clamp(12px, 0.8vw, 25px) !important;
+    /* font-size: 0.8vw; */
     font-weight: var(--attribute-weight);
     line-height: var(--attribute-height);
     margin: 10px 0 0 0;
@@ -340,7 +349,7 @@
     opacity: 0.5 !important;
 }
 
-.product-sku.show-product-sku{
+.product-sku.show-product-sku {
     display: flex !important;
 }
 
@@ -572,7 +581,8 @@
 }
 
 .product-price-tag {
-    font-size: var(--section-size) !important;
+    /* font-size: var(--section-size) !important; */
+    font-size: clamp(14px, calc(1.4vw + 0.1rem), 27px) !important;
     /* line-height: var(--section-height) !important; */
     line-height: 15px !important;
     font-weight: var(--section-weight) !important;
@@ -583,14 +593,15 @@
 }
 
 .product-price-starting-at {
-    font-size: 13px;
+    font-size: clamp(10px, calc(1vw + 0.2rem), 13px);
     line-height: 1.5;
     font-weight: 400;
     /* margin-bottom: 5px; */
 }
 
 .product-del-price-with-sale-price {
-    font-size: var(--sub-section-size);
+    /* font-size: var(--sub-section-size); */
+    font-size: clamp(12px, calc(1vw + 0.2rem), 15px) !important;
     line-height: var(--sub-section-height);
     font-weight: var(--sub-section-weight);
     color: var(--text-color);
@@ -796,20 +807,28 @@
         padding: 5px;
     }
 
+    .product-tagging {
+        display: none;
+    }
+
+    .wishlist-heart {
+        width: 20px;
+        height: 20px;
+    }
+
     .tag-and-heart img {
         width: auto;
         height: 20px;
         object-fit: contain;
     }
 
-    .product-title.apply-col-two-styling {
+    /* .product-title.apply-col-two-styling {
         background-color: transparent !important;
         font-size: 12px !important;
         font-weight: 600;
         line-height: 12px !important;
-        /* margin-bottom: 7px; */
         cursor: pointer;
-    }
+    } */
 
     .product-card-data .product-main-img {
         height: auto;
@@ -837,7 +856,7 @@
         margin-bottom: 5px;
     } */
 
-    .product-card-get-it-by-container{
+    .product-card-get-it-by-container {
         flex-direction: column;
         gap: 0px;
     }
@@ -847,11 +866,12 @@
         padding: 5px;
     }
 
-    .product-get-it-by-left-side{
+    .product-get-it-by-left-side {
         display: flex;
         flex-direction: column;
         gap: 0 !important;
     }
+
     .installment-plan-detail.apply-col-two-styling {
         font-size: 10px;
         line-height: 1.5;
@@ -871,7 +891,7 @@
         color: var(--text-color) !important;
     }
 
-    .product-card-quick-view-container{
+    .product-card-quick-view-container {
         align-items: start;
         gap: 5px;
     }
@@ -901,7 +921,7 @@
         display: none;
     }
 
-    .mobile-product-card-attr{
+    .mobile-product-card-attr {
         display: flex;
     }
 }

@@ -222,11 +222,11 @@ const MobileViewProductFilters = (
 
                 </div>
 
-                <div className='mobile-view-filters-togle-button'>
+                {/* <div className='mobile-view-filters-togle-button'>
                     <button className='mobile-view-more-filters-button' onClick={handleShowAllFilters}>
                         {showAllFilters ? 'View Less Filters' : 'View All Filters'}
                     </button>
-                </div>
+                </div> */}
                 <div className='mobile-view-filters-togle-button'>
                     <button className='mobile-view-result-button' onClick={handlePriceRangeClick}>
                         View Result

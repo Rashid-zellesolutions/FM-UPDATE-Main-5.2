@@ -118,14 +118,14 @@ const BlogSlider = () => {
                 <BlogCard
                   key={index}
                   navigateToSingleBlog={() => handleNavigateToSingleBlog(item)}
-                  img={item.image.image_url}
-                  category={item.category.name}
-                  title={truncateTitle(item.title, maxLength)}
-                  createdBy={item.author}
-                  // comments={item.comments}
-                  // date={item.date}
-                  // month={item.month}
-                  // start={item.start}
+                  img={item?.image?.image_url}
+                  category={item?.category?.name}
+                  title={truncateTitle(item?.title, maxLength)}
+                  createdBy={item?.author}
+                  comments={'4 comments'}
+                  date={26}
+                  month={'FEB'}
+                  start={'this is short description section of blogs'}
                 />
               </div>
             ))}

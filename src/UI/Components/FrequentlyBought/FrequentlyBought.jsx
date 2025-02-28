@@ -13,6 +13,7 @@ import ProductCardShimmer from '../Loaders/productCardShimmer/productCardShimmer
 import { useList } from '../../../context/wishListContext/wishListContext';
 import { toast } from 'react-toastify';
 import ProductCardTwo from '../ProductCardTwo/ProductCardTwo';
+import QuickView from '../QuickView/QuickView';
 
 const FrequentlyBought = ({ relatedProducts, isPadding }) => {
 
@@ -189,6 +190,11 @@ const FrequentlyBought = ({ relatedProducts, isPadding }) => {
                     ))
                 )}
             </div>
+            <QuickView
+                setQuickViewProduct={quickViewProduct}
+                quickViewShow={quickViewClicked}
+                quickViewClose={handleQuickViewClose}
+            />
         </div>
     )
 }

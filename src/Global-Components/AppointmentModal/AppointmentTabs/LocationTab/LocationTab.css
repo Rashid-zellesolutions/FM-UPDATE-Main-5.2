@@ -19,7 +19,7 @@
     flex-direction: column;
 }
 
-.location-tab-header > h3 {
+.location-tab-header>h3 {
     font-size: var(--sub-section-size);
     line-height: var(--sub-section-height);
     font-weight: var(--sub-section-weight);
@@ -39,7 +39,7 @@
 
 }
 
-.location-search-container > label > input {
+.location-search-container>label>input {
     width: 100%;
     height: 100%;
     border: none;
@@ -66,21 +66,21 @@
     /* gap: 5px; */
 }
 
-.location-body-heading-and-title > h3 {
+.location-body-heading-and-title>h3 {
     font-size: var(--section-size);
     line-height: var(--section-height);
     font-weight: var(--section-weight);
     color: var(--text-color);
 }
 
-.location-body-heading-and-title > p {
+.location-body-heading-and-title>p {
     font-size: var(--sub-section-size);
     line-height: var(--sub-section-height);
     font-weight: var(--sub-section-weight);
     color: var(--text-color);
 }
 
-.location-body-heading-and-title > p > span {
+.location-body-heading-and-title>p>span {
     font-size: var(--sub-section-size);
     line-height: var(--sub-section-height);
     font-weight: var(--sub-section-weight);
@@ -89,7 +89,7 @@
 }
 
 /* Stores List */
-.location-tab-store-list{
+.location-tab-store-list {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -97,7 +97,7 @@
     justify-content: start;
 }
 
-.location-tab-store-item{
+.location-tab-store-item {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -106,7 +106,7 @@
     gap: 5px;
 }
 
-.location-tab-store-head{
+.location-tab-store-head {
     display: flex;
     align-items: start;
     flex-direction: column;
@@ -124,14 +124,14 @@
     justify-content: space-between;
 }
 
-.location-head-title-and-miles > h3 {
+.location-head-title-and-miles>h3 {
     font-size: var(--sub-section-size);
     line-height: var(--sub-section-height);
     font-weight: var(--sub-section-weight);
     color: var(--text-color);
 }
 
-.location-head-title-and-miles > span {
+.location-head-title-and-miles>span {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -140,7 +140,7 @@
     cursor: pointer;
 }
 
-.location-head-title-and-miles > span > p {
+.location-head-title-and-miles>span>p {
     font-size: var(--content-one-size);
     line-height: var(--content-one-height);
     font-weight: var(--content-two-weight);
@@ -153,10 +153,10 @@
 
 .rotate-location-tab-arrow {
     transform: rotate(180deg);
-    
+
 }
 
-.location-tab-store-head > button {
+.location-tab-store-head>button {
     width: max-content;
     padding: 5px 15px;
     border: 1px solid #4487C5;
@@ -172,7 +172,7 @@
     cursor: pointer;
 }
 
-.location-tab-store-details{
+.location-tab-store-details {
     display: flex;
     width: 100%;
     align-items: start;
@@ -180,7 +180,7 @@
     gap: 20px;
     height: 0;
     overflow: hidden;
-    
+
 }
 
 .location-tab-store-details.show-location-details {
@@ -188,7 +188,7 @@
     height: auto;
 }
 
-.location-tab-store-left-section{
+.location-tab-store-left-section {
     display: flex;
     flex-direction: column;
     width: 50%;
@@ -197,7 +197,7 @@
     gap: 10px;
 }
 
-.location-tab-store-left-section > p {
+.location-tab-store-left-section>p {
     font-size: var(--content-one-size);
     line-height: var(--content-one-height);
     font-weight: var(--content-two-weight);
@@ -212,7 +212,7 @@
     gap: 15px;
 }
 
-.location-tab-phone-and-direction > span {
+.location-tab-phone-and-direction>span {
     display: flex;
     align-items: center;
     justify-content: start;
@@ -220,7 +220,7 @@
     gap: 10px;
 }
 
-.location-tab-phone-and-direction > span > p {
+.location-tab-phone-and-direction>span>p {
     font-size: var(--content-one-size);
     line-height: var(--content-one-height);
     font-weight: var(--content-two-weight);
@@ -244,9 +244,27 @@
     text-align: right;
 }
 
-.location-tab-timing-single-card > p {
+.location-tab-timing-single-card>p {
     font-size: var(--content-one-size);
     line-height: var(--content-one-height);
     font-weight: var(--content-two-weight);
     color: var(--text-color);
+}
+
+@media only screen and (max-width: 480px) {
+    .location-tab-store-details.show-location-details {
+        padding: 15px 0;
+        flex-direction: column;
+        display: flex;
+        height: auto;
+        width: 100%;
+    }
+    .location-tab-store-left-section{
+        width: 100%;
+    }
+    .location-tab-right-section{
+        width: 100%;
+        align-items: start;
+        justify-content: start;
+    }
 }

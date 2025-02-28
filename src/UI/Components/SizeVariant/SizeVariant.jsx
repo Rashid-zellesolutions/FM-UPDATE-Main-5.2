@@ -17,6 +17,7 @@ const SizeVariant = ({
     const [selectedImageName, setSelectedImageName] = useState();
     const [selectedColorName, setSelectedColorName] = useState();
     const [selectedSelectAttrs, setSelectedSelectAttrs] = useState({}); // For multiple select attributes
+    console.log("product variations", productData)
     
     let defaultSelections = {};
     useEffect(() => {
@@ -36,6 +37,7 @@ const SizeVariant = ({
             } 
             else {
                 let initialVariation = selectedVariationData;
+                console.log("initial variation", initialVariation)
 
                 if (!initialVariation && productData?.length > 0) {
                     initialVariation = productData[0]; // Default to the first variation
@@ -142,14 +144,17 @@ const SizeVariant = ({
                 [attributeName]: value, // Update selected value for the attribute
             };
 
+
             // Now try to find the matching variation with all selected attributes
             const matchedVariation = productData.find((variation) => {
                 return variation.attributes.every((attr) => {
                     const selectedValue = updatedAttrs[attr.name];
+                    console.log("find match", selectedValue)
                     // Ensure you're comparing the value correctly based on the attribute type
                     return selectedValue === attr.options?.[0]?.value;
                 });
             });
+
 
 
             if (matchedVariation) {
@@ -173,6 +178,7 @@ const SizeVariant = ({
             {attributes?.map((attribute) => (
                 <div className="attributes-types" key={attribute.name}>
                     {attribute.type === 'color' ? (
+
                         <div className="attribute-type">
                             <h3 className="attribute-heading">
                                 {/* {selectedColorName ? selectedColorName : attribute.name} */}
@@ -197,7 +203,9 @@ const SizeVariant = ({
 
                             </div>
                         </div>
+
                     ) : attribute.type === 'image' ? (
+
                         <div className="attribute-type">
                             <h3 className="attribute-heading">{attribute.name}</h3>
                             <div className="attribute-variations">
@@ -220,7 +228,9 @@ const SizeVariant = ({
                                 ))}
                             </div>
                         </div>
+                        
                     ) : attribute.type === 'select' ? (
+
                         <div className="attribute-type">
                             <h3 className="attribute-heading">
                                 {attribute.name}
@@ -246,6 +256,7 @@ const SizeVariant = ({
                                 ))}
                             </div>
                         </div>
+
                     ) : null}
                 </div>
             ))}

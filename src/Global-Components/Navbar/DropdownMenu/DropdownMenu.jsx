@@ -27,7 +27,8 @@ const DropdownMenu = (
         <div className='mattresses-main-div'>
             <div style={{ display: 'flex', width: '25%' }}>
                 <div className='menu-links'>
-                    <h3 className='living-room-heading'>{navHeading}</h3>
+                    {/* <h3 className='see-all-heading'>See All {navHeading}</h3> */}
+                    <h3 className='living-room-heading'>See All {navHeading}</h3>
                     <div className='mattresses-links-div'>
                         {dropDownNavData.map((item, index) => {
                             return <p className={`mattres-links ${activeIndex === index ? 'active' : ''}`} key={index} onClick={() => handleActiveIndex(index)}>

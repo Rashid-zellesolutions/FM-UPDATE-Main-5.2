@@ -80,7 +80,7 @@
     .similler-products-main-container {
         display: flex;
         flex-direction: column;
-        gap: 0;
+        gap: 10px;
         
         /* padding: var(--global-padding); */
     }
@@ -90,8 +90,8 @@
     }
 
     .similler-products-main-container h3 {
-        font-size: 15px;
-        line-height: 18px;
+        font-size: var(--sub-section-size);
+        line-height: var(--sub-section-height);
         font-weight: 600;
         color: var(--text-color);
     }

@@ -6,3 +6,9 @@
     gap: 35px;
     padding: 35px 0;
 }
+
+@media only screen and (max-width: 480px){
+    .product-recommendation-main-container {
+        gap: 15px;
+    }
+}

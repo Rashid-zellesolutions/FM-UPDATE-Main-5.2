@@ -99,3 +99,7 @@
     font-weight: var(--sub-section-weight);
     cursor: pointer;
 }
+
+@media only screen and (max-width: 480px) {
+  
+}

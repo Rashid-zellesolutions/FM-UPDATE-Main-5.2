@@ -87,6 +87,9 @@ const SingleBlog = () => {
         navigate(`/single-blog/${item.slug}`, { state: item });
     }
 
+    const publishedDate = new Date(singleBlog.publishedDate);
+    const formattedDate = publishedDate.toISOString().split("T")[0]
+
 
 
 
@@ -103,7 +106,7 @@ const SingleBlog = () => {
                 <div className='single-blog-left-content'>
                     <div className='single-blog-title-and-publish-date'>
                         <h3 className='single-blog-name'>{singleBlog.title}</h3>
-                        <p className='single-blog-post-date'>{singleBlog.publishedDate}</p>
+                        <p className='single-blog-post-date'>{formattedDate}</p>
                     </div>
                     <div className='single-blog-main-image-div'>
                         <img src={`${url}${singleBlog?.image?.image_url}`} alt='single-blog-image' className='single-blog-main-image' />

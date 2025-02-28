@@ -14,6 +14,7 @@ import leftArrow from '../../../Assets/icons/arrow-left-charcol.png'
 import rightArrow from '../../../Assets/icons/arrow-right-charcol.png'
 import { toast } from 'react-toastify'
 import ProductCardTwo from '../ProductCardTwo/ProductCardTwo'
+import QuickView from '../QuickView/QuickView'
 
 const SamplePrevArrow = (props) => {
   const { className, style, onClick } = props;
@@ -77,6 +78,8 @@ const SimillerProducts = ({collection, isPadding}) => {
             setQuickViewProduct(item)
 
         }
+
+  const handleQuickViewClose = () => { setQuickView(false) }
 
         // const handleQuickViewClose = () => { setQuickView(false) }
 
@@ -244,6 +247,12 @@ const SimillerProducts = ({collection, isPadding}) => {
             )}
           </Slider>
         </div>
+
+      <QuickView
+        setQuickViewProduct={quickViewProduct}
+        quickViewShow={quickViewClicked}
+        quickViewClose={handleQuickViewClose}
+      />
     </div>
   )
 }

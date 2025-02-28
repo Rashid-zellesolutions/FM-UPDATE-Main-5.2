@@ -11,7 +11,7 @@
     left: 0;
     background-color: #F9F9F9;
     overflow: hidden;
-    z-index: 999999999;
+    z-index: 999999;
 }
 
 
@@ -237,22 +237,41 @@
 
     .product-sticky-tab-bar {
         height: 30px;
+        overflow-y: hidden;
+        overflow-x: auto;
+    }
+
+    .product-sticky-tab-bar::-webkit-scrollbar{
+        display: none;
+    }
+
+    .product-sticky-tab-bar-item-container{
+        padding: 5px 15px;
+        /* flex-shrink: 0; */
     }
 
     .product-sticky-tab-bar-item-container>p {
-        font-size: 8px;
-        line-height: 12px;
+        font-size: 13px;
+        line-height: 1.5;
         font-weight: 500;
         color: var(--text-color);
     }
 
     .product-sticky-fixed-container{
-        padding: 15px 0 0 0;
+        padding: 0px 0 0 0;
         gap: 10px;
+        top: 48px;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     }
 
     .product-sticky-fixed-tabs-container{
-        height: 30px;
+        height: 35px;
+        padding: 0 10px;
+        overflow-y: hidden;
+        overflow-x: auto;
+    }
+    .product-sticky-fixed-tabs-container::-webkit-scrollbar {
+        display: none;
     }
     .product-sticky-fixed-detail-and-add-to-cart{
         display: none;
@@ -272,16 +291,31 @@
     }
 
     .mobile-sticky-product-sale-and-price > h3 {
-        font-size: 14px;
-        line-height: 16px;
+        font-size: 12px;
+        line-height: 12px;
         font-weight: 500;
         color: var(--text-color);
     }
 
-    .mobile-sticky-product-sale-and-price > p {
-        font-size: 12px;
-        line-height: 14px;
+    .mobile-sticky-product-sale-and-price span {
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        width: max-content;
+        gap: 5px;
+    }
+
+    .mobile-sticky-product-sale-and-price span > h3 {
+        font-size: 10px;
+        line-height: 10px;
         font-weight: 400;
+        color: var(--text-color);
+    }
+
+    .mobile-sticky-product-sale-and-price span > p {
+        font-size: 10px;
+        line-height: 10px;
+        font-weight: 500;
         color: var(--text-color);
     }
 

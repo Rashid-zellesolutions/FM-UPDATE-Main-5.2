@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./modalStyle.css";
 import { IoCloseCircle } from "react-icons/io5";
 import { useGlobalContext } from "../../context/GlobalContext/globalContext";
@@ -6,6 +6,15 @@ import { useGlobalContext } from "../../context/GlobalContext/globalContext";
 
 export default function WarrantyModal(params) {
     const {setWarrantyModalState} = useGlobalContext();
+
+    // useEffect(() => {
+    //     if (setWarrantyModalState) {
+    //         document.body.style.overflow = 'hidden';
+    //     } else {
+    //         document.body.style.overflow = 'auto'
+    //     }
+    // }, [setWarrantyModalState])
+
     return (
         <div className="loader-overlay">
             <div className="global_modal">

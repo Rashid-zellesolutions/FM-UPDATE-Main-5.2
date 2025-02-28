@@ -238,12 +238,12 @@ const ProductCardTwo = ({
                             } */}
 
 
-                            <p className='percent-label'>{percent}</p>
+                            {/* <p className='percent-label'>{percent}</p> */}
                             <div className='product-wishlist-icon-container'>
                                 {
                                     isInWishList(singleProductData.uid) ?
                                         <VscHeartFilled
-                                            size={25}
+                                            // size={25}
                                             className='wishlist-heart'
                                             style={{ color: '#C61B1A' }}
                                             onClick={(e) => {
@@ -382,9 +382,9 @@ const ProductCardTwo = ({
                                         <div className='image-tag' >
                                             <img src={url + tags[0]?.image} alt="" srcset="" />
                                         </div>
-                                }
+                                } 
                             </div>} */}
-                            <p className={`product-sku ${colTwo ? 'apply-col-two-styling' : showOnPage ? 'show-product-sku' : ''}`} onClick={handleCardClick}>SKU : {ProductSku}</p>
+                            {/* <p className={`product-sku ${colTwo ? 'apply-col-two-styling' : showOnPage ? 'show-product-sku' : ''}`} onClick={handleCardClick}>SKU : {ProductSku}</p> */}
 
                             <h3 className={`product-title ${colTwo ? 'apply-col-two-styling' : ''}`}> {ProductTitle} </h3>
 

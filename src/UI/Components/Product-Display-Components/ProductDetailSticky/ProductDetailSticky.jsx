@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import './ProductDetailSticky.css'
 import ProductGallery from '../ProductGallery/ProductGallery'
 import ProductDimension from '../ProductDimenson/ProductDimension'
@@ -6,7 +6,7 @@ import { useProductPage } from '../../../../context/ProductPageContext/productPa
 import RatingReview from '../../starRating/starRating'
 import { FaShareSquare } from 'react-icons/fa'
 import axios from 'axios'
-import { formatedPrice, url } from '../../../../utils/api'
+import { formatedPrice, truncateTitle, url } from '../../../../utils/api'
 import { useNavigate, useParams } from 'react-router-dom'
 import AlsoNeed from '../../AlsoNeed/AlsoNeed'
 import SizeVariant from '../../SizeVariant/SizeVariant'
@@ -24,7 +24,7 @@ import ShareProduct from '../../ShareProduct/ShareProduct'
 import CartSidePannel from '../../Cart-side-section/CartSidePannel'
 import { useGlobalContext } from '../../../../context/GlobalContext/globalContext'
 import { PiStorefrontLight } from "react-icons/pi";
-import {MdOutlineKeyboardArrowDown } from 'react-icons/md'
+import { MdOutlineKeyboardArrowDown } from 'react-icons/md'
 import AppointmentModal from '../../../../Global-Components/AppointmentModal/AppointmentModal'
 import LocationPopUp from '../../LocationPopUp/LocationPopUp'
 
@@ -49,7 +49,8 @@ const ProductDetailSticky = (
     decreamentQuantity,
     increamentQuantity,
     variationData,
-    setVariationData
+    setVariationData,
+    isSticky,
   }) => {
 
   const navigate = useNavigate()
@@ -128,6 +129,7 @@ const ProductDetailSticky = (
   const [selectVariation, setSelectVariation] = useState(0);
   const handleSelectVariation = (value) => {
     setSelectVariation(value);
+    console.log("select variation", selectVariation)
   }
   const [selectedUid, setSelectedUid] = useState(null);
 
@@ -147,6 +149,8 @@ const ProductDetailSticky = (
   const handleWarrantyModal = () => {
     setWarrantyModalState(true)
   }
+
+
 
   const [protectionCheck, setProtectionCheck] = useState(false)
 
@@ -215,9 +219,9 @@ const ProductDetailSticky = (
 
   const [showMiles, setShowMiles] = useState(false);
   const milesData = [
-    {distance: '50 MILES'},
-    {distance: '100 MILES'},
-    {distance: '200 MILES'},
+    { distance: '50 MILES' },
+    { distance: '100 MILES' },
+    { distance: '200 MILES' },
   ]
   const [miles, setMiles] = useState(milesData[0].distance);
   const handleMilesDropdown = () => {
@@ -225,9 +229,9 @@ const ProductDetailSticky = (
   }
 
   const contectInfo = [
-    { title: 'Call', icon: <IoCallOutline size={15} color='#595959' />},
-    { title: 'Chat', icon: <IoChatbubbleOutline size={15} color='#595959' />},
-    { title: 'Visit', icon: <PiStorefrontLight size={15} color='#595959' />},
+    { title: 'Call', icon: <IoCallOutline size={15} color='#595959' /> },
+    { title: 'Chat', icon: <IoChatbubbleOutline size={15} color='#595959' /> },
+    { title: 'Visit', icon: <PiStorefrontLight size={15} color='#595959' /> },
   ]
 
   const [appointmentModal, setAppointmentModal] = useState(false);
@@ -240,12 +244,12 @@ const ProductDetailSticky = (
   }
 
   useEffect(() => {
-    if(appointmentModal === true) {
+    if (appointmentModal === true) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'auto';
     }
-  } , [appointmentModal])
+  }, [appointmentModal])
 
   const [showLocation, setShowLocation] = useState(false);
   const [locationData, setLocationData] = useState();
@@ -254,6 +258,32 @@ const ProductDetailSticky = (
   }
   const handleCloseLocationModal = () => {
     setShowLocation(false);
+  }
+
+  const [addCartSticky, setAddCartSticky] = useState(false)
+  // const [isCartTop, setIsCartTop] = useState
+  const cartDivRef = useRef(null);
+  useEffect(() => {
+    const handleScrollAddToCart = () => {
+      if (cartDivRef.current) {
+        const rect = cartDivRef.current.getBoundingClientRect();
+        setAddCartSticky(rect.top <= 0);
+      }
+    }
+    window.addEventListener('scroll', handleScrollAddToCart);
+
+
+    return () => window.removeEventListener('scroll', handleScrollAddToCart);
+
+  }, [cartDivRef]);
+
+  useEffect(() => { console.log("handle Scroll", addCartSticky) }, [addCartSticky])
+
+  const [isProtectionCheck, setIsProtectionCheck] = useState(true)
+
+  const handleSubmitProduct = (product) => {
+    setCartSection(true);
+    addToCart0(product, quantity, !isProtectionCheck);
   }
 
   return (
@@ -287,7 +317,7 @@ const ProductDetailSticky = (
             <div className='product-detail-name-and-rating-etc'>
               <h3>{product?.name}</h3>
               <p>SKU : {product.sku}</p>
-              
+
               <div className='product-detail-rating-and-share'>
                 <RatingReview rating={(product?.average_rating)} disabled={true} size={"20px"} />
                 <span
@@ -329,7 +359,7 @@ const ProductDetailSticky = (
                 />
               </div>
 
-              <div className='add-cart-or-add-items-div'>
+              <div className='add-cart-or-add-items-div' ref={cartDivRef}>
                 <div className='item-count'>
                   <button className={`minus-btn ${product.quantity === 1 ? 'disabled' : ''}`} onClick={decreaseLocalQuantity} disabled={product.quantity === 1}>
                     {/* <img src={minus} alt='minus btn' /> */}
@@ -479,7 +509,7 @@ const ProductDetailSticky = (
                       {milesData.map((item, index) => (
                         <p key={index} onClick={() => {
                           setMiles(item.distance);
-                          
+
                         }}>{item.distance}</p>
                       ))}
                     </div>
@@ -533,17 +563,43 @@ const ProductDetailSticky = (
         increamentQuantity={increamentQuantity}
       />
 
-      <AppointmentModal 
+      <AppointmentModal
         showAppointMentModal={appointmentModal}
         handleCloseModal={handleCloseAppointmentModal}
       />
 
-      <LocationPopUp 
+      <LocationPopUp
         searchLocation={showLocation}
         handleCloseSearch={handleCloseLocationModal}
         locationDetails={locationData}
         setLocationDetails={setLocationData}
       />
+
+
+      <div 
+        className={`add-to-cart-sticky-section ${addCartSticky ? 'show-sticky-add-to-cart' : ''}`}
+        style={{ boxShadow: !isSticky ? 'rgba(0, 0, 0, 0.24) 0px 3px 8px' : 'none'}}
+      >
+        <div className='mobile-product-sticky-fixed-add-to-cart'>
+          <div className='mobile-sticky-product-sale-and-price'>
+            <h3 className='sticky-section-product-name'>{productData?.name ? truncateTitle(productData?.name, 23) : ''}</h3>
+            <span>
+              <h3>Sale</h3>
+              <p>{formatedPrice(productData?.sale_price)}</p>
+            </span>
+          </div>
+          <button
+            onClick={() => {
+              addToCart0(productData, variationData, !isProtectionCheck ? 1 : 0, quantity)
+              handleAddToCartProduct(productData);
+              // handleSubmitProduct(productData)
+            }
+            }
+          >
+            Add To Cart
+          </button>
+        </div>
+      </div>
 
     </div>
   )
