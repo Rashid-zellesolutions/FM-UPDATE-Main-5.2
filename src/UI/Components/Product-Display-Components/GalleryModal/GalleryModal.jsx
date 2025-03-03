@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import './GalleryModal.css'
 
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
@@ -20,16 +20,66 @@ const GalleryModal = (
     thumbActiveIndex
   }) => {
 
+  // console.log("product Data", productData);
+  // console.log("variation Data", variationData);
+  // Check if dimension_image is not empty
+  const hasDimensionImage = productData?.dimension_image?.image_url?.trim();
 
-  // Determine the image source based on product type
-  // const images = productData?.type === 'variable'
-  //   ? (productData?.dimension_image?.image_url
-  //     ? [{ image_url: productData.dimension_image.image_url }, ...(variationData?.images || [])]
-  //     : (variationData?.images || []))
-  //   : (productData?.dimension_image?.image_url
-  //     ? [{ image_url: productData.dimension_image.image_url }, ...(productData?.images || [])]
-  //     : (productData?.images || []));
+  // Prepare images array with dimension_image at the start if available
+  const updatedVariationImages = hasDimensionImage
+    ? [
+      ...(variationData?.images ? variationData.images : []),
+      {
+        alt_text: "",
+        description: "",
+        image_url: productData?.dimension_image?.image_url,
+        link_url: "",
+        title: "",
+      },
+    ]
+    : variationData?.images || [];
 
+  // console.log("Updated Variation images", updatedVariationImages)
+  // console.log("Product Data Images Length", productData?.images.length);
+  // console.log("Active Index", activeIndex);
+
+  const updatedSimpleImages = hasDimensionImage
+    ? [{ image_url: productData?.dimension_image?.image_url }, ...productData?.images]
+    : productData?.images;
+
+  // console.log("updated single images", updatedSimpleImages)
+
+
+  const [dragStartX, setDragStartX] = useState(0);
+  const [dragging, setDragging] = useState(false);
+  const sliderRef = useRef(null);
+
+
+
+  // Handle Drag Start
+  const handleDragStart = (e) => {
+    setDragStartX(e.clientX);
+    setDragging(true);
+  };
+
+  // Handle Drag Move
+  const handleDragMove = (e) => {
+    if (!dragging) return;
+    const dragDistance = e.clientX - dragStartX;
+
+    if (dragDistance > 50) {
+      handlePrevImage(); // Move to previous image
+      setDragging(false);
+    } else if (dragDistance < -50) {
+      handleNextImage(); // Move to next image
+      setDragging(false);
+    }
+  };
+
+  // Handle Drag End
+  const handleDragEnd = () => {
+    setDragging(false);
+  };
 
   return (
     <div className={`dimension-modal-main-container ${dimensionModal ? 'show-dimension-modal' : ''}`}>
@@ -40,41 +90,42 @@ const GalleryModal = (
 
         <div className='dimension-left-thumbnail-section'>
           <div className='dimension-modal-products-thumb-heading'>
-            <p>Product Photos {(productData?.images?.length)}</p>
+            <p>Product Photos {(updatedSimpleImages.length)}</p>
             <MdKeyboardArrowDown size={20} color='#595959' className='dimension-modal-arrow-down ' />
           </div>
           <div className='thumb-images-main-container'>
-                  {productData?.type === 'variable' ? 
-                  (variationData?.images || []).map((item, index) => (
-                    <div key={index} className={`dimension-modal-thumb-single-image ${index === thumbActiveIndex ? 'dimension-modal-active-thumb' : ''} `} onClick={() => handleThumbnailClick(index)}>
-                      <img src={`${url}${item.image_url}`} alt='slid' className='dimension-modal-thumbnail-single-image' />
-                    </div>
-                  )) 
-                  : 
-                  (productData?.images || []).map((item, index) => (
-                    <div key={index} className={`dimension-modal-thumb-single-image ${index === thumbActiveIndex ? 'dimension-modal-active-thumb' : ''} `} onClick={() => handleThumbnailClick(index)}>
-                      <img src={`${url}${item.image_url}`} alt='slid' className='dimension-modal-thumbnail-single-image' />
-                    </div>
-                  ))}
+            {productData?.type === 'variable' ?
+              (updatedVariationImages || []).map((item, index) => (
+                <div key={index} className={`dimension-modal-thumb-single-image ${index === thumbActiveIndex ? 'dimension-modal-active-thumb' : ''} `} onClick={() => handleThumbnailClick(index)}>
+                  <img src={`${url}${item.image_url}`} alt='slid' className='dimension-modal-thumbnail-single-image' />
                 </div>
+              ))
+              :
+              (updatedSimpleImages || []).map((item, index) => (
+                <div key={index} className={`dimension-modal-thumb-single-image ${index === thumbActiveIndex ? 'dimension-modal-active-thumb' : ''} `} onClick={() => handleThumbnailClick(index)}>
+                  <img src={`${url}${item.image_url}`} alt='slid' className='dimension-modal-thumbnail-single-image' />
+                </div>
+              ))}
+          </div>
 
-          {/* <div className='thumb-images-main-container'>
-            {images.map((item, index) => (
-              <div
-                key={index}
-                className={`dimension-modal-thumb-single-image ${index === thumbActiveIndex ? 'dimension-modal-active-thumb' : ''}`}
-                onClick={() => handleThumbnailClick(index)}
-              >
-                <img src={`${url}${item.image_url}`} alt='thumb' className='dimension-modal-thumbnail-single-image' />
-              </div>
-            ))}
-          </div> */}
+
 
 
         </div>
 
         <div className='dimension-modal-slider'>
-          <div className='dimension-modal-main-slider-section'>
+          <div
+            className='dimension-modal-main-slider-section'
+            ref={sliderRef}
+            onMouseDown={handleDragStart}
+            onMouseMove={handleDragMove}
+            onMouseUp={handleDragEnd}
+            onMouseLeave={handleDragEnd}
+            style={{
+              cursor: 'pointer', // Change cursor when dragging
+              userSelect: 'none' // Prevent selection
+            }}
+          >
             <button
               className={`dimension-main-slider-arrow dimension-slider-arrow-back ${activeIndex === 0 ? 'dimension-modal-disabled-button' : ''}`}
               onClick={handlePrevImage}
@@ -85,10 +136,12 @@ const GalleryModal = (
 
             <div
               className='dimension-modal-main-slider-images'
-              style={{ transform: `translateX(-${activeIndex * 100}%)` }}
+              style={{
+                transform: `translateX(-${activeIndex * 100}%)`,
+              }}
             >
               {productData.type === 'variable' ?
-                (variationData?.images || []).map((slideItem, slideIndex) => (
+                (updatedVariationImages || []).map((slideItem, slideIndex) => (
                   <div key={slideIndex} className='dimension-modal-slider-single-image-container'>
                     <img
                       src={`${url}${slideItem.image_url}`}
@@ -97,7 +150,7 @@ const GalleryModal = (
                     />
                   </div>
                 )) :
-                (productData?.images || []).map((simpleSlideItem, simpleSlideIndex) => (
+                (updatedSimpleImages || []).map((simpleSlideItem, simpleSlideIndex) => (
                   <div key={simpleSlideIndex} className='dimension-modal-slider-single-image-container'>
                     <img
                       src={`${url}${simpleSlideItem.image_url}`}
@@ -118,7 +171,7 @@ const GalleryModal = (
 
 
             <button
-              className={`dimension-main-slider-arrow dimension-slider-arrow-right ${activeIndex === productData?.images?.length - 1 ? 'disabled-button' : ''}`}
+              className={`dimension-main-slider-arrow dimension-slider-arrow-right ${activeIndex === updatedSimpleImages.length - 1 ? 'disabled-button' : ''}`}
               onClick={handleNextImage}
             >
               <IoIosArrowForward size={20} color='#595959' className='product-gallery-arrow' />

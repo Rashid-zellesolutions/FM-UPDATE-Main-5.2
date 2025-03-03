@@ -6,7 +6,7 @@ import { FaLocationDot } from "react-icons/fa6";
 import axios from 'axios';
 import { url } from '../../../../utils/api';
 
-const LocationTab = ({selectedTab, setSelectedTab}) => {
+const LocationTab = ({ selectedTab, setSelectedTab, handleSelectStore }) => {
 
 
   const [nearStores, setNearStores] = useState([]);
@@ -74,7 +74,7 @@ const LocationTab = ({selectedTab, setSelectedTab}) => {
                     />
                   </span>
                 </div>
-                <button onClick={() => setSelectedTab(selectedTab + 1)}>SELECT STORE</button>
+                <button onClick={() => handleSelectStore(item)}>SELECT STORE</button>
               </div>
 
               <div className={`location-tab-store-details ${showLocationDetails === index ? 'show-location-details' : ''}`}>

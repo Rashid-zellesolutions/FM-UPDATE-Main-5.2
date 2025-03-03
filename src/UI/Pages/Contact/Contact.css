@@ -44,6 +44,14 @@
     border-bottom: 2px solid var(--text-color);
 }
 
+.contact-head-phone-number-sec > p > a {
+    font-size: var(--sub-section-size);
+    line-height: var(--sub-section-height);
+    font-weight: var(--sub-section-weight);
+    color: var(--text-color);
+    text-decoration: none;
+}
+
 /* Contact us body section */
 .contact-us-body{
     display: flex;
@@ -160,7 +168,10 @@ label{
     width: 100%;
     align-items: start;
     justify-content: start;
-    gap: 10px;  
+    gap: 3px;
+    font-size: 13px;
+    line-height: 1.5;
+    font-weight: 400;
 }
 
 input {
@@ -184,15 +195,15 @@ input {
     justify-content: start;
 }
 
-.form-submit-button-div button{
-    font-size: 25px;
-    line-height: 37px;
-    font-weight: 500;
+.form-submit-button-div > button{
+    font-size: var(--sub-section-size);
+    line-height: var(--sub-section-height);
+    font-weight: var(--sub-section-weight);
     padding: 5px 15px;
     display: flex;
     align-items: center;
     justify-content: start;
-    gap: 20px;
+    gap: 10px;
     width: max-content;
     background-color: #ffff;
     border: 1px solid #595959;
@@ -207,12 +218,12 @@ input {
     transition: all 0.3s ease-in-out;
 }
 
-.form-submit-button-div button:hover{
+.form-submit-button-div > button:hover{
     background-color: #595959;
     color: #fff;
 }
 
-.form-submit-button-div button:hover .send-file-icon{
+.form-submit-button-div > button:hover .send-file-icon{
     color: #ffff;
 }
 

@@ -155,5 +155,21 @@ export async function getGoogleStoreDetails(placeId) {
   }
 }
 
+export const formatPhoneNumber = (value) => {
+    // Remove all non-numeric characters
+    const cleaned = value.replace(/\D/g, "").slice(0, 10); // Keep only the first 10 digits
+
+    // Apply formatting progressively as user types
+    if (cleaned.length > 6) {
+        return `(${cleaned.slice(0, 3)}) ${cleaned.slice(3, 6)}-${cleaned.slice(6)}`;
+    } else if (cleaned.length > 3) {
+        return `(${cleaned.slice(0, 3)}) ${cleaned.slice(3)}`;
+    } else if (cleaned.length > 0) {
+        return `(${cleaned}`;
+    }
+    
+    return "";
+};
+
 
 

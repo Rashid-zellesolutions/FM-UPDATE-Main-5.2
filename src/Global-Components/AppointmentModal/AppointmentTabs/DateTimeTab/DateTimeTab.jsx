@@ -1,18 +1,20 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './DateTimeTab.css'
 import { Calendar } from 'react-calendar'
 import 'react-calendar/dist/cjs/Calendar.js'
+import { useAppointment } from '../../../../context/AppointmentContext/AppointmentContext'
 
 const DateTimeTab = ({selectedTab, setSelectedTab}) => {
-  const [dateState, setDateState] = useState(new Date());
+  const { appointmentPayload, setAppointmentPayload } = useAppointment();
+  const [dateState, setDateState] = useState(new Date().toISOString().split('T')[0]);
   const timeSlots = [
-    { time: '10:00 AM - 11: 00 AM'},
-    { time: '11:00 AM - 12: 00 AM'},
-    { time: '12:00 AM - 01: 00 AM'},
-    { time: '01:00 AM - 02: 00 AM'},
-    { time: '02:00 AM - 03: 00 AM'},
-    { time: '03:00 AM - 04: 00 AM'},
-    { time: '04:00 AM - 05: 00 AM'},
+    { time: '10:00 AM - 11: 00 PM'},
+    { time: '11:00 AM - 12: 00 PM'},
+    { time: '12:00 AM - 01: 00 PM'},
+    { time: '01:00 AM - 02: 00 PM'},
+    { time: '02:00 AM - 03: 00 PM'},
+    { time: '03:00 AM - 04: 00 PM'},
+    { time: '04:00 AM - 05: 00 PM'},
   ]
 
   const today = new Date();
@@ -24,8 +26,25 @@ const DateTimeTab = ({selectedTab, setSelectedTab}) => {
 
   const [showTimeSlots, setShowTimeSlots] = useState(false);
   const changeDate = (e) => {
-    setDateState(e)
+    // setDateState(e)
+    const selectedDate = new Date(e);
+    selectedDate.setMinutes(selectedDate.getMinutes() - selectedDate.getTimezoneOffset());
+    setAppointmentPayload((prev) => ({
+      ...prev,
+      selectedDate: selectedDate.toISOString().split('T')[0]
+    }))
+    
+    console.log("Selected New Date", selectedDate.toISOString().split('T')[0])
+
     setShowTimeSlots(true)
+  }
+
+  useEffect(() => { console.log("set new date", dateState) }, [dateState])
+  const  handleSelectTimeSlote = (item) => {
+    setAppointmentPayload((prev) => ({
+      ...prev, 
+      selectedSlot: item,
+    }))
   }
 
 
@@ -45,7 +64,7 @@ const DateTimeTab = ({selectedTab, setSelectedTab}) => {
       </div>
       <div className='date-time-tab-times-slots'>
         {timeSlots.map((item, index) => (
-          <p key={index} onClick={() => setSelectedTab(selectedTab + 1)} className='single-time-slot'>{item.time}</p>
+          <p key={index} onClick={() => {handleSelectTimeSlote(item.time); setSelectedTab(selectedTab + 1)}} className='single-time-slot'>{item.time}</p>
         ))}
       </div>
     </div>

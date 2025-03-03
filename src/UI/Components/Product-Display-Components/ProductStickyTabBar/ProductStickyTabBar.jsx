@@ -19,11 +19,6 @@ const ProductStickyTabBar = (
         quantity
     }) => {
 
-    useEffect(() => { console.log("isSticky value check", isSticky) }, [isSticky])
-
-        
-
-
     const tabBarItems = ['Description', 'Details', 'Recommendations', 'Reviews'];
     const [activeTab, setIsActiveTab] = useState('Description');
     const [searchLocation, setSearchLocation] = useState(false);

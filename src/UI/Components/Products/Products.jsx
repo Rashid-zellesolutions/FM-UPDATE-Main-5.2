@@ -513,6 +513,11 @@ const Products = () => {
         setShowSortModal(false)
     }
 
+    const handleSelectMobileRelevanceValue = (name) => {
+        sortProducts(name)
+        setShowSortModal(false);
+    }
+
     useEffect(() => {console.log("Selected Sort Option", selectedOption)})
 
     return (
@@ -1062,6 +1067,7 @@ const Products = () => {
                 isOpenSort={showSortModal}
                 handleCloseSortModal={handleCloseSortModal}
                 setSelectedOption={setSelectedOption}
+                handleSelect={handleSelectMobileRelevanceValue}
             />
         </div>
     )

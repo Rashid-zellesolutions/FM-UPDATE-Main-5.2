@@ -24,53 +24,54 @@ import { ActiveSalePageProvider } from './context/ActiveSalePageContext/ActiveSa
 import { BlogsProvider } from './context/BlogsContext/blogsContext';
 import { UserDashboardCtxProvider } from './context/userDashboardContext/userDashboard';
 import { ProductArchiveProvider } from './context/ActiveSalePageContext/productArchiveContext';
+import { AppointmentProvider } from './context/AppointmentContext/AppointmentContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <HelmetProvider>
       <UserDashboardCtxProvider>
-      <SEOctxProvider>
-        <CartProvider>
-          <GlobalContextProvider>
-            <BlogsProvider>
-              <ActiveSalePageProvider>
-                <WishListProvider>
-                  <LPContentProvider>
-                    <OrderProvivder>
-                      <NavigationProvider>
-                        <AddCartProvider>
-                          <ProductProvider>
-
-                            <SingleProductProvider>
-                              <MyOrdersProvider>
-                                <ProductPageProvider>
-                                  <VariationProvider>
-                                    <ProductArchiveProvider>
-                                    <Provider store={store}>
-                                      <Router>
-                                        <ScrollToTop>
-                                          <App />
-                                        </ScrollToTop>
-                                      </Router>
-                                    </Provider>
-                                    </ProductArchiveProvider>
-                                  </VariationProvider>
-                                </ProductPageProvider>
-                              </MyOrdersProvider>
-                            </SingleProductProvider>
-
-                          </ProductProvider>
-                        </AddCartProvider>
-                      </NavigationProvider>
-                    </OrderProvivder>
-                  </LPContentProvider>
-                </WishListProvider>
-              </ActiveSalePageProvider>
-            </BlogsProvider>
-          </GlobalContextProvider>
-        </CartProvider>
-      </SEOctxProvider>
+        <SEOctxProvider>
+          <CartProvider>
+            <GlobalContextProvider>
+              <BlogsProvider>
+                <ActiveSalePageProvider>
+                  <WishListProvider>
+                    <LPContentProvider>
+                      <OrderProvivder>
+                        <NavigationProvider>
+                          <AddCartProvider>
+                            <ProductProvider>
+                              <AppointmentProvider>
+                                <SingleProductProvider>
+                                  <MyOrdersProvider>
+                                    <ProductPageProvider>
+                                      <VariationProvider>
+                                        <ProductArchiveProvider>
+                                          <Provider store={store}>
+                                            <Router>
+                                              <ScrollToTop>
+                                                <App />
+                                              </ScrollToTop>
+                                            </Router>
+                                          </Provider>
+                                        </ProductArchiveProvider>
+                                      </VariationProvider>
+                                    </ProductPageProvider>
+                                  </MyOrdersProvider>
+                                </SingleProductProvider>
+                              </AppointmentProvider>
+                            </ProductProvider>
+                          </AddCartProvider>
+                        </NavigationProvider>
+                      </OrderProvivder>
+                    </LPContentProvider>
+                  </WishListProvider>
+                </ActiveSalePageProvider>
+              </BlogsProvider>
+            </GlobalContextProvider>
+          </CartProvider>
+        </SEOctxProvider>
       </UserDashboardCtxProvider>
     </HelmetProvider>
   </React.StrictMode>

@@ -27,6 +27,7 @@ import { PiStorefrontLight } from "react-icons/pi";
 import { MdOutlineKeyboardArrowDown } from 'react-icons/md'
 import AppointmentModal from '../../../../Global-Components/AppointmentModal/AppointmentModal'
 import LocationPopUp from '../../LocationPopUp/LocationPopUp'
+import ConfirmationModal from '../../../../Global-Components/AppointmentModal/ConfirmationModal/ConfirmationModal'
 
 
 const ProductDetailSticky = (
@@ -51,6 +52,7 @@ const ProductDetailSticky = (
     variationData,
     setVariationData,
     isSticky,
+    // parentCategories,
   }) => {
 
   const navigate = useNavigate()
@@ -129,7 +131,6 @@ const ProductDetailSticky = (
   const [selectVariation, setSelectVariation] = useState(0);
   const handleSelectVariation = (value) => {
     setSelectVariation(value);
-    console.log("select variation", selectVariation)
   }
   const [selectedUid, setSelectedUid] = useState(null);
 
@@ -277,7 +278,7 @@ const ProductDetailSticky = (
 
   }, [cartDivRef]);
 
-  useEffect(() => { console.log("handle Scroll", addCartSticky) }, [addCartSticky])
+  useEffect(() => {  }, [addCartSticky])
 
   const [isProtectionCheck, setIsProtectionCheck] = useState(true)
 
@@ -286,8 +287,13 @@ const ProductDetailSticky = (
     addToCart0(product, quantity, !isProtectionCheck);
   }
 
+
+
+  
+
   return (
     <div className='product-detail-sticky-section-main-container'>
+
       <div className='product-detail-sticky-gallery-and-detail'>
 
         <div className='product-detail-product-gallery-section'>
@@ -547,6 +553,7 @@ const ProductDetailSticky = (
           </div>
         </div>
       </div>
+
       <ShareProduct
         isSharePopup={isSharePopup}
         setIsSharePopup={setIsSharePopup}
@@ -565,6 +572,7 @@ const ProductDetailSticky = (
 
       <AppointmentModal
         showAppointMentModal={appointmentModal}
+        setAppointmentModal={setAppointmentModal}
         handleCloseModal={handleCloseAppointmentModal}
       />
 

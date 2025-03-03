@@ -49,6 +49,10 @@
     display: none;
 }
 
+.appointment-modal-inner-container.hide-appointment-modal {
+    display: none;
+}
+
 .appointment-modal-close-btn {
     display: flex;
     align-items: center;

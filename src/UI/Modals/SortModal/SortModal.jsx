@@ -3,7 +3,7 @@ import './SortModal.css';
 import { IoIosClose } from "react-icons/io";
 
 
-const SortModal = ({ isOpenSort, handleCloseSortModal, setSelectedOption }) => {
+const SortModal = ({ isOpenSort, handleCloseSortModal, setSelectedOption, handleSelect }) => {
   useEffect(() => {
     if (isOpenSort) {
       document.body.style.overflow = 'hidden'
@@ -30,6 +30,7 @@ const SortModal = ({ isOpenSort, handleCloseSortModal, setSelectedOption }) => {
         </button>
         {sortOptions.map((item, index) => (
           <p key={index} onClick={() => {
+            handleSelect(item.name)
             setSelectedOption(item.name);
             handleCloseSortModal()
           }}>{item.name}</p>

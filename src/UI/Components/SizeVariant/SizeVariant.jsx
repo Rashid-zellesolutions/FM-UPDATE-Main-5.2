@@ -17,7 +17,7 @@ const SizeVariant = ({
     const [selectedImageName, setSelectedImageName] = useState();
     const [selectedColorName, setSelectedColorName] = useState();
     const [selectedSelectAttrs, setSelectedSelectAttrs] = useState({}); // For multiple select attributes
-    console.log("product variations", productData)
+    
     
     let defaultSelections = {};
     useEffect(() => {
@@ -37,7 +37,6 @@ const SizeVariant = ({
             } 
             else {
                 let initialVariation = selectedVariationData;
-                console.log("initial variation", initialVariation)
 
                 if (!initialVariation && productData?.length > 0) {
                     initialVariation = productData[0]; // Default to the first variation
@@ -149,7 +148,6 @@ const SizeVariant = ({
             const matchedVariation = productData.find((variation) => {
                 return variation.attributes.every((attr) => {
                     const selectedValue = updatedAttrs[attr.name];
-                    console.log("find match", selectedValue)
                     // Ensure you're comparing the value correctly based on the attribute type
                     return selectedValue === attr.options?.[0]?.value;
                 });

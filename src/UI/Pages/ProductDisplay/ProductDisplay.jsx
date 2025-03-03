@@ -93,9 +93,15 @@ const ProductDisplay = () => {
 
   }
 
+  // console.log("product Data", product)
+
+  // Parentcategories
+  
+  
+
   return (
     <div className='product-display-page-main-container'>
-      <Breadcrumb />
+      <Breadcrumb category={product.categories} />
       <ProductDetailSticky
         productData={product}
         decreaseLocalQuantity={decreaseLocalQuantity}
@@ -117,6 +123,7 @@ const ProductDisplay = () => {
         decreamentQuantity={decreamentQuantity}
         increamentQuantity={increamentQuantity}
         isSticky={isSticky}
+        // parentCategories={parentCategories}
       />
 
       <ProductStickyTabBar 

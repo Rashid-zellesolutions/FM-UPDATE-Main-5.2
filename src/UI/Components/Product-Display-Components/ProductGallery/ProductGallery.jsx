@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './ProductGallery.css';
 
 // Assets
@@ -37,19 +37,17 @@ const ProductGallery = (
 
     const [dimensionModal, setDimensionModal] = useState(false)
 
-    // const [zoomIn, setZoomIn] = useState(false);
-    // const [position, setPosition] = useState({ x: 0, y: 0 });
-    // const [dragging, setDragging] = useState(false);
-    // const [startPos, setStartPos] = useState({ x: 0, y: 0 });
-    // const [isClick, setIsClick] = useState(false);
-
     const handleOpenModal = () => {
         setDimensionModal(true)
     }
 
     const handleCloseDimensionModal = () => {
         setDimensionModal(false)
+        setActiveIndex(0)
+        setThumbActiveIndex(0)
     }
+
+    useEffect(() => {}, [thumbActiveIndex])
 
     const handleThumbnailClick = (index) => {
         setActiveIndex(index);
@@ -172,7 +170,7 @@ const ProductGallery = (
                     ? selectedVariationData?.images?.length
                     : productData?.images?.length;
 
-            if (prevIndex === length - 1) return prevIndex; // Prevent moving after last item
+            if (prevIndex === length) return prevIndex; // Prevent moving after last item
 
             const newIndex = prevIndex + 1;
             setThumbActiveIndex(newIndex); // Update active thumbnail index
@@ -198,6 +196,57 @@ const ProductGallery = (
             return newIndex;
         });
     };
+
+    const [isDragging, setIsDragging] = useState(false);
+    const [startX, setStartX] = useState(0);
+    const [dragDistance, setDragDistance] = useState(0);
+    const sliderRef = useRef(null);
+
+
+    const handleDragStart = (e) => {
+        setIsDragging(true);
+        setStartX(e.type.includes("mouse") ? e.pageX : e.touches[0].pageX);
+    };
+
+    const handleDragMove = (e) => {
+        if (!isDragging) return;
+
+        const currentX = e.type.includes("mouse") ? e.pageX : e.touches[0].pageX;
+        const distance = currentX - startX;
+        setDragDistance(distance);
+    };
+
+    const handleDragEnd = () => {
+        setIsDragging(false);
+
+        if (Math.abs(dragDistance) > 50) {
+            if (dragDistance > 0) {
+                handlePrevImage(); // Move to the previous image on right swipe
+            } else {
+                handleNextImage(); // Move to the next image on left swipe
+            }
+        }
+
+        setDragDistance(0);
+    };
+
+    // Prevent unwanted browser behaviors during touch events
+    useEffect(() => {
+        const slider = sliderRef.current;
+        if (slider) {
+            slider.addEventListener("touchstart", handleDragStart, { passive: false });
+            slider.addEventListener("touchmove", handleDragMove, { passive: false });
+            slider.addEventListener("touchend", handleDragEnd);
+        }
+
+        return () => {
+            if (slider) {
+                slider.removeEventListener("touchstart", handleDragStart);
+                slider.removeEventListener("touchmove", handleDragMove);
+                slider.removeEventListener("touchend", handleDragEnd);
+            }
+        };
+    }, []);
 
     return (
         <>
@@ -264,7 +313,17 @@ const ProductGallery = (
                 </div>
 
                 {/* Main Slider Section */}
-                <div className='product-gallery-main-slider-section'>
+                <div 
+                    className='product-gallery-main-slider-section'
+                    ref={sliderRef}
+                    onMouseDown={handleDragStart}
+                    onMouseMove={handleDragMove}
+                    onMouseUp={handleDragEnd}
+                    onMouseLeave={handleDragEnd}
+                    onTouchStart={handleDragStart}
+                    onTouchMove={handleDragMove}
+                    onTouchEnd={handleDragEnd}
+                >
                     <button
                         onClick={handlePrevImage}
                         disabled={activeIndex === 0}

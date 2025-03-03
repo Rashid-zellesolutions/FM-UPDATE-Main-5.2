@@ -148,7 +148,7 @@ export default function WriteReview({ product_id, productData, review_enable, pr
         }
     };
 
-    useEffect(() => { console.log("selected images", images) }, [images])
+    useEffect(() => {  }, [images])
     
 
     const handleSubmitReview = async (e) => {
@@ -172,26 +172,17 @@ export default function WriteReview({ product_id, productData, review_enable, pr
             formData.append("images", image); // 'images' is the key on the backend
         });
 
-        // Debugging: Log FormData before sending
-        for (let pair of formData.entries()) {
-            console.log("pair image",pair[0], pair[1]);
-        }
-        
-
-        console.log("Payload before sending:", Object.fromEntries(formData.entries()))
         const api = `/api/v1/reviews/add`
         try {
             const reviewResponse = await axios.post(`${url}${api}`, formatDate);
-            console.log("response send", reviewResponse);
+            
         } catch (error) {
             console.error("UnExpected Server Error", error);
         }
     }
 
     const [isChecked, setIsChecked] = useState(false);
-    const handleCheckboxChange = (event) => {
-        setIsChecked(event.target.checked);
-    };
+    
 
     const handleSubmit = () => {
         if (isChecked) {

@@ -389,7 +389,7 @@ const ProductCardTwo = ({
                             <h3 className={`product-title ${colTwo ? 'apply-col-two-styling' : ''}`}> {ProductTitle} </h3>
 
                             {priorityAttribute && (
-                                <div className='product-card-attr' >
+                                <div className={`product-card-attr ${colTwo ? 'hide-squire-attribute' : ''}`} >
                                     {priorityAttribute.type === "image" && (
                                         <div className="image-variation">
                                             {priorityAttribute.options.map((item, index) => (
@@ -433,9 +433,9 @@ const ProductCardTwo = ({
                                     )}
                                 </div>
                             )}
-
+ 
                             {priorityAttribute && (
-                                <div className='mobile-product-card-attr' >
+                                <div className={`mobile-product-card-attr ${colTwo ? 'show-rounded-attributes' : ''}`} >
                                     {priorityAttribute.type === "image" && (
                                         <div className="mobile-image-variation">
                                             {priorityAttribute.options.map((item, index) => (
@@ -538,7 +538,7 @@ const ProductCardTwo = ({
                                     {
                                         sale_price === "0" ?
                                             <h3 className={`product-price-del ${colTwo ? 'apply-col-two-styling' : ''}`}>${priceTag}</h3> :
-                                            <h3 className={`product-price-tag ${colTwo ? 'apply-col-two-styling' : ''}`}> <p className='product-price-starting-at'>Starting At</p> ${sale_price} <del className='product-del-price-with-sale-price'>${priceTag}</del>  </h3>
+                                            <h3 className={`product-price-tag ${colTwo ? 'apply-col-two-styling' : ''}`}> <p className={`product-price-starting-at ${colTwo ? 'apply-two-col-styling' : ''}`}>Starting At</p> ${sale_price} <del className={`product-del-price-with-sale-price ${colTwo ? 'apply-col-two-styling' : ''}`}>${priceTag}</del>  </h3>
                                     }
 
                                     <span className={`product-card-installment-plan ${showOnPage ? 'show-installment-plan' : ''}`}>

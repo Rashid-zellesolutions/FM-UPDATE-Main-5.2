@@ -1,9 +1,22 @@
 import React, { useState } from 'react'
 import './ReviewTab.css';
+import { useAppointment } from '../../../../context/AppointmentContext/AppointmentContext';
 
-const ReviewTab = () => {
+const ReviewTab = ({ handleSubmitAppointment }) => {
   const [value, setValue] = useState('');
   const [focused, setFocused] = useState(false);
+
+  const { appointmentPayload, setAppointmentPayload } = useAppointment();
+  const handleUserDataChange = (e) => {
+    const {name, value} = e.target;
+    setAppointmentPayload((prev) => ({
+      ...prev,
+      details: {
+        ...prev.details,
+        [name]: value
+      }
+    }))
+  }
   return (
     <div className='review-tab-main-container'>
       <h3>Please provide your details to be added to our appointment book</h3>
@@ -11,47 +24,28 @@ const ReviewTab = () => {
       <div className='review-tab-form'>
 
         <label>
-          <input type='text' placeholder='First Name' />
-        </label>
-        
-        {/* <div className="floating-input-container">
-          <input
-            type="text"
-            value={value}
-            onChange={(e) => setValue(e.target.value)}
-            onFocus={() => setFocused(true)}
-            onBlur={() => setFocused(false)}
-          />
-          <label className={focused || value ? 'float' : ''}>Your Label</label>
-        </div> */}
-
-        {/* <TextField
-          id="filled-password-input"
-          label="First Name"
-          type="text"
-          autoComplete="current-password"
-          variant="filled"
-        /> */}
-
-        <label>
-          <input type='text' placeholder='Last Name' />
+          <input type='text' name='firstName' value={appointmentPayload.details.firstName} placeholder='First Name' onChange={handleUserDataChange} />
         </label>
 
         <label>
-          <input type='text' placeholder='Email Address' />
+          <input type='text' name='lastName' value={appointmentPayload.details.lastName} placeholder='Last Name' onChange={handleUserDataChange} />
         </label>
 
         <label>
-          <input type='text' placeholder='Contact Phone' />
+          <input type='text' name='email' value={appointmentPayload.details.email} placeholder='Email Address' onChange={handleUserDataChange} />
+        </label>
+
+        <label>
+          <input type='text' name='contact' value={appointmentPayload.details.contact} placeholder='Contact Phone' onChange={handleUserDataChange} />
         </label>
 
         <h3>Was there an associate that you were working with?</h3>
 
         <label>
-          <input type='text' placeholder='Associate Name' />
+          <input type='text' name='associate' value={appointmentPayload.details.associate} placeholder='Associate Name' onChange={handleUserDataChange} />
         </label>
 
-        <button>
+        <button onClick={handleSubmitAppointment}>
           Book Consultant
         </button>
       </div>

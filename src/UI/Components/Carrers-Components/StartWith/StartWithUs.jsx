@@ -3,7 +3,7 @@ import './StartWithUs.css'
 import ApplyFor from '../ApplyFor/ApplyFor'
 import { Link } from 'react-alice-carousel'
 
-const StartWithUs = () => {
+const StartWithUs = ({setLoading}) => {
   return (
     <div className='start-with-us-main-container'>
         <div className='career-start-with-us'>
@@ -26,7 +26,7 @@ const StartWithUs = () => {
                 <p>Join our team of innovators and make your mark in a dynamic and collaborative work environment</p>
             </div>
             <div className='aplpy-for-form'>
-                <ApplyFor />
+                <ApplyFor setLoading={setLoading} />
             </div>
         </div>
     </div>

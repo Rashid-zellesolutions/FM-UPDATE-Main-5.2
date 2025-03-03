@@ -10,14 +10,37 @@
     gap: 10px;
 }
 
+.career-form-first-and-last-name-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 15px;
+}
+
+.career-form-zip-and-city{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 15px;
+}
+
+.career-form-zip-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40%;
+}
+
 .apply-for-input-labels{
     display: flex;
     flex-direction: column;
     width: 100%;
-    gap: 10px;
+    gap: 3px;
     color: var(--text-color);
-    font-size: 15px;
-    line-height: 22px;
+    font-size: 13px;
+    line-height: 1.5;
     font-weight: 400;
     align-items: start;
     justify-content: start;
@@ -58,9 +81,14 @@
     border: 1px solid var(--active-nav-item-color);
     border-radius: 5px;
     color: #fff;
-    font-size: 20px;
-    line-height: 30px;
-    font-weight: 500;
+    font-size: var(--sub-section-size);
+    line-height: var(--sub-section-height);
+    font-weight: var(--sub-section-weight);
+}
+
+.apply-for-career-button > img {
+    width: 20px;
+    height: auto;
 }
 
 @media only screen and (max-width: 480px){

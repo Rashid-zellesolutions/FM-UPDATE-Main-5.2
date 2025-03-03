@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import './BreadCrumb.css';
 import { useLocation, Link } from 'react-router-dom';
 import { useNavigation } from '../../context/BreadCrumbContext/NavigationContext';
@@ -8,6 +8,7 @@ import rightArrow from "../../Assets/right-arrow.png";
 const Breadcrumb = ({ category, productName, sku, categorySlug }) => {
     const [parentCategory, setParentCategory] = useState(null)
     const location = useLocation();
+
     useEffect(() => {
         if (location.pathname.includes('product')) {
             // Set the parent category if the route is a product page
@@ -23,10 +24,18 @@ const Breadcrumb = ({ category, productName, sku, categorySlug }) => {
     const pathnames = location.pathname.split('/').filter(x => x);
 
     // Combine navigation history and current pathnames
+    // const fullPathNames = [...navigationHistory, ...pathnames];
+
+    // if (fullPathNames.length === 0) {
+    //     return null; // Don't show anything if on the home page
+    // }
+
+
     const fullPathNames = [...navigationHistory, ...pathnames];
 
-    if (fullPathNames.length === 0) {
-        return null; // Don't show anything if on the home page
+    // Ensure previous route is retained on product pages
+    if (location.pathname.includes('product') && categorySlug) {
+        fullPathNames.splice(fullPathNames.indexOf('product'), 1, categorySlug); // Replace "product" with categorySlug
     }
 
     const pagePath = window.location.pathname

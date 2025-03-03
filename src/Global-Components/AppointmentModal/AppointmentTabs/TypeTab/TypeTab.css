@@ -37,6 +37,10 @@
 
 }
 
+.type-option.select-service-option {
+     background-color: #f0f0f0;
+}
+
 .type-option > p {
     font-size: var(--content-one-size);
     line-height: var(--content-one-height);
@@ -80,6 +84,10 @@
 }
 
 .type-category:hover {
+    background-color: #f0f0f0;
+}
+
+.type-category.select-category{
     background-color: #f0f0f0;
 }
 
