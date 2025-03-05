@@ -17,6 +17,7 @@ import { VscHeart } from "react-icons/vsc";
 import { useList } from '../../../context/wishListContext/wishListContext';
 import { toast } from 'react-toastify';
 import RatingReview from '../starRating/starRating';
+import { IoIosArrowDown } from "react-icons/io";
 
 const QuickView = ({ setQuickViewProduct, quickViewClose, quickViewShow, }) => {
 
@@ -62,9 +63,20 @@ const QuickView = ({ setQuickViewProduct, quickViewClose, quickViewShow, }) => {
         },
         {
             name: 'Weight & Dimension',
-            para: setQuickViewProduct.short_description
-            ,
+            para: [
+                { id: 1, name: 'Dimensions (in)', val: `L: 88.5" x W: 37.5" x H: 37"` },
+                { id: 2, name: 'Color', val: `Sugar Shack Cafe` },
+                { id: 3, name: 'Color Family', val: `Brown` },
+                { id: 4, name: 'Weight Capacity', val: `900 lbs` },
+            ]
         },
+    ]
+
+    const dimensionData = [
+        {id: 1, name: 'Dimensions (in)', val: `L: 88.5" x W: 37.5" x H: 37"`},
+        { id: 2, name: 'Color', val: `Sugar Shack Cafe`},
+        { id: 3, name: 'Color Family', val: `Brown`},
+        { id: 4, name: 'Weight Capacity', val: `900 lbs`},
     ]
 
     const startFrom = setQuickViewProduct?.dimension_image !== null ? 0 : 1
@@ -222,11 +234,23 @@ const QuickView = ({ setQuickViewProduct, quickViewClose, quickViewShow, }) => {
                             <div className='quick-view-details-heading' onClick={() => handleViewDetails(index)}>
                                 <p>{items.name}</p>
                                 <button >
-                                    <img src={arrowDown} alt='arrow down' className={viewDetails === index ? 'quick-view-rotate-up' : 'quick-view-rotate-down'} />
+                                    <IoIosArrowDown className={viewDetails === index ? 'quick-view-rotate-up' : 'quick-view-rotate-down'} size={20} color='#595959' />
+                                    {/* <img src={arrowDown} alt='arrow down' className={viewDetails === index ? 'quick-view-rotate-up' : 'quick-view-rotate-down'} /> */}
                                 </button>
                             </div>
                             <div className={`quick-view-details ${viewDetails === index ? 'show-details' : ''}`}>
-                                {setQuickViewProduct?.dimension_image !== null && index === 0 ? <img src={url + setQuickViewProduct?.dimension_image?.image_url} alt='dimension' /> : <p dangerouslySetInnerHTML={{ __html: items.para }} />}
+                                {
+                                    setQuickViewProduct?.dimension_image !== null && index === 0 
+                                    ? <img src={url + setQuickViewProduct?.dimension_image?.image_url} alt='dimension' /> 
+                                    : index === quickViewData.length -1 ? <div className='quick-view-drop-down-dimension-data'>
+                                        {items.para.map((item) => (
+                                            <span key={item.id}>
+                                                <h3>{item.name}</h3>
+                                                <p>{item.val}</p>
+                                            </span>
+                                        ))}
+                                    </div>
+                                    : <p dangerouslySetInnerHTML={{ __html: items.para }} />}
                             </div>
                         </div>
                     ))}
