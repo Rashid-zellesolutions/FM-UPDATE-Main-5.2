@@ -288,23 +288,16 @@
 
 .product-title {
     background-color: transparent !important;
-    /* font-size: var(--sub-section-size) !important; */
-    /* font-size: (12px, 1.2vw, 50px) !important; */
-    font-size: clamp(16px, calc(1vw + 0.2rem), 50px) !important;
-
+    font-size: var(--sub-section-size) !important;
+    /* font-size: clamp(16px, calc(1vw + 0.2rem), 50px) !important; */
     font-weight: var(--sub-section-weight) !important;
-    /* line-height: var(--sub-section-height) !important; */
-    line-height: clamp(16px, calc(1vw + 0.2rem), 50px) !important;
-    /* line-height: 22px !important; */
+    line-height: var(--sub-section-height) !important;
+    /* line-height: clamp(16px, calc(1vw + 0.2rem), 50px) !important; */
     margin-bottom: 10px !important;
     cursor: pointer;
     margin-top: 0px !important;
     color: var(--text-color);
     text-decoration: none;
-    /* Remove or adjust the height property if needed */
-    /* height: 100% !important; */
-
-    /* For multiline ellipsis: */
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
@@ -335,8 +328,8 @@
     display: none !important;
     background-color: transparent !important;
     /* font-size: var(--attribute-size); */
-    /* font-size: 10px !important; */
-    font-size: clamp(12px, 0.8vw, 25px) !important;
+    font-size: 10px !important;
+    /* font-size: clamp(12px, 0.8vw, 25px) !important; */
     /* font-size: 0.8vw; */
     font-weight: var(--attribute-weight);
     line-height: var(--attribute-height);
@@ -581,8 +574,8 @@
 }
 
 .product-price-tag {
-    /* font-size: var(--section-size) !important; */
-    font-size: clamp(20px, calc(1.4vw + 0.1rem), 30px) !important;
+    font-size: var(--section-size) !important;
+    /* font-size: clamp(20px, calc(1.4vw + 0.1rem), 30px) !important; */
     /* line-height: var(--section-height) !important; */
     line-height: 15px !important;
     font-weight: var(--section-weight) !important;
@@ -593,15 +586,16 @@
 }
 
 .product-price-starting-at {
-    font-size: clamp(14px, calc(1vw + 0.2rem), 13px);
+    /* font-size: clamp(14px, calc(1vw + 0.2rem), 13px); */
+    font-size: 15px;
     line-height: 1.5;
     font-weight: 400;
     /* margin-bottom: 5px; */
 }
 
 .product-del-price-with-sale-price {
-    /* font-size: var(--sub-section-size); */
-    font-size: clamp(15px, calc(1vw + 0.2rem), 20px) !important;
+    font-size: var(--sub-section-size);
+    /* font-size: clamp(15px, calc(1vw + 0.2rem), 20px) !important; */
     line-height: var(--sub-section-height);
     font-weight: var(--sub-section-weight);
     color: var(--text-color);
@@ -930,16 +924,17 @@
     }
 
     .product-price-starting-at.apply-two-col-styling {
-        font-size: clamp(10px, calc(1vw + 0.2rem), 13px);
+        /* font-size: clamp(10px, calc(1vw + 0.2rem), 13px); */
+        font-size: 13px;
         line-height: 1.5;
         font-weight: 400;
     }
 
     .product-price-tag.apply-col-two-styling {
-        /* font-size: var(--section-size) !important; */
-        font-size: clamp(14px, calc(1.4vw + 0.1rem), 27px) !important;
-        /* line-height: var(--section-height) !important; */
-        line-height: 15px !important;
+        font-size: var(--section-size) !important;
+        /* font-size: clamp(14px, calc(1.4vw + 0.1rem), 27px) !important; */
+        line-height: var(--section-height) !important;
+        /* line-height: 15px !important; */
         font-weight: var(--section-weight) !important;
         /* margin-top: 15px;
     margin-bottom: 10px; */
@@ -948,8 +943,8 @@
     }
 
     .product-del-price-with-sale-price.apply-col-two-styling {
-        /* font-size: var(--sub-section-size); */
-        font-size: clamp(12px, calc(1vw + 0.2rem), 15px) !important;
+        font-size: var(--sub-section-size);
+        /* font-size: clamp(12px, calc(1vw + 0.2rem), 15px) !important; */
         line-height: var(--sub-section-height);
         font-weight: var(--sub-section-weight);
         color: var(--text-color);

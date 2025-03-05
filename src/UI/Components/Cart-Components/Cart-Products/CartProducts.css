@@ -93,6 +93,7 @@
     border: 1px solid var(--border-color);
     border-radius: 5px;
     position: relative;
+    cursor: pointer;
 }
 
 .cart-protection-card-icon{
@@ -119,7 +120,8 @@
 
 .cart-protection-plan-cart-desc{
     font-size: var(--content-one-size);
-    line-height: var(--content-one-height);
+    /* line-height: var(--content-one-height); */
+    line-height: 12px;
     font-weight: var(--content-two-weight);
     color: var(--text-color);
     opacity: 0.7;

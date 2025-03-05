@@ -4,9 +4,9 @@ export const CartContext = createContext()
 
 export const CartProvider = ({ children }) => {
 
-    const [eachProtectionValue, setEachProtectionValue] = useState(99);
-    const [totalProtectionValue, setTotalProtectionValue] = useState(199);
-    const [professionalAssemblyValue, setProfessionalAssemblyValue] = useState(210);
+    const [eachProtectionValue, setEachProtectionValue] = useState(160); // 99 was old single protection price
+    const [totalProtectionValue, setTotalProtectionValue] = useState(200);
+    const [professionalAssemblyValue, setProfessionalAssemblyValue] = useState(210); // 199 was old all protection price
 
     const [cartProducts, setCartProducts] = useState(() => {
         const savedCart = localStorage.getItem('cart2');
@@ -89,6 +89,8 @@ export const CartProvider = ({ children }) => {
             }
         });
     };
+
+    useEffect(() => {console.log("cart Product List", cartProducts)}, [cartProducts])
 
     // initialize cart from local storage
     const [subTotal, setSubTotal] = useState(0);

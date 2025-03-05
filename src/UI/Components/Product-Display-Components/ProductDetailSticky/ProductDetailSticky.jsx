@@ -55,6 +55,8 @@ const ProductDetailSticky = (
     // parentCategories,
   }) => {
 
+    console.log("product data initial state", productData)
+
   const navigate = useNavigate()
 
   // Get Product Data from previous route or api
@@ -110,7 +112,7 @@ const ProductDetailSticky = (
     }
   }, [productData, slug, getBySlug, product])
 
-  useEffect(() => { }, [product])
+  useEffect(() => { console.log("product data on product page", product) }, [product])
 
   // Share Product Modal
   const [isSharePopup, setIsSharePopup] = useState(null);

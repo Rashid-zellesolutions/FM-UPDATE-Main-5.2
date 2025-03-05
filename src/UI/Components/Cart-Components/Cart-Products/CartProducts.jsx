@@ -38,6 +38,17 @@ const CartProducts = () => {
         selectedShippingMethods,
     } = useGlobalContext();
 
+    const [productProtectCount, setProductProtectCount] = useState(0);
+    useEffect(() => {
+        if (cartProducts?.is_all_protected === 0) {
+            const protectedProducts = cartProducts?.products.filter(product => product?.is_protected === 1)
+            setProductProtectCount(protectedProducts)
+        }
+    }, [cartProducts])
+
+    useEffect(() => { console.log("protected product", productProtectCount) }, [productProtectCount])
+    
+
     const [locationDetails, setLocationDetails] = useState({
         zipCode: '',
         city: '',
@@ -127,23 +138,29 @@ const CartProducts = () => {
                         </h3>
 
                         <div className='cart-protect-or-not-container'>
-                            <div className='cart-protect-card'>
+
+                            <div className='cart-protect-card' onClick={handleCartProtected}>
                                 <img src={guardIcon} alt='guard icon' className='cart-protection-card-icon' />
                                 <div className='cart-protection-plan-details-container'>
                                     <p className='cart-protection-plan-card-header'>Protect Entire Order</p>
-                                    <p className='cart-protection-plan-cart-desc'>{formatedPrice(199)}</p>
+                                    <p className='cart-protection-plan-cart-desc'>{formatedPrice(200)}</p>
                                 </div>
                                 <div className='cart-protection-checkbox-container'>
                                     <input
                                         type="checkbox"
                                         className='order-summary-checkbox'
                                         checked={isCartProtected}
-                                        onChange={() => handleCartProtected()}
+                                        // onChange={() => handleCartProtected()}
+                                        onChange={(e) => {
+                                            e.stopPropagation(); // Prevents the parent div's click event from firing twice
+                                            handleCartProtected();
+                                        }}
                                     />
                                 </div>
                             </div>
 
-                            <div className='cart-protect-card'>
+                            <div className='cart-protect-card' onClick={handleCartAssembly}>
+                                <img src={guardIcon} alt='guard icon' className='cart-protection-card-icon' />
                                 <div className='cart-protection-plan-details-container'>
                                     <p className='cart-protection-plan-card-header'>Professional Assembly (+ $210)</p>
                                     <p className='cart-protection-plan-cart-desc'>Use professional assembly for all products and save up to $80</p>
@@ -153,7 +170,11 @@ const CartProducts = () => {
                                         type="checkbox"
                                         className='order-summary-checkbox'
                                         checked={isProfessionalAssembly}
-                                        onChange={() => handleCartAssembly()}
+                                        // onChange={() => handleCartAssembly()}
+                                        onChange={(e) => {
+                                            e.stopPropagation(); // Prevents the parent div's click event from firing twice
+                                            handleCartAssembly();
+                                        }}
                                     />
                                 </div>
                             </div>

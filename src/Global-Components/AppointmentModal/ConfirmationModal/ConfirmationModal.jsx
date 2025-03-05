@@ -19,10 +19,6 @@ const ConfirmationModal = ({ confirmAppointment, handleAppointmentModalClose }) 
         year: "numeric",
     });
 
-    console.log("selected Venue", venueName);
-    console.log("selected time", venueTime);
-    console.log("selected Date", formattedDate);
-
     return (
         <div className={`appointment-confirmation-modal ${confirmAppointment ? 'show-confirmation-modal' : ''}`}>
             <div className={`appointment-confirmation-modal-inner-container`}>

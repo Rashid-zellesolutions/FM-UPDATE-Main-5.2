@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { url } from "../../utils/api";
+import { formatPhoneNumber, url } from "../../utils/api";
 import axios from "axios";
 import { CartContext } from "../cartContext/cartContext";
 import { useCart } from "../cartContext/cartContext";
@@ -16,7 +16,7 @@ export const MyOrdersProvider = ({ children }) => {
     const { cartProducts, subTotal } = useCart();
     const { totalTax, calculateTotalTax, getShippingInfo, selectedOption } = useGlobalContext();
     const [showThankyou, setThankyouState] = useState(false);
-  
+
 
     const [orderPlacedInfo, setOrderPlacedInfo] = useState({
         orderNumber: 0,
@@ -158,12 +158,64 @@ export const MyOrdersProvider = ({ children }) => {
             ...prevOrders,
             billing: {
                 ...prevOrders.billing,
-                [name]: value, // Update the specific field in billing
+                [name]: name === 'phone' ? formatPhoneNumber(value) : value, // Update the specific field in billing
             },
         }));
         setEmptyField((prev) => ({ ...prev, [name]: "" }));
 
     };
+
+    // useEffect(() => {
+
+
+
+    const handleZipCode = async (zipCode) => {
+
+        try {
+            setLoading(true);
+            const response = await fetch(`https://zip.getziptastic.com/v2/US/${zipCode}`);
+            if (response.ok) {
+                const result = await response.json();
+                setOrderPayload(prevData => ({
+                    ...prevData,
+                    billing: {
+                        ...prevData.billing,
+                        city: result.city,
+                        state: result.state
+                    }
+
+                }));
+            }
+            setLoading(false);
+        } catch (error) {
+            setLoading(false);
+            console.error('Error fetching ZIP code data:', error);
+        }
+    };
+
+    const handleZipCodeChange = (e) => {
+        const zipCode = e.target.value;
+
+        // Update postal_code in state
+        setOrderPayload(prevData => ({
+            ...prevData,
+            billing: {
+                ...prevData.billing,
+                postal_code: zipCode
+            }
+        }));
+
+        // Only call API when exactly 5 digits are entered
+        if (zipCode.length === 5 && /^\d{5}$/.test(zipCode)) {
+            handleZipCode(zipCode);
+        }
+    };
+
+
+    // if (orderPayload.billing.postal_code.length === 5 && /^\d{5}$/.test(orderPayload.billing.postal_code)) {
+    //     handleZipCode(orderPayload.billing.postal_code);
+    // }
+    // }, [orderPayload.billing.postal_code]);
 
     const handleNestedValueChangeShipping = (e) => {
         const { name, value } = e.target;
@@ -184,6 +236,8 @@ export const MyOrdersProvider = ({ children }) => {
             shipToDiffAdd: !prevOrders.shipToDiffAdd,
         }));
     };
+
+
 
     const addProducts = (products) => {
         setOrderPayload((prevOrder) => ({
@@ -283,7 +337,7 @@ export const MyOrdersProvider = ({ children }) => {
                         ...response.data.order.billing, // Merge new billing details with existing
                     },
                 }));
-                
+
                 openLink(`${siteUrl}/order-confirmation/${response.data.order._id}`)
             }
         } catch (error) {
@@ -339,7 +393,9 @@ export const MyOrdersProvider = ({ children }) => {
             activePaymentMethods,
             showThankyou,
             setThankyouState,
-            orderPlacedInfo
+            orderPlacedInfo,
+            handleZipCode,
+            handleZipCodeChange
         }}>
             {children}
         </MyOrderContext.Provider>

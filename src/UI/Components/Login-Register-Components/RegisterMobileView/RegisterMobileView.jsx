@@ -134,7 +134,7 @@ const RegisterMobileView = ({ mobileSignupClicked, handleRegisterView }) => {
                             onChange={(e) => setAcceptTerms(e.target.checked)}
                             required
                         />
-                        <span>I agree to the <Link >Privacy Policy</Link></span>
+                        <span>I agree to the <Link to={'/privacy-policy'}>Privacy Policy</Link></span>
                     </label>
                     <label className="mobile-login-input-label checkbox">
                         <input
@@ -143,7 +143,7 @@ const RegisterMobileView = ({ mobileSignupClicked, handleRegisterView }) => {
                             onChange={(e) => setAcceptPrivacy(e.target.checked)}
                             required
                         />
-                        <span>I agree to the <Link >Privacy Policy</Link></span>
+                        <span>I agree to the <Link to={'/terms-and-conditions'} >Terms And Condition</Link></span>
                     </label>
 
 

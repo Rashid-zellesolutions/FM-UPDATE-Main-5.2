@@ -134,7 +134,7 @@ const CreditCard = () => {
 
                 </div>
 
-                <div className='credit-card-inputs'>
+                <div className='credit-card-expiry-and-code-inputs'>
 
                     <div className={`delivery-input-container ${focusedField === 'expiry_date' || creditCardData.expiry_date ? "focused" : ""}`}>
                         <label className="floating-label">

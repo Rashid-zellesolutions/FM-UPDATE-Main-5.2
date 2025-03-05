@@ -33,6 +33,8 @@ const QuickView = ({ setQuickViewProduct, quickViewClose, quickViewShow, }) => {
     const [viewDetails, setViewDetails] = useState(null)
     const [currentIndex, setCurrentIndex] = useState(0);
 
+    console.log("quick view product data", setQuickViewProduct)
+
     const handleCartSectionClose = () => {
         setCartSection(false)
         setQuantity(1)
@@ -52,6 +54,9 @@ const QuickView = ({ setQuickViewProduct, quickViewClose, quickViewShow, }) => {
 
     const quickViewData = [
         {
+            name: "Dimensions",
+        },
+        {
             name: 'Description',
             para: setQuickViewProduct.description,
         },
@@ -61,6 +66,8 @@ const QuickView = ({ setQuickViewProduct, quickViewClose, quickViewShow, }) => {
             ,
         },
     ]
+
+    const startFrom = setQuickViewProduct?.dimension_image !== null ? 0 : 1
 
 
     const handleAddToCartProduct = (product) => {
@@ -110,6 +117,7 @@ const QuickView = ({ setQuickViewProduct, quickViewClose, quickViewShow, }) => {
             })
         }
     }
+
 
     return (
         // <div className={`quick-view-outer-overlay-container ${quickViewShow ? 'show-quick-view-outer-overlay' : ''}`}>
@@ -209,7 +217,7 @@ const QuickView = ({ setQuickViewProduct, quickViewClose, quickViewShow, }) => {
                     </button>
                 </div>
                 <div className='quick-view-details-section'>
-                    {quickViewData.map((items, index) => (
+                    {quickViewData.slice(startFrom, quickViewData.length).map((items, index) => (
                         <div key={index} className='quick-view-detail-single-section'>
                             <div className='quick-view-details-heading' onClick={() => handleViewDetails(index)}>
                                 <p>{items.name}</p>
@@ -218,7 +226,7 @@ const QuickView = ({ setQuickViewProduct, quickViewClose, quickViewShow, }) => {
                                 </button>
                             </div>
                             <div className={`quick-view-details ${viewDetails === index ? 'show-details' : ''}`}>
-                                <p dangerouslySetInnerHTML={{ __html: items.para }} />
+                                {setQuickViewProduct?.dimension_image !== null && index === 0 ? <img src={url + setQuickViewProduct?.dimension_image?.image_url} alt='dimension' /> : <p dangerouslySetInnerHTML={{ __html: items.para }} />}
                             </div>
                         </div>
                     ))}

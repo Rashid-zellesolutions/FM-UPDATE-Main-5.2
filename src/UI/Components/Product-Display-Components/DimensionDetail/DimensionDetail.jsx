@@ -6,6 +6,8 @@ import { url } from '../../../../utils/api';
 const DimensionDetail = ({productData}) => {
   // weight_dimension
 
+  console.log("product dimension component", productData)
+
   return (
     <div className='dimension-detail-main-container'>
       <div className='dimension-detail-section'>

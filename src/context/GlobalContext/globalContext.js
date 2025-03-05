@@ -167,6 +167,7 @@ export const GlobalContextProvider = ({ children }) => {
     setTotalTax(data?.tax[0]);
   };
 
+
   function calculateTotalTax(subtotal, taxRate) {
     if (isNaN(subtotal) || isNaN(taxRate) || subtotal < 0 || taxRate < 0) {
       throw new Error("Invalid input: subtotal and taxRate must be non-negative numbers.");
@@ -236,6 +237,8 @@ export const GlobalContextProvider = ({ children }) => {
     setTaxValues();
     setSelectedOption(null)
   }, [info])
+
+
 
   const handleButtonClick = async () => {
     const data = await getStateByPostalCode(zipCode);

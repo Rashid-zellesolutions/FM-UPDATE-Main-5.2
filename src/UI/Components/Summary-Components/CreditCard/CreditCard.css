@@ -34,3 +34,24 @@
     gap: 30px;
 }
 
+.credit-card-expiry-and-code-inputs {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    width: 100%;
+    gap: 30px;
+}
+
+@media only screen and (max-width: 480px){
+    .credit-card-inputs {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 15px;
+    }
+
+    .credit-card-expiry-and-code-inputs {
+        gap: 15px;
+    }
+}
+

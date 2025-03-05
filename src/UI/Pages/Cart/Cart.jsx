@@ -23,6 +23,9 @@ import masterCard from '../../../Assets/icons/master.png';
 import visaCard from '../../../Assets/icons/visa.png'
 import americanExpressCard from '../../../Assets/icons/american-express.png';
 import discover from '../../../Assets/icons/discover.png'
+import FinancingModal from '../../Modals/FinancingModal/FinancingModal';
+import AppointmentModal from '../../../Global-Components/AppointmentModal/AppointmentModal';
+import ProductCardTwo from '../../Components/ProductCardTwo/ProductCardTwo';
 
 function SamplePrevArrow(props) {
   const { className, style, onClick } = props;
@@ -209,6 +212,7 @@ const Cart = () => {
     }
   }
 
+
   const orderPriceDetails = [
     { title: 'Subtotal', price: formatedPrice(subTotal) },
     { title: 'Protection plan', price: formatedPrice(protectionPrice) },
@@ -216,12 +220,45 @@ const Cart = () => {
     { title: `Tax (${totalTax?.tax_name})`, price: totalTax ? formatedPrice(calculateTotalTax(subTotal, parseFloat(totalTax?.tax_value))) : 0 }
   ]
 
+  
+
   // Define conditional visibility logic
   const filteredOrderPriceDetails = orderPriceDetails.filter((_, index) => {
     if (index === 1) return isCheck[0]; // Show 'Professional Assembly' if isCheck[0] is true
     if (index === 2) return isCheck[1]; // Show 'Elite Title' if isCheck[1] is true
     return true; // Always include other items
   });
+
+  // Apply Financing Modal
+  const [applyFinancing, setApplyFinancing] = useState(false);
+  const handleOpenFinancingModal = () => {
+    setApplyFinancing(true);
+  }
+  const handleCloseFinancingModal = () => {
+    setApplyFinancing(false)
+  }
+
+  useEffect(() => {
+    if(applyFinancing) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'auto'
+    }
+  }, [applyFinancing])
+
+  // Appointment Modal
+  const [appointmentModal, setAppointmentModal] = useState(false)
+  const handleAppointments = () => {
+    setAppointmentModal(true);
+  }
+
+  const handleCloseModal = () => {
+    setAppointmentModal(false);
+  }
+
+  const handleProductClick = (item) => {
+    navigate(`/product/${item.slug}`, { state: item });
+  };
 
 
   return (
@@ -276,7 +313,7 @@ const Cart = () => {
               {isCartProtected ? (
                 <div className='if-professional-assembly-container'>
                   <p className='if-professional-assembly-heading'>Protect Entire Order</p>
-                  <p className='if-professional-assembly-value'>{formatedPrice(199)}</p>
+                  <p className='if-professional-assembly-value'>{formatedPrice(200)}</p>
                 </div>
               ) : (
                 <></>
@@ -400,11 +437,11 @@ const Cart = () => {
 
             <div className='financing-months-range-container'>
               <h3 className='financing-month-range-heading'>$125/month for 48 months</h3>
-              <button className='financing-month-range-apply-button'>
+              <button className='financing-month-range-apply-button' onClick={handleOpenFinancingModal}>
                 Apply for Financing
               </button>
               <h3 className='financing-month-range-heading'>Cart will be shared with our home furnishing consultant.</h3>
-              <button className='financing-month-range-apply-button'>
+              <button className='financing-month-range-apply-button' onClick={handleAppointments}>
                 Complete in Store
               </button>
             </div>
@@ -413,7 +450,7 @@ const Cart = () => {
         </div>
 
       </div>
-
+ 
       <div className='cart-related-products-display-section'>
         <h3>You May Also Like</h3>
         <div className='cart-related-products-slider-main-div'>
@@ -421,19 +458,22 @@ const Cart = () => {
             {newProducts && newProducts.length > 0 ? (
               newProducts.map((item, index) => (
                 <div key={index} className='cart-latest-product-cards-container'>
-                  <ProductCard
+                  <ProductCardTwo
                     key={index}
                     slug={item.slug}
                     singleProductData={item}
-                    maxWidthAccordingToComp="98%"
-                    // justWidth={'320px'}
+                    maxWidthAccordingToComp={"100%"}
+                    justWidth={'100%'}
+                    percent={'12%'}
+                    showOnPage={false}
+                    // colTwo={selectedGrid === 'single-col' ? false : true}
                     tagIcon={item.productTag ? item.productTag : heart}
                     tagClass={item.productTag ? 'tag-img' : 'heart-icon'}
                     mainImage={`${item.image.image_url}`}
                     productCardContainerClass="product-card"
                     ProductSku={item.sku}
-                    percent={'12%'}
                     tags={item.tags}
+                    allow_back_order={item?.allow_back_order}
                     ProductTitle={truncateTitle(item.name, maxLength)}
                     stars={[
                       { icon: star, title: 'filled' },
@@ -452,11 +492,44 @@ const Cart = () => {
                     deliveryTime={item.deliveryTime}
                     stock={item.manage_stock}
                     attributes={item.attributes}
-                    handleCardClick={() => handleQuickViewOpen(item)}
+                    handleCardClick={() => handleProductClick(item)}
                     handleQuickView={() => handleQuickViewOpen(item)}
-                    type={item.type}
-                    variation={item.variations}
                     handleWishListclick={() => handleWishList(item)}
+                    // key={index}
+                    // slug={item.slug}
+                    // singleProductData={item}
+                    // maxWidthAccordingToComp="98%"
+                    // // justWidth={'320px'}
+                    // tagIcon={item.productTag ? item.productTag : heart}
+                    // tagClass={item.productTag ? 'tag-img' : 'heart-icon'}
+                    // mainImage={`${item.image.image_url}`}
+                    // productCardContainerClass="product-card"
+                    // ProductSku={item.sku}
+                    // percent={'12%'}
+                    // tags={item.tags}
+                    // ProductTitle={truncateTitle(item.name, maxLength)}
+                    // stars={[
+                    //   { icon: star, title: 'filled' },
+                    //   { icon: star, title: 'filled' },
+                    //   { icon: star, title: 'filled' },
+                    //   { icon: star, title: 'filled' },
+                    //   { icon: star, title: 'filled' },
+                    // ]}
+                    // reviewCount={item.reviewCount}
+                    // lowPriceAddvertisement={item.lowPriceAddvertisement}
+                    // priceTag={item.regular_price}
+                    // sale_price={item.sale_price}
+                    // financingAdd={item.financingAdd}
+                    // learnMore={item.learnMore}
+                    // mainIndex={index}
+                    // deliveryTime={item.deliveryTime}
+                    // stock={item.manage_stock}
+                    // attributes={item.attributes}
+                    // handleCardClick={() => handleQuickViewOpen(item)}
+                    // handleQuickView={() => handleQuickViewOpen(item)}
+                    // type={item.type}
+                    // variation={item.variations}
+                    // handleWishListclick={() => handleWishList(item)}
                   />
                 </div>
               ))
@@ -487,7 +560,16 @@ const Cart = () => {
       </div>
 
       <QuickView setQuickViewProduct={quickViewProduct} quickViewShow={quickViewClicked} quickViewClose={handleQuickViewClose} />
+        <FinancingModal
+          applyFinancing={applyFinancing}
+          handleCloseModal={handleCloseFinancingModal}
+        />
 
+      <AppointmentModal 
+        showAppointMentModal={appointmentModal}
+        setAppointmentModal={setAppointmentModal}
+        handleCloseModal={handleCloseModal}
+      />
     </div>
   )
 }

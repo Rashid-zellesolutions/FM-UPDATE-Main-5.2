@@ -22,7 +22,6 @@ export const AppointmentProvider = ({children}) => {
         }
     })
 
-    // useEffect(() => {console.log("Appointment Payload", appointmentPayload)}, [appointmentPayload])
 
 
     const [parentCategories, setParentCategories] = useState([])
@@ -30,7 +29,6 @@ export const AppointmentProvider = ({children}) => {
     const api = `/api/v1/productCategory/get?parent=0`;
     try {
       const response = await axios.get(`${url}${api}`);
-      console.log("Categories response", response)
       setParentCategories(response?.data?.categories);
 
     } catch (error) {
@@ -39,7 +37,7 @@ export const AppointmentProvider = ({children}) => {
   }
 
   useEffect(() => { fetchCategories() }, [])
-  useEffect(() => {console.log("parent Categories", parentCategories)}, [parentCategories])
+  useEffect(() => {}, [parentCategories])
 
     return (
         <AppointmentContext.Provider value={{

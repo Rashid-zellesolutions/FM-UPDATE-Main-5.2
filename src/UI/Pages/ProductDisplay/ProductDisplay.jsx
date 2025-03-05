@@ -23,6 +23,7 @@ const ProductDisplay = () => {
   const fetchProductBySlug = async (slug) => {
     try {
       const response = await axios.get(`${url}/api/v1/products/get-by-slug/${slug}`);
+      console.log("products response", response)
       const fetchedProduct = response.data.products[0] || {};
       setProduct(fetchedProduct);
     } catch (error) {
@@ -96,6 +97,8 @@ const ProductDisplay = () => {
   // console.log("product Data", product)
 
   // Parentcategories
+
+  console.log("product data on product main page", product);
   
   
 

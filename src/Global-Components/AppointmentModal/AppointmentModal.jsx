@@ -35,7 +35,6 @@ const AppointmentModal = ({ showAppointMentModal, handleCloseModal, setAppointme
             serviceType: service
         }))
         setServiceTypeIndex(index)
-        console.log("service tye index", index)
     }
 
     const handleCategorySelect = (category) => {
@@ -77,7 +76,7 @@ const AppointmentModal = ({ showAppointMentModal, handleCloseModal, setAppointme
         
     }
 
-    useEffect(() => {console.log("appointment payload", appointmentPayload)}, [appointmentPayload])
+    useEffect(() => {}, [appointmentPayload])
 
     const [confirmAppointment, setConfirmAppointment] = useState(false)
 
@@ -89,7 +88,6 @@ const AppointmentModal = ({ showAppointMentModal, handleCloseModal, setAppointme
             if(response.status === 201) {
                 handleAppointmentModal()
             }
-            console.log("appointment Response after submit", response);
         } catch (error) {
             console.log("UnExpected Server Error", error);
             setLoading(false);
@@ -104,7 +102,6 @@ const AppointmentModal = ({ showAppointMentModal, handleCloseModal, setAppointme
 
     const handleAppointmentModalClose = () => {
         setConfirmAppointment(false);
-        console.log("close close");
     }
 
     

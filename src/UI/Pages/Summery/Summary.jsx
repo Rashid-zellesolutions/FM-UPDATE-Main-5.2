@@ -44,6 +44,13 @@ const Summary = () => {
     { id: 2, name: 'Payment', navOp: 'payment-method' },
   ]
 
+  const checkoutSectionsData = [
+    {id: 1, name: 'Delivery', navOp: 'delivery'},
+    {id: 2, name: 'Payments', navOp: 'payment-method'},
+  ]
+
+  const [currentOption, setCurrentOption] = useState(0);
+
   const [currentId, setCurrentId] = useState(0)
   const {
     setOrderPayload,
@@ -134,7 +141,7 @@ const Summary = () => {
       {!showThankyou &&
         <div className='summary-left-section'>
           <div className='checkout-pages-toggle-nav'>
-            {checkoutSections.map((items, index) => (
+            {/* {checkoutSections.map((items, index) => (
               <span
                 key={items.id}
                 onClick={() => handleTabOpen(index)}
@@ -144,7 +151,36 @@ const Summary = () => {
                 <p>{items.id}.</p>
                 <p>{items.name}</p>
               </span>
+            ))} */}
+
+            {checkoutSectionsData.map((item, index) => (
+              <div 
+                onClick={() => handleTabOpen(index)}
+                className={`checkout-page-select-option-container ${selectedTab === index ? 'selected-option' : ''}`}
+                key={item.id}
+              >
+                <h3>{item.name}</h3>
+                {/* <input 
+                  type='checkbox' 
+                  className='checkout-page-options-checkbox' 
+                  checked={selectedTab === index} 
+                  readOnly
+                /> */}
+                <label className='checkbox1'>
+                  <input
+                    type='checkbox'
+                    checked={selectedTab === index}
+                    // onChange={() => handleTabOpen(index)}
+                  />
+                  <span></span>
+                </label>
+                
+                
+              </div>
             ))}
+
+            
+
           </div>
           {
             selectedTab === 0 ?
@@ -217,7 +253,7 @@ const Summary = () => {
               ))}
             </div>
             <div className='right-section-show-more-button-container'>
-              <p className='show-more-products-button' onClick={handleShowMore}> {showAll ? 'See Less' : ` See All ${cartProducts?.products?.length} Item`}</p>
+              {cartProducts?.products?.length > 2 && <p className='show-more-products-button' onClick={handleShowMore}> {showAll ? 'See Less' : ` See All ${cartProducts?.products?.length} Items`}</p>}
             </div>
 
             <div className='right-section-order-pricing-details'>

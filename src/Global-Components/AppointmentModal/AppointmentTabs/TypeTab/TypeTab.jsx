@@ -44,7 +44,6 @@ const TypeTab = ({ selectedTab, setSelectedTab, handleServiceType, handleCategor
           const isSelected = appointmentPayload?.selectedCategories?.some(
             (select) => select.uid === item.uid
           ) || false;
-          console.log(`Category: ${item.name}, Selected: ${isSelected}`);
         return (
           <div className={`type-category ${isSelected ? 'select-category' : ''}`} key={item?._id} onClick={() => handleCategorySelect(item)}>
             <p>

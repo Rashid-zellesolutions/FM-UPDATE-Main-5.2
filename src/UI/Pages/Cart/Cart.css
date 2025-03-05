@@ -129,6 +129,7 @@
     border: 1px solid #595959;
     border-radius: 4px;
     position: relative;
+    padding: 0px !important;
     cursor: pointer;
     outline: none;
 }
@@ -519,8 +520,8 @@ mobile-cart-order-summary-total{
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    width: 40px !important;
-    height: 40px !important;
+    width: 30px !important;
+    height: 30px !important;
     top: 30% !important;
     position: absolute;
     z-index: 9999;
@@ -529,7 +530,7 @@ mobile-cart-order-summary-total{
 
 .cart-latest-products-slider-arrow img {
     width: auto !important;
-    height: 20px !important;
+    height: 13px !important;
     object-fit: contain !important;
 }
 

@@ -1,4 +1,4 @@
-// export const url = `https://fm.skyhub.pk`
+// export const url = `https://f.m.skyhub.pk`
 export const url = `https://fm.zellehost.com`
 // export const url = `http://fm_api.myfurnituremecca.com`;
 // export const url = `http://localhost:8080`
@@ -48,7 +48,6 @@ export const truncateTitle = (title, maxLength) => {
   return title;
 };
 
-
 export const transformReviewData = (reviews) => {
   const result = [
     { count: 5, rev: 0 },
@@ -81,8 +80,6 @@ export const extractImagesFromReviews = (reviews) => {
     .flat() // Flatten the array of arrays into a single array
     .filter(image => image); // Ensure that empty values are removed
 };
-
-
 
 export async function getLatLngFromAddress(address, apiKey) {
   const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(
