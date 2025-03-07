@@ -12,7 +12,7 @@ import heart from '../../../Assets/icons/heart-vector.png'
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { FaRegArrowAltCircleLeft } from "react-icons/fa";
 import { FaRegArrowAltCircleRight } from "react-icons/fa";
-import { FaPlus, FaTruck, FaLocationDot } from "react-icons/fa6";
+import { FaPlus, FaTruck, FaLocationDot, FaMinus } from "react-icons/fa6";
 
 // Components
 
@@ -24,7 +24,7 @@ import MobileViewProductFilters from '../MobileViewProductFilters/MobileViewProd
 import Breadcrumb from '../../../Global-Components/BreadCrumb/BreadCrumb';
 
 // Functions and Context
-import { formatedPrice, truncateTitle, url } from '../../../utils/api';
+import { formatedPrice, truncateTitle, url, useDisableBodyScroll } from '../../../utils/api';
 import axios from 'axios';
 import { useCart } from '../../../context/cartContext/cartContext';
 import { useList } from '../../../context/wishListContext/wishListContext';
@@ -35,11 +35,11 @@ import ProductCardTwo from '../ProductCardTwo/ProductCardTwo';
 import { useProductArchive } from '../../../context/ActiveSalePageContext/productArchiveContext';
 import { filter } from 'lodash';
 import SortModal from '../../Modals/SortModal/SortModal';
-
+import { IoArrowBack } from "react-icons/io5";
 
 const Products = () => {
 
-    // States and Variables
+    // All Contexts
     const {
         cartProducts,
         increamentQuantity,
@@ -60,11 +60,37 @@ const Products = () => {
         setPriceRange,
     } = useProductArchive()
 
+    // Local State Variables
     const { subCategorySlug } = useParams();
     const location = useLocation();
     const params = new URLSearchParams(location.search);
     const query = params.get('query');
     const [viewAccording, setViewAccording] = useState('false')
+    const [searchParams, setSearchParams] = useSearchParams();
+    const [hideFilters, setHideFilters] = useState(false);
+    const [relevanceTrue, setRelevanceTrue] = useState(false)
+    const navigate = useNavigate();
+    const [addToCartClicked, setAddToCartClicked] = useState(false);
+    const [quickViewClicked, setQuickView] = useState(false);
+    const [colors, setColors] = useState([]);
+
+    const [mobileFilters, setMobileFilters] = useState(false);
+
+    const [totalPages, setTotalPages] = useState()
+
+    const [quickViewProduct, setQuickViewProduct] = useState({})
+
+    const shouldFetch = useRef(true); // Track if fetch should run
+
+    
+
+
+    // Filters Section
+    const [isOpen, setIsOpen] = useState(false);
+    const [ratingOpen, setRatingOpen] = useState(false)
+    const [categoryOpen, setCategoryOpen] = useState(false);
+    
+
 
     useEffect(() => {
         if (query !== null) {
@@ -72,30 +98,12 @@ const Products = () => {
         } else {
             setViewAccording('false')
         }
+
+        fetchProductData();
     }, [])
 
-    const [searchParams, setSearchParams] = useSearchParams();
 
-    // state variables
-    const [hideFilters, setHideFilters] = useState(false);
-    const [relevanceTrue, setRelevanceTrue] = useState(false)
-    const navigate = useNavigate();
-    // const [showAllFilters, setShowAllFilters] = useState(false);
-    const [addToCartClicked, setAddToCartClicked] = useState(false);
-    const [quickViewClicked, setQuickView] = useState(false);
-    // const [products, setProducts] = useState([]);
-    const [colors, setColors] = useState([]);
-
-    const [mobileFilters, setMobileFilters] = useState(false);
-
-    const [totalPages, setTotalPages] = useState()
-    // const [activePage, setActivePage] = useState(1);
-
-    // const [priceRange, setPriceRange] = useState([130, 900]);
-
-    // const [allFilters, setAllFilters] = useState();
-
-    const [quickViewProduct, setQuickViewProduct] = useState({})
+    useDisableBodyScroll(quickViewClicked)
 
     // Related Categories Data
     const relatedCategoriesData = [
@@ -174,6 +182,7 @@ const Products = () => {
         const api = `/api/v1/products/by-category/filters?categorySlug=${subCategorySlug}`
         try {
             const response = await axios.get(`${url}${api}`);
+            console.log("filter response", response)
             if (response.status === 200) {
                 setAllFilters(response.data)
                 if (response.data.priceRange.minPrice !== undefined && response.data.priceRange.maxPrice !== undefined) {
@@ -189,7 +198,8 @@ const Products = () => {
     }
 
     const filterProducts = async (filter) => {
-        const api = `/api/v1/products/by-category?categorySlug=${subCategorySlug}&page=${activePage}&${filter}`;
+
+        const api = `/api/v1/products/by-category?categorySlug=${subCategorySlug}&page=${activePage}&${filter}&per_page=12`;
         try {
             // setProducts([])
             const response = await axios.get(`${url}${api}`)
@@ -211,18 +221,18 @@ const Products = () => {
         }
     }, [priceRange, allFilters]);
 
-    const shouldFetch = useRef(true); // Track if fetch should run
+    
 
-    useEffect(() => {
-        if (!shouldFetch.current) return; // Prevent fetching on mount if navigating back
-        fetchProductData();
-    }, [query]); // Only depends on query
+    // useEffect(() => {
+    //     if (!shouldFetch.current) return; // Prevent fetching on mount if navigating back
+    //     fetchProductData();
+    // }, [query]); // Only depends on query
 
-    useEffect(() => {
-        return () => {
-            shouldFetch.current = false; // Disable fetching when navigating away
-        };
-    }, []); // Runs only on unmount
+    // useEffect(() => {
+    //     return () => {
+    //         shouldFetch.current = false; // Disable fetching when navigating away
+    //     };
+    // }, []); // Runs only on unmount
 
     const handleCartSectionClose = () => {
         setAddToCartClicked(false)
@@ -254,6 +264,8 @@ const Products = () => {
     ]
 
     const [selectedRelevanceValue, setSelectedRelevanceValue] = useState(relevanceData[0].name)
+
+    
     const handleRelevance = () => {
         setRelevanceTrue(!relevanceTrue);
     }
@@ -299,10 +311,7 @@ const Products = () => {
         }
     }
 
-    // Filters Section
-    const [isOpen, setIsOpen] = useState(false);
-    const [ratingOpen, setRatingOpen] = useState(false)
-    const [categoryOpen, setCategoryOpen] = useState(false);
+    
 
     const handleColorFilterOpenClose = (type) => {
         setIsOpen((prevOpen) => prevOpen === type ? '' : type)
@@ -332,18 +341,24 @@ const Products = () => {
 
     }
 
-    const handleColorCheck = (value) => {
+    const handleColorCheck = (value, name) => {
         const updatedColorValue = colorValue.includes(value) ?
             colorValue.filter((item) => item !== value) :
             [...colorValue, value]
 
         setColorValue(updatedColorValue);
+
         const params = new URLSearchParams(searchParams);
-        if (updatedColorValue.length > 0) {
-            params.set('color', updatedColorValue.join(','))
+
+        const selectedName = allFilters.colors[0].options
+            .filter((item) => updatedColorValue.includes(item.value))
+            .map((item) => item.name);
+
+        if (selectedName.length > 0) {
+            params.set('color', selectedName.join(','))
         } else {
             params.delete('color')
-        }
+        } 
 
         const currentPage = searchParams.get('page');
         params.set('page', currentPage)
@@ -420,9 +435,16 @@ const Products = () => {
 
     const handlePrevPage = () => {
         if (activePage > 1) {
+
+            const params = new URLSearchParams(searchParams);
+            params.set('page', activePage -1);
+
+            setSearchParams(params.toString())
             setActivePage(activePage - 1);
             setActivePageIndex(activePageIndex - 1);
             sortProducts(selectedRelevanceValue)
+
+            filterProducts(params.toString())
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
@@ -434,9 +456,14 @@ const Products = () => {
     const handleNextPage = () => {
 
         if (activePage < totalPages?.totalPages) {
+
+            const params = new URLSearchParams(searchParams);
+            params.set('page', activePage + 1);
+            setSearchParams(params.toString());
             setActivePage(activePage + 1);
             setActivePageIndex(activePageIndex + 1);
             sortProducts(selectedRelevanceValue)
+            filterProducts(params.toString())
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
@@ -445,9 +472,10 @@ const Products = () => {
     };
 
 
-    useEffect(() => {
-        fetchProductData(activePage)
-    }, [activePageIndex]);
+
+    // useEffect(() => {
+    //     fetchProductData(activePage)
+    // }, [activePageIndex]);
 
 
     // Sub Categories show
@@ -477,10 +505,12 @@ const Products = () => {
         getSubCategories()
     }, [subCategorySlug])
 
-    useEffect(() => { }, [subCategories])
+    console.log("products", products)
 
-    const handleNavigate = (slug) => {
-        navigate(`/${categorySlug}/${slug}`)
+
+    const handleNavigate = (item) => {
+        navigate(`/${categorySlug}/${item.slug}`)
+        
     }
 
     const getDeliveryDate = () => {
@@ -518,14 +548,13 @@ const Products = () => {
         setShowSortModal(false);
     }
 
-    useEffect(() => {console.log("Selected Sort Option", selectedOption)})
 
     return (
         <div className='products-main-container'>
             <Breadcrumb category={products.categories} />
             <div className='product-archive-sub-categories-container'>
                 {subCategories.map((item, index) => (
-                    <div key={index} className='product-archive-single-sub-category' onClick={() => handleNavigate(item.slug)}>
+                    <div key={index} className='product-archive-single-sub-category' onClick={() => handleNavigate(item)}>
                         <img src={`${url}${item.image2}`} alt='sub category' />
                         {/* <p>{item.name}</p> */}
                     </div>
@@ -538,7 +567,8 @@ const Products = () => {
 
                     <div className={`hide-filters-btn`}>
                         <button onClick={handleFilterSection}>
-                            <img src={arrowBlack} alt='arrow black' />
+                            {/* <img src={arrowBlack} alt='arrow black' /> */}
+                            <IoArrowBack size={20} color='#595959' />
                             Hide Filters
                         </button>
                     </div>
@@ -568,7 +598,8 @@ const Products = () => {
                                 <span onClick={() => handleColorFilterOpenClose('color-filter')}>
                                     <h3 className='filters-heading'>{allFilters?.colors?.[0]?.name}</h3>
                                     <i className='add-button-round'>
-                                        <FaPlus size={15} color='#595959' className={isOpen === 'color-filter' ? 'rotate' : 'rotate-back'} />
+                                        {isOpen === 'color-filter' ? <FaMinus ize={14} color='#595959' /> : <FaPlus ize={14} color='#595959' />}
+                                        {/* <FaPlus size={15} color='#595959' className={isOpen === 'color-filter' ? 'rotate' : 'rotate-back'} /> */}
                                     </i>
                                 </span>
                                 <div className={`single-filter-items-container ${isOpen === 'color-filter' ? 'show-single-filter-icons' : ''}`}>
@@ -578,8 +609,8 @@ const Products = () => {
                                                 type='checkbox'
                                                 placeholder='checkbox'
                                                 value={item.name}
-                                                checked={colorValue.includes(item.name)}
-                                                onChange={(e) => handleColorCheck(e.target.value)}
+                                                checked={colorValue.includes(item.value)}
+                                                onChange={(e) => handleColorCheck(item.value, item.name)}
                                                 style={{ backgroundColor: item.value, border: `2px solid ${item.value}` }}
                                                 className='color-custom-checkbox'
                                                 id={`filter-${index}`}
@@ -596,7 +627,8 @@ const Products = () => {
                                     <h3 className='filters-heading'>Ratings</h3>
                                     {/* <img src={AddBtn} alt='btn' className={ratingOpen === 'rating-filter' ? 'rotate' : ''} /> */}
                                     <i className='add-button-round'>
-                                        <FaPlus color='#595959' className={isOpen === 'rating-filter' ? 'rotate' : 'rotate-back'} />
+                                        {isOpen === 'rating-filter' ? <FaMinus ize={15} color='#595959' /> : <FaPlus ize={15} color='#595959' />}
+                                        {/* <FaPlus color='#595959' className={isOpen === 'rating-filter' ? 'rotate' : 'rotate-back'} /> */}
                                     </i>
                                 </span>
                                 <div className={`single-filter-items-container ${ratingOpen === 'rating-filter' ? 'show-single-filter-icons' : ''}`}>
@@ -625,7 +657,8 @@ const Products = () => {
                                     <h3 className='filters-heading'>Product Type</h3>
                                     {/* <img src={AddBtn} alt='btn' className={categoryOpen === 'category-filter' ? 'rotate' : ''} /> */}
                                     <i className='add-button-round'>
-                                        <FaPlus color='#595959' className={isOpen === 'category-filter' ? 'rotate' : 'rotate-back'} />
+                                        {isOpen === 'category-filter' ? <FaMinus ize={15} color='#595959' /> : <FaPlus ize={15} color='#595959' />}
+                                        {/* <FaPlus color='#595959' className={isOpen === 'category-filter' ? 'rotate' : 'rotate-back'} /> */}
                                     </i>
                                 </span>
                                 <div className={`single-filter-items-container ${categoryOpen === 'category-filter' ? 'show-single-filter-icons' : ''}`}>

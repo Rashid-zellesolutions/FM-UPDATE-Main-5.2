@@ -24,6 +24,7 @@ const GetTheScop = () => {
     setEmail(e.target.value);
     setError(''); // Reset error when the user types
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();  // Prevent the default form submission
 
@@ -100,7 +101,7 @@ const GetTheScop = () => {
               {error && <p style={{ color: 'red' }}>{error}</p>}
 
             </form>
-            <p>By Signing Up You Agree To Our <Link to={'/terms-and-conditions'} className='desktop-get-the-scoop-terms'> Terms of Use </Link> and <Link to={'/privacy-policy'} className='desktop-get-the-scoop-terms'> Privacy Policy </Link></p>
+            <p className='get-the-scoop-terms-and-condition'>By Signing Up You Agree To Our <Link to={'/terms-and-conditions'} className='desktop-get-the-scoop-terms'> Terms of Use </Link> and <Link to={'/privacy-policy'} className='desktop-get-the-scoop-terms'> Privacy Policy </Link></p>
 
           </div> :
             <div className="subscription_done">

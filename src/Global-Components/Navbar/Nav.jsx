@@ -80,17 +80,6 @@ const Nav = ({ navLinks, sale_data }) => {
                             onMouseLeave={handleMouseLeave}
                             className={`mobile-nav-link ${activeIndex === item.link ? 'active' : ''}`}>
                             <Link to={`/${item.category_slug}`} > {item.category} </Link>
-
-                            {/* {dropdownOpen === index && (
-                            <div className='dropdown'>
-                                <DropdownMenu
-                                    parentCategorySlug={item.category_slug}
-                                    navHeading={item.category}
-                                    dropDownNavData={item.subCategories}
-                                    products={item.products}
-                                />
-                            </div>
-                        )} */}
                         </h3>
                     })}
                 </div>

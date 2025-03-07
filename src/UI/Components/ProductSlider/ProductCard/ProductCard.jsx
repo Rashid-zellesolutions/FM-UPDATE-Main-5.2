@@ -2,6 +2,7 @@ import React from 'react';
 import './ProductCard.css';
 import arrowLeft from '../../../../Assets/icons/arrow-left-black.png';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { Link } from 'react-router-dom';
 
 const ProductCard = ({
   productData,
@@ -43,11 +44,21 @@ const ProductCard = ({
         </div>
       </div>
       <div className="product-details">
-        <p onClick={() => handleCardClicked(productData)}>{heading}</p>
-        <button onClick={() => handleCardClicked(productData)}>
+        <p
+          className='product-detail-heading'
+          // to={{pathname: `/product/${productData?.slug}`, state: productData}}
+          onClick={() => handleCardClicked(productData)}
+        >
+          {heading}
+        </p>
+        <Link 
+          className='product-detail-btn'
+          onClick={() => handleCardClicked(productData)}
+          to={{pathname: `/product/${productData?.slug}`}}
+        >
           <div href={productLink}>{btnTxt}</div>
           <img src={arrowLeft} alt="arrow left" />
-        </button>
+        </Link>
       </div>
     </div>
   );

@@ -29,15 +29,31 @@ const InstaGallery = () => {
         galleryImageTen
     ]
     const [animateMouse, setAnimateMouse] = useState(false);
-    const handleMouseMove = () => {
-        setAnimateMouse(true)
+    let intervelId;
 
-        setTimeout(() => {
+
+    const handleMouseMove = () => {
+        setAnimateMouse(true);
+
+        intervelId = setInterval(() => {
             setAnimateMouse(false);
+            setTimeout(() => {
+                setAnimateMouse(true);
+            }, 1000);
         }, 1500)
+
+        // setTimeout(() => {
+        //     setAnimateMouse(false);
+        // }, 1500)
     }
+
+    const stopAnimation = () => {
+        setAnimateMouse(false);
+        clearInterval(intervelId);
+    };
+
   return (
-    <div className='insta-container' onMouseMove={handleMouseMove}>
+    <div className='insta-container' onMouseEnter={handleMouseMove} onMouseLeave={stopAnimation}>
         <div className='images'>
             
             {instaGalleryImages.map((image, index) => {

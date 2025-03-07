@@ -538,7 +538,7 @@ const ProductCardTwo = ({
                                     {
                                         sale_price === "0" ?
                                             <h3 className={`product-price-del ${colTwo ? 'apply-col-two-styling' : ''}`}>${priceTag}</h3> :
-                                            <h3 className={`product-price-tag ${colTwo ? 'apply-col-two-styling' : ''}`}> <p className={`product-price-starting-at ${colTwo ? 'apply-two-col-styling' : ''}`}>Starting At</p> ${sale_price} <del className={`product-del-price-with-sale-price ${colTwo ? 'apply-col-two-styling' : ''}`}>${priceTag}</del>  </h3>
+                                            <h3 className={`product-price-tag ${colTwo ? 'apply-col-two-styling' : ''}`}> <p className={`product-price-starting-at ${colTwo ? 'apply-two-col-styling' : ''}`}>Starting at</p> ${sale_price} <del className={`product-del-price-with-sale-price ${colTwo ? 'apply-col-two-styling' : ''}`}>${priceTag}</del>  </h3>
                                     }
 
                                     <span className={`product-card-installment-plan ${showOnPage ? 'show-installment-plan' : ''}`}>

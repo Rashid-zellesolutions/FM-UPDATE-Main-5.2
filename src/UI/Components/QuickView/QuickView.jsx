@@ -17,10 +17,20 @@ import { VscHeart } from "react-icons/vsc";
 import { useList } from '../../../context/wishListContext/wishListContext';
 import { toast } from 'react-toastify';
 import RatingReview from '../starRating/starRating';
-import { IoIosArrowDown } from "react-icons/io";
+// import { IoIosArrowDown } from "react-icons/io";
+// Assets
+import {
+    IoIosArrowUp,
+    IoIosArrowDown,
+    IoIosArrowBack,
+    IoIosArrowForward,
+    IoMdArrowDropleft
+} from "react-icons/io";
 
 const QuickView = ({ setQuickViewProduct, quickViewClose, quickViewShow, }) => {
 
+
+    console.log("Quick View Data", setQuickViewProduct)
 
     const {
         cart,
@@ -34,7 +44,6 @@ const QuickView = ({ setQuickViewProduct, quickViewClose, quickViewShow, }) => {
     const [viewDetails, setViewDetails] = useState(null)
     const [currentIndex, setCurrentIndex] = useState(0);
 
-    console.log("quick view product data", setQuickViewProduct)
 
     const handleCartSectionClose = () => {
         setCartSection(false)
@@ -70,13 +79,6 @@ const QuickView = ({ setQuickViewProduct, quickViewClose, quickViewShow, }) => {
                 { id: 4, name: 'Weight Capacity', val: `900 lbs` },
             ]
         },
-    ]
-
-    const dimensionData = [
-        {id: 1, name: 'Dimensions (in)', val: `L: 88.5" x W: 37.5" x H: 37"`},
-        { id: 2, name: 'Color', val: `Sugar Shack Cafe`},
-        { id: 3, name: 'Color Family', val: `Brown`},
-        { id: 4, name: 'Weight Capacity', val: `900 lbs`},
     ]
 
     const startFrom = setQuickViewProduct?.dimension_image !== null ? 0 : 1
@@ -154,7 +156,11 @@ const QuickView = ({ setQuickViewProduct, quickViewClose, quickViewShow, }) => {
                 <div className='quick-view-image-and-variations'>
                     <div className="quick-view-slider">
                         <button className={`quick-view-arrow quick-view-left ${currentIndex === 0 ? 'disabled' : ''}`} onClick={handlePrev}>
-                            <img src={arrowLeft} alt='left' />
+                            {/* <img src={arrowLeft} alt='left' /> */}
+                            <IoIosArrowBack
+                                size={15}
+                                className='quick-view-product-gallery-arrow-left'
+                            />
                         </button>
                         <div className="quick-view-slider-container">
                             {setQuickViewProduct?.type === "simple" ? <div className="quick-view-slider-wrapper" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
@@ -170,7 +176,11 @@ const QuickView = ({ setQuickViewProduct, quickViewClose, quickViewShow, }) => {
                             }
                         </div>
                         <button className={`quick-view-arrow quick-view-right ${currentIndex === imagesLenght - 1 ? 'disabled' : ''}`} onClick={handleNext}>
-                            <img src={arrowRight} alt='right' />
+                            {/* <img src={arrowRight} alt='right' /> */}
+                            <IoIosArrowForward
+                                size={15}
+                                className='quick-view-product-gallery-arrow-right'
+                            />
                         </button>
                     </div>
                     <div className='quick-view-variations'>
@@ -205,7 +215,7 @@ const QuickView = ({ setQuickViewProduct, quickViewClose, quickViewShow, }) => {
                         {
                             isInWishList(setQuickViewProduct.uid) ?
                                 <VscHeartFilled
-                                    size={25}
+                                    size={20}
                                     style={{ color: '#C61B1A' }}
                                     onClick={(e) => {
                                         e.stopPropagation();
@@ -214,7 +224,7 @@ const QuickView = ({ setQuickViewProduct, quickViewClose, quickViewShow, }) => {
                                 />
                                 :
                                 <VscHeart
-                                    size={25}
+                                    size={20}
                                     style={{ color: '#C61B1A' }}
                                     onClick={(e) => {
                                         e.stopPropagation();
@@ -240,17 +250,17 @@ const QuickView = ({ setQuickViewProduct, quickViewClose, quickViewShow, }) => {
                             </div>
                             <div className={`quick-view-details ${viewDetails === index ? 'show-details' : ''}`}>
                                 {
-                                    setQuickViewProduct?.dimension_image !== null && index === 0 
-                                    ? <img src={url + setQuickViewProduct?.dimension_image?.image_url} alt='dimension' /> 
-                                    : index === quickViewData.length -1 ? <div className='quick-view-drop-down-dimension-data'>
-                                        {items.para.map((item) => (
-                                            <span key={item.id}>
-                                                <h3>{item.name}</h3>
-                                                <p>{item.val}</p>
-                                            </span>
-                                        ))}
-                                    </div>
-                                    : <p dangerouslySetInnerHTML={{ __html: items.para }} />}
+                                    setQuickViewProduct?.dimension_image !== null && index === 0
+                                        ? <img src={url + setQuickViewProduct?.dimension_image?.image_url} className='quick-view-dimension-image' alt='dimension' />
+                                        : index === quickViewData.length - 1 ? <div className='quick-view-drop-down-dimension-data'>
+                                            {items.para.map((item) => (
+                                                <span key={item.id}>
+                                                    <h3>{item.name}</h3>
+                                                    <p>{item.val}</p>
+                                                </span>
+                                            ))}
+                                        </div>
+                                            : <p dangerouslySetInnerHTML={{ __html: items.para }} />}
                             </div>
                         </div>
                     ))}

@@ -28,7 +28,7 @@ const DropdownMenu = (
             <div style={{ display: 'flex', width: '25%' }}>
                 <div className='menu-links'>
                     {/* <h3 className='see-all-heading'>See All {navHeading}</h3> */}
-                    <h3 className='living-room-heading'>See All {navHeading}</h3>
+                    <Link to={`/${parentCategorySlug}`} className='living-room-heading'>See All {navHeading}</Link>
                     <div className='mattresses-links-div'>
                         {dropDownNavData.map((item, index) => {
                             return <p className={`mattres-links ${activeIndex === index ? 'active' : ''}`} key={index} onClick={() => handleActiveIndex(index)}>
@@ -41,7 +41,12 @@ const DropdownMenu = (
             {
                 products && <div className='mattresses-images-div'>
                     {products?.map((item, index) => {
-                        return <div key={index} className='mattress-image' onClick={() => handleNavigate(item)}>
+                        return <Link
+                            key={index}
+                            className='mattress-image'
+                            onClick={() => handleNavigate(item)}
+                            to={{ pathname: `/product/${item.slug}`, state: item }}
+                        >
                             <img src={url + item.image} alt={item.name} />
                             <p className='image-title'><Link to={item.slug}>{item.name}</Link> </p>
                             <div className='pricing'>
@@ -50,10 +55,10 @@ const DropdownMenu = (
                                     : <span className='sale-price-container'>
                                         <del className='price'>{formatedPrice(item.regular_price)}</del>
                                         <p className='price-sale-price'>{formatedPrice(item.sale_price)}</p>
-                                    </span> 
+                                    </span>
                                 }
                             </div>
-                        </div>
+                        </Link>
                     })}
                 </div>
             }

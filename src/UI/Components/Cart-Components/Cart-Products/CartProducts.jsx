@@ -13,6 +13,7 @@ import guardIcon from '../../../../Assets/icons/guard-icon.png'
 import { formatedPrice } from '../../../../utils/api';
 import { useGlobalContext } from '../../../../context/GlobalContext/globalContext';
 import SnakBar from '../../../../Global-Components/SnakeBar/SnakBar';
+import professionalAssembly from '../../../../Assets/icons/professional-assembly.png'
 
 
 const CartProducts = () => {
@@ -160,7 +161,7 @@ const CartProducts = () => {
                             </div>
 
                             <div className='cart-protect-card' onClick={handleCartAssembly}>
-                                <img src={guardIcon} alt='guard icon' className='cart-protection-card-icon' />
+                                <img src={professionalAssembly} alt='guard icon' className='cart-protection-card-icon' />
                                 <div className='cart-protection-plan-details-container'>
                                     <p className='cart-protection-plan-card-header'>Professional Assembly (+ $210)</p>
                                     <p className='cart-protection-plan-cart-desc'>Use professional assembly for all products and save up to $80</p>

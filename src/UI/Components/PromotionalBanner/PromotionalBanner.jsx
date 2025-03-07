@@ -3,7 +3,7 @@ import './PromotionalBanner.css';
 import { Link, useNavigate } from 'react-router-dom';
 import deliverTo from '../../../Assets/icons/delivery.png'
 import { useUserDashboardContext } from '../../../context/userDashboardContext/userDashboard';
-import { url } from '../../../utils/api';
+import { url, useDisableBodyScroll } from '../../../utils/api';
 import crossButton from '../../../Assets/icons/close-btn.png'
 
 const PromotionalBanner = (
@@ -63,6 +63,8 @@ const PromotionalBanner = (
     navigate('/user-dashboard')
     setIsTokenValid(false)
   }
+
+  useDisableBodyScroll(isTokenValid)
 
   return (
     <div className='furniture-mecca-promotional-banner'>

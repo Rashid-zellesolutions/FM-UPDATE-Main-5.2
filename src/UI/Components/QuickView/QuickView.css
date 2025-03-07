@@ -134,6 +134,7 @@
     padding: 3px;
 }
 
+
 .quick-view-slider-container {
     position: relative;
     width: 100%;
@@ -150,6 +151,7 @@
 .quick-view-slider-wrapper img {
     width: 100%;
     height: 100%;
+    margin-top: -8px;
     /* object-fit: cover; */
     flex-shrink: 0;
 }
@@ -160,10 +162,18 @@
     transform: translateY(-50%);
     /* background: rgba(0, 0, 0, 0.5); */
     background-color: transparent;
-    border: none;
+    
     outline: none;
     cursor: pointer;
     z-index: 1;
+    background-color: #fff;
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
 }
 
 .quick-view-arrow.disabled{
@@ -172,18 +182,42 @@
     pointer-events: none;
 }
 
-.quick-view-arrow img{
+.quick-view-arrow.disabled:hover {
+    background-color: #fff;
+}
+
+.quick-view-arrow.disabled:hover .quick-view-product-gallery-arrow-left{
+    color: #595959;
+}
+
+/* .quick-view-arrow img{
     height: 25px;
     width: auto;
     object-fit: contain;
-}
+} */
 
 .quick-view-arrow.quick-view-left {
     left: 10px;
 }
 
+.quick-view-arrow.quick-view-left:hover{
+    background-color: #4487C5;
+}
+
+.quick-view-arrow.quick-view-left:hover .quick-view-product-gallery-arrow-left {
+    color: #fff !important;
+}
+
 .quick-view-arrow.quick-view-right {
     right: 10px;
+}
+
+.quick-view-arrow.quick-view-right:hover {
+    background-color:  #4487C5;
+}
+
+.quick-view-arrow.quick-view-right:hover .quick-view-product-gallery-arrow-right {
+    color: #FFF;
 }
 
 .quick-view-variations{
@@ -287,11 +321,12 @@
     justify-content: center;
     width: max-content;
     height: 100%;
+    width: 40px;
     /* border: 1px solid var(----active-nav-item-color); */
     border: 1px solid var(--active-nav-item-color);
     /* background-color: orange; */
     border-radius: 50%;
-    padding: 5px;
+    /* padding: 5px; */
     cursor: pointer;
 }
 
@@ -385,6 +420,8 @@
     display: flex;
     width: 100%;
     height: 0;
+    align-items: center;
+    justify-content: center;
     overflow: hidden;
     /* background-color: orange; */
     margin-top: 10px;
@@ -396,6 +433,11 @@
     padding: 5px 3px;
     overflow-x: hidden;
     overflow-y: auto;
+}
+
+.quick-view-dimension-image {
+    width: 90%;
+    height: 100%;
 }
 
 

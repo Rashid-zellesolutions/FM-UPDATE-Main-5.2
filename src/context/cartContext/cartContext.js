@@ -90,7 +90,7 @@ export const CartProvider = ({ children }) => {
         });
     };
 
-    useEffect(() => {console.log("cart Product List", cartProducts)}, [cartProducts])
+    useEffect(() => {}, [cartProducts])
 
     // initialize cart from local storage
     const [subTotal, setSubTotal] = useState(0);

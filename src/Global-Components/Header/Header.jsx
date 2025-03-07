@@ -7,7 +7,7 @@ import { useUserDashboardContext } from '../../context/userDashboardContext/user
 // Assets
 import logo from '../../Assets/Logo/m_logo_360 2.png'
 import searchIcon from '../../Assets/icons/search-icon-charcol.png';
-import HeartIcon from '../../Assets/icons/like.png';
+import HeartIcon from '../../Assets/icon/favourites-icon.svg';
 import cartIcon from '../../Assets/icons/shopping-bag.png';
 import profileIcon from '../../Assets/icon/profile-icon.svg'
 import locationIcon from '../../Assets/icons/location-red.png';
@@ -32,7 +32,7 @@ import MobileNavbar from '../Navbar/MobileNavbar/MobileNavbar';
 
 // Context and functions
 import { useCart } from '../../context/cartContext/cartContext';
-import { getCurrentDay, getCurrentTimeForNewYork, url } from '../../utils/api';
+import { getCurrentDay, getCurrentTimeForNewYork, url, useDisableBodyScroll } from '../../utils/api';
 import { useGlobalContext } from '../../context/GlobalContext/globalContext';
 
 import 'react-toastify/dist/ReactToastify.css';
@@ -189,8 +189,10 @@ const Header = ({ checkoutPage }) => {
   // }
 
   // Card title words limit
+  
   const maxLength = 15;
   // const nameLength = 20;
+ 
   const descriptionLength = 200
   const truncateTitle = (title, maxLength) => {
     if (!title) return '';
@@ -363,9 +365,20 @@ const Header = ({ checkoutPage }) => {
     }
   }
 
-  const moveToLoginDash = async () => {
+  const moveToLoginDash = async (event) => {
+    event.preventDefault();
     await checkToken();
   }
+
+  // useEffect(() => {
+  //   if (isSearchInputFocused) {
+  //     document.body.style.overflow = 'hidden'
+  //   } else {
+  //     document.body.style.overflow = 'auto'
+  //   }
+  //  }, [isSearchInputFocused])
+
+  useDisableBodyScroll(isSearchInputFocused, nearStorePopUp, changeLanguage, searchLocation, showCart)
 
 
   return (
@@ -405,12 +418,13 @@ const Header = ({ checkoutPage }) => {
             <div className='search-products-display-left'>
               <div className='searched-products'>
                 {searchedProducts.slice(0, 4).map((items, index) => (
-                  <div
+                  <Link
                     key={index}
                     className='searched-product'
                     onMouseEnter={() => handleProductHOver(index)}
                     onMouseLeave={handleMouseLeave}
-                    onClick={() => handleNavigateToSingleProduct(items)}
+                    // onClick={() => handleNavigateToSingleProduct(items)}
+                    to={{ pathname: `/product/${items.slug}`, state: items }}
                   >
                     <img src={`${url}${items.image.image_url}`} alt='main' />
                     <div className='searched-product-name-and-sku'>
@@ -424,7 +438,7 @@ const Header = ({ checkoutPage }) => {
                           <h3 className='searched-product-sale-price'> <del>${items.regular_price}</del>  ${items.sale_price}</h3>
                       }
                     </div>
-                  </div>
+                  </Link>
                 ))}
               </div>
               <button
@@ -529,9 +543,9 @@ const Header = ({ checkoutPage }) => {
         </div>
 
         <div className='header-icons-container'>
-          <div style={{ paddingTop: '4px' }} onClick={() => { moveToLoginDash() }}>
+          <Link to="/user-dashboard" style={{ paddingTop: '4px' }} onClick={(event) => moveToLoginDash(event) }>
             <img src={profileIcon} alt="profile" />
-          </div>
+          </Link>
 
           <Link to={'/wishlist'}>
             <img src={HeartIcon} alt="heart" />

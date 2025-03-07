@@ -11,19 +11,23 @@ import axios from 'axios';
 import { url } from '../../../utils/api';
 import { useCart } from '../../../context/cartContext/cartContext';
 import Breadcrumb from '../../../Global-Components/BreadCrumb/BreadCrumb';
+import GalleryModal from '../../Components/Product-Display-Components/GalleryModal/GalleryModal';
+import { useProductPage } from '../../../context/ProductPageContext/productPageContext';
 
 const ProductDisplay = () => {
 
   const { slug } = useParams();
   const location = useLocation();
+  console.log("location state", location.state)
   const [product, setProduct] = useState(location.state || null);
+  
   const [isSticky, setIsSticky] = useState(false)
 
 
   const fetchProductBySlug = async (slug) => {
     try {
       const response = await axios.get(`${url}/api/v1/products/get-by-slug/${slug}`);
-      console.log("products response", response)
+      // console.log("products response", response)
       const fetchedProduct = response.data.products[0] || {};
       setProduct(fetchedProduct);
     } catch (error) {
@@ -37,7 +41,6 @@ const ProductDisplay = () => {
     }
   }, [product, slug]);
 
-  useEffect(() => { fetchProductBySlug(slug) }, [slug])
 
 
   const sectionRefs = {
@@ -94,17 +97,131 @@ const ProductDisplay = () => {
 
   }
 
-  // console.log("product Data", product)
 
-  // Parentcategories
+  // Gallery Modal
 
-  console.log("product data on product main page", product);
-  
-  
+  const {
+    selectedVariationData
+  } = useProductPage();
+
+  const [activeIndex, setActiveIndex] = useState(0); // For main slider image
+  const [thumbActiveIndex, setThumbActiveIndex] = useState(0); // For active thumbnail
+  const thumbnailContainerRef = useRef(null); // To control the vertical scroll
+
+  const [dimensionModal, setDimensionModal] = useState(false)
+
+
+  const handleOpenModal = () => {
+    setDimensionModal(true)
+  }
+
+  const handleCloseDimensionModal = () => {
+    setDimensionModal(false)
+    setActiveIndex(0)
+    setThumbActiveIndex(0)
+  }
+
+  const handleThumbnailClick = (index) => {
+    setActiveIndex(index);
+    setThumbActiveIndex(index);
+
+    // Prevent page scroll
+    if (thumbnailContainerRef.current) {
+      const thumbnailElement = thumbnailContainerRef.current.children[index];
+
+      if (window.innerWidth < 480) {
+        // Scroll horizontally for mobile view
+        thumbnailContainerRef.current.scrollTo({
+          left: thumbnailElement.offsetLeft - (thumbnailContainerRef.current.clientWidth / 2) + (thumbnailElement.clientWidth / 2),
+          behavior: 'smooth',
+        });
+      } else {
+        // Scroll vertically for larger screens
+        thumbnailContainerRef.current.scrollTo({
+          top: thumbnailElement.offsetTop - (thumbnailContainerRef.current.clientHeight / 2) + (thumbnailElement.clientHeight / 2),
+          behavior: 'smooth',
+        });
+      }
+    }
+  };
+
+  const handlePrevImage = () => {
+    setActiveIndex((prevIndex) => {
+      if (prevIndex === 0) return prevIndex; // Prevent moving before first item
+
+      const newIndex = prevIndex - 1;
+      setThumbActiveIndex(newIndex); // Update active thumbnail index
+      // setZoomIn(false);
+
+      // Scroll thumbnail container
+      if (thumbnailContainerRef.current) {
+        if (window.innerWidth < 480) {
+          // Scroll left for mobile screens
+          thumbnailContainerRef.current.scrollBy({
+            left: -80, // Adjust scroll step based on your layout
+            behavior: 'smooth',
+          });
+        } else {
+          // Scroll up for larger screens
+          thumbnailContainerRef.current.scrollBy({
+            top: -80,
+            behavior: 'smooth',
+          });
+        }
+      }
+
+      return newIndex;
+    });
+  };
+
+  const handleNextImage = () => {
+    setActiveIndex((prevIndex) => {
+      const length =
+        product.type === 'variable'
+          ? selectedVariationData?.images?.length + 1
+          : product?.images?.length;
+
+      if (prevIndex === length) return prevIndex; // Prevent moving after last item
+
+      const newIndex = prevIndex + 1;
+      setThumbActiveIndex(newIndex); // Update active thumbnail index
+      // setZoomIn(false);
+
+      // Scroll thumbnail container
+      if (thumbnailContainerRef.current) {
+        if (window.innerWidth < 480) {
+          // Scroll right for mobile screens
+          thumbnailContainerRef.current.scrollBy({
+            left: 80, // Adjust scroll step based on your layout
+            behavior: 'smooth',
+          });
+        } else {
+          // Scroll down for larger screens
+          thumbnailContainerRef.current.scrollBy({
+            top: 80,
+            behavior: 'smooth',
+          });
+        }
+      }
+
+      return newIndex;
+    });
+  };
+
+  useEffect(() => {
+    if (dimensionModal) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'auto'
+    }
+  }, [dimensionModal])
+
+  console.log("product Data", product)
+
 
   return (
     <div className='product-display-page-main-container'>
-      <Breadcrumb category={product.categories} />
+      <Breadcrumb category={product?.categories} />
       <ProductDetailSticky
         productData={product}
         decreaseLocalQuantity={decreaseLocalQuantity}
@@ -126,14 +243,15 @@ const ProductDisplay = () => {
         decreamentQuantity={decreamentQuantity}
         increamentQuantity={increamentQuantity}
         isSticky={isSticky}
-        // parentCategories={parentCategories}
+        handleGalleryModal={handleOpenModal}
+      // parentCategories={parentCategories}
       />
 
-      <ProductStickyTabBar 
-        sectionRefs={sectionRefs} 
-        productData={product} 
-        isSticky={isSticky} 
-        setIsSticky={setIsSticky} 
+      <ProductStickyTabBar
+        sectionRefs={sectionRefs}
+        productData={product}
+        isSticky={isSticky}
+        setIsSticky={setIsSticky}
         variationData={variationData}
         addToCart0={addToCart0}
         handleAddToCartProduct={handleAddToCartProduct}
@@ -158,6 +276,21 @@ const ProductDisplay = () => {
       <ProductReviewTab
         reviewRef={sectionRefs.Reviews}
         product={product}
+      />
+
+
+
+
+      <GalleryModal
+        dimensionModal={dimensionModal}
+        handleCloseDimensionModal={handleCloseDimensionModal}
+        productData={product}
+        variationData={selectedVariationData}
+        handleNextImage={handleNextImage}
+        handlePrevImage={handlePrevImage}
+        activeIndex={activeIndex}
+        handleThumbnailClick={handleThumbnailClick}
+        thumbActiveIndex={thumbActiveIndex}
       />
 
 

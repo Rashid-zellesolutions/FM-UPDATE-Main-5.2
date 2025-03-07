@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, {  useRef, useState } from 'react'
 import './GalleryModal.css'
 
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
@@ -17,12 +17,11 @@ const GalleryModal = (
     handlePrevImage,
     activeIndex,
     handleThumbnailClick,
-    thumbActiveIndex
+    thumbActiveIndex,
+    name,
   }) => {
 
-  // console.log("product Data", productData);
-  // console.log("variation Data", variationData);
-  // Check if dimension_image is not empty
+    console.log("my name on modal", name)
   const hasDimensionImage = productData?.dimension_image?.image_url?.trim();
 
   // Prepare images array with dimension_image at the start if available
@@ -39,20 +38,17 @@ const GalleryModal = (
     ]
     : variationData?.images || [];
 
-  // console.log("Updated Variation images", updatedVariationImages)
-  // console.log("Product Data Images Length", productData?.images.length);
-  // console.log("Active Index", activeIndex);
-
   const updatedSimpleImages = hasDimensionImage
     ? [{ image_url: productData?.dimension_image?.image_url }, ...productData?.images]
     : productData?.images;
 
-  // console.log("updated single images", updatedSimpleImages)
 
 
   const [dragStartX, setDragStartX] = useState(0);
   const [dragging, setDragging] = useState(false);
   const sliderRef = useRef(null);
+
+
 
 
 
@@ -81,6 +77,8 @@ const GalleryModal = (
     setDragging(false);
   };
 
+  
+
   return (
     <div className={`dimension-modal-main-container ${dimensionModal ? 'show-dimension-modal' : ''}`}>
       <div className='dimension-modal-inner-container'>
@@ -90,13 +88,13 @@ const GalleryModal = (
 
         <div className='dimension-left-thumbnail-section'>
           <div className='dimension-modal-products-thumb-heading'>
-            <p>Product Photos {(updatedSimpleImages.length)}</p>
+            <p>Product Photos {(updatedSimpleImages?.length)}</p>
             <MdKeyboardArrowDown size={20} color='#595959' className='dimension-modal-arrow-down ' />
           </div>
           <div className='thumb-images-main-container'>
             {productData?.type === 'variable' ?
               (updatedVariationImages || []).map((item, index) => (
-                <div key={index} className={`dimension-modal-thumb-single-image ${index === thumbActiveIndex ? 'dimension-modal-active-thumb' : ''} `} onClick={() => handleThumbnailClick(index)}>
+                <div key={index} className={`dimension-modal-thumb-single-image ${index === thumbActiveIndex  ? 'dimension-modal-active-thumb' : ''} `} onClick={() => handleThumbnailClick(index)}>
                   <img src={`${url}${item.image_url}`} alt='slid' className='dimension-modal-thumbnail-single-image' />
                 </div>
               ))
@@ -140,7 +138,7 @@ const GalleryModal = (
                 transform: `translateX(-${activeIndex * 100}%)`,
               }}
             >
-              {productData.type === 'variable' ?
+              {productData?.type === 'variable' ?
                 (updatedVariationImages || []).map((slideItem, slideIndex) => (
                   <div key={slideIndex} className='dimension-modal-slider-single-image-container'>
                     <img
@@ -161,17 +159,8 @@ const GalleryModal = (
                 ))}
             </div>
 
-            {/* <div className='dimension-modal-main-slider-images' style={{ transform: `translateX(-${activeIndex * 100}%)` }}>
-              {images.map((slideItem, slideIndex) => (
-                <div key={slideIndex} className='dimension-modal-slider-single-image-container'>
-                  <img src={`${url}${slideItem.image_url}`} alt='slide' className='dimension-modal-slider-image' />
-                </div>
-              ))}
-            </div> */}
-
-
             <button
-              className={`dimension-main-slider-arrow dimension-slider-arrow-right ${activeIndex === updatedSimpleImages.length - 1 ? 'disabled-button' : ''}`}
+              className={`dimension-main-slider-arrow dimension-slider-arrow-right ${activeIndex === updatedSimpleImages?.length - 1 ? 'disabled-button' : ''}`}
               onClick={handleNextImage}
             >
               <IoIosArrowForward size={20} color='#595959' className='product-gallery-arrow' />

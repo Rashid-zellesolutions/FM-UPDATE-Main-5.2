@@ -69,7 +69,7 @@ const Sliderr = ({ images, height }) => {
         slidesToShow: 1,
         slidesToScroll: 1,
         autoplay: true,
-        autoplaySpeed: 1000000,
+        autoplaySpeed: 3000,
         pauseOnHover: false,
         prevArrow: imagePreloader ? <CustomPrevArrow /> : <></>,
         nextArrow: imagePreloader ? <CustomNextArrow /> : <></>,

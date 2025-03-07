@@ -67,8 +67,19 @@ const ProductStickyTabBar = (
 
     const handleTabClick = (tab) => {
         const section = sectionRefs[tab]?.current;
+        const stickyBarHeight = document.querySelector('.product-sticky-fixed-tabs-container')?.offsetHeight || 0;
+        const offset = 0; // Adjust this value as needed for extra spacing
+
+        // if (section) {
+        //     section.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        // }
+
         if (section) {
-            section.scrollIntoView({ behavior: 'smooth', block: 'start' })
+            const sectionTop = section.getBoundingClientRect().top + window.scrollY;
+            window.scrollTo({
+                top: sectionTop - stickyBarHeight - offset, // Scroll with offset
+                behavior: 'smooth',
+            });
         }
 
         // ✅ NEW: Scroll the tab container to the last position if "Reviews" is clicked

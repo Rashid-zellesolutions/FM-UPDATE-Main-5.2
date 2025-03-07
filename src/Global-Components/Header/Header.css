@@ -193,13 +193,14 @@
     width: 100%;
     padding: 6px 10px;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .searched-product:hover {
     background-color: #F0F0F0;
 }
 
-.searched-product img {
+.searched-product > img {
     width: 25px;
     height: auto;
     object-fit: contain;
@@ -213,16 +214,20 @@
     gap: 5px;
 }
 
-.searched-product-name-and-sku h3 {
+.searched-product-name-and-sku > h3 {
     font-size: 11px;
     line-height: 10px;
     font-weight: 400;
+    text-decoration: none;
+
 }
 
-.searched-product-name-and-sku p {
+.searched-product-name-and-sku > p {
     font-size: 8px;
     line-height: 12px;
     font-weight: 400;
+    text-decoration: none;
+    color: var(--text-color);
 }
 
 .searched-product-prices {

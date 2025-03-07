@@ -205,6 +205,7 @@
         width: 100%;
         flex-direction: column-reverse;
         padding: 15px;
+        height: max-content;
     }
 
     .dimension-left-thumbnail-section {

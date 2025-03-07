@@ -52,24 +52,7 @@ const BestSellerSlider = (
 
     // States and Variables
     const navigate = useNavigate()
-    // const [allProducts, setAllProducts] = useState([])
-    // const [bestSellerNav1, setBestSellerNav1] = useState([
-    //     {
-    //         heading: "Living Room",
-    //         image: BestSellerSliderMainBanner,
-    //         slug: "living-room"
-    //     },
-    //     {
-    //         heading: "Bedroom",
-    //         image: BestSellerSliderMainBanner,
-    //         slug: "bedroom"
-    //     },
-    //     {
-    //         heading: "Dining Room",
-    //         image: BestSellerSliderMainBanner,
-    //         slug: "dining-room"
-    //     },
-    // ]);
+    
     const [currentSlug, setCurrentSlug] = useState();
     const [loading, setLoading] = useState(false);
 

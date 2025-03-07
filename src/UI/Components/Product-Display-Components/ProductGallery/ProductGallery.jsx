@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useMemo } from 'react';
 import './ProductGallery.css';
 
 // Assets
@@ -28,14 +28,21 @@ const ProductGallery = (
         position,
         setPosition,
         dragging,
-        setDragging
+        setDragging,
+        handleGalleryModal,
     }) => {
+
+    const memoizedProductData = useMemo(() => productData, [productData]);
+        const myName = "Rashid Ali"
+
+        // console.log("on main slider comp", myName)
 
     const [activeIndex, setActiveIndex] = useState(0); // For main slider image
     const [thumbActiveIndex, setThumbActiveIndex] = useState(0); // For active thumbnail
     const thumbnailContainerRef = useRef(null); // To control the vertical scroll
 
     const [dimensionModal, setDimensionModal] = useState(false)
+
 
     const handleOpenModal = () => {
         setDimensionModal(true)
@@ -47,7 +54,6 @@ const ProductGallery = (
         setThumbActiveIndex(0)
     }
 
-    useEffect(() => {}, [thumbActiveIndex])
 
     const handleThumbnailClick = (index) => {
         setActiveIndex(index);
@@ -163,11 +169,12 @@ const ProductGallery = (
         });
     };
 
+
     const handleNextImage = () => {
         setActiveIndex((prevIndex) => {
             const length =
                 productData.type === 'variable'
-                    ? selectedVariationData?.images?.length
+                    ? selectedVariationData?.images?.length + 1
                     : productData?.images?.length;
 
             if (prevIndex === length) return prevIndex; // Prevent moving after last item
@@ -231,22 +238,22 @@ const ProductGallery = (
     };
 
     // Prevent unwanted browser behaviors during touch events
-    useEffect(() => {
-        const slider = sliderRef.current;
-        if (slider) {
-            slider.addEventListener("touchstart", handleDragStart, { passive: false });
-            slider.addEventListener("touchmove", handleDragMove, { passive: false });
-            slider.addEventListener("touchend", handleDragEnd);
-        }
+    // useEffect(() => {
+    //     const slider = sliderRef.current;
+    //     if (slider) {
+    //         slider.addEventListener("touchstart", handleDragStart, { passive: false });
+    //         slider.addEventListener("touchmove", handleDragMove, { passive: false });
+    //         slider.addEventListener("touchend", handleDragEnd);
+    //     }
 
-        return () => {
-            if (slider) {
-                slider.removeEventListener("touchstart", handleDragStart);
-                slider.removeEventListener("touchmove", handleDragMove);
-                slider.removeEventListener("touchend", handleDragEnd);
-            }
-        };
-    }, []);
+    //     return () => {
+    //         if (slider) {
+    //             slider.removeEventListener("touchstart", handleDragStart);
+    //             slider.removeEventListener("touchmove", handleDragMove);
+    //             slider.removeEventListener("touchend", handleDragEnd);
+    //         }
+    //     };
+    // }, []);
 
     return (
         <>
@@ -307,7 +314,7 @@ const ProductGallery = (
                                 : handleScrollDown
                         }
                     />
-                    <button onClick={handleOpenModal} className='product-gallery-view-all-button'>
+                    <button onClick={handleGalleryModal} className='product-gallery-view-all-button'>
                         View All
                     </button>
                 </div>
@@ -404,8 +411,7 @@ const ProductGallery = (
                     </button>
                 </div>
             </div>
-
-            <GalleryModal
+            {/* <GalleryModal
                 dimensionModal={dimensionModal}
                 handleCloseDimensionModal={handleCloseDimensionModal}
                 productData={productData}
@@ -413,9 +419,10 @@ const ProductGallery = (
                 handleNextImage={handleNextImage}
                 handlePrevImage={handlePrevImage}
                 activeIndex={activeIndex}
+                name={myName}
                 handleThumbnailClick={handleThumbnailClick}
                 thumbActiveIndex={thumbActiveIndex}
-            />
+            /> */}
 
         </>
     );

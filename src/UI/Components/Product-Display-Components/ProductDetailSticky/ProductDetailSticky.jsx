@@ -28,6 +28,8 @@ import { MdOutlineKeyboardArrowDown } from 'react-icons/md'
 import AppointmentModal from '../../../../Global-Components/AppointmentModal/AppointmentModal'
 import LocationPopUp from '../../LocationPopUp/LocationPopUp'
 import ConfirmationModal from '../../../../Global-Components/AppointmentModal/ConfirmationModal/ConfirmationModal'
+import SnakBar from '../../../../Global-Components/SnakeBar/SnakBar'
+import { useAppointment } from '../../../../context/AppointmentContext/AppointmentContext'
 
 
 const ProductDetailSticky = (
@@ -51,13 +53,16 @@ const ProductDetailSticky = (
     increamentQuantity,
     variationData,
     setVariationData,
+    handleGalleryModal,
     isSticky,
     // parentCategories,
   }) => {
 
-    console.log("product data initial state", productData)
+    // console.log("product data initial state", productData)
 
   const navigate = useNavigate()
+  const { setAppointmentPayload } = useAppointment()
+  const [selectedTab, setSelectedTab] = useState(1);
 
   // Get Product Data from previous route or api
   const {
@@ -91,7 +96,8 @@ const ProductDetailSticky = (
     setSelectedVariationUid(productData?.default_variation)
     setSelectedVariationData(findObjectByUID(productData?.default_variation, productData?.variations));
 
-  }, [productData, slug]);
+  }, [slug]);
+  // productData in this effect dependancy
 
   const [product, setProduct] = useState(
     Object.keys(productData || {}).length > 0 && productData.images !== undefined
@@ -110,9 +116,9 @@ const ProductDetailSticky = (
     } else if (!productData || Object.keys(productData).length === 0 || !productData.images) {
       setProduct(getBySlug);
     }
-  }, [productData, slug, getBySlug, product])
+  }, [productData, slug, getBySlug ])
+  // product from this dependancy
 
-  useEffect(() => { console.log("product data on product page", product) }, [product])
 
   // Share Product Modal
   const [isSharePopup, setIsSharePopup] = useState(null);
@@ -165,8 +171,8 @@ const ProductDetailSticky = (
     }
   };
 
-  useEffect(() => {
-  }, [isSingleProtectionChecked,])
+  // useEffect(() => {
+  // }, [isSingleProtectionChecked,])
 
   // Add To WishList and Remove
   const { addToList, removeFromList, isInWishList } = useList()
@@ -244,15 +250,30 @@ const ProductDetailSticky = (
 
   const handleCloseAppointmentModal = () => {
     setAppointmentModal(false)
+    setSelectedTab(1)
+    setAppointmentPayload({
+      serviceType: '',
+      selectedCategories: [],
+      selectedStore: {},
+      otherDetails: 'Customer has sensitive skin',
+      selectedDate: '',
+      selectedSlot: '',
+      details: {
+        firstName: '',
+        lastName: '',
+        email: '',
+        contact: '',
+        associate: ''
+      }
+    })
   }
 
   useEffect(() => {
-    if (appointmentModal === true) {
-      document.body.style.overflow = 'hidden';
-    } else {
+    document.body.style.overflow = appointmentModal ? 'hidden' : 'auto';
+    return () => {
       document.body.style.overflow = 'auto';
-    }
-  }, [appointmentModal])
+    };
+  }, [appointmentModal]);
 
   const [showLocation, setShowLocation] = useState(false);
   const [locationData, setLocationData] = useState();
@@ -266,28 +287,35 @@ const ProductDetailSticky = (
   const [addCartSticky, setAddCartSticky] = useState(false)
   // const [isCartTop, setIsCartTop] = useState
   const cartDivRef = useRef(null);
-  useEffect(() => {
-    const handleScrollAddToCart = () => {
-      if (cartDivRef.current) {
-        const rect = cartDivRef.current.getBoundingClientRect();
-        setAddCartSticky(rect.top <= 0);
-      }
-    }
-    window.addEventListener('scroll', handleScrollAddToCart);
+  // useEffect(() => {
+  //   const handleScrollAddToCart = () => {
+  //     if (cartDivRef.current) {
+  //       const rect = cartDivRef.current.getBoundingClientRect();
+  //       setAddCartSticky(rect.top <= 0);
+  //     }
+  //   }
+  //   window.addEventListener('scroll', handleScrollAddToCart);
 
 
-    return () => window.removeEventListener('scroll', handleScrollAddToCart);
+  //   return () => window.removeEventListener('scroll', handleScrollAddToCart);
 
-  }, [cartDivRef]);
+  // }, [cartDivRef]);
+  const [errorMessage, setErrorMessage] = useState('Something went wrong! Please try again later.');
+      const [snakebarOpen, setSnakebarOpen] = useState(false);
+
+  const handleOpenSnakeBar = () => {
+    console.log("snakebar open function called")
+    // setAppointmentModal(false);
+    setSnakebarOpen(true);
+  }
+  const handleCloseSnakeBar = () => {
+    setSnakebarOpen(false);
+  }
 
   useEffect(() => {  }, [addCartSticky])
 
   const [isProtectionCheck, setIsProtectionCheck] = useState(true)
 
-  const handleSubmitProduct = (product) => {
-    setCartSection(true);
-    addToCart0(product, quantity, !isProtectionCheck);
-  }
 
 
 
@@ -312,9 +340,10 @@ const ProductDetailSticky = (
             setDragging={setDragging}
             position={position}
             setPosition={setPosition}
+            handleGalleryModal={handleGalleryModal}
 
           />
-          <ProductDimension productData={product} handleZoom={handleZoomImage} variationData={selectedVariationData} />
+          <ProductDimension productData={product} handleGalleryModal={handleGalleryModal} handleZoom={handleZoomImage} variationData={selectedVariationData} />
           {product?.weight_dimension && <DimensionDetail productData={product} />}
 
         </div>
@@ -576,6 +605,12 @@ const ProductDetailSticky = (
         showAppointMentModal={appointmentModal}
         setAppointmentModal={setAppointmentModal}
         handleCloseModal={handleCloseAppointmentModal}
+        setErrorMessage={setErrorMessage}
+        snakebarOpen={snakebarOpen}
+        setSnakebarOpen={setSnakebarOpen}
+        handleOpenSnakeBar={handleOpenSnakeBar}
+        selectedTab={selectedTab}
+        setSelectedTab={setSelectedTab}
       />
 
       <LocationPopUp
@@ -610,6 +645,13 @@ const ProductDetailSticky = (
           </button>
         </div>
       </div>
+
+      <SnakBar
+        message={errorMessage}
+        openSnakeBarProp={snakebarOpen}
+        setOpenSnakeBar={setSnakebarOpen}
+        onClick={handleCloseSnakeBar}
+      />
 
     </div>
   )

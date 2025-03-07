@@ -160,10 +160,28 @@
     font-weight: 600;
 } */
 
-.get-the-scop-form p{
+/* .get-the-scop-form > p{
     color: var(--text-color);
     font-size: 15px;
     font-weight: 400;
+    line-height: 22px;
+    width: 100%;
+    text-align: center;
+} */
+
+.get-the-scoop-terms-and-condition {
+    color: var(--text-color);
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 22px;
+    width: 100%;
+    text-align: center;
+}
+
+.get-the-scoop-terms-and-condition > a {
+    color: var(--text-color);
+    font-size: 15px;
+    font-weight: 500;
     line-height: 22px;
     width: 100%;
     text-align: center;

@@ -27,6 +27,7 @@ import FinancingModal from '../../Modals/FinancingModal/FinancingModal';
 import AppointmentModal from '../../../Global-Components/AppointmentModal/AppointmentModal';
 import ProductCardTwo from '../../Components/ProductCardTwo/ProductCardTwo';
 
+
 function SamplePrevArrow(props) {
   const { className, style, onClick } = props;
   return (

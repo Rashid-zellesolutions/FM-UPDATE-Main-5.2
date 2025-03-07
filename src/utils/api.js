@@ -1,4 +1,6 @@
-// export const url = `https://f.m.skyhub.pk`
+import { useEffect } from "react";
+
+// export const url = `https://fm.skyhub.pk`
 export const url = `https://fm.zellehost.com`
 // export const url = `http://fm_api.myfurnituremecca.com`;
 // export const url = `http://localhost:8080`
@@ -166,6 +168,18 @@ export const formatPhoneNumber = (value) => {
     }
     
     return "";
+};
+
+export const useDisableBodyScroll = (...states) => {
+  useEffect(() => {
+    const shouldDisableScroll = states.some(state => state);
+    document.body.style.overflow = shouldDisableScroll ? "hidden" : "auto";
+    // if (state) {
+    //   document.body.style.overflow = "hidden";
+    // } else {
+    //   document.body.style.overflow = "auto";
+    // }
+  }, [...states]);
 };
 
 

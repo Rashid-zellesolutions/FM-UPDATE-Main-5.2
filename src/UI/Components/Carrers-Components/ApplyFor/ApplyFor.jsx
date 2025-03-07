@@ -4,6 +4,7 @@ import { useRef } from 'react'
 import applyIcon from '../../../../Assets/Furniture Mecca/Careers/Mask group.png'
 import axios from 'axios'
 import { formatPhoneNumber, url } from '../../../../utils/api'
+import { BsSend } from "react-icons/bs";
 
 const ApplyFor = ({setLoading}) => {
 
@@ -309,8 +310,10 @@ const ApplyFor = ({setLoading}) => {
                 <p className='apply-for-chose-file' onClick={handleFileClick}>Choose File</p>
                 <input type='file' name='file' ref={fileInputRef} onChange={handleFileChange} style={{ display: 'none' }} />
             </label>
+            <p className='selected-file-name'>{applyForData.resume.name}</p>
             <button type='button' className='apply-for-career-button' onClick={sendUserData}>
-                <img src={applyIcon} alt='apply icon' />
+                {/* <img src={applyIcon} alt='apply icon' /> */}
+                <BsSend size={20} className='select-file-icon' />
                 Apply
             </button>
         </form>

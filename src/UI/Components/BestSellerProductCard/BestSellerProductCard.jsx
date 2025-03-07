@@ -5,6 +5,7 @@ import { VscHeartFilled } from "react-icons/vsc";
 import { useList } from '../../../context/wishListContext/wishListContext';
 import RatingReview from '../starRating/starRating';
 import { formatedPrice, truncateTitle, url } from '../../../utils/api';
+import { Link } from 'react-router-dom';
 
 const BestSellerProductCard = (
     { 
@@ -29,9 +30,10 @@ const BestSellerProductCard = (
     
 
   return (
-    <div 
+    <Link 
         className='category-product-card' 
-        onClick={() => handleCardClicked(productData)}
+        // onClick={() => handleCardClicked(productData)}
+        to={{pathname: `/product/${productData.slug}`, state: productData}}
     >
         {/* <img src={heartIcon} alt='heart' className='show-on-mobile' /> */}
         <div className='category-product-image'>
@@ -58,7 +60,7 @@ const BestSellerProductCard = (
                 
             </div>
         </div>
-    </div>
+    </Link>
   )
 }
 

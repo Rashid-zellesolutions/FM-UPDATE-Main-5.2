@@ -661,7 +661,7 @@
 .color-variation {
     padding: 15px;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 4px;
     position: relative;
 }
 
@@ -673,6 +673,7 @@
     background-color: #fff;
     width: 18px;
     height: 15px;
+    border-radius: 4px;
     clip-path: polygon(0% 0%, 100% 0%, 0% 100%);
 }
 
@@ -685,8 +686,8 @@
     transform: translate(-50%, -50%) rotate(45deg);
     width: 2px;
     height: 5px;
-    border-right: 2px solid var(--tick-color);
-    border-bottom: 2px solid var(--tick-color);
+    border-right: 1.75px solid var(--tick-color);
+    border-bottom: 1.75px solid var(--tick-color);
 }
 
 /* Mobile View Variation Style */

@@ -33,6 +33,10 @@ const Breadcrumb = ({ category, productName, sku, categorySlug }) => {
 
     const fullPathNames = [...navigationHistory, ...pathnames];
 
+    if (fullPathNames.length === 0) {
+        return null; // Don't show anything if on the home page
+    }
+
     // Ensure previous route is retained on product pages
     if (location.pathname.includes('product') && categorySlug) {
         fullPathNames.splice(fullPathNames.indexOf('product'), 1, categorySlug); // Replace "product" with categorySlug
