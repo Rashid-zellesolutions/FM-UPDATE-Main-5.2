@@ -26,6 +26,7 @@
     gap: 20px;
     width: 50%;
     align-items: end;
+    padding-right: 75px;
     justify-content: end;
 }
 

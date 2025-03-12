@@ -30,7 +30,7 @@ import {
 const QuickView = ({ setQuickViewProduct, quickViewClose, quickViewShow, }) => {
 
 
-    console.log("Quick View Data", setQuickViewProduct)
+    // console.log("Quick View Data", setQuickViewProduct)
 
     const {
         cart,

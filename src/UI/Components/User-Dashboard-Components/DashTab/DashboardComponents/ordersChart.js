@@ -15,6 +15,9 @@ const BarChart = () => {
       chart: {
         type: "bar",
         background: "#fff",
+        toolbar: {
+        show: false, // This will remove the hamburger menu
+      },
       },
       plotOptions: {
         bar: {
@@ -28,10 +31,11 @@ const BarChart = () => {
       colors: ["#4487C5", "#76A7D4"], // Colors for the bars
       states: {
         hover: {
-          filter: {
-            type: "lighten",
-            value: 0.2,
-          },
+          enable: false
+          // filter: {
+          //   type: "lighten",
+          //   value: 0.2,
+          // },
         },
       },
       stroke: {

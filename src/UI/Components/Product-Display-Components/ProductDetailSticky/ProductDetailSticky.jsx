@@ -238,9 +238,9 @@ const ProductDetailSticky = (
   }
 
   const contectInfo = [
-    { title: 'Call', icon: <IoCallOutline size={15} color='#595959' /> },
-    { title: 'Chat', icon: <IoChatbubbleOutline size={15} color='#595959' /> },
-    { title: 'Visit', icon: <PiStorefrontLight size={15} color='#595959' /> },
+    { title: 'Call', icon: <IoCallOutline size={18} color='#595959' /> },
+    { title: 'Chat', icon: <IoChatbubbleOutline size={18} color='#595959' /> },
+    { title: 'Visit', icon: <PiStorefrontLight size={18} color='#595959' /> },
   ]
 
   const [appointmentModal, setAppointmentModal] = useState(false);
@@ -287,19 +287,19 @@ const ProductDetailSticky = (
   const [addCartSticky, setAddCartSticky] = useState(false)
   // const [isCartTop, setIsCartTop] = useState
   const cartDivRef = useRef(null);
-  // useEffect(() => {
-  //   const handleScrollAddToCart = () => {
-  //     if (cartDivRef.current) {
-  //       const rect = cartDivRef.current.getBoundingClientRect();
-  //       setAddCartSticky(rect.top <= 0);
-  //     }
-  //   }
-  //   window.addEventListener('scroll', handleScrollAddToCart);
+  useEffect(() => {
+    const handleScrollAddToCart = () => {
+      if (cartDivRef.current) {
+        const rect = cartDivRef.current.getBoundingClientRect();
+        setAddCartSticky(rect.top <= 0);
+      }
+    }
+    window.addEventListener('scroll', handleScrollAddToCart);
 
 
-  //   return () => window.removeEventListener('scroll', handleScrollAddToCart);
+    return () => window.removeEventListener('scroll', handleScrollAddToCart);
 
-  // }, [cartDivRef]);
+  }, [cartDivRef]);
   const [errorMessage, setErrorMessage] = useState('Something went wrong! Please try again later.');
       const [snakebarOpen, setSnakebarOpen] = useState(false);
 
@@ -327,6 +327,27 @@ const ProductDetailSticky = (
       <div className='product-detail-sticky-gallery-and-detail'>
 
         <div className='product-detail-product-gallery-section'>
+
+          <div className='mobile-view-slider-top-details'>
+            <h3>{product?.name}</h3>
+            {/* <p>SKU : {product.sku}</p> */}
+            <div className='product-detail-rating-and-share'>
+              {/* <RatingReview rating={(product?.average_rating)} disabled={true} size={"20px"} /> */}
+
+              <p>SKU : {product.sku}</p>
+
+              <span
+                className='single-product-share'
+                onClick={() => handleShareModal(productData)}
+              >
+                <FaShareSquare className='single-product-share-icon' size={20} />
+              </span>
+            </div>
+
+              <RatingReview rating={(product?.average_rating)} disabled={true} size={"20px"} />
+            
+          </div>
+
           <ProductGallery
             productData={product}
             selectedVariationData={selectedVariationData}
@@ -343,7 +364,7 @@ const ProductDetailSticky = (
             handleGalleryModal={handleGalleryModal}
 
           />
-          <ProductDimension productData={product} handleGalleryModal={handleGalleryModal} handleZoom={handleZoomImage} variationData={selectedVariationData} />
+          <ProductDimension productData={product} handleGalleryModal={handleGalleryModal} handleZoom={handleZoomImage} zoomIn={zoomIn} variationData={selectedVariationData} />
           {product?.weight_dimension && <DimensionDetail productData={product} />}
 
         </div>
@@ -383,7 +404,7 @@ const ProductDetailSticky = (
                 }
               </>}
 
-              <div className='single-product-frame-color'>
+              {/* <div className='single-product-frame-color'>
                 <SizeVariant
                   productType={product.type}
                   productData={product.variations}
@@ -399,7 +420,7 @@ const ProductDetailSticky = (
               <div className='add-cart-or-add-items-div' ref={cartDivRef}>
                 <div className='item-count'>
                   <button className={`minus-btn ${product.quantity === 1 ? 'disabled' : ''}`} onClick={decreaseLocalQuantity} disabled={product.quantity === 1}>
-                    {/* <img src={minus} alt='minus btn' /> */}
+                    
                     <FaWindowMinimize size={15} className='minus-icon' />
                   </button>
 
@@ -409,7 +430,7 @@ const ProductDetailSticky = (
                     onChange={handleQuantityChange}
                   />
                   <button className='plus-btn' onClick={increaseLocalQuantity}>
-                    {/* <img src={plus} alt='plus btn' /> */}
+                    
                     <FaPlus size={15} className='plus-icon' />
                   </button>
                 </div>
@@ -421,7 +442,6 @@ const ProductDetailSticky = (
                   {isInWishList(product.uid) ? <IoMdHeart size={20} color={isInWishList(product.uid) ? 'red' : '#595959'} />
                     : <IoMdHeartEmpty size={20} />}
                 </div>
-                {/* <img src={isInWishList(product.uid) ? filledHeart : redHeart} alt='red-heart-icon' className='red-heart-icon' onClick={(e) => { e.stopPropagation(); handleWishList(product) }} /> */}
                 <button
                   className={`add-to-cart-btn ${isLoading ? 'loading' : ''}`}
                   onClick={() => {
@@ -432,7 +452,7 @@ const ProductDetailSticky = (
                   }>
                   {isLoading ? 'Loading...' : 'Add To Cart'}
                 </button>
-              </div>
+              </div> */}
 
             </div>
 
@@ -453,6 +473,57 @@ const ProductDetailSticky = (
           </div>
 
           <div className='product-detail-other-info'>
+
+
+            <div className='single-product-frame-color'>
+              <SizeVariant
+                productType={product.type}
+                productData={product.variations}
+                attributes={product.attributes}
+                selectedColor={selectedColor}
+                selectVariation={selectVariation}
+                handleSelectColor={handleSelectColor}
+                handleSelectVariation={handleSelectVariation}
+                handleSelectedVariationData={handleSelectedVariationData}
+              />
+            </div>
+
+            <div className='add-cart-or-add-items-div' ref={cartDivRef}>
+              <div className='item-count'>
+                <button className={`minus-btn ${product.quantity === 1 ? 'disabled' : ''}`} onClick={decreaseLocalQuantity} disabled={product.quantity === 1}>
+
+                  <FaWindowMinimize size={15} className='minus-icon' />
+                </button>
+
+                <input
+                  type='number'
+                  value={quantity}
+                  onChange={handleQuantityChange}
+                />
+                <button className='plus-btn' onClick={increaseLocalQuantity}>
+
+                  <FaPlus size={15} className='plus-icon' />
+                </button>
+              </div>
+              <div
+                className='product-details-add-to-wishlist-icon'
+                onClick={(e) => { e.stopPropagation(); handleWishList(product) }}
+                style={{ border: isInWishList(product.uid) ? '1px solid red' : '1px solid #595959' }}
+              >
+                {isInWishList(product.uid) ? <IoMdHeart size={20} color={isInWishList(product.uid) ? 'red' : '#595959'} />
+                  : <IoMdHeartEmpty size={20} />}
+              </div>
+              <button
+                className={`add-to-cart-btn ${isLoading ? 'loading' : ''}`}
+                onClick={() => {
+                  handleClick();
+                  addToCart0(product, variationData, !isProtected ? 1 : 0, quantity)
+                  handleAddToCartProduct(product);
+                }
+                }>
+                {isLoading ? 'Loading...' : 'Add To Cart'}
+              </button>
+            </div>
 
             {/* {Object.keys(product).length > 0 ? (
               <FinancingOptions />

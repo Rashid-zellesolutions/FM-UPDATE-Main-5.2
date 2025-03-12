@@ -1,37 +1,60 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './RelatedCategories.css'
 import { Link, useParams, useLocation } from 'react-router-dom'
+import { url } from '../../../utils/api';
 
 const RelatedCategories = () => {
-    // const {parentCategory} = window.location
-    // console.log("product archive parent category", parentCategory)
-    const { categorySlug } = useParams();
-    const relatedCategoriesData = [
-        { categoryName: 'Leather Living Room Sets', slug: 'living-room-sets'},
-        { categoryName: 'Reclining Living Room Sets', slug: 'sofa-loveseat-sets'},
-        { categoryName: 'Small Space Living Room Sets', slug: 'sectionals'},
-        { categoryName: 'Sleeper Sofa Living Room Sets', slug: 'reclining-furniture'},
-        {categoryName: 'Sofa & Loveseat Sets', slug: '#'},
-        {categoryName: 'Sofa & Chair Sets', slug: '#'},
-        {categoryName: 'Sofa & Chair Sets', slug: '#'},
-        {categoryName: 'Sofa & Chair Sets', slug: '#'},
-        {categoryName: 'Sofa & Chair Sets', slug: '#'},
-    ]
 
-    const fetchSubCategories = () => {
-        // const api = `/api/v1/sub-category/get/${categoryData.slug}`
+    const { categorySlug } = useParams();
+    const [categoryData, setCategoryData] = useState([])
+
+    async function fetchHeaderPayloads() {
+        try {
+            const response = await fetch(`${url}/api/v1/header-payloads/get`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+
+            if (!response.ok) {
+                throw new Error(`Error: ${response.status} ${response.statusText}`);
+            }
+
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            console.error("Error fetching data:", error.message);
+            throw error;
+        }
     }
 
-  return (
-    <div className='related-categories-main-div'>
+    const [relatedCategoriesData, setRelatedCategoriesData] = useState([])
+
+    useEffect(() => {
+        fetchHeaderPayloads().then(data => {
+            setCategoryData(data.data[0].categories)
+        }).catch(error => {
+            console.error(error);
+        });
+
+        const unfilteredCategories = categoryData.find((item) => item.category_slug === categorySlug);
+
+        setRelatedCategoriesData(unfilteredCategories?.subCategories)
+    }, [])
+
+    // console.log("related categories", relatedCategoriesData)
+
+    return (
+        <div className='related-categories-main-div'>
             <h3>Related Categories</h3>
             <div className='related-categories-items'>
-                {relatedCategoriesData.map((item, index) => {
-                    return <Link key={index} to={`/${categorySlug}/${item.slug}`}>{item.categoryName}</Link>
+                {relatedCategoriesData && relatedCategoriesData.map((item, index) => {
+                    return <Link key={index} to={`/${categorySlug}/${item.slug}`}>{item.name}</Link>
                 })}
             </div>
         </div>
-  )
+    )
 }
 
 export default RelatedCategories

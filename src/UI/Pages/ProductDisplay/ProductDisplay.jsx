@@ -18,7 +18,6 @@ const ProductDisplay = () => {
 
   const { slug } = useParams();
   const location = useLocation();
-  console.log("location state", location.state)
   const [product, setProduct] = useState(location.state || null);
   
   const [isSticky, setIsSticky] = useState(false)
@@ -27,7 +26,6 @@ const ProductDisplay = () => {
   const fetchProductBySlug = async (slug) => {
     try {
       const response = await axios.get(`${url}/api/v1/products/get-by-slug/${slug}`);
-      // console.log("products response", response)
       const fetchedProduct = response.data.products[0] || {};
       setProduct(fetchedProduct);
     } catch (error) {
@@ -215,8 +213,6 @@ const ProductDisplay = () => {
       document.body.style.overflow = 'auto'
     }
   }, [dimensionModal])
-
-  console.log("product Data", product)
 
 
   return (

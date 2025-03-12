@@ -182,7 +182,7 @@ const AddressesTab = ({ userAddresses, setTrigerPoint }) => {
           </div>
         </div>
 
-        <div className='user-billing-address'>
+        {/* <div className='user-billing-address'>
           <div className='billing-address-details'>
             <div className='title-and-edit-icon'>
               <h3>Shipping Address</h3>
@@ -198,7 +198,7 @@ const AddressesTab = ({ userAddresses, setTrigerPoint }) => {
               <p>{userAddresses?.shipping_address?.city} {userAddresses?.shipping_address?.state}</p>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
 
       <div className={`address-edit-modal ${isEditTrue ? 'show-address-edit-modal' : ''}`}>

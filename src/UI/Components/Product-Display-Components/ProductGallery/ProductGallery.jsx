@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useMemo } from 'react';
+import React, { useState, useRef} from 'react';
 import './ProductGallery.css';
 
 // Assets
@@ -10,10 +10,8 @@ import {
     IoMdArrowDropleft
 } from "react-icons/io";
 
-
 import 'react-medium-image-zoom/dist/styles.css';
 import { url } from '../../../../utils/api';
-import GalleryModal from '../GalleryModal/GalleryModal';
 
 const ProductGallery = (
     { 
@@ -26,34 +24,23 @@ const ProductGallery = (
         zoomIn,
         setZoomIn,
         position,
-        setPosition,
         dragging,
-        setDragging,
         handleGalleryModal,
     }) => {
 
-    const memoizedProductData = useMemo(() => productData, [productData]);
-        const myName = "Rashid Ali"
+    const [currentIndex, setCurrentIndex] = useState(0);
 
-        // console.log("on main slider comp", myName)
+    // Function to handle clicking pagination dots
+    const handleDotClick = (index) => {
+        setCurrentIndex(index);
+        setActiveIndex(index); // Ensure the main slider image updates
+        setThumbActiveIndex(index); // Ensure the thumbnail updates
+        setZoomIn(false);
+    };
 
     const [activeIndex, setActiveIndex] = useState(0); // For main slider image
     const [thumbActiveIndex, setThumbActiveIndex] = useState(0); // For active thumbnail
     const thumbnailContainerRef = useRef(null); // To control the vertical scroll
-
-    const [dimensionModal, setDimensionModal] = useState(false)
-
-
-    const handleOpenModal = () => {
-        setDimensionModal(true)
-    }
-
-    const handleCloseDimensionModal = () => {
-        setDimensionModal(false)
-        setActiveIndex(0)
-        setThumbActiveIndex(0)
-    }
-
 
     const handleThumbnailClick = (index) => {
         setActiveIndex(index);
@@ -148,6 +135,7 @@ const ProductGallery = (
             setThumbActiveIndex(newIndex); // Update active thumbnail index
             setZoomIn(false);
 
+            handleDotClick(currentIndex - 1);
             // Scroll thumbnail container
             if (thumbnailContainerRef.current) {
                 if (window.innerWidth < 480) {
@@ -169,7 +157,6 @@ const ProductGallery = (
         });
     };
 
-
     const handleNextImage = () => {
         setActiveIndex((prevIndex) => {
             const length =
@@ -183,6 +170,7 @@ const ProductGallery = (
             setThumbActiveIndex(newIndex); // Update active thumbnail index
             setZoomIn(false);
 
+            handleDotClick(currentIndex + 1)
             // Scroll thumbnail container
             if (thumbnailContainerRef.current) {
                 if (window.innerWidth < 480) {
@@ -237,23 +225,6 @@ const ProductGallery = (
         setDragDistance(0);
     };
 
-    // Prevent unwanted browser behaviors during touch events
-    // useEffect(() => {
-    //     const slider = sliderRef.current;
-    //     if (slider) {
-    //         slider.addEventListener("touchstart", handleDragStart, { passive: false });
-    //         slider.addEventListener("touchmove", handleDragMove, { passive: false });
-    //         slider.addEventListener("touchend", handleDragEnd);
-    //     }
-
-    //     return () => {
-    //         if (slider) {
-    //             slider.removeEventListener("touchstart", handleDragStart);
-    //             slider.removeEventListener("touchmove", handleDragMove);
-    //             slider.removeEventListener("touchend", handleDragEnd);
-    //         }
-    //     };
-    // }, []);
 
     return (
         <>
@@ -410,19 +381,23 @@ const ProductGallery = (
                         />
                     </button>
                 </div>
+
+                
             </div>
-            {/* <GalleryModal
-                dimensionModal={dimensionModal}
-                handleCloseDimensionModal={handleCloseDimensionModal}
-                productData={productData}
-                variationData={selectedVariationData}
-                handleNextImage={handleNextImage}
-                handlePrevImage={handlePrevImage}
-                activeIndex={activeIndex}
-                name={myName}
-                handleThumbnailClick={handleThumbnailClick}
-                thumbActiveIndex={thumbActiveIndex}
-            /> */}
+            
+            {/* Pagination Dots */}
+            <div className='slider-dots-and-view-all-button'>
+                <div className="pagination-dots">
+                    {productData?.images.map((_, index) => (
+                            <span
+                                key={index}
+                                className={`dot ${currentIndex === index ? "active" : ""}`} // Highlight active dot
+                                onClick={() => handleDotClick(index)} // Navigate when clicking dots
+                            />
+                        ))}
+                </div>
+                <h3 onClick={handleGalleryModal}>View All</h3>
+            </div>
 
         </>
     );

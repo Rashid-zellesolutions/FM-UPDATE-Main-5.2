@@ -654,11 +654,20 @@
 }
 
 .custom-checkbox {
-    appearance: none;
+    /* appearance: none;
     width: 20px;
     height: 20px;
     border: 2px solid #4487C5 !important;
-    border-radius: 4px;
+    border-radius: 2px;
+    position: relative;
+    margin-right: 8px;
+    cursor: pointer;
+    outline: none; */
+
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 2px;
     position: relative;
     margin-right: 8px;
     cursor: pointer;

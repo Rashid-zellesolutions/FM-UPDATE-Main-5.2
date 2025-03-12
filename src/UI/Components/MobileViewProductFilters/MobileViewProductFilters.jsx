@@ -44,7 +44,7 @@ const MobileViewProductFilters = (
     }
 
     // const [tempRange, setTampRange] = useState([])
-    const [tempColorValue, setTempColorValue] = useState([]);
+    const [tempColorValue, setTempColorValue] = useState();
     const [tempRatingValue, setTempRatingValue] = useState([]);
     const [tempCategoryValue, setTempCategoryValue] = useState([])
 
@@ -60,12 +60,17 @@ const MobileViewProductFilters = (
     // }
 
 
-    const handleMobileColorCheck = (value) => {
-        const updatedColorValue = tempColorValue.includes(value) ?
-            tempColorValue.filter((item) => item !== value) :
-            [...colorValue, value]
+    const handleMobileColorCheck = (value, name) => {
+        // const updatedColorValue = tempColorValue.includes(value) ?
+        //     tempColorValue.filter((item) => item !== value) :
+        //     [...colorValue, value]
 
-        setTempColorValue(updatedColorValue)
+        const updatedColorValue = colorValue.includes(value) ?
+                    colorValue.filter((item) => item !== value) :
+                    [...colorValue, value]
+
+            setTempColorValue(updatedColorValue)
+            console.log("mobile color value", updatedColorValue)
     }
 
     const handleMobileRatingFilter = (value) => {
@@ -82,22 +87,27 @@ const MobileViewProductFilters = (
             [...tempCategoryValue, value]
 
         setTempCategoryValue(updatedCategory)
+        console.log("category temp data", tempCategoryValue)
     }
+
+
 
     const handlePriceRangeClick = () => {
         // if (tempRange[0] !== priceRange[0] || tempRange[1] !== priceRange[1]) {
             handlePriceRange(priceRange)
         // }
 
-        if(tempColorValue.length > 0) {
+        // if(tempColorValue.length > 0) {
             handleColor(tempColorValue)
-        }
-        if(tempRatingValue.length > 0) {
+        // }
+        // if(tempRatingValue.length > 0) {
             handleRating(tempRatingValue);
-        }
-        if(tempCategoryValue.length > 0) {
+        // }
+        // if(tempCategoryValue.length > 0) {
             handleCategory(tempCategoryValue)
-        }
+        // }
+
+        
 
         setMobileFilters(false)
 
@@ -149,7 +159,8 @@ const MobileViewProductFilters = (
                                         type='checkbox'
                                         placeholder='checkbox'
                                         value={item.name}
-                                        onChange={(e) => handleMobileColorCheck(e.target.value)}
+                                        checked={tempCategoryValue.includes(item.name)}
+                                        onChange={(e) => handleMobileColorCheck(item.value, item.name)}
                                         style={{ backgroundColor: item.value, border: `2px solid ${item.value}` }}
                                         className='color-custom-checkbox'
                                         id={`filter-${index}`}

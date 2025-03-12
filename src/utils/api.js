@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 
 // export const url = `https://fm.skyhub.pk`
-export const url = `https://fm.zellehost.com`
+// export const url = `https://fm.zellehost.com`
+export const url = `https://fmapi.myfurnituremecca.com`;
 // export const url = `http://fm_api.myfurnituremecca.com`;
 // export const url = `http://localhost:8080`
 export const siteUrl = `https://furnituremecca.zellesolutions.com`
@@ -174,12 +175,14 @@ export const useDisableBodyScroll = (...states) => {
   useEffect(() => {
     const shouldDisableScroll = states.some(state => state);
     document.body.style.overflow = shouldDisableScroll ? "hidden" : "auto";
-    // if (state) {
-    //   document.body.style.overflow = "hidden";
-    // } else {
-    //   document.body.style.overflow = "auto";
-    // }
   }, [...states]);
+};
+
+export const capitalize = (str) => {
+  return str
+    .split("_") // Split by underscore
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1)) // Capitalize each word
+    .join(" "); // Join words back
 };
 
 

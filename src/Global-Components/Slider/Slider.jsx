@@ -75,6 +75,8 @@ const Sliderr = ({ images, height }) => {
         nextArrow: imagePreloader ? <CustomNextArrow /> : <></>,
     };
 
+    console.log("slider images", images)
+
     return (
         <>
             <div className="slider" style={{ cursor: 'grab', height: height ? height : "calc(100vw * 0.26355)" }}>
@@ -99,17 +101,22 @@ const Sliderr = ({ images, height }) => {
             {/* Mobile View */}
 
             <div className="mobile-view-slider">
-                <Slider {...settings}>
-                    {images?.map((img, index) => (
-                        <div className="mobile-slide" key={index}>
-                            <img
-                                src={mobileViewSLider?.[index]?.img}
-                                alt={`slide ${index + 1}`}
-                                onDragStart={(e) => e.preventDefault()}
-                            />
-                        </div>
-                    ))}
-                </Slider>
+                {images?.length > 0 ? (
+                    <Slider {...settings}>
+                        {images?.map((img, index) => (
+                            <div className="mobile-slide" key={index}>
+                                <img
+                                    src={mobileViewSLider?.[index]?.img}
+                                    alt={`slide ${index + 1}`}
+                                    onDragStart={(e) => e.preventDefault()}
+                                />
+                            </div>
+                        ))}
+                    </Slider>
+                ) : (
+                    <div className='mobile-view-slider-shimmer'></div>
+                )}
+                
             </div>
         </>
     );

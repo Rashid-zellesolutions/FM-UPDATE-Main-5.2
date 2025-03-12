@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './DropdownMenu.css';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { formatedPrice, url } from '../../../utils/api';
 
 const DropdownMenu = (
@@ -11,6 +11,11 @@ const DropdownMenu = (
         products
     }) => {
     // State and variables
+    const location = useLocation();
+
+    const segment = location.pathname.split('/');
+    const lastSegment = segment[segment.length - 1];
+
     const [activeIndex, setActiveIndex] = useState(null);
     const navigate = useNavigate();
 
@@ -23,7 +28,7 @@ const DropdownMenu = (
     }
 
 
-    return (
+    return ( 
         <div className='mattresses-main-div'>
             <div style={{ display: 'flex', width: '25%' }}>
                 <div className='menu-links'>
@@ -31,7 +36,7 @@ const DropdownMenu = (
                     <Link to={`/${parentCategorySlug}`} className='living-room-heading'>See All {navHeading}</Link>
                     <div className='mattresses-links-div'>
                         {dropDownNavData.map((item, index) => {
-                            return <p className={`mattres-links ${activeIndex === index ? 'active' : ''}`} key={index} onClick={() => handleActiveIndex(index)}>
+                            return <p className={`mattres-links ${lastSegment === item.slug ? 'active' : ''}`} key={index} onClick={() => handleActiveIndex(index)}>
                                 <Link to={`/${parentCategorySlug}/${item.slug}`}>{item.name}</Link>
                             </p>
                         })}

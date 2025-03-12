@@ -11,6 +11,7 @@ const ProductArchive = ({productArchiveHading}) => {
 
   
   
+  
   return (
     <div>
         <Products 

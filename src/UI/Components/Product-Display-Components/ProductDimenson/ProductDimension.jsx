@@ -9,12 +9,14 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { url } from '../../../../utils/api';
 import GalleryModal from '../GalleryModal/GalleryModal';
+import { AiOutlineZoomIn, AiOutlineZoomOut } from "react-icons/ai";
+// import { AiOutlineZoomOut } from "react-icons/ai";
 
-const ProductDimension = ({ productData, variationData, handleZoom, handleGalleryModal }) => {
+const ProductDimension = ({ productData, variationData, zoomIn, handleZoom, handleGalleryModal }) => {
   const dimensionCards = [
     { icon: <RxDimensions size={25} />, title: 'Dimensions' },
     { icon: <FaRegImage size={25} />, title: 'Customer Photos' },
-    { icon: <RiZoomOutLine size={25} />, title: 'Zoom' },
+    { icon: zoomIn ? <AiOutlineZoomOut size={25} /> : <AiOutlineZoomIn size={25} /> , title: 'Zoom' },
   ]
 
   const [dimensionIndex, setDimensionIndex] = useState(null)
@@ -45,8 +47,14 @@ const ProductDimension = ({ productData, variationData, handleZoom, handleGaller
 
         <div className='mobile-view-dimension-main' onClick={handleGalleryModal}>
           <RxDimensions size={20} color='#595959' />
-          <p>Dimensions</p>
+          <p className='dimensions-detail-button-title'>Dimensions</p>
         </div>
+
+        <div className='mobile-view-dimension-main' onClick={handleZoom}>
+          {zoomIn ? <AiOutlineZoomOut size={20} color='#595959' /> : <AiOutlineZoomIn size={20} color='#595959' />}
+          <p className='dimensions-detail-button-title'>Zoom</p>
+        </div>
+
       </div>
     </>
   )

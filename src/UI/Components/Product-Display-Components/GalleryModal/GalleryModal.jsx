@@ -21,7 +21,6 @@ const GalleryModal = (
     name,
   }) => {
 
-    console.log("my name on modal", name)
   const hasDimensionImage = productData?.dimension_image?.image_url?.trim();
 
   // Prepare images array with dimension_image at the start if available

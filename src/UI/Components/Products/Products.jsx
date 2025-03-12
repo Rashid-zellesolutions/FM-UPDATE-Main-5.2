@@ -63,6 +63,7 @@ const Products = () => {
     // Local State Variables
     const { subCategorySlug } = useParams();
     const location = useLocation();
+
     const params = new URLSearchParams(location.search);
     const query = params.get('query');
     const [viewAccording, setViewAccording] = useState('false')
@@ -116,6 +117,14 @@ const Products = () => {
     ]
 
     // API Calls
+    
+      // Reset activePage when the route changes
+    //   useEffect(() => {
+    //     setActivePage(1);
+    //     setActivePageIndex(1);
+    //   }, [location.pathname]);
+    
+
     // Fetch Product data by query and page select
     const fetchProductData = async () => {
         const queryApi = `/api/v1/products/by-name?name`;
@@ -142,9 +151,14 @@ const Products = () => {
         } catch (error) {
             // setPaginationLoading(false)
             console.error("Error fetching data:", error);
+        } finally {
+           console.log("function finally method called")
         }
         // setPaginationLoading(false)
     };
+
+    useEffect(() => { fetchProductData()}, [location.pathname])
+
 
     const sortProducts = (criteria) => {
         let sortedProducts = [...products];
@@ -221,19 +235,6 @@ const Products = () => {
         }
     }, [priceRange, allFilters]);
 
-    
-
-    // useEffect(() => {
-    //     if (!shouldFetch.current) return; // Prevent fetching on mount if navigating back
-    //     fetchProductData();
-    // }, [query]); // Only depends on query
-
-    // useEffect(() => {
-    //     return () => {
-    //         shouldFetch.current = false; // Disable fetching when navigating away
-    //     };
-    // }, []); // Runs only on unmount
-
     const handleCartSectionClose = () => {
         setAddToCartClicked(false)
     }
@@ -280,8 +281,8 @@ const Products = () => {
 
     // Mobile view Script
 
-    const [selectedGrid, setSelectedGrid] = useState('')
-    const [activeGrid, setActiveGrid] = useState('')
+    const [selectedGrid, setSelectedGrid] = useState('single-col')
+    const [activeGrid, setActiveGrid] = useState('single-col')
     const handleActiveGrid = (grid) => {
         setActiveGrid(grid);
         setSelectedGrid(grid)
@@ -324,6 +325,8 @@ const Products = () => {
     const [categoryValue, setCategoryValue] = useState([]);
 
     const handleRangeChange = (newRange) => {
+        setActivePage(1);
+        setActivePageIndex(1);
         if (newRange[0] !== priceRange[0] || newRange[1] !== priceRange[1]) {
             setPriceRange(newRange);
         }
@@ -342,6 +345,8 @@ const Products = () => {
     }
 
     const handleColorCheck = (value, name) => {
+        setActivePage(1);
+        setActivePageIndex(1);
         const updatedColorValue = colorValue.includes(value) ?
             colorValue.filter((item) => item !== value) :
             [...colorValue, value]
@@ -369,6 +374,8 @@ const Products = () => {
     }
 
     const handleRatingFilter = (value) => {
+        setActivePage(1);
+        setActivePageIndex(1);
         const updatedRating = ratingValue.includes(value) ?
             ratingValue.filter((item) => item !== value) :
             [...ratingValue, value];
@@ -390,6 +397,8 @@ const Products = () => {
     }
 
     const handleCategorySelect = (value) => {
+        setActivePage(1);
+        setActivePageIndex(1);
         const updatedCategory = categoryValue.includes(value) ?
             categoryValue.filter((item) => item !== value) :
             [...categoryValue, value]
@@ -419,17 +428,27 @@ const Products = () => {
         setCategoryValue([]);
         fetchProductData();
         fetchFilters();
+        setActivePage(1);
+        setActivePageIndex(1);
     }
 
     useEffect(() => {
     }, [colorValue, categoryValue, ratingValue])
 
     const handleActivePage = (index) => {
-        setActivePage(index);
-        setActivePageIndex(index);
+
         if (index !== activePageIndex) {
-            window.scrollTo({ top: 0, behavior: 'smooth' })
-            sortProducts(selectedRelevanceValue)
+            const params = new URLSearchParams(searchParams);
+            params.set('page', index);
+            setSearchParams(params.toString());
+
+            setActivePage(index);
+            setActivePageIndex(index);
+
+            sortProducts(selectedRelevanceValue);
+            filterProducts(params.toString());
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     }
 
@@ -478,6 +497,7 @@ const Products = () => {
     // }, [activePageIndex]);
 
 
+
     // Sub Categories show
     const { categorySlug } = useParams();
     const [subCategories, setSubCategories] = useState([])
@@ -505,12 +525,13 @@ const Products = () => {
         getSubCategories()
     }, [subCategorySlug])
 
-    console.log("products", products)
+    // console.log("products", products)W
 
 
     const handleNavigate = (item) => {
         navigate(`/${categorySlug}/${item.slug}`)
-        
+        setActivePage(1);
+        setActivePageIndex(1);
     }
 
     const getDeliveryDate = () => {

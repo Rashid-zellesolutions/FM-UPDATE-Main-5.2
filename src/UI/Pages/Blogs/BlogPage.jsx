@@ -4,6 +4,7 @@ import BlogHead from '../../Components/Blogs-Components/BlogsHead/BlogHead'
 import AllBlogs from '../../Components/Blogs-Components/AllBlogs/AllBlogs';
 import BlogPagination from '../../Components/Blogs-Components/BlogsPaginations/BlogPagination';
 import { useBlog } from '../../../context/BlogsContext/blogsContext';
+import Pagination from '../../../Global-Components/Pagination/Pagination';
 
 const BlogPage = () => {
 
@@ -51,6 +52,39 @@ const BlogPage = () => {
   };
 
 
+  // pagination
+  const totalPage = 4;
+  const [activePage, setActivePage] = useState()
+  const [activePageIndex, setActivePageIndex] = useState(1)
+
+  const handleActivePage = ([page]) => {
+    setCurrentPage(page);
+  }
+
+  const handlePrevPage = () => {
+    if (activePage > 1) {
+      setCurrentPage(activePage - 1);
+
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      })
+
+    }
+  };
+
+  const handleNextPage = () => {
+
+    if (activePage < totalPages?.totalPages) {
+      setActivePage(activePage + 1);
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      })
+    }
+  };
+
+
   return (
     <div className='blogs-page-main-container'>
       <div className='blogs-page-main-heading-div'>
@@ -59,7 +93,14 @@ const BlogPage = () => {
       </div>
       <BlogHead  blogCategories={blogCategories} />
       <AllBlogs blogData={blogs} />
-      <BlogPagination currentPage={currentPage} totalPages={totalPages} setCurrentPage={setCurrentPage} handlePrev={handlePrev} handleNext={handleNext} />
+      <Pagination 
+        activePageIndex={currentPage} 
+        totalPages={totalPages} 
+        handleActivePage={handleActivePage} 
+        handlePrevPage={handlePrevPage} 
+        handleNextPage={handleNextPage}
+      />
+      {/* <BlogPagination currentPage={currentPage} totalPages={totalPages} setCurrentPage={setCurrentPage} handlePrev={handlePrev} handleNext={handleNext} /> */}
     </div>
   )
 }

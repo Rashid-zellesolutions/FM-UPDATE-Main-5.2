@@ -4,6 +4,7 @@ import deliverTo from '../../../Assets/icons/delivery.png'
 import closeBtn from '../../../Assets/icons/close-btn-black.png';
 import locationModalIcon from '../../../Assets/icons/location-charcol-icon.png'
 import { useGlobalContext } from '../../../context/GlobalContext/globalContext';
+import { CiLocationOn } from "react-icons/ci";
 
 
 const LocationPopUp = ({ searchLocation, handleCloseSearch, setLocationDetails, locationDetails }) => {
@@ -110,7 +111,8 @@ const LocationPopUp = ({ searchLocation, handleCloseSearch, setLocationDetails, 
               </button>
             </div>
             <div className='use-current-location' onClick={getCurrentLocation}>
-              <img src={locationModalIcon} alt='location' />
+              <CiLocationOn size={25} className='location-pop-up-location-icon' />
+              {/* <img src={locationModalIcon} alt='location' /> */}
               <h3>Use Current Location</h3>
             </div>
           </div>

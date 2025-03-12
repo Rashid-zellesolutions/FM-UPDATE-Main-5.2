@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import './NearStorePopUp.css';
 import NearStore from '../../../Assets/icons/home.png';
-import { IoCloseOutline } from "react-icons/io5";
+import { IoCloseOutline, IoSearchCircle } from "react-icons/io5";
 import searchIcon from '../../../Assets/icons/search-white.png';
 import { TbCurrentLocation } from "react-icons/tb";
 import AddBtn from '../../../Assets/icons/add-icon.png';
 import { MdOutlineStars } from "react-icons/md";
 import closeBtn from '../../../Assets/icons/close-btn-black.png';
+import { IoIosSearch } from "react-icons/io";
+import { IoIosAdd } from "react-icons/io";
 import { Link } from 'react-router-dom';
 import { useGlobalContext } from '../../../context/GlobalContext/globalContext';
 
@@ -116,8 +118,8 @@ const NearStorePopUp = ({ isOpen, setIsOpen, handleCloseNearBy }) => {
             >
                 <div className='pop-up-header'>
                     <span onClick={handleCloseNearBy}>
-                        {/* <IoCloseOutline size={20} />  */}
-                        <img src={closeBtn} alt='btn' />
+                        <IoCloseOutline size={20} /> 
+                        {/* <img src={closeBtn} alt='btn' /> */}
                     </span>
                     <i>
                         {/* <img src={NearStore} alt='near' /> */}
@@ -141,7 +143,8 @@ const NearStorePopUp = ({ isOpen, setIsOpen, handleCloseNearBy }) => {
                             onChange={handleInputChange} // Update state on input change
                         />
                         <button className='header-search-button'>
-                            <img src={searchIcon} onClick={() => { fetchAllStoresUsingZip() }} alt='search' />
+                            {/* <img src={searchIcon} onClick={() => { fetchAllStoresUsingZip() }} alt='search' /> */}
+                            <IoIosSearch size={22} height={22} color='#fff' />
                         </button>
                     </div>
                     <div className='pop-up-header-location'>
@@ -176,7 +179,8 @@ const NearStorePopUp = ({ isOpen, setIsOpen, handleCloseNearBy }) => {
                         return <div key={index}  >
                             <div className={`pop-up-city-and-distance ${storeOpenIndex === index ? 'rotate-btn' : ''}`}>
                                 <span>
-                                    <img src={AddBtn} alt='add' onClick={() => handleStoreHoursDetails(index)} />
+                                    {/* <img src={AddBtn} alt='add' onClick={() => handleStoreHoursDetails(index)} /> */}
+                                    <button className={`near-store-popup-accordion-icon ${storeOpenIndex === index ? 'rotate-btn' : ''}`} onClick={() => handleStoreHoursDetails(index)}> <IoIosAdd size={20} color='#fff"' /> </button>
                                     <h3>{items.name}</h3>
                                 </span>
                                 <p> {items.distance} </p>

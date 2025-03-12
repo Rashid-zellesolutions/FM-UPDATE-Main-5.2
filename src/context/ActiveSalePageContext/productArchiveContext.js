@@ -1,9 +1,13 @@
 // ProductArchiveContext.js
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 
 const ProductArchiveContext = createContext();
 
 export const ProductArchiveProvider = ({ children }) => {
+
+   
+
   const [products, setProducts] = useState([]);
   const [activePage, setActivePage] = useState(1);
   const [activePageIndex, setActivePageIndex] = useState(1);

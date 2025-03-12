@@ -66,7 +66,6 @@ const Home = () => {
 
   const {blogs} = useBlog()
 
-  console.log("blogs on landing page", blogs)
 
   const location = useLocation();
   useEffect(() => {

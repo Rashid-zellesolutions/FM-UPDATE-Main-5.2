@@ -1,11 +1,263 @@
 .account-details-main-section{
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
     gap: 30px;
-    margin: 0 60px;
+    /* margin: 0 60px; */
     box-sizing: border-box;
 }
 
+.account-details-inner-section{
+    display: flex;
+    width: 50%;
+    align-items: start;
+    justify-content: start;
+    gap: 20px;
+}
+
+/* Profile image section */
+.account-detail-user-profile{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    gap: 15px;
+    align-items: center;
+    justify-content: start;
+}
+
+.account-detail-user-profile-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 1px solid var(--border-color);overflow: hidden;
+}
+
+.user-profile-picture{
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+}
+
+.upload-image-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 35px;
+    background-color: #4487C5;
+    color: #fff;
+    border: 1px solid #4487C5;
+    border-radius: 6px;
+    padding: 10px 20px;
+}
+
+/* user inputs */
+.account-details-user-info{
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    gap: 15px;
+    align-items: start;
+    justify-content: start;
+}
+
+.user-info-head{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.user-info-head > h3 {
+    font-size: 18px;
+    line-height: 1.5;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.user-info-head > button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: max-content;
+    height: max-content;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.user-info-body{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    width: 90%;
+    gap: 10px;
+}
+
+.user-info-body > label {
+    display: flex;
+    flex-direction: row;
+    
+    align-items: center;
+    justify-content: space-between;
+    
+}
+
+.user-info-body > label > p {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+    color: var(--text-color);
+    flex-shrink: 0;
+}
+
+.user-info-body > label > input {
+    width: 80%;
+}
+
+
+.user-info-password-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: start;
+    justify-content: start;
+    /* gap: 15px; */
+    background-color: #FDFDFD;
+}
+
+.user-info-pass-head{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px;
+    background-color: #FDFDFD;
+    border: 1px solid #f0f0f0;
+    cursor: pointer;
+}
+
+.user-info-pass-head > h3 {
+    font-size: 18px;
+    line-height: 1.5;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.user-info-pass-head > button {
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: max-content;
+    height: max-content;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    outline: none;
+}
+
+.user-info-passwords-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+    align-items: start;
+    justify-content: start;
+    padding: 0 15px;
+    background-color: #FDFDFD;
+    transition: all 0.3s ease-in-out;
+}
+
+.user-info-passwords-inputs.show-pass-container {
+    visibility: visible;
+    padding: 15px;
+    height: 160px;
+}
+
+.user-info-passwords-inputs > label {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+    width: 100%;
+    gap: 20px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.user-info-passwords-inputs > label > p {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+    color: var(--text-color);
+    flex-shrink: 0;
+    
+}
+
+.input-pass-container {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    width: 68%;
+    height: 35px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #FDFDFD;
+}
+
+.input-pass-container  > input {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    width: 100%;
+}
+
+
+.user-info-save-container {
+    display: flex;
+    align-items: end;
+    justify-content: end;
+    width: 100%;
+}
+
+.user-info-save-container > button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: max-content;
+    height: 35px;
+    background-color: #4487C5;
+    cursor: pointer;
+    border: 1px solid #4487C5;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 15px;
+    line-height: 18px;
+    font-weight: 500;
+    padding: 10px 20px;
+}
+
+
+
+
+
+
+
+/* 
 .user-details-edit-section{
     display: flex;
     flex-direction: column;
@@ -22,7 +274,6 @@
 .first-and-last-name-label{
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
     width: 50%;
     gap: 10px;
     font-size: 14px;
@@ -149,4 +400,4 @@
     font-weight: 500;
     border-radius: 25px;
     cursor: pointer;
-}
+} */

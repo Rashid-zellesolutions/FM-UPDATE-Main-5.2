@@ -30,6 +30,7 @@ import FooterNav from './FooterNav/FooterNav';
 // Functions and Utils
 import axios from 'axios';
 import { useGlobalContext } from '../../context/GlobalContext/globalContext';
+import SnakBar from '../SnakeBar/SnakBar';
 
 const Footer = ({ notLandingPage, checkoutPage }) => {
 
@@ -319,6 +320,18 @@ const Footer = ({ notLandingPage, checkoutPage }) => {
         navigate(`/store-locator`, { state: defaultStore })
     }
 
+    const [snakeBarMessage, setSnakeBarMessage] = useState('');
+    const [showSnakeBar, setShowSnakeBar] = useState(false)
+
+    const handleSnakeBarOpen = (message) => {
+        setShowSnakeBar(true);
+        setSnakeBarMessage(message)
+    }
+
+    const handleCloseSnakeBar = () => {
+        setShowSnakeBar(false);
+    }
+
 
     const handleClick = () => {
         if (defaultStore?.latitude && defaultStore?.longitude) {
@@ -327,7 +340,7 @@ const Footer = ({ notLandingPage, checkoutPage }) => {
             // Open the URL in a new tab
             window.open(googleMapsUrl, "_blank");
         } else {
-            alert("Latitude and Longitude are not available.");
+            handleSnakeBarOpen("Latitude and Longitude are not available.");
         }
     };
 
@@ -423,7 +436,7 @@ const Footer = ({ notLandingPage, checkoutPage }) => {
                                             Sign me up
                                         </button>}
                                     </div>
-                                    <p>By signing up, you agree to our <Link to={'/privacy-policy'}> Privacy Policy  and  Terms of Use. </Link></p>
+                                    <p>By signing up, you agree to our <Link to={'/privacy-policy'}> Privacy Policy </Link>  and  <Link to={'/privacy-policy'}>Terms of Use.</Link> </p>
                                 </div>
                             </form>
                                 :
@@ -457,6 +470,13 @@ const Footer = ({ notLandingPage, checkoutPage }) => {
             <div className='mobile-view-footer-main-div'>
                 <MobileFooter checkoutPage={checkoutPage} />
             </div>
+
+            <SnakBar 
+                message={snakeBarMessage}
+                openSnakeBarProp={showSnakeBar}
+                setOpenSnakeBar={setShowSnakeBar}
+                onClick={handleCloseSnakeBar}
+            />
         </>
     )
 }

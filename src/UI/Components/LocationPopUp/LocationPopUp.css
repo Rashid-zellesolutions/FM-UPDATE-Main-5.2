@@ -156,10 +156,16 @@
     background-color: #FFFFFF;
 }
 
-.use-current-location img{
+
+
+/* .use-current-location img{
     width: 20px;
     height: 20px;
     object-fit: contain;
+} */
+
+.location-pop-up-location-icon {
+    color: var(--text-color);
 }
 
 .use-current-location h3{
@@ -167,6 +173,18 @@
     font-weight: 600;
     line-height: 15px;
     color: var(--text-color);
+}
+
+.use-current-location:hover {
+    background-color: #595959;
+}
+
+.use-current-location:hover > h3 {
+    color: #fff;
+}
+
+.use-current-location:hover .location-pop-up-location-icon {
+    color: #fff;
 }
 
 .location-modal-detail-section{

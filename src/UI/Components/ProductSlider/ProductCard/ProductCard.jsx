@@ -46,15 +46,15 @@ const ProductCard = ({
       <div className="product-details">
         <p
           className='product-detail-heading'
-          // to={{pathname: `/product/${productData?.slug}`, state: productData}}
-          onClick={() => handleCardClicked(productData)}
+          to={{pathname: `/product/${productData?.slug}`, state: productData}}
+          // onClick={() => handleCardClicked(productData)}
         >
           {heading}
         </p>
         <Link 
           className='product-detail-btn'
-          onClick={() => handleCardClicked(productData)}
-          to={{pathname: `/product/${productData?.slug}`}}
+          // onClick={() => handleCardClicked(productData)}
+          to={{ pathname: `/product/${productData?.slug}`, state: productData }}
         >
           <div href={productLink}>{btnTxt}</div>
           <img src={arrowLeft} alt="arrow left" />
