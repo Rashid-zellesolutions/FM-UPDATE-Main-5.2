@@ -33,9 +33,10 @@ import DoubleRangeSlider from '../../../Global-Components/MultiRangeBar/MultiRan
 import RatingReview from '../starRating/starRating';
 import ProductCardTwo from '../ProductCardTwo/ProductCardTwo';
 import { useProductArchive } from '../../../context/ActiveSalePageContext/productArchiveContext';
-import { filter } from 'lodash';
 import SortModal from '../../Modals/SortModal/SortModal';
 import { IoArrowBack } from "react-icons/io5";
+import SnakBar from '../../../Global-Components/SnakeBar/SnakBar';
+import ProductInfoModal from '../../../Global-Components/ProductInfoModal/ProductInfoModal';
 
 const Products = () => {
 
@@ -80,19 +81,15 @@ const Products = () => {
     const [totalPages, setTotalPages] = useState()
 
     const [quickViewProduct, setQuickViewProduct] = useState({})
+    const [noProducts, setNoProducts] = useState();
 
-    const shouldFetch = useRef(true); // Track if fetch should run
-
-    
-
+    // const shouldFetch = useRef(true); // Track if fetch should run
 
     // Filters Section
     const [isOpen, setIsOpen] = useState(false);
     const [ratingOpen, setRatingOpen] = useState(false)
     const [categoryOpen, setCategoryOpen] = useState(false);
     
-
-
     useEffect(() => {
         if (query !== null) {
             setViewAccording('true')
@@ -116,45 +113,36 @@ const Products = () => {
         { categoryName: 'Sofa & chair sets', link: '#' },
     ]
 
-    // API Calls
-    
-      // Reset activePage when the route changes
-    //   useEffect(() => {
-    //     setActivePage(1);
-    //     setActivePageIndex(1);
-    //   }, [location.pathname]);
-    
-
     // Fetch Product data by query and page select
     const fetchProductData = async () => {
         const queryApi = `/api/v1/products/by-name?name`;
 
         try {
-            // setProducts([])
             let response;
             if (query) {
                 response = await axios.get(`${url}${queryApi}=${query}`);
             } else {
-                // setPaginationLoading(true)
                 response = await axios.get(
                     `${url}/api/v1/products/by-category?categorySlug=${subCategorySlug}&page=${activePage}&per_page=12`
                 );
             }
+            console.log("product find response", response)
+
             const data = response.data.products;
             setTotalPages(response.data.pagination)
 
             setProducts(data);
-            setColors(colors)
-
+            setColors(colors);
+            if(!response.data.products.length > 0) {
+                setNoProducts(true)
+            } else {
+                setNoProducts(false);
+            }
             fetchFilters();
             setSearchParams({ page: activePage })
         } catch (error) {
-            // setPaginationLoading(false)
             console.error("Error fetching data:", error);
-        } finally {
-           console.log("function finally method called")
-        }
-        // setPaginationLoading(false)
+        } 
     };
 
     useEffect(() => { fetchProductData()}, [location.pathname])
@@ -196,7 +184,6 @@ const Products = () => {
         const api = `/api/v1/products/by-category/filters?categorySlug=${subCategorySlug}`
         try {
             const response = await axios.get(`${url}${api}`);
-            console.log("filter response", response)
             if (response.status === 200) {
                 setAllFilters(response.data)
                 if (response.data.priceRange.minPrice !== undefined && response.data.priceRange.maxPrice !== undefined) {
@@ -294,22 +281,33 @@ const Products = () => {
 
     // wish list 
     const { addToList, removeFromList, isInWishList } = useList()
+    const [wishlistMessage, setWishlistMessage] = useState('')
+    const [openSnakeBar, setOpenSnakeBar] = useState(false);
     const notify = (str) => toast.success(str);
     const notifyRemove = (str) => toast.error(str)
 
     const handleWishList = (item) => {
+        setOpenSnakeBar(true)
         if (isInWishList(item.uid)) {
             removeFromList(item.uid);
-            notifyRemove('Removed from wish list', {
-                autoClose: 10000,
-                className: "toast-message",
-            })
+            // setOpenSnakeBar(true)
+            setWishlistMessage('Removed from wish list')
+            // notifyRemove('Removed from wish list', {
+            //     autoClose: 10000,
+            //     className: "toast-message",
+            // })
         } else {
             addToList(item)
-            notify("added to wish list", {
-                autoClose: 10000,
-            })
+            // setOpenSnakeBar(true);
+            setWishlistMessage('added to wish list')
+            // notify("added to wish list", {
+            //     autoClose: 10000,
+            // })
         }
+    }
+
+    const handleCloseSnakeBar = () => {
+        setOpenSnakeBar(false)
     }
 
     
@@ -344,12 +342,41 @@ const Products = () => {
 
     }
 
+    // const handleColorCheck = (value, name) => {
+    //     setActivePage(1);
+    //     setActivePageIndex(1);
+    //     const updatedColorValue = colorValue.includes(value) ?
+    //         colorValue.filter((item) => item !== value) :
+    //         [...colorValue, value]
+
+    //     setColorValue(updatedColorValue);
+
+    //     const params = new URLSearchParams(searchParams);
+
+    //     const selectedName = allFilters.colors[0].options
+    //         .filter((item) => updatedColorValue.includes(item.value))
+    //         .map((item) => item.name);
+
+    //     if (selectedName.length > 0) {
+    //         params.set('color', selectedName.join(','))
+    //     } else {
+    //         params.delete('color')
+    //     } 
+
+    //     const currentPage = searchParams.get('page');
+    //     params.set('page', currentPage)
+
+    //     let queryString = params.toString().replace(/%2C/g, ',').replace(/\+/g, ' ');
+    //     setSearchParams(queryString)
+    //     filterProducts(queryString)
+    // }
+
     const handleColorCheck = (value, name) => {
         setActivePage(1);
         setActivePageIndex(1);
-        const updatedColorValue = colorValue.includes(value) ?
-            colorValue.filter((item) => item !== value) :
-            [...colorValue, value]
+
+        // If the selected color is already checked, remove it; otherwise, update it
+        const updatedColorValue = colorValue.includes(value) ? [] : [value];
 
         setColorValue(updatedColorValue);
 
@@ -360,25 +387,30 @@ const Products = () => {
             .map((item) => item.name);
 
         if (selectedName.length > 0) {
-            params.set('color', selectedName.join(','))
+            params.set('color', selectedName.join(','));
         } else {
-            params.delete('color')
-        } 
+            params.delete('color');
+        }
 
         const currentPage = searchParams.get('page');
-        params.set('page', currentPage)
+        params.set('page', currentPage);
 
         let queryString = params.toString().replace(/%2C/g, ',').replace(/\+/g, ' ');
-        setSearchParams(queryString)
-        filterProducts(queryString)
-    }
+        setSearchParams(queryString);
+        filterProducts(queryString);
+    };
+
+    
+
 
     const handleRatingFilter = (value) => {
         setActivePage(1);
         setActivePageIndex(1);
-        const updatedRating = ratingValue.includes(value) ?
-            ratingValue.filter((item) => item !== value) :
-            [...ratingValue, value];
+        // const updatedRating = ratingValue.includes(value) ?
+        //     ratingValue.filter((item) => item !== value) :
+        //     [...ratingValue, value];
+
+        const updatedRating = ratingValue.includes(value) ? [] : [value]
 
         setRatingValue(updatedRating)
 
@@ -399,9 +431,11 @@ const Products = () => {
     const handleCategorySelect = (value) => {
         setActivePage(1);
         setActivePageIndex(1);
-        const updatedCategory = categoryValue.includes(value) ?
-            categoryValue.filter((item) => item !== value) :
-            [...categoryValue, value]
+        // const updatedCategory = categoryValue.includes(value) ?
+        //     categoryValue.filter((item) => item !== value) :
+        //     [...categoryValue, value]
+
+        const updatedCategory = categoryValue.includes(value) ? [] : [value];
 
         setCategoryValue(updatedCategory)
 
@@ -490,14 +524,6 @@ const Products = () => {
         }
     };
 
-
-
-    // useEffect(() => {
-    //     fetchProductData(activePage)
-    // }, [activePageIndex]);
-
-
-
     // Sub Categories show
     const { categorySlug } = useParams();
     const [subCategories, setSubCategories] = useState([])
@@ -524,9 +550,6 @@ const Products = () => {
     useEffect(() => {
         getSubCategories()
     }, [subCategorySlug])
-
-    // console.log("products", products)W
-
 
     const handleNavigate = (item) => {
         navigate(`/${categorySlug}/${item.slug}`)
@@ -569,6 +592,16 @@ const Products = () => {
         setShowSortModal(false);
     }
 
+    const [isInfoOpen, setIsInfoOpen] = useState(false);
+    const handleOpennfoModal = () => {
+        setIsInfoOpen(true);
+    }
+
+    const handleCloseInfoModal = () => {
+        setIsInfoOpen(false);
+    } 
+
+    useDisableBodyScroll(isInfoOpen)
 
     return (
         <div className='products-main-container'>
@@ -577,155 +610,160 @@ const Products = () => {
                 {subCategories.map((item, index) => (
                     <div key={index} className='product-archive-single-sub-category' onClick={() => handleNavigate(item)}>
                         <img src={`${url}${item.image2}`} alt='sub category' />
-                        {/* <p>{item.name}</p> */}
                     </div>
                 ))}
             </div>
 
-            <div className='products-and-filter-container'>
-                {/* Filters side bar section code */}
-                <div className={`filters-section ${hideFilters ? 'hide-filter' : ''}`}>
-
-                    <div className={`hide-filters-btn`}>
-                        <button onClick={handleFilterSection}>
-                            {/* <img src={arrowBlack} alt='arrow black' /> */}
-                            <IoArrowBack size={20} color='#595959' />
-                            Hide Filters
-                        </button>
+            {
+                noProducts ? (
+                    <div className='product-not-found-container'>
+                        <h3>No Products Found</h3>
                     </div>
+                ) : (
+                        <div className='products-and-filter-container'>
+                            {/* Filters side bar section code */}
+                            <div className={`filters-section ${hideFilters ? 'hide-filter' : ''}`}>
 
-                    <div className='filters-inner-container'>
+                                <div className={`hide-filters-btn`}>
+                                    <button onClick={handleFilterSection}>
+                                        {/* <img src={arrowBlack} alt='arrow black' /> */}
+                                        <IoArrowBack size={20} color='#595959' />
+                                        Hide Filters
+                                    </button>
+                                </div>
 
-                        <div className='filters-heading-section'>
-                            <h3>Filters</h3>
-                            <p onClick={handleClearFilters}>Clear Filters</p>
-                        </div>
+                                <div className='filters-inner-container'>
 
-                        <div className='all-filters-section'>
+                                    <div className='filters-heading-section'>
+                                        <h3>Filters</h3>
+                                        <p onClick={handleClearFilters}>Clear Filters</p>
+                                    </div>
 
-                            {/* Price Filter */}
-                            <DoubleRangeSlider
-                                min={allFilters?.priceRange?.minPrice}
-                                max={allFilters?.priceRange?.maxPrice}
-                                initialRange={priceRange}
-                                setInitialRange={setPriceRange}
-                                onRangeChange={handleRangeChange}
-                                minLabel='Min Price:'
-                                maxLabel='Max Price:'
-                            />
+                                    <div className='all-filters-section'>
 
-                            {/* Color Filter */}
-                            <div className='single-filter'>
-                                <span onClick={() => handleColorFilterOpenClose('color-filter')}>
-                                    <h3 className='filters-heading'>{allFilters?.colors?.[0]?.name}</h3>
-                                    <i className='add-button-round'>
-                                        {isOpen === 'color-filter' ? <FaMinus ize={14} color='#595959' /> : <FaPlus ize={14} color='#595959' />}
-                                        {/* <FaPlus size={15} color='#595959' className={isOpen === 'color-filter' ? 'rotate' : 'rotate-back'} /> */}
-                                    </i>
-                                </span>
-                                <div className={`single-filter-items-container ${isOpen === 'color-filter' ? 'show-single-filter-icons' : ''}`}>
-                                    {allFilters?.colors?.[0]?.options.map((item, index) => (
-                                        <span key={index} className={`color-span`} >
-                                            <input
-                                                type='checkbox'
-                                                placeholder='checkbox'
-                                                value={item.name}
-                                                checked={colorValue.includes(item.value)}
-                                                onChange={(e) => handleColorCheck(item.value, item.name)}
-                                                style={{ backgroundColor: item.value, border: `2px solid ${item.value}` }}
-                                                className='color-custom-checkbox'
-                                                id={`filter-${index}`}
-                                            />
-                                            <label className='filter-inner-text' htmlFor={`filter-${index}`}>{item.name}</label>
-                                        </span>
-                                    ))}
+                                        {/* Price Filter */}
+                                        <DoubleRangeSlider
+                                            min={allFilters?.priceRange?.minPrice}
+                                            max={allFilters?.priceRange?.maxPrice}
+                                            initialRange={priceRange}
+                                            setInitialRange={setPriceRange}
+                                            onRangeChange={handleRangeChange}
+                                            minLabel='Min Price:'
+                                            maxLabel='Max Price:'
+                                        />
+
+                                        {/* Color Filter */}
+                                        <div className='single-filter'>
+                                            <span onClick={() => handleColorFilterOpenClose('color-filter')}>
+                                                <h3 className='filters-heading'>{allFilters?.colors?.[0]?.name}</h3>
+                                                <i className='add-button-round'>
+                                                    {isOpen === 'color-filter' ? <FaMinus ize={14} color='#595959' /> : <FaPlus ize={14} color='#595959' />}
+                                                    {/* <FaPlus size={15} color='#595959' className={isOpen === 'color-filter' ? 'rotate' : 'rotate-back'} /> */}
+                                                </i>
+                                            </span>
+                                            <div className={`single-filter-items-container ${isOpen === 'color-filter' ? 'show-single-filter-icons' : ''}`}>
+                                                {allFilters?.colors?.[0]?.options.map((item, index) => (
+                                                    <span key={index} className={`color-span`} >
+                                                        <input
+                                                            type='checkbox'
+                                                            name="colorFilter"
+                                                            value={item.name}
+                                                            checked={colorValue.includes(item.value)}
+                                                            onChange={(e) => handleColorCheck(item.value, item.name)}
+                                                            style={{ backgroundColor: item.value, border: `2px solid ${item.value}` }}
+                                                            className='color-custom-checkbox'
+                                                            id={`filter-${index}`}
+                                                        />
+                                                        <label className='filter-inner-text' htmlFor={`filter-${index}`}>{item.name}</label>
+                                                    </span>
+                                                ))}
+                                            </div>
+                                        </div>
+
+                                        {/* Rating Filter */}
+                                        <div className='single-filter'>
+                                            <span onClick={() => handleColorFilterOpenClose('rating-filter')}>
+                                                <h3 className='filters-heading'>Ratings</h3>
+                                                {/* <img src={AddBtn} alt='btn' className={ratingOpen === 'rating-filter' ? 'rotate' : ''} /> */}
+                                                <i className='add-button-round'>
+                                                    {isOpen === 'rating-filter' ? <FaMinus ize={15} color='#595959' /> : <FaPlus ize={15} color='#595959' />}
+                                                    {/* <FaPlus color='#595959' className={isOpen === 'rating-filter' ? 'rotate' : 'rotate-back'} /> */}
+                                                </i>
+                                            </span>
+                                            <div className={`single-filter-items-container ${ratingOpen === 'rating-filter' ? 'show-single-filter-icons' : ''}`}>
+                                                {[...Array(5).keys()].reverse().map((item, index) => (
+                                                    <span key={index} className={`color-span`} >
+                                                        <input
+                                                            type='checkbox'
+                                                            placeholder='checkbox'
+                                                            value={item + 1}
+                                                            checked={ratingValue.includes((item + 1).toString())}
+                                                            onChange={(e) => handleRatingFilter(e.target.value)}
+                                                            className='custom-checkbox'
+                                                            id={`filter-${5 - item}`}
+                                                        />
+                                                        <label htmlFor={`filter-${5 - item}`}>
+                                                            <RatingReview rating={item + 1} disabled={true} size={"20px"} />
+                                                        </label>
+                                                    </span>
+                                                ))}
+                                            </div>
+                                        </div>
+
+                                        {/* Category Filter */}
+                                        <div className='single-filter'>
+                                            <span onClick={() => handleColorFilterOpenClose('category-filter')}>
+                                                <h3 className='filters-heading'>Product Type</h3>
+                                                {/* <img src={AddBtn} alt='btn' className={categoryOpen === 'category-filter' ? 'rotate' : ''} /> */}
+                                                <i className='add-button-round'>
+                                                    {isOpen === 'category-filter' ? <FaMinus ize={15} color='#595959' /> : <FaPlus ize={15} color='#595959' />}
+                                                    {/* <FaPlus color='#595959' className={isOpen === 'category-filter' ? 'rotate' : 'rotate-back'} /> */}
+                                                </i>
+                                            </span>
+                                            <div className={`single-filter-items-container ${categoryOpen === 'category-filter' ? 'show-single-filter-icons' : ''}`}>
+                                                {allFilters?.categories?.map((item, index) => (
+                                                    <span key={index} className={`color-span`} >
+                                                        <input
+                                                            type='checkbox'
+                                                            placeholder='checkbox'
+                                                            className='custom-checkbox'
+                                                            id={`filter-${index}`}
+                                                            value={item.name}
+                                                            checked={categoryValue.includes(item.name)}
+                                                            onChange={(e) => handleCategorySelect(e.target.value)}
+                                                        />
+                                                        <label className='filter-inner-text' htmlFor={`filter-${index}`}>{item.name}</label>
+                                                    </span>
+                                                ))}
+                                            </div>
+                                        </div>
+
+                                    </div>
+
                                 </div>
                             </div>
 
-                            {/* Rating Filter */}
-                            <div className='single-filter'>
-                                <span onClick={() => handleColorFilterOpenClose('rating-filter')}>
-                                    <h3 className='filters-heading'>Ratings</h3>
-                                    {/* <img src={AddBtn} alt='btn' className={ratingOpen === 'rating-filter' ? 'rotate' : ''} /> */}
-                                    <i className='add-button-round'>
-                                        {isOpen === 'rating-filter' ? <FaMinus ize={15} color='#595959' /> : <FaPlus ize={15} color='#595959' />}
-                                        {/* <FaPlus color='#595959' className={isOpen === 'rating-filter' ? 'rotate' : 'rotate-back'} /> */}
-                                    </i>
-                                </span>
-                                <div className={`single-filter-items-container ${ratingOpen === 'rating-filter' ? 'show-single-filter-icons' : ''}`}>
-                                    {[...Array(5).keys()].reverse().map((item, index) => (
-                                        <span key={index} className={`color-span`} >
-                                            <input
-                                                type='checkbox'
-                                                placeholder='checkbox'
-                                                value={item + 1}
-                                                checked={ratingValue.includes((item + 1).toString())}
-                                                onChange={(e) => handleRatingFilter(e.target.value)}
-                                                className='custom-checkbox'
-                                                id={`filter-${5 - item}`}
-                                            />
-                                            <label htmlFor={`filter-${5 - item}`}>
-                                                <RatingReview rating={item + 1} disabled={true} size={"20px"} />
-                                            </label>
-                                        </span>
-                                    ))}
-                                </div>
-                            </div>
+                            {/* Products section code */}
+                            <div className={`products-section ${hideFilters ? 'full-width' : ''}`}>
+                                {/* product heading */}
+                                <div className={`products-heading ${query ? 'query-hide-search-heading' : ''}`}>
 
-                            {/* Category Filter */}
-                            <div className='single-filter'>
-                                <span onClick={() => handleColorFilterOpenClose('category-filter')}>
-                                    <h3 className='filters-heading'>Product Type</h3>
-                                    {/* <img src={AddBtn} alt='btn' className={categoryOpen === 'category-filter' ? 'rotate' : ''} /> */}
-                                    <i className='add-button-round'>
-                                        {isOpen === 'category-filter' ? <FaMinus ize={15} color='#595959' /> : <FaPlus ize={15} color='#595959' />}
-                                        {/* <FaPlus color='#595959' className={isOpen === 'category-filter' ? 'rotate' : 'rotate-back'} /> */}
-                                    </i>
-                                </span>
-                                <div className={`single-filter-items-container ${categoryOpen === 'category-filter' ? 'show-single-filter-icons' : ''}`}>
-                                    {allFilters?.categories?.map((item, index) => (
-                                        <span key={index} className={`color-span`} >
-                                            <input
-                                                type='checkbox'
-                                                placeholder='checkbox'
-                                                className='custom-checkbox'
-                                                id={`filter-${index}`}
-                                                value={item.name}
-                                                checked={categoryValue.includes(item.name)}
-                                                onChange={(e) => handleCategorySelect(e.target.value)}
-                                            />
-                                            <label className='filter-inner-text' htmlFor={`filter-${index}`}>{item.name}</label>
-                                        </span>
-                                    ))}
-                                </div>
-                            </div>
+                                    <div className='show-filter-btn-and-product-count'>
+                                        <button className={`show-filter-btn ${hideFilters ? 'hide-show-filter-btn' : ''}`} onClick={handleFilterSection}>
+                                            <img src={arrowBlack} alt='arrow black' className={`show-filter-btn-arrow ${hideFilters ? 'rotate-show-filter-arrow-icon' : ''}`} />
+                                            Show Filters
+                                        </button>
+                                        {products && products?.length > 0 ? (
+                                            <p>{totalPages?.totalProducts} Items Starting at {formatedPrice(allFilters?.priceRange?.minPrice)}</p>
+                                        ) : (
+                                            <p className='total-product-count-shimmer'></p>
+                                        )
+                                        }
+                                        {/* <p>{totalPages?.totalProducts} Items Starting at {formatedPrice(allFilters?.priceRange?.minPrice)}</p> */}
+                                    </div>
 
-                        </div>
-
-                    </div>
-                </div>
-
-                {/* Products section code */}
-                <div className={`products-section ${hideFilters ? 'full-width' : ''}`}>
-                    {/* product heading */}
-                    <div className={`products-heading ${query ? 'query-hide-search-heading' : ''}`}>
-
-                        <div className='show-filter-btn-and-product-count'>
-                            <button className={`show-filter-btn ${hideFilters ? 'hide-show-filter-btn' : ''}`} onClick={handleFilterSection}>
-                                <img src={arrowBlack} alt='arrow black' className={`show-filter-btn-arrow ${hideFilters ? 'rotate-show-filter-arrow-icon' : ''}`} />
-                                Show Filters
-                            </button>
-                            {products && products?.length > 0 ? (
-                                <p>{totalPages?.totalProducts} Items Starting at {formatedPrice(allFilters?.priceRange?.minPrice)}</p>
-                            ) : (
-                                <p className='total-product-count-shimmer'></p>
-                            )
-                            }
-                            {/* <p>{totalPages?.totalProducts} Items Starting at {formatedPrice(allFilters?.priceRange?.minPrice)}</p> */}
-                        </div>
-
-                        {/* Relevance Dropdown */}
-                        {/* <div className='relevance-container'>
+                                    {/* Relevance Dropdown */}
+                                    {/* <div className='relevance-container'>
                             <div className='relevance-heading' onClick={handleRelevance}>
                                 <h3 className='relevance-heading-sort-by'>Sort By:</h3>
                                 <span >
@@ -745,185 +783,191 @@ const Products = () => {
 
                         </div> */}
 
-                        <div className="toggler-main-container">
+                                    <div className="toggler-main-container">
 
-                            <div className='location-toggler'>
-                                <div className='location-toggler-button'>
-                                    <label className="toggle14">
-                                        <input type="checkbox" checked={isDeliveryCheck} onChange={handleDeliveryToggler} />
-                                        <span className="slider">
-                                            <span className="circle"></span>
-                                        </span>
-                                    </label>
-                                </div>
-                                <FaTruck size={20} color={isDeliveryCheck ? '#4487C5' : 'rgba(89, 89, 89, 0.5)'} />
-                                <span>
-                                    <p>Get it by</p>
-                                    <h3 style={{ color: `${isDeliveryCheck ? '#4487C5' : '#595959'}` }}>{getDeliveryDate()}</h3>
-                                </span>
-                            </div>
-
-                            <div className='location-toggler'>
-                                <div className='location-toggler-button'>
-                                    <label className="toggle14">
-                                        <input type="checkbox" checked={isLocationCheck} onChange={handleLocationToggler} />
-                                        <span className="slider">
-                                            <span className="circle"></span>
-                                        </span>
-                                    </label>
-                                </div>
-                                <FaLocationDot size={20} color={isLocationCheck ? '#4487C5' : 'rgba(89, 89, 89, 0.5)'} />
-                                <span>
-                                    <p>See it in Person</p>
-                                    <h3 style={{ color: `${isLocationCheck ? '#4487C5' : '#595959'}` }}>Venango</h3>
-                                </span>
-                            </div>
-                        </div>
-
-                        <div className='relevance-container'>
-                            <div className='relevance-filters-body'>
-                                <div className='relevance-filter-heading' onClick={handleRelevance}>
-                                    <p className='relevance-heading-text'>Sort By</p>
-                                    <div className='selected-relevance-item'>
-                                        <p className='selected-relevance-text'>{selectedRelevanceValue}</p>
-                                        <i className='relevance-heading-icon'>
-                                            <MdKeyboardArrowDown className='relevance-heading-icon-rotate' color='#595959' size={15} />
-                                        </i>
-                                    </div>
-                                </div>
-                                <div className={`relevance-filter-items ${relevanceTrue ? 'show-relevance-items' : ''}`}>
-                                    {relevanceData.map((item, index) => (
-                                        <div
-                                            className='relevance-single-filter'
-                                            key={index}
-                                            onClick={() => {
-                                                setSelectedRelevanceValue(item.name);
-                                                setRelevanceTrue(false);
-                                                sortProducts(item.name)
-                                            }}>
-                                            <p className='relevance-single-filter-name'>{item.name}</p>
+                                        <div className='location-toggler'>
+                                            <div className='location-toggler-button'>
+                                                <label className="toggle14">
+                                                    <input type="checkbox" checked={isDeliveryCheck} onChange={handleDeliveryToggler} />
+                                                    <span className="slider">
+                                                        <span className="circle"></span>
+                                                    </span>
+                                                </label>
+                                            </div>
+                                            <FaTruck size={20} color={isDeliveryCheck ? '#4487C5' : 'rgba(89, 89, 89, 0.5)'} />
+                                            <span>
+                                                <p>Get it by</p>
+                                                <h3 style={{ color: `${isDeliveryCheck ? '#4487C5' : '#595959'}` }}>{getDeliveryDate()}</h3>
+                                            </span>
                                         </div>
-                                    ))}
+
+                                        <div className='location-toggler'>
+                                            <div className='location-toggler-button'>
+                                                <label className="toggle14">
+                                                    <input type="checkbox" checked={isLocationCheck} onChange={handleLocationToggler} />
+                                                    <span className="slider">
+                                                        <span className="circle"></span>
+                                                    </span>
+                                                </label>
+                                            </div>
+                                            <FaLocationDot size={20} color={isLocationCheck ? '#4487C5' : 'rgba(89, 89, 89, 0.5)'} />
+                                            <span>
+                                                <p>See it in Person</p>
+                                                <h3 style={{ color: `${isLocationCheck ? '#4487C5' : '#595959'}` }}>Venango</h3>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div className='relevance-container'>
+                                        <div className='relevance-filters-body'>
+                                            <div className='relevance-filter-heading' onClick={handleRelevance}>
+                                                <p className='relevance-heading-text'>Sort By</p>
+                                                <div className='selected-relevance-item'>
+                                                    <p className='selected-relevance-text'>{selectedRelevanceValue}</p>
+                                                    <i className='relevance-heading-icon'>
+                                                        <MdKeyboardArrowDown className='relevance-heading-icon-rotate' color='#595959' size={15} />
+                                                    </i>
+                                                </div>
+                                            </div>
+                                            <div className={`relevance-filter-items ${relevanceTrue ? 'show-relevance-items' : ''}`}>
+                                                {relevanceData.map((item, index) => (
+                                                    <div
+                                                        className='relevance-single-filter'
+                                                        key={index}
+                                                        onClick={() => {
+                                                            setSelectedRelevanceValue(item.name);
+                                                            setRelevanceTrue(false);
+                                                            sortProducts(item.name)
+                                                        }}>
+                                                        <p className='relevance-single-filter-name'>{item.name}</p>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                                <div className={`product-main ${hideFilters ? 'increase-columns' : ''}`}>
+
+                                    {products && products?.length > 0 ? (
+                                        products?.map((item, index) => {
+                                            return <ProductCardTwo
+                                                key={index}
+                                                slug={item.slug}
+                                                singleProductData={item}
+                                                showOnPage={true}
+                                                maxWidthAccordingToComp={"100%"}
+                                                justWidth={hideFilters ? '310px' : '100%'}
+                                                tagIcon={item.productTag ? item.productTag : heart}
+                                                tagClass={item.productTag ? 'tag-img' : 'heart-icon'}
+                                                mainImage={`${item.image.image_url}`}
+                                                productCardContainerClass="product-card"
+                                                ProductSku={item.sku}
+                                                tags={item.tags}
+                                                allow_back_order={item?.allow_back_order}
+                                                ProductTitle={truncateTitle(item.name, maxLength)}
+                                                stars={[
+                                                    { icon: star, title: 'filled' },
+                                                    { icon: star, title: 'filled' },
+                                                    { icon: star, title: 'filled' },
+                                                    { icon: star, title: 'filled' },
+                                                    { icon: star, title: 'filled' },
+                                                ]}
+                                                reviewCount={item.reviewCount}
+                                                lowPriceAddvertisement={item.lowPriceAddvertisement}
+                                                priceTag={item.regular_price}
+                                                sale_price={item.sale_price}
+                                                financingAdd={item.financingAdd}
+                                                learnMore={item.learnMore}
+                                                mainIndex={index}
+                                                deliveryTime={item.deliveryTime}
+                                                stock={item.manage_stock}
+                                                attributes={item.attributes}
+                                                handleCardClick={() => handleProductClick(item)}
+                                                handleQuickView={() => handleQuickViewOpen(item)}
+                                                handleWishListclick={() => handleWishList(item)}
+                                                handleInfoModal={handleOpennfoModal}
+                                            />
+                                        })
+                                    ) : (
+                                        Array.from({ length: 3 }).map((_, index) => (
+                                            <ProductCardShimmer key={index} width={'100%'} />
+                                        ))
+                                    )}
+
+                                </div>
+                                {/* Product Card Code End */}
+
+                                <div className='view-more-products-button-div'>
+
+                                    <div className='view-more-products-pagination-main'>
+                                        <div className='pagination-buttons-container'>
+                                            <span
+                                                className={activePageIndex === 1 ? 'disabled' : ''}
+                                                onClick={handlePrevPage}
+                                                style={{
+                                                    pointerEvents: activePageIndex === 1 ? 'none' : 'auto',
+                                                    color: activePageIndex === 1 ? '#ccc' : '#4487C5',
+                                                }}
+                                            >
+                                                <FaRegArrowAltCircleLeft
+                                                    size={18}
+                                                    style={{
+                                                        pointerEvents: activePageIndex === 1 ? 'none' : 'auto',
+                                                        color: activePageIndex === 1 ? '#ccc' : '#4487C5',
+                                                    }}
+                                                />
+                                                Prev
+                                            </span>
+                                            {Array.from({ length: totalPages?.totalPages }).map((_, index) => {
+
+                                                const pageNumber = index + 1;
+                                                const shouldShow =
+                                                    pageNumber === activePageIndex ||
+                                                    pageNumber === activePageIndex - 1 ||
+                                                    pageNumber === activePageIndex + 1 ||
+                                                    (activePageIndex === 1 && pageNumber === 3) ||
+                                                    (activePageIndex === totalPages?.totalPages && pageNumber === totalPages?.totalPages - 2);
+
+                                                return shouldShow ? (
+                                                    <span
+                                                        key={pageNumber}
+                                                        onClick={() => handleActivePage(pageNumber)}
+                                                        className={activePageIndex === pageNumber ? 'active-page-span' : ''}
+                                                    >
+                                                        {pageNumber}
+                                                    </span>
+                                                ) : null;
+                                            })}
+                                            <span
+                                                className={activePageIndex === totalPages?.totalPages ? 'disabled' : ''}
+                                                onClick={handleNextPage}
+                                                style={{
+                                                    pointerEvents: activePageIndex === totalPages?.totalPages ? 'none' : 'auto',
+                                                    color: activePageIndex === totalPages?.totalPages ? '#ccc' : '#4487C5',
+                                                }}
+                                            >
+                                                Next
+                                                <FaRegArrowAltCircleRight
+                                                    size={18}
+                                                    style={{
+                                                        pointerEvents: activePageIndex === totalPages?.totalPages ? 'none' : 'auto',
+                                                        color: activePageIndex === totalPages?.totalPages ? '#ccc' : '#4487C5',
+                                                    }}
+                                                />
+                                            </span>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
-                        </div>
+                        </div>   
+                )
+            }
 
-                    </div>
-
-                    <div className={`product-main ${hideFilters ? 'increase-columns' : ''}`}>
-
-                        {products && products?.length > 0 ? (
-                            products?.map((item, index) => {
-                                return <ProductCardTwo
-                                    key={index}
-                                    slug={item.slug}
-                                    singleProductData={item}
-                                    showOnPage={true}
-                                    maxWidthAccordingToComp={"100%"}
-                                    justWidth={hideFilters ? '310px' : '100%'}
-                                    tagIcon={item.productTag ? item.productTag : heart}
-                                    tagClass={item.productTag ? 'tag-img' : 'heart-icon'}
-                                    mainImage={`${item.image.image_url}`}
-                                    productCardContainerClass="product-card"
-                                    ProductSku={item.sku}
-                                    tags={item.tags}
-                                    allow_back_order={item?.allow_back_order}
-                                    ProductTitle={truncateTitle(item.name, maxLength)}
-                                    stars={[
-                                        { icon: star, title: 'filled' },
-                                        { icon: star, title: 'filled' },
-                                        { icon: star, title: 'filled' },
-                                        { icon: star, title: 'filled' },
-                                        { icon: star, title: 'filled' },
-                                    ]}
-                                    reviewCount={item.reviewCount}
-                                    lowPriceAddvertisement={item.lowPriceAddvertisement}
-                                    priceTag={item.regular_price}
-                                    sale_price={item.sale_price}
-                                    financingAdd={item.financingAdd}
-                                    learnMore={item.learnMore}
-                                    mainIndex={index}
-                                    deliveryTime={item.deliveryTime}
-                                    stock={item.manage_stock}
-                                    attributes={item.attributes}
-                                    handleCardClick={() => handleProductClick(item)}
-                                    handleQuickView={() => handleQuickViewOpen(item)}
-                                    handleWishListclick={() => handleWishList(item)}
-                                />
-                            })
-                        ) : (
-                            Array.from({ length: 3 }).map((_, index) => (
-                                <ProductCardShimmer key={index} />
-                            ))
-                        )}
-
-                    </div>
-                    {/* Product Card Code End */}
-
-                    <div className='view-more-products-button-div'>
-
-                        <div className='view-more-products-pagination-main'>
-                            <div className='pagination-buttons-container'>
-                                <span
-                                    className={activePageIndex === 1 ? 'disabled' : ''}
-                                    onClick={handlePrevPage}
-                                    style={{
-                                        pointerEvents: activePageIndex === 1 ? 'none' : 'auto',
-                                        color: activePageIndex === 1 ? '#ccc' : '#4487C5',
-                                    }}
-                                >
-                                    <FaRegArrowAltCircleLeft
-                                        size={18}
-                                        style={{
-                                            pointerEvents: activePageIndex === 1 ? 'none' : 'auto',
-                                            color: activePageIndex === 1 ? '#ccc' : '#4487C5',
-                                        }}
-                                    />
-                                    Prev
-                                </span>
-                                {Array.from({ length: totalPages?.totalPages }).map((_, index) => {
-
-                                    const pageNumber = index + 1;
-                                    const shouldShow =
-                                        pageNumber === activePageIndex ||
-                                        pageNumber === activePageIndex - 1 ||
-                                        pageNumber === activePageIndex + 1 ||
-                                        (activePageIndex === 1 && pageNumber === 3) ||
-                                        (activePageIndex === totalPages?.totalPages && pageNumber === totalPages?.totalPages - 2);
-
-                                    return shouldShow ? (
-                                        <span
-                                            key={pageNumber}
-                                            onClick={() => handleActivePage(pageNumber)}
-                                            className={activePageIndex === pageNumber ? 'active-page-span' : ''}
-                                        >
-                                            {pageNumber}
-                                        </span>
-                                    ) : null;
-                                })}
-                                <span
-                                    className={activePageIndex === totalPages?.totalPages ? 'disabled' : ''}
-                                    onClick={handleNextPage}
-                                    style={{
-                                        pointerEvents: activePageIndex === totalPages?.totalPages ? 'none' : 'auto',
-                                        color: activePageIndex === totalPages?.totalPages ? '#ccc' : '#4487C5',
-                                    }}
-                                >
-                                    Next
-                                    <FaRegArrowAltCircleRight
-                                        size={18}
-                                        style={{
-                                            pointerEvents: activePageIndex === totalPages?.totalPages ? 'none' : 'auto',
-                                            color: activePageIndex === totalPages?.totalPages ? '#ccc' : '#4487C5',
-                                        }}
-                                    />
-                                </span>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
+            
 
             {/* Mobile view product section */}
             <div className='mobile-view-product-and-filter-section'>
@@ -1005,6 +1049,7 @@ const Products = () => {
                                 handleCardClick={() => handleProductClick(item)}
                                 handleQuickView={() => handleQuickViewOpen(item)}
                                 handleWishListclick={() => handleWishList(item)}
+                                handleInfoModal={handleOpennfoModal}
                             />
                         })
                     )}
@@ -1122,6 +1167,17 @@ const Products = () => {
                 handleCloseSortModal={handleCloseSortModal}
                 setSelectedOption={setSelectedOption}
                 handleSelect={handleSelectMobileRelevanceValue}
+            />
+            <SnakBar 
+                message={wishlistMessage}
+                openSnakeBarProp={openSnakeBar}
+                setOpenSnakeBar={setOpenSnakeBar}
+                onClick={handleCloseSnakeBar}
+            />
+
+            <ProductInfoModal
+                openModal={isInfoOpen}
+                closeModal={handleCloseInfoModal}
             />
         </div>
     )

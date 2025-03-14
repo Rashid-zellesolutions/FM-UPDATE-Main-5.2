@@ -388,7 +388,7 @@ const ProductGallery = (
             {/* Pagination Dots */}
             <div className='slider-dots-and-view-all-button'>
                 <div className="pagination-dots">
-                    {productData?.images.map((_, index) => (
+                    {productData?.images?.map((_, index) => (
                             <span
                                 key={index}
                                 className={`dot ${currentIndex === index ? "active" : ""}`} // Highlight active dot

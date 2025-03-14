@@ -53,9 +53,11 @@ const TypeTab = ({ selectedTab, setSelectedTab, handleServiceType, handleCategor
         )})}
       </div>
 
-      <button disabled={appointmentPayload.serviceType === "" || appointmentPayload.selectedCategories.length === 0} className='type-submit-button' onClick={() =>  setSelectedTab(selectedTab + 1)} >
-        Next
-      </button>
+      <div className='type-selected-button'>
+        <button disabled={appointmentPayload.serviceType === "" || appointmentPayload.selectedCategories.length === 0} className='type-submit-button' onClick={() =>  setSelectedTab(selectedTab + 1)} >
+          Next
+        </button>
+      </div>
 
     </div>
   )

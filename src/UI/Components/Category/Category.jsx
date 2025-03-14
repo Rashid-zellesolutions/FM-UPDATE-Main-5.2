@@ -29,7 +29,7 @@ const Category = ({ title, categoryData, handleNavigate, categorySlug }) => {
               onLoad={()=>{setIsLoaded(true)}}
             />
             </Link>
-            {!isloaded &&  <CategoryShimmer/>}
+            {/* {!isloaded &&  <CategoryShimmer/>} */}
            </>
           ))
         ) : (
@@ -51,7 +51,7 @@ const Category = ({ title, categoryData, handleNavigate, categorySlug }) => {
               effect='blur'
               onLoad={()=>{setIsLoaded(true)}}
             />
-            {!isloaded &&  <CategoryShimmer/>}
+            {/* {!isloaded &&  <CategoryShimmer/>} */}
            </>
           ))
         ) : (

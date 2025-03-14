@@ -11,7 +11,6 @@ import { url } from '../../../utils/api';
 
 const LatestModulerBanner = ({ images, mobileMainImage, customWidth, mainImage, mainImgShow, showBanners, paddingTop }) => {
   const [imagePreloader, setImagePreloader] = useState(false);
-  console.log("Mobile View Main Banner", mobileMainImage)
 
 
   return (

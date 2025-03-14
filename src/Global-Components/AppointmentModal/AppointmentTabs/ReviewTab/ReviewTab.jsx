@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import './ReviewTab.css';
 import { useAppointment } from '../../../../context/AppointmentContext/AppointmentContext';
+import { formatPhoneNumber } from '../../../../utils/api';
 
 const ReviewTab = ({ handleSubmitAppointment }) => {
   const [value, setValue] = useState('');
   const [focused, setFocused] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
 
   const { appointmentPayload, setAppointmentPayload } = useAppointment();
   const handleUserDataChange = (e) => {
@@ -13,7 +15,7 @@ const ReviewTab = ({ handleSubmitAppointment }) => {
       ...prev,
       details: {
         ...prev.details,
-        [name]: value
+        [name]: name === 'contact' ? formatPhoneNumber(value) : value
       }
     }))
   }
@@ -39,15 +41,27 @@ const ReviewTab = ({ handleSubmitAppointment }) => {
           <input type='text' name='contact' value={appointmentPayload.details.contact} placeholder='Contact Phone' onChange={handleUserDataChange} />
         </label>
 
-        <h3>Was there an associate that you were working with?</h3>
+        <div className='confirm-associate-container'>
+          <input 
+            type='checkbox' 
+            checked={isChecked}
+            onChange={() => setIsChecked(!isChecked)}
+          />
+          <h3>Was there an associate that you were working with?</h3>
+        </div>
 
-        <label>
-          <input type='text' name='associate' value={appointmentPayload.details.associate} placeholder='Associate Name' onChange={handleUserDataChange} />
-        </label>
+        {isChecked && (
+          <label>
+            <input type='text' name='associate' value={appointmentPayload.details.associate} placeholder='Associate Name' onChange={handleUserDataChange} />
+          </label>
+        )}
+        
 
-        <button onClick={handleSubmitAppointment}>
-          Book Consultant
-        </button>
+        <div className='type-selected-button'>
+          <button onClick={handleSubmitAppointment}>
+            Book Consultant
+          </button>
+        </div>
       </div>
 
     </div>

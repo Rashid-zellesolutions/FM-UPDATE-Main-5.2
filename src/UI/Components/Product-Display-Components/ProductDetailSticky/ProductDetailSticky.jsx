@@ -650,6 +650,7 @@ const ProductDetailSticky = (
                   ))}
                 </div>
               </div>
+              
             </div>
 
           </div>

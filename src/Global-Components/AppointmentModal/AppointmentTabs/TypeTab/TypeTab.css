@@ -98,18 +98,27 @@
     color: var(--text-color);
 }
 
+.type-selected-button {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    width: 100%;
+    height: max-content;
+}
+
 .type-submit-button {
+    width: max-content;
+    padding: 10px 30px;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    height: 50px;
-    color: #fff;
     background-color: #4487C5;
+    border: 1px solid #4487C5;
+    border-radius: 5px;
+    color: #fff;
     font-size: var(--sub-section-size);
-    line-height: var(--sub-section-height);
+    line-height: var(--sub-section-height); 
     font-weight: var(--sub-section-weight);
-    border: none !important;
     cursor: pointer;
 
 }

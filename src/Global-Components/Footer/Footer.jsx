@@ -436,7 +436,7 @@ const Footer = ({ notLandingPage, checkoutPage }) => {
                                             Sign me up
                                         </button>}
                                     </div>
-                                    <p>By signing up, you agree to our <Link to={'/privacy-policy'}> Privacy Policy </Link>  and  <Link to={'/privacy-policy'}>Terms of Use.</Link> </p>
+                                    <p>By signing up, you agree to our <Link to={'/privacy-policy'}> Privacy Policy </Link>  and  <Link to={'/terms-and-conditions'}>Terms of Use.</Link> </p>
                                 </div>
                             </form>
                                 :

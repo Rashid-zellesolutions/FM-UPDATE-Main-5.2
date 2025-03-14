@@ -64,11 +64,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 22px;
-    height: 22px;
+    width: max-content;
+    height: max-content;
     position: absolute;
-    right: 20px;
-    top: 20px;
+    right: 0px;
+    top: 0px;
     background-color: transparent;
     border: none;
     cursor: pointer;

@@ -1,33 +1,33 @@
-.review-tab-main-container{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    align-items: start;
-    justify-content: start;
-    gap: 25px;
+.review-tab-main-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: start;
+  justify-content: start;
+  gap: 25px;
 }
 
-.review-tab-main-container > h3 {
-    font-size: var(--sub-section-size);
-    line-height: var(--sub-section-height);
-    font-weight: var(--sub-section-weight);
-    color: var(--text-color);
+.review-tab-main-container>h3 {
+  font-size: var(--sub-section-size);
+  line-height: var(--sub-section-height);
+  font-weight: var(--sub-section-weight);
+  color: var(--text-color);
 }
 
 .review-tab-form {
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    justify-content: start;
-    gap: 25px;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+  gap: 25px;
+  width: 100%;
 }
 
-.review-tab-form > h3 {
-    font-size: var(--sub-section-size);
-    line-height: var(--sub-section-height);
-    font-weight: var(--sub-section-weight);
-    color: var(--text-color);
+.review-tab-form>h3 {
+  font-size: var(--sub-section-size);
+  line-height: var(--sub-section-height);
+  font-weight: var(--sub-section-weight);
+  color: var(--text-color);
 }
 
 
@@ -39,7 +39,7 @@
 
 .floating-input-container input {
   width: 100%;
-    height: 100%;
+  height: 100%;
   padding: 5px 12px;
   font-size: 12px;
   box-sizing: border-box;
@@ -65,41 +65,66 @@
 }
 
 
-.review-tab-form > label  {
-    display: flex;
-    width: 100%;
-    align-items: start;
-    justify-content: start;
-    height: 50px;
-    padding: 5px 10px;
-    border: 1px solid var(--border-color);
-    border-radius: 5px;
+.review-tab-form>label {
+  display: flex;
+  width: 100%;
+  align-items: start;
+  justify-content: start;
+  height: 50px;
+  padding: 5px 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
 }
 
-.review-tab-form > label > input {
-    width: 100%;
-    height: 100%;
-    border: none;
-    outline: none;
-    background-color: transparent;
+.review-tab-form>label>input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  background-color: transparent;
 }
 
-.review-tab-form > button {
-    width: max-content;
-    padding: 10px 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #4487C5;
-    border: 1px solid #4487C5;
-    border-radius: 5px;
-    color: #fff;
-    font-size: var(--sub-section-size);
-    line-height: var(--sub-section-height); 
-    font-weight: var(--sub-section-weight);
-    cursor: pointer;
+.confirm-associate-container {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 10px;
+  width: 100%;
+}
+
+.confirm-associate-container>input {
+  width: max-content;
+  height: max-content;
+}
+
+.confirm-associate-container>h3 {
+  font-size: var(--sub-section-size);
+  line-height: var(--sub-section-height);
+  font-weight: var(--sub-section-weight);
+  color: var(--text-color);
+}
+
+.type-selected-button>button {
+  width: max-content;
+  padding: 10px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #4487C5;
+  border: 1px solid #4487C5;
+  border-radius: 5px;
+  color: #fff;
+  font-size: var(--sub-section-size);
+  line-height: var(--sub-section-height);
+  font-weight: var(--sub-section-weight);
+  cursor: pointer;
 }
 
 @media only screen and (max-width: 480px) {
-  
+  .confirm-associate-container>h3 {
+    font-size: var(--content-one-size);
+    line-height: var(--content-one-height);
+    font-weight: var(--content-one-weight);
+    color: var(--text-color);
+  }
 }

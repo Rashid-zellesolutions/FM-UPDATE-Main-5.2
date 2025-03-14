@@ -25,6 +25,16 @@ const DateTimeTab = ({selectedTab, setSelectedTab}) => {
   maxDate.setDate(today.getDate() + 30);
 
   const [showTimeSlots, setShowTimeSlots] = useState(false);
+
+  useEffect(() => {
+    const todayDate = new Date().toISOString().split('T')[0];
+    setDateState(todayDate); // Ensure dateState is set
+    setAppointmentPayload((prev) => ({
+      ...prev,
+      selectedDate: todayDate,
+    }));
+  }, []);
+
   const changeDate = (e) => {
     // setDateState(e)
     const selectedDate = new Date(e);

@@ -5,23 +5,30 @@ import { FaPhoneAlt } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
 import axios from 'axios';
 import { url } from '../../../../utils/api';
+import Loader from '../../../../UI/Components/Loader/Loader';
 
 const LocationTab = ({ selectedTab, setSelectedTab, handleSelectStore }) => {
 
 
   const [nearStores, setNearStores] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const handleStorsData = async () => {
     const api = `/api/v1/stores/get`;
     try {
+      setLoading(true);
       const response = await axios.get(url+api);
       if(response.status === 200) {
         setNearStores(response.data.data);
       }else {
         console.error("Error Fetching Stores Data", response.status);
       }
+      setLoading(false);
     } catch (error) {
       console.error("UnExpected Server Error", error);
+      setLoading(false);
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -36,6 +43,7 @@ const LocationTab = ({ selectedTab, setSelectedTab, handleSelectStore }) => {
 
   return (
     <div className='location-tab-main-container'>
+      {loading && <Loader />}
       <div className='location-tab-header'>
         <h3>
           Set up a time to consult with our room specialists to guide you through your shopping journey.

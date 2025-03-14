@@ -149,7 +149,7 @@
     gap: 10px;
     /* position: relative; */
     height: auto;
-}
+} 
 
 .product-cart-top-tags-container.show-product-cart-top-tags {
     display: flex;
@@ -159,7 +159,9 @@
     width: 100%;
     height: auto !important;
     aspect-ratio: 3 / 2;
-    border-bottom: 1px solid var(--border-color);
+    /* border-bottom: 1px solid var(--border-color); */
+    /* box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 5px; */
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
     object-fit: contain;
     cursor: pointer;
     transition: transform 0.3s ease;
@@ -358,10 +360,22 @@
     display: flex;
     flex-direction: column;
     /* gap: 10px; */
-    width: max-content;
+    /* width: max-content; */
+    width: 100%;
     align-items: start;
     justify-content: start;
     gap: 0px !important;
+}
+
+.mobile-view-rating-stars {
+    display: none;
+}
+
+.price-and-rating-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .product-card-installment-plan {
@@ -397,7 +411,7 @@
 
 .card-two-quick-view-button {
     display: flex;
-
+    margin-top: 7px;
     align-items: center;
     justify-content: center;
     width: max-content;
@@ -587,8 +601,8 @@
 
 .product-price-starting-at {
     /* font-size: clamp(14px, calc(1vw + 0.2rem), 13px); */
-    font-size: 15px;
-    line-height: 1.5;
+    font-size: 10px;
+    line-height: 12px;
     font-weight: 400;
     /* margin-bottom: 5px; */
 }
@@ -596,7 +610,8 @@
 .product-del-price-with-sale-price {
     font-size: var(--sub-section-size);
     /* font-size: clamp(15px, calc(1vw + 0.2rem), 20px) !important; */
-    line-height: var(--sub-section-height);
+    /* line-height: var(--sub-section-height); */
+    line-height: 30px;
     font-weight: var(--sub-section-weight);
     color: var(--text-color);
     opacity: 0.5;
@@ -817,6 +832,10 @@
         object-fit: contain;
     }
 
+    .product-rating-stars-div {
+        display: none;
+    }
+
     /* .product-title.apply-col-two-styling {
         background-color: transparent !important;
         font-size: 12px !important;
@@ -865,6 +884,7 @@
         display: flex;
         flex-direction: column;
         gap: 0 !important;
+        width: 100%;
     }
 
     .installment-plan-detail.apply-col-two-styling {
@@ -915,6 +935,8 @@
     /* .product-card-attr {
         
     } */
+
+    .mobile-view-rating-stars {display: flex;}
 
     .product-card-attr.hide-squire-attribute {
         display: none;

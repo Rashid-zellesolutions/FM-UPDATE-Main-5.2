@@ -6,6 +6,7 @@ import axios from 'axios'
 import { url } from '../../../../../utils/api'
 import { useLocation, useParams } from 'react-router-dom'
 import ProductComments from '../../../ProductComments/ProductComments'
+import SnakBar from '../../../../../Global-Components/SnakeBar/SnakBar'
 
 const ProductReviewTab = ({ id, reviewRef, productData }) => {
 
@@ -15,6 +16,17 @@ const ProductReviewTab = ({ id, reviewRef, productData }) => {
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [errorMessage, setErrorMessage] = useState('')
+  const [snakebarOpen, setSnakebarOpen] = useState(false);
+
+  const handleOpenSnakeBar = (message) => {
+    setSnakebarOpen(true);
+    setErrorMessage(message)
+  }
+
+  const handleCloseSnakeBar = () => {
+    setSnakebarOpen(false);
+  }
 
   const fetchReviews = async (productUid) => {
     try {
@@ -55,8 +67,15 @@ const ProductReviewTab = ({ id, reviewRef, productData }) => {
       {loading && <div>Loading reviews...</div>}
       {error && <div>{error}</div>}
 
-      <WriteReview productData={product} product_id={product?.uid} review_enable={product?.enable_review} product_name={product?.name} product_permalink={"https://"} />
+      <WriteReview productData={product} snakeBarOpen={handleOpenSnakeBar} product_id={product?.uid} review_enable={product?.enable_review} product_name={product?.name} product_permalink={"https://"} />
       <ProductComments review_enable={product?.enable_review} data={reviews} />
+
+      <SnakBar
+        message={errorMessage}
+        openSnakeBarProp={snakebarOpen}
+        setOpenSnakeBar={setSnakebarOpen}
+        onClick={handleCloseSnakeBar}
+      />
     </div>
   )
 }

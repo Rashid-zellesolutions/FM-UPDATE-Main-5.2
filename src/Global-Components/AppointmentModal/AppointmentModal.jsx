@@ -30,16 +30,18 @@ const AppointmentModal = (
         { id: 3, title: 'Date/Time' },
         { id: 4, title: 'Review' },
     ]
-    // const [errorMessage, setErrorMessage] = useState('this is test');
-    // const [snakebarOpen, setSnakebarOpen] = useState(false);
+
     const [serviceIndex, setServiceTypeIndex] = useState(null)
     const [loading, setLoading] = useState(false);
-    // const [selectedTab, setSelectedTab] = useState(1);
     const handleSelectedTab = (tab) => {
+        console.log("selected Tab", tab)
         if (tab < selectedTab) {
             setSelectedTab(tab);
         }
     } 
+
+
+
 
     const { appointmentPayload, setAppointmentPayload } = useAppointment()
 
@@ -135,14 +137,6 @@ const AppointmentModal = (
         })
     }
 
-    // const handleOpenSnakeBar = () => {
-    //   console.log("snakebar open function called")
-    //   setSnakebarOpen(true);
-    // }
-    // const handleCloseSnakeBar = () => {
-    //   setSnakebarOpen(false);
-    // }
-
 
 
     return (
@@ -153,7 +147,7 @@ const AppointmentModal = (
 
                 <div className='appointment-inner-content'>
                     <button className='appointment-modal-close-btn' onClick={handleCloseModal}>
-                        <IoIosClose size={22} color='#595959' />
+                        <IoIosClose size={30} color='#595959' />
                     </button>
                     <div className='appointment-modal-head'>
                         <SlCalender size={25} color='#4487C5' />
@@ -166,7 +160,7 @@ const AppointmentModal = (
                         <div className='appointment-modal-tab-pagination'>
                             {tabs.map((item, index) => (
                                 <div className='appointment-modal-tab-btn-container'>
-                                    <button key={index} onClick={() => handleSelectedTab(index + 1)} className={`appointment-modal-tab-btn ${selectedTab === index + 1 ? 'selected-tab' : ''}`}>{item.id}</button>
+                                    <button key={index} onClick={() => handleSelectedTab(index + 1)} className={`appointment-modal-tab-btn ${(selectedTab >= index + 1) ? 'selected-tab' : ''}`}>{item.id}</button>
                                     <p>{item.title}</p>
                                 </div>
                             ))}
@@ -205,13 +199,6 @@ const AppointmentModal = (
                 confirmAppointment={confirmAppointment}
                 handleAppointmentModalClose={handleAppointmentModalClose}
             />
-
-            {/* <SnakBar 
-                message={errorMessage}
-                openSnakeBarProp={snakebarOpen}
-                setOpenSnakeBar={setSnakebarOpen}
-                onClick={handleCloseSnakeBar}
-            /> */}
         </div>
     )
 }

@@ -492,3 +492,27 @@
     line-height: 22px;
     font-weight: 400;
 }
+
+@media only screen and (max-width: 480px) {
+    .quick-view-main {
+        width: 90%;
+    }
+
+    .quick-view-add-or-minus-item button {
+        width: 35% !important;
+    }
+
+    .quick-view-add-item-or-cart-btn input {
+        width: 30px;
+        padding: 5px;
+    }
+    .quick-view-add-to-cart {
+        width: 150px;
+    }
+
+    .quick-view-wish-list-container {
+        width: 45px !important;
+    }
+
+
+}

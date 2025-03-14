@@ -22,6 +22,7 @@ const RelatedCategories = () => {
             }
 
             const data = await response.json();
+            console.log("related categories ", data)
             return data;
         } catch (error) {
             console.error("Error fetching data:", error.message);
@@ -43,7 +44,14 @@ const RelatedCategories = () => {
         setRelatedCategoriesData(unfilteredCategories?.subCategories)
     }, [])
 
-    // console.log("related categories", relatedCategoriesData)
+    useEffect(() => { 
+        const unfilteredCategories = categoryData.find((item) => item.category_slug === categorySlug);
+
+        setRelatedCategoriesData(unfilteredCategories?.subCategories)
+        // console.log("related categories", relatedCategoriesData) 
+    }, [categoryData])
+
+    
 
     return (
         <div className='related-categories-main-div'>

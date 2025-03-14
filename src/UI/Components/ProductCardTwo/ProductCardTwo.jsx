@@ -32,6 +32,7 @@ const ProductCardTwo = ({
     attributes,
     colTwo,
     showOnPage,
+    handleInfoModal,
 }) => {
 
     const [isImageLoaded, setImageLoaded] = useState(false);
@@ -315,6 +316,7 @@ const ProductCardTwo = ({
 
 
                         <div className='product-card-product-image-inner-container'>
+
                             <div className={`product-image-wishlist-icon-container ${!showOnPage ? 'show-product-wishlist-icon' : ''}`}>
                                 {
                                     isInWishList(singleProductData.uid) ?
@@ -339,6 +341,7 @@ const ProductCardTwo = ({
                                         />
                                 }
                             </div>
+                            
                             <img src={`${url}${selectedColorImage
                                 ? mainImageHoverIndex === singleProductData.uid
                                     ? hoveredImage
@@ -538,12 +541,22 @@ const ProductCardTwo = ({
                                     {
                                         sale_price === "0" ?
                                             <h3 className={`product-price-del ${colTwo ? 'apply-col-two-styling' : ''}`}>${priceTag}</h3> :
-                                            <h3 className={`product-price-tag ${colTwo ? 'apply-col-two-styling' : ''}`}> <p className={`product-price-starting-at ${colTwo ? 'apply-two-col-styling' : ''}`}>Starting at</p> ${sale_price} <del className={`product-del-price-with-sale-price ${colTwo ? 'apply-col-two-styling' : ''}`}>${priceTag}</del>  </h3>
+                                            <div className='price-and-rating-container'>
+                                                <h3 className={`product-price-tag ${colTwo ? 'apply-col-two-styling' : ''}`}> 
+                                                    <p className={`product-price-starting-at ${colTwo ? 'apply-two-col-styling' : ''}`}>Starting at</p> 
+                                                    ${sale_price} 
+                                                    <del className={`product-del-price-with-sale-price ${colTwo ? 'apply-col-two-styling' : ''}`}>${priceTag}</del> 
+                                                </h3>
+                                                <div className='mobile-view-rating-stars'>
+                                                    <RatingReview rating={parseFloat(reviewCount)} size={"12px"} disabled={true} />
+                                                </div>
+                                            </div>
                                     }
 
                                     <span className={`product-card-installment-plan ${showOnPage ? 'show-installment-plan' : ''}`}>
                                         <p className={`installment-plan-detail ${colTwo ? 'apply-col-two-styling' : ''}`}>or $35/week for 48 mos</p>
-                                        <GoInfo />
+                                        <GoInfo onClick={(e) => { e.stopPropagation(); handleInfoModal ()}} 
+                                        />
                                     </span>
 
                                 </div>
@@ -564,7 +577,8 @@ const ProductCardTwo = ({
                                 <div className={`product-rating-stars-div ${colTwo ? 'apply-col-two-styling' : ''}`}>
                                     <RatingReview rating={parseFloat(reviewCount)} size={"12px"} disabled={true} />
                                 </div>
-                                <button className={`card-two-quick-view-button ${colTwo ? 'apply-col-two-styling' : ''}`} onClick={(e) => {
+                                <button className={`card-two-quick-view-button ${colTwo ? 'apply-col-two-styling' : ''}`} 
+                                onClick={(e) => {
                                     e.stopPropagation();
                                     handleQuickView()
                                 }}
