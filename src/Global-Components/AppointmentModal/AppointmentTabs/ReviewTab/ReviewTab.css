@@ -104,6 +104,15 @@
   color: var(--text-color);
 }
 
+.type-selected-button {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: end;
+  gap: 15px;
+  
+}
+
 .type-selected-button>button {
   width: max-content;
   padding: 10px 30px;

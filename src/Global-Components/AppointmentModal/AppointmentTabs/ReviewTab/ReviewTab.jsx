@@ -3,7 +3,7 @@ import './ReviewTab.css';
 import { useAppointment } from '../../../../context/AppointmentContext/AppointmentContext';
 import { formatPhoneNumber } from '../../../../utils/api';
 
-const ReviewTab = ({ handleSubmitAppointment }) => {
+const ReviewTab = ({ handleSubmitAppointment, selectedTab, setSelectedTab }) => {
   const [value, setValue] = useState('');
   const [focused, setFocused] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
@@ -58,6 +58,7 @@ const ReviewTab = ({ handleSubmitAppointment }) => {
         
 
         <div className='type-selected-button'>
+          <button onClick={() => setSelectedTab(selectedTab - 1)}>Previous</button>
           <button onClick={handleSubmitAppointment}>
             Book Consultant
           </button>

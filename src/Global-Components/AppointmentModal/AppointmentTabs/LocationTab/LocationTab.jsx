@@ -114,6 +114,10 @@ const LocationTab = ({ selectedTab, setSelectedTab, handleSelectStore }) => {
             </div>
           ))}
         </div>
+
+        <div className='location-tab-buttons-container'>
+          <button onClick={() => setSelectedTab(selectedTab - 1)}>Previous</button>
+        </div>
       </div>
     </div>
   )

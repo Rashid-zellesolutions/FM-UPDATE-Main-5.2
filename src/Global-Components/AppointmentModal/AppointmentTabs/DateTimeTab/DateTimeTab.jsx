@@ -59,25 +59,32 @@ const DateTimeTab = ({selectedTab, setSelectedTab}) => {
 
 
   return (
-    <div className='date-time-tab-main-container'>
-      <div className='date-time-tab-calender-section'>
-        <Calendar
-          value={dateState}
-          onChange={changeDate}
-          // tileDisabled={({ date }) => date < new Date().setHours(0, 0, 0, 0)}
-          tileDisabled={({ date }) => date < today || date > maxDate}
-          formatShortWeekday={(locale, date) =>
-            date.toLocaleDateString(locale, { weekday: 'short' }).slice(0, 2)
-          }
-          tileClassName={() => 'custom-tile'}
-        />
+    <div className='date-time-outer-core-container'>
+      <div className='date-time-tab-main-container'>
+        <div className='date-time-tab-calender-section'>
+          <Calendar
+            value={dateState}
+            onChange={changeDate}
+            // tileDisabled={({ date }) => date < new Date().setHours(0, 0, 0, 0)}
+            tileDisabled={({ date }) => date < today || date > maxDate}
+            formatShortWeekday={(locale, date) =>
+              date.toLocaleDateString(locale, { weekday: 'short' }).slice(0, 2)
+            }
+            tileClassName={() => 'custom-tile'}
+          />
+        </div>
+        <div className='date-time-tab-times-slots'>
+          {timeSlots.map((item, index) => (
+            <p key={index} onClick={() => { handleSelectTimeSlote(item.time); setSelectedTab(selectedTab + 1) }} className='single-time-slot'>{item.time}</p>
+          ))}
+        </div>
       </div>
-      <div className='date-time-tab-times-slots'>
-        {timeSlots.map((item, index) => (
-          <p key={index} onClick={() => {handleSelectTimeSlote(item.time); setSelectedTab(selectedTab + 1)}} className='single-time-slot'>{item.time}</p>
-        ))}
+
+      <div className='location-tab-buttons-container'>
+        <button onClick={() => setSelectedTab(selectedTab - 1)}>Previous</button>
       </div>
     </div>
+   
   )
 }
 

@@ -1,3 +1,12 @@
+.date-time-outer-core-container {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    gap: 15px;
+    width: 100%;
+}
+
 .date-time-tab-main-container {
     display: flex;
     width: 100%;
