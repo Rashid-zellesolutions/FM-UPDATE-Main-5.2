@@ -25,9 +25,9 @@ export const LPContentProvider = ({ children }) => {
   const getHomeSliderImages = async () => {
     try {
       // if (slides === null) {
-      const response = await axios.get(`${url}/api/v1/pages/home/slider/get`, { timeOut })
+      const response = await axios.get(`${url}/api/v1/pages/home/upd-slider/get`, { timeOut })
       if (response.status === 200) {
-        setSlides(response.data.homeSliders || [])
+        setSlides(response.data.slider || [])
       } else {
         console.log(`UnExpected Error ${response.status} `);
       }
@@ -36,6 +36,8 @@ export const LPContentProvider = ({ children }) => {
       console.error("UnExpected Server Error", error);
     }
   }
+
+  
 
   // Standard Function
   const getLandingPageContent2 = async () => {

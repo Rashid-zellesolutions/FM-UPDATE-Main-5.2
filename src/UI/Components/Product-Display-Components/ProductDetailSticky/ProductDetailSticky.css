@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: column;
     width: 100%;
+    padding: 0 24px;
 }
 
 .product-detail-sticky-gallery-and-detail {
@@ -737,6 +738,32 @@
     color: var(--text-color);
     cursor: pointer;
     background-color: transparent;
+}
+
+
+.talk-with-expert-options > a {
+    width: 100%;
+    height: 38px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-decoration: none;
+
+    font-size: var(--sub-section-size);
+    line-height: var(--sub-section-height);
+    font-weight: var(--content-two-weight);
+    color: var(--text-color);
+    cursor: pointer;
+    background-color: transparent;
+}
+
+.disable-chat {
+    color: var(--text-color);
+    opacity: 0.5 !important;
+    cursor: not-allowed !important;
 }
 
 @media only screen and (max-width: 480px) {

@@ -10,12 +10,30 @@ import { MdKeyboardArrowDown } from "react-icons/md";
 import { url } from '../../../../utils/api';
 import GalleryModal from '../GalleryModal/GalleryModal';
 import { AiOutlineZoomIn, AiOutlineZoomOut } from "react-icons/ai";
+import axios from 'axios';
 // import { AiOutlineZoomOut } from "react-icons/ai";
 
 const ProductDimension = ({ productData, variationData, zoomIn, handleZoom, handleGalleryModal }) => {
+
+  const [customerPhotos, setCustomerPhotos] = useState([]);
+  const fetchReviews = async (productUid) => {
+    try {
+      const response = await axios.get(`${url}/api/v1/reviews/get-by-product/${productUid}`);
+      console.log("review response ", response)
+      setCustomerPhotos(response.data.reviews[0].images)
+      
+    } catch (error) {
+      console.error("UnExpected Server Error", error);
+    }
+  };
+
+  useEffect(() => {fetchReviews(productData?.uid)}, [])
+
+  useEffect(() => { console.log("Customer Photos", customerPhotos) }, [customerPhotos])
+
   const dimensionCards = [
     { icon: <RxDimensions size={25} />, title: 'Dimensions' },
-    { icon: <FaRegImage size={25} />, title: 'Customer Photos' },
+    ...(customerPhotos.length > 0 ? [{ icon: <FaRegImage size={25} />, title: 'Customer Photos' }] : []),
     { icon: zoomIn ? <AiOutlineZoomOut size={25} /> : <AiOutlineZoomIn size={25} /> , title: 'Zoom' },
   ]
 

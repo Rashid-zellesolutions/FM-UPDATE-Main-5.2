@@ -44,6 +44,7 @@ const CartItems = ({
     // States and variables
     const {
         eachProtectionValue,
+        eachProtectionValue2,
         isCartProtected,
         cartProducts,
     } = useCart()
@@ -60,7 +61,7 @@ const CartItems = ({
         currency: 'USD'
     }).format(regular_price)
 
-    const productTotalPrice = sale_price !== "0" ? (sale_price * quantity) + (isCartProtected ? 0 : (isProtected === 1 ? eachProtectionValue : 0)) : (regular_price * quantity) + (isCartProtected ? 0 : (isProtected === 1 ? eachProtectionValue : 0));
+    const productTotalPrice = sale_price !== "0" ? (sale_price * quantity) + (isCartProtected ? 0 : (isProtected === 1 ? (quantity > 1 ? eachProtectionValue2 : eachProtectionValue) : 0)) : (regular_price * quantity) + (isCartProtected ? 0 : (isProtected === 1 ? (quantity > 1 ? eachProtectionValue2 : eachProtectionValue) : 0));
 
     const formatedTotalPrice = Intl.NumberFormat('en-us', {
         style: 'currency',

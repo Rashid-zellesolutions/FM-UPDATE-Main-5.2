@@ -5,11 +5,12 @@
     justify-content: center;
     flex-direction: column;
     gap: 15px;
+    padding: 0 24px;
     /* position: relative; */
     position: sticky;
     top: 0;
     left: 0;
-    background-color: #F9F9F9;
+    /* background-color: #F9F9F9; */
     overflow: hidden;
     z-index: 999999;
 }

@@ -38,9 +38,12 @@ const QuickView = ({ setQuickViewProduct, quickViewClose, quickViewShow, }) => {
         decreamentQuantity,
         removeFromCart,
         addToCart0,
-        cartProducts
+        cartProducts,
+        isCartLoading,
+        cartSection,
+        setCartSection
     } = useCart();
-    const [cartSection, setCartSection] = useState(false);
+    // const [cartSection, setCartSection] = useState(false);
     const [viewDetails, setViewDetails] = useState(null)
     const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -85,7 +88,7 @@ const QuickView = ({ setQuickViewProduct, quickViewClose, quickViewShow, }) => {
 
 
     const handleAddToCartProduct = (product) => {
-        setCartSection(true);
+        // setCartSection(true);
         addToCart0(product, variableProductData, 0, quantity)
     }
 
@@ -234,8 +237,12 @@ const QuickView = ({ setQuickViewProduct, quickViewClose, quickViewShow, }) => {
                         }
                     </div>
                     {/* <img src={redHeart} alt='heart' className='quickview-heart-icon' /> */}
-                    <button className='quick-view-add-to-cart' onClick={() => handleAddToCartProduct(setQuickViewProduct)}>
+                    {/* <button className='quick-view-add-to-cart' onClick={() => handleAddToCartProduct(setQuickViewProduct)}>
                         Add To Cart
+                    </button> */}
+                    <button className='quick-view-add-to-cart' onClick={() => handleAddToCartProduct(setQuickViewProduct)}>
+                        {isCartLoading && <div className="loader_2"></div>}
+                        {isCartLoading ? ' Almost there...' : 'Add To Cart'}
                     </button>
                 </div>
                 <div className='quick-view-details-section'>

@@ -25,7 +25,7 @@ const CartSideSection = (
     const { eachProtectionValue, isCartProtected } = useCart();
 
     const productTotalPrice = sale_price !== "0" ? (sale_price * quantity) + (isCartProtected ? 0 : (isProtected === 1 ? eachProtectionValue : 0)) : (regular_price * quantity) + (isCartProtected ? 0 : (isProtected === 1 ? eachProtectionValue : 0));
-    
+
 
     return (
         <div className='cart-side-section-product'>
@@ -80,6 +80,7 @@ const CartSideSection = (
                     </div>
                 </div>
             </div>
+
         </div>
     )
 }

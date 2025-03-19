@@ -3,13 +3,13 @@
     width: 100%;
     flex-direction: column;
     /* padding: var(--global-padding); */
-    padding: 24px;
+    /* padding: 24px; */
     /* padding: 35px 200px; */
     gap: 25px;
     max-width: 1440px;
     margin: auto;
 }
-
+ 
 @media only screen and (max-width: 480px){
     .product-display-page-main-container{
         padding: 20px 10px;

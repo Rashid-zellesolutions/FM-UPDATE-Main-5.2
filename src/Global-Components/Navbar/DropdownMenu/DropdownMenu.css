@@ -9,7 +9,7 @@
     /* background-color: var(--bg-color); */
     /* background: rgba(249,249,2490. 0.9); */
     background-color: #f0f0f0;
-    z-index: 22222;
+    z-index: 99999999999; 
     overflow-y: auto;
     overflow-x: hidden;
     flex-wrap: nowrap;

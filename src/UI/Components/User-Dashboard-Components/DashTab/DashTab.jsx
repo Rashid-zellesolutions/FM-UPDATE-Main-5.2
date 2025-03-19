@@ -9,35 +9,36 @@ import { useUserDashboardContext } from '../../../../context/userDashboardContex
 import { useNavigate } from 'react-router-dom';
 
 
-const DashTab = ({data}) => {
+const DashTab = ({ data }) => {
   const navigate = useNavigate();
   const { setUserToken } = useUserDashboardContext();
 
-  const logout = async () =>{
+  const logout = async () => {
     localStorage.removeItem('userToken');
     localStorage.removeItem('uuid');
+    localStorage.setItem('cartUid', "null");
     setUserToken(null);
-    navigate("/my-account",{state:{message:"decided"}})
+    navigate("/my-account", { state: { message: "decided" } })
   }
   return (
     <div className='dash-tab-main-container'>
       <div className="most_upper_section">
         <div className="most_upper_section_left">
-        <h2 className='greeting'><strong>Hey</strong>, {data?.first_name} {data?.last_name}</h2>
-        <h3 className='descri'>Analyze your report</h3>
+          <h2 className='greeting'><strong>Hey</strong>, {data?.first_name} {data?.last_name}</h2>
+          <h3 className='descri'>Analyze your report</h3>
         </div>
         <div className="most_upper_section_right">
           <div className="profileAvatar">
             <img src="https://cdn-icons-png.flaticon.com/128/149/149071.png" alt="" srcset="" />
           </div>
           <div className="logoutButton">
-            <button onClick={()=>{logout()}} >
+            <button onClick={() => { logout() }} >
               <p>Logout</p>
-              <IoMdLogOut/>
+              <IoMdLogOut />
             </button>
           </div>
         </div>
-      
+
       </div>
       <div className='upper_tabs'>
         <DashboardTab name={"Total Orders"} value={"0"} unit={"order"} slug={"total-orders"} />

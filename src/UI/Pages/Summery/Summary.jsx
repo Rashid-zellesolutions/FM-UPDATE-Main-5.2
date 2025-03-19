@@ -16,6 +16,7 @@ import { useGlobalContext } from '../../../context/GlobalContext/globalContext';
 import { IoIosArrowDown } from "react-icons/io";
 import { Link } from 'react-router-dom';
 import DeliveryInfo from './DeliveryInfo/DeliveryInfo';
+import axios from 'axios';
 
 
 const Summary = () => {
@@ -23,20 +24,8 @@ const Summary = () => {
   const deliveryInfoRef = useRef(null);
 
   const handleDeliveryFormSubmit = () => {
-    };
+  };
 
-  const handleContinueToPayment = () => {
-    if (deliveryInfoRef.current) {
-        const isValid = deliveryInfoRef.current.validateAndSubmit();
-
-        if (!isValid) {
-            return; // Stop here if validation fails
-        }
-
-        // Proceed only if validation passes
-        handleTabOpen(1);
-    }
-};
 
   const checkoutSections = [
     { id: 1, name: 'Delivery', navOp: 'delivery' },
@@ -45,8 +34,8 @@ const Summary = () => {
   ]
 
   const checkoutSectionsData = [
-    {id: 1, name: 'Delivery', navOp: 'delivery'},
-    {id: 2, name: 'Payments', navOp: 'payment-method'},
+    { id: 1, name: 'Delivery', navOp: 'delivery' },
+    { id: 2, name: 'Payments', navOp: 'payment-method' },
   ]
 
   const [currentOption, setCurrentOption] = useState(0);
@@ -83,7 +72,44 @@ const Summary = () => {
     subTotal,
     savings,
     cartProducts,
+    cartUid,
+
   } = useCart();
+
+
+  const [isLoading, setIsLoading] = useState(false);
+  const handleContinueToPayment = async () => {
+
+    if (deliveryInfoRef.current) {
+      setIsLoading(true)
+      const isValid = deliveryInfoRef.current.validateAndSubmit();
+
+      if (!isValid) {
+        setIsLoading(false)
+        return; // Stop here if validation fails
+      }
+
+      try {
+        const response = await axios.put(`https://fm.zellehost.com/api/v1/unused-cart/edit/${cartUid}`, { cart: cartProducts, checkout: orderPayload.billing });
+
+        console.log("API Response:", response.data);
+
+        await new Promise((resolve) => setTimeout(resolve, 0)); // Ensures React processes state updates correctly
+        handleTabOpen(1);
+        setIsLoading(false)
+        return response.data;
+      } catch (error) {
+        console.error("Error updating cart:", error);
+        // setIsCartLoading(false);
+        setIsLoading(false)
+        throw error; // Avoid calling setCartSection on error if not needed
+      }
+
+
+      // Proceed only if validation passes
+
+    }
+  };
 
   const protectionPrice = isCheck[0] ? 210 : 0;
   const assemblyPrice = isCheck[1] ? 250 : 0;
@@ -154,7 +180,7 @@ const Summary = () => {
             ))} */}
 
             {checkoutSectionsData.map((item, index) => (
-              <div 
+              <div
                 onClick={() => handleTabOpen(index)}
                 className={`checkout-page-select-option-container ${selectedTab === index ? 'selected-option' : ''}`}
                 key={item.id}
@@ -170,16 +196,16 @@ const Summary = () => {
                   <input
                     type='checkbox'
                     checked={selectedTab === index}
-                    // onChange={() => handleTabOpen(index)}
+                  // onChange={() => handleTabOpen(index)}
                   />
                   <span></span>
                 </label>
-                
-                
+
+
               </div>
             ))}
 
-            
+
 
           </div>
           {
@@ -205,8 +231,8 @@ const Summary = () => {
               //       </button>
               //     </div>
               //   </div> :
-                selectedTab === 1 ? <PaymentMethod handleSubmitOrder={handleSubmit} />
-                  : <></>
+              selectedTab === 1 ? <PaymentMethod handleSubmitOrder={handleSubmit} />
+                : <></>
           }
         </div>
       }
@@ -298,12 +324,12 @@ const Summary = () => {
 
               <div className='right-section-order-place-container'>
                 <span className='right-section-place-order-terms-and-rights'>
-                  By placing this order I agree to the Furniture Mecca 
+                  By placing this order I agree to the Furniture Mecca
                   <Link to={'/terms-and-conditions'}>Terms & Conditions</Link>
                 </span>
                 {
                   selectedTab === 0 ? <button onClick={handleContinueToPayment} className='right-section-place-order-button'>Continue</button>
-                  : <button onClick={handleSubmit}  className='right-section-place-order-button'>Place Your Order</button>
+                    : <button onClick={handleSubmit} className='right-section-place-order-button'>Place Your Order</button>
                 }
                 {/* <button className='right-section-place-order-button'>Place Your Order</button> */}
               </div>
@@ -311,6 +337,9 @@ const Summary = () => {
 
           </div>
         </div>
+      </div>}
+      {isLoading && <div className="cart_products_overlay">
+        <div className="loader"></div>
       </div>}
     </div>
   )

@@ -17,6 +17,8 @@ import { Link } from 'react-router-dom';
 // Slider component accepting images as props
 const Sliderr = ({ images, height }) => {
 
+    console.log("new images", images)
+
     // State and variables
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isHovered, setIsHovered] = useState(false);
@@ -81,7 +83,7 @@ const Sliderr = ({ images, height }) => {
         <>
             <div className="slider" style={{ cursor: 'grab', height: height ? height : "calc(100vw * 0.26355)" }}>
                 <Slider {...settings}>
-                    {images?.map((img, index) => (
+                    {images?.desktop?.map((img, index) => (
                         <Link to={`/product/${img?.link_url}`} className="slide" key={index}>
                             <img
                                 src={`${url}${img.image_url}`}
@@ -101,12 +103,12 @@ const Sliderr = ({ images, height }) => {
             {/* Mobile View */}
 
             <div className="mobile-view-slider">
-                {images?.length > 0 ? (
+                {images?.mobile?.length > 0 ? (
                     <Slider {...settings}>
-                        {images?.map((img, index) => (
+                        {images?.mobile?.map((img, index) => (
                             <div className="mobile-slide" key={index}>
                                 <img
-                                    src={mobileViewSLider?.[index]?.img}
+                                    src={`${url}${img.image_url}`}
                                     alt={`slide ${index + 1}`}
                                     onDragStart={(e) => e.preventDefault()}
                                 />

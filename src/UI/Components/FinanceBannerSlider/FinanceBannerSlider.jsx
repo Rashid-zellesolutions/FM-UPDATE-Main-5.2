@@ -71,6 +71,7 @@ import { url } from "../../../utils/api";
 
 function FinanceBannerSlider({ images }) {
 
+    console.log("financing Slider Data", images)
     const settings = {
         dots: false, // Show navigation dots
         infinite: true, // Infinite loop

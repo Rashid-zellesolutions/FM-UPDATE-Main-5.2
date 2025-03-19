@@ -72,6 +72,7 @@ const Home = () => {
     setCurrentUrl(location.pathname);
   }, [location]);
 
+  console.log("slider new object", slides)
   useEffect(() => {
     if (!slides.length) {
       getHomeSliderImages();
@@ -91,12 +92,6 @@ const Home = () => {
     if (!financingBanners.length) {
       getFinanceBannerImagesFromApi();
     }
-    // if (!allProducts.length) {
-    //   getDealOfTheMonthProducts()
-    // }
-    // if(!bestSellerProducts.length) {
-    //   getBestSellerProducts()
-    // }
   }, []);
 
   const navigate = useNavigate();

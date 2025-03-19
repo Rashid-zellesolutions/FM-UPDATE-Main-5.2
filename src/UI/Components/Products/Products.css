@@ -343,7 +343,7 @@
     justify-content: center;
     width: 100%;
     height: 100%;
-    min-height: 50vh;
+    min-height: 80vh;
     /* background-color: orange; */
 }
 
@@ -361,7 +361,7 @@
 .filters-section{
     display: flex;
     flex-direction: column;
-    width: 25%;
+    width: 20%;
     height: max-content;
     gap: 30px;
     /* padding-right: 15px; */
@@ -378,6 +378,10 @@
     overflow-x: hidden;
     padding: 0;
     border-right: none;
+}
+
+.filters-section.add-border-to-filters {
+    border-right: 1px solid var(--border-color);
 }
 
 .hide-filters-btn{
@@ -736,8 +740,9 @@ label {
     display: flex;
     flex-direction: column;
     height: max-content;
+    position: relative;
     border-left: 1px solid var(--border-color);
-    width: 100%;
+    width: 80%;
     /* flex-grow: 1; */
     gap: 15px;
     padding-left: 9px;

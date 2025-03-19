@@ -3,6 +3,7 @@
     width: 100%;
     align-items: center;
     justify-content: start;
+    padding: 0 24px;
 }
 
 .product-detail-right-section{

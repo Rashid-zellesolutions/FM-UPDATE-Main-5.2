@@ -4,10 +4,11 @@ import { url } from '../../../../utils/api';
 import { Link } from 'react-router-dom';
 import { useUserDashboardContext } from '../../../../context/userDashboardContext/userDashboard';
 import { useNavigate } from 'react-router-dom';
-import loadingIcon from "../../../../Assets/Loader-animations/loader-check-two.gif"
+import loadingIcon from "../../../../Assets/Loader-animations/loader-check-two.gif";
+import { useCart } from '../../../../context/cartContext/cartContext';
 
 const Login = ({ signupclicked, setSignupclicked }) => {
- 
+
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
@@ -23,6 +24,7 @@ const Login = ({ signupclicked, setSignupclicked }) => {
   const navigate = useNavigate()
 
   const { setToken } = useUserDashboardContext();
+  const { setCartUid } = useCart();
   const id = localStorage.getItem('uuid');
 
 
@@ -80,11 +82,31 @@ const Login = ({ signupclicked, setSignupclicked }) => {
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
 
+  const convertCartAbd = () => {
+    return async () => {
+      const response = await fetch(`${url}/api/v1/customer/unused-cart/convert`, {
+        method: 'POST',
+        body: JSON.stringify({
+          _id: localStorage.getItem('cartUid'),
+          userId: localStorage.getItem('uuid')
+        }),
+        headers: {
+          authorization: `${localStorage.getItem('userToken')}`,
+          "Content-Type": "application/json"
+        }
+      });
+
+      const data = await response.json(); // Parse JSON response
+      return data;
+    };
+  };
+
+
 
   const handleSubmitLogin = async (e) => {
     e.preventDefault();
     // Simple validation for the form
-   
+
     setError('');
     setLoading(true);
 
@@ -103,9 +125,23 @@ const Login = ({ signupclicked, setSignupclicked }) => {
       const result = await response.json();
 
       if (response.ok) {
-        setToken(result.token,result?.data?._id)
+        setToken(result.token, result?.data?._id)
         setLoginEmail('');
         setLoginPassword('');
+        const isCartConversionNeeded = localStorage.getItem('cartUid') && localStorage.getItem('cartUid') !== "null" && localStorage.getItem('cartUid') !== "undefined";
+        if (isCartConversionNeeded) {
+          const convertCart = convertCartAbd();
+          convertCart().then(response => {
+            console.log(response); // Full response object
+            if (response?.status === 200) {
+              setCartUid(response?.existingCartId)
+            } else if (response?.status === 201) {
+              setCartUid(response?.newCartId)
+            }
+          }).catch(error => {
+            console.error("Error converting cart:", error);
+          });
+        }
         setLoading(false);
         navigate(`/user-dashboard/${result?.data?._id}`)
       } else {
@@ -229,7 +265,7 @@ const Login = ({ signupclicked, setSignupclicked }) => {
 
         </div>
 
-      {loading &&  <div className="loading_reg">
+        {loading && <div className="loading_reg">
           <img src={loadingIcon} alt="" />
           <p>Creating Your Account...</p>
         </div>}
@@ -262,15 +298,15 @@ const Login = ({ signupclicked, setSignupclicked }) => {
               />
             </label>
             <div className='login-sec-forgot-pass'>
-            <input type='checkbox' />
-            <p >Forgot Password</p>
-          </div>
+              <input type='checkbox' />
+              <p >Forgot Password</p>
+            </div>
             <button className="login-sec-login-btn" type="submit">Login</button>
           </form>
 
-        
+
         </div>
-        {loading &&  <div className="loading_reg">
+        {loading && <div className="loading_reg">
           <img src={loadingIcon} alt="" />
           <p>Please Wait...</p>
         </div>}

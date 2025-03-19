@@ -16,7 +16,8 @@ const CartSidePannel = (
     handleCartSectionClose,
     removeFromCart,
     decreamentQuantity,
-    increamentQuantity
+    increamentQuantity,
+
   }) => {
 
   const {
@@ -24,7 +25,8 @@ const CartSidePannel = (
     isProfessionalAssembly,
     handleCartProtected,
     handleCartAssembly,
-    cartProducts
+    cartProducts,
+    isCartLoading, totalProtectionValue, professionalAssemblyValue
   } = useCart()
 
   // const [singleCart, setSingleCart] = useState(cartData)
@@ -101,7 +103,7 @@ const CartSidePannel = (
                   checked={isProfessionalAssembly}
                   onChange={() => handleCartAssembly()}
                 />
-                Professional Assembly (+ $210)
+                Professional Assembly (+ ${totalProtectionValue})
               </label>
               <p className='order-summary-proffesional-check-item-detail'>Use professional assembly for all products and save up to $80</p>
             </div>
@@ -116,7 +118,7 @@ const CartSidePannel = (
                   checked={isCartProtected}
                   onChange={() => handleCartProtected()}
                 />
-                Elite Platinum Furniture Protection(+ $210)
+                Elite Platinum Furniture Protection(+ ${professionalAssemblyValue})
               </label>
               <p className='order-summary-proffesional-check-item-detail'>Use professional assembly for all products and save up to $80</p>
             </div>
@@ -135,6 +137,11 @@ const CartSidePannel = (
           </button>
         </div>
       </div>
+      {isCartLoading && <div className="loader_overlay">
+        <div className="loader">
+
+        </div>
+      </div>}
     </div>
   )
 }

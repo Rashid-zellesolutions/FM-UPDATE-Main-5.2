@@ -55,13 +55,16 @@ const ProductDisplay = () => {
     increamentQuantity,
     removeFromCart,
     addToCart0,
-    cartProducts
+    cartProducts,
+    cartSection,
+    setCartSection,
+    isCartLoading
   } = useCart();
 
   const [variationData, setVariationData] = useState([])
   const [isLoading, setIsLoading] = useState(false);
   const [isProtectionCheck, setIsProtectionCheck] = useState(true)
-  const [cartSection, setCartSection] = useState(false);
+  // const [cartSection, setCartSection] = useState(false);
   const [quantity, setQuantity] = useState(1)
 
   const decreaseLocalQuantity = () => {
@@ -240,6 +243,7 @@ const ProductDisplay = () => {
         increamentQuantity={increamentQuantity}
         isSticky={isSticky}
         handleGalleryModal={handleOpenModal}
+        isCartLoading={isCartLoading}
       // parentCategories={parentCategories}
       />
 
@@ -274,9 +278,6 @@ const ProductDisplay = () => {
         product={product}
       />
 
-
-
-
       <GalleryModal
         dimensionModal={dimensionModal}
         handleCloseDimensionModal={handleCloseDimensionModal}
@@ -288,7 +289,6 @@ const ProductDisplay = () => {
         handleThumbnailClick={handleThumbnailClick}
         thumbActiveIndex={thumbActiveIndex}
       />
-
 
     </div>
   )

@@ -547,7 +547,7 @@ const ProductCardTwo = ({
                                                     ${sale_price} 
                                                     <del className={`product-del-price-with-sale-price ${colTwo ? 'apply-col-two-styling' : ''}`}>${priceTag}</del> 
                                                 </h3>
-                                                <div className='mobile-view-rating-stars'>
+                                                <div className={`mobile-view-rating-stars ${colTwo ? 'apply-two-col-styling' : ''}`}>
                                                     <RatingReview rating={parseFloat(reviewCount)} size={"12px"} disabled={true} />
                                                 </div>
                                             </div>

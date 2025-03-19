@@ -55,6 +55,7 @@ const ProductDetailSticky = (
     setVariationData,
     handleGalleryModal,
     isSticky,
+    isCartLoading,
     // parentCategories,
   }) => {
 
@@ -234,17 +235,23 @@ const ProductDetailSticky = (
   ]
   const [miles, setMiles] = useState(milesData[0].distance);
   const handleMilesDropdown = () => {
-    setShowMiles(!showMiles)
+    setShowMiles(true)
   }
 
-  const contectInfo = [
-    { title: 'Call', icon: <IoCallOutline size={18} color='#595959' /> },
-    { title: 'Chat', icon: <IoChatbubbleOutline size={18} color='#595959' /> },
-    { title: 'Visit', icon: <PiStorefrontLight size={18} color='#595959' /> },
-  ]
+  const handleCloseMiles = (e) => {
+    // e.stopPropagation()
+    setShowMiles(false);
+  }
+
+  // const contectInfo = [
+  //   { title: 'Call', icon: <IoCallOutline size={18} color='#595959' />, disableColor: false, tel: true },
+  //   { title: 'Chat', icon: <IoChatbubbleOutline size={18} color='#595959' />, disableColor: true, tel: false },
+  //   { title: 'Visit', icon: <PiStorefrontLight size={18} color='#595959' />, disableColor: false, tel: false },
+  // ]
 
   const [appointmentModal, setAppointmentModal] = useState(false);
   const handleShowAppointmentModal = () => {
+    console.log("clicked")
     setAppointmentModal(true);
   }
 
@@ -513,7 +520,8 @@ const ProductDetailSticky = (
                 {isInWishList(product.uid) ? <IoMdHeart size={20} color={isInWishList(product.uid) ? 'red' : '#595959'} />
                   : <IoMdHeartEmpty size={20} />}
               </div>
-              <button
+
+              {/* <button
                 className={`add-to-cart-btn ${isLoading ? 'loading' : ''}`}
                 onClick={() => {
                   handleClick();
@@ -522,6 +530,20 @@ const ProductDetailSticky = (
                 }
                 }>
                 {isLoading ? 'Loading...' : 'Add To Cart'}
+              </button> */}
+
+              
+
+              <button
+                  className={`add-to-cart-btn ${isLoading ? 'loading' : ''}`}
+                  onClick={() => {
+                    handleClick();
+                    addToCart0(product, variationData, !isProtected ? 1 : 0, quantity)
+                    // handleAddToCartProduct(product);
+                  }
+                  }>
+                  {isCartLoading  && <div className="loader_2"></div>}
+                  {isCartLoading ? ' Almost there...' : 'Add To Cart'}
               </button>
             </div>
 
@@ -602,7 +624,7 @@ const ProductDetailSticky = (
                 <h3>See it in Person</h3>
               </div>
 
-              <div className='see-it-in-person-body'>
+              <div className='see-it-in-person-body' onClick={handleCloseMiles}>
 
                 <p>This collection is on display in 3 stores within</p>
 
@@ -617,7 +639,7 @@ const ProductDetailSticky = (
                       {milesData.map((item, index) => (
                         <p key={index} onClick={() => {
                           setMiles(item.distance);
-
+                          setShowMiles(false)
                         }}>{item.distance}</p>
                       ))}
                     </div>
@@ -642,12 +664,22 @@ const ProductDetailSticky = (
               <div className='talk-with-expert-main-container'>
                 <p>Talk with an Expert</p>
                 <div className='talk-with-expert-options'>
-                  {contectInfo.map((item, index) => (
-                    <button key={index}>
-                      {item.icon}
-                      {item.title}
-                    </button>
-                  ))}
+
+                  <a href='tel:2153521600'>
+                    <IoCallOutline size={18} color='#595959' />
+                    Call
+                  </a>
+
+                  <button className='disable-chat' disabled={true}>
+                    <IoChatbubbleOutline size={18} color='#595959' />
+                    Chat
+                  </button>
+
+                  <button onClick={handleShowAppointmentModal} >
+                    <PiStorefrontLight size={18} color='#595959' />
+                    Visit
+                  </button>
+
                 </div>
               </div>
               

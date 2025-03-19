@@ -24,6 +24,20 @@
     opacity: 1;
 }
 
+.loader_overlay{
+    width: 430px;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 .cart-section-close-btn {
     position: absolute;
     display: flex;

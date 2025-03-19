@@ -13,7 +13,6 @@ import guardIcon from '../../../../Assets/icons/guard-icon.png'
 import { formatedPrice } from '../../../../utils/api';
 import { useGlobalContext } from '../../../../context/GlobalContext/globalContext';
 import SnakBar from '../../../../Global-Components/SnakeBar/SnakBar';
-import professionalAssembly from '../../../../Assets/icons/professional-assembly.png'
 
 
 const CartProducts = () => {
@@ -31,6 +30,7 @@ const CartProducts = () => {
         isProfessionalAssembly,
         handleCartProtected,
         handleCartAssembly,
+        isCartLoading
     } = useCart()
 
     const {
@@ -48,7 +48,7 @@ const CartProducts = () => {
     }, [cartProducts])
 
     useEffect(() => { console.log("protected product", productProtectCount) }, [productProtectCount])
-    
+
 
     const [locationDetails, setLocationDetails] = useState({
         zipCode: '',
@@ -125,9 +125,9 @@ const CartProducts = () => {
                         <p className='update-zip-on-cart-update-location' onClick={handleLocationModal}>Change Location</p>
                     </span>
                     <div className='mobile-view-update-zip-on-cart-page'>
-                        <span> 
+                        <span>
                             <IoLocationOutline size={20} color='#595959' />
-                            <p>Product availability and delivery options for 19134</p>    
+                            <p>Product availability and delivery options for 19134</p>
                         </span>
                         <p onClick={handleLocationModal}> Change Location </p>
                     </div>
@@ -161,7 +161,7 @@ const CartProducts = () => {
                             </div>
 
                             <div className='cart-protect-card' onClick={handleCartAssembly}>
-                                <img src={professionalAssembly} alt='guard icon' className='cart-protection-card-icon' />
+                                <img src={guardIcon} alt='guard icon' className='cart-protection-card-icon' />
                                 <div className='cart-protection-plan-details-container'>
                                     <p className='cart-protection-plan-card-header'>Professional Assembly (+ $210)</p>
                                     <p className='cart-protection-plan-cart-desc'>Use professional assembly for all products and save up to $80</p>
@@ -258,8 +258,8 @@ const CartProducts = () => {
                             handleSingleProtected={() => { }}
                             cartIndex={items.product_uid}
                             productsLength={cartProducts.products.length}
-                            handleRomoveProduct={() => { 
-                                handleShowSnakeToust(items.name) ; 
+                            handleRomoveProduct={() => {
+                                handleShowSnakeToust(items.name);
                                 removeFromCart(items.isVariable === 1 ? items.variation_uid : items.product_uid, items.isVariable === 1)
                             }}
                             cartProductName={items.name}
@@ -278,6 +278,10 @@ const CartProducts = () => {
                             addProtection={() => addSingleProtection(items.isVariable === 1 ? items.variation_uid : items.product_uid, items.isVariable === 1)}
                         />
                     })}
+
+                    {isCartLoading && <div className="cart_products_overlay">
+                        <div className="loader"></div>
+                    </div>}
                 </div>
                 <div className='mobile-cart-items'>
                     {cartProducts.products.length <= 0 && <EmptyCart />}
@@ -312,6 +316,9 @@ const CartProducts = () => {
                         // addProtection={() => addSingleProtection(items.isVariable===1?items.variation_uid:items.product_uid,items.isVariable===1)}
                         />
                     ))}
+                    {isCartLoading && <div className="cart_products_overlay">
+                        <div className="loader"></div>
+                    </div>}
                 </div>
 
 
@@ -326,7 +333,7 @@ const CartProducts = () => {
                     setLocationDetails={setLocationDetails}
                     locationDetails={locationDetails}
                 />
-                <SnakBar 
+                <SnakBar
                     message={snakeBarMessage}
                     openSnakeBarProp={showSnakeBar}
                     setOpenSnakeBar={setShowSnakeBar}

@@ -493,6 +493,14 @@
     font-weight: 400;
 }
 
+.quick-view-add-to-cart > .loader_2{
+    margin-right: 4px;
+}
+
+.quick-view-add-to-cart:hover .loader_2{
+    background-color: white !important;
+}
+
 @media only screen and (max-width: 480px) {
     .quick-view-main {
         width: 90%;

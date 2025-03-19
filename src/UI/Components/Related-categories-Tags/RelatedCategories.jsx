@@ -2,11 +2,19 @@ import React, { useEffect, useState } from 'react'
 import './RelatedCategories.css'
 import { Link, useParams, useLocation } from 'react-router-dom'
 import { url } from '../../../utils/api';
+import { useProductArchive } from '../../../context/ActiveSalePageContext/productArchiveContext';
 
-const RelatedCategories = () => {
+const RelatedCategories = ({ navigationType }) => {
 
     const { categorySlug } = useParams();
-    const [categoryData, setCategoryData] = useState([])
+    // const [categoryData, setCategoryData] = useState([])
+    const {categoryData, setCategoryData} = useProductArchive()
+
+    // useEffect(() => {
+    //     if(navigationType !== 'POP') {
+    //         setCategoryData([])
+    //     }
+    // }, [navigationType])
 
     async function fetchHeaderPayloads() {
         try {
@@ -33,11 +41,13 @@ const RelatedCategories = () => {
     const [relatedCategoriesData, setRelatedCategoriesData] = useState([])
 
     useEffect(() => {
-        fetchHeaderPayloads().then(data => {
-            setCategoryData(data.data[0].categories)
-        }).catch(error => {
-            console.error(error);
-        });
+        if (navigationType !== 'POP') {
+            fetchHeaderPayloads().then(data => {
+                setCategoryData(data.data[0].categories)
+            }).catch(error => {
+                console.error(error);
+            });
+        }
 
         const unfilteredCategories = categoryData.find((item) => item.category_slug === categorySlug);
 

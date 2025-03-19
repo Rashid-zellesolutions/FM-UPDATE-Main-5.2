@@ -4,7 +4,7 @@ import Register from '../../Components/Login-Register-Components/Register/Regist
 import Login from '../../Components/Login-Register-Components/Login/Login'
 import RegisterMobileView from '../../Components/Login-Register-Components/RegisterMobileView/RegisterMobileView'
 import LoginMobileView from '../../Components/Login-Register-Components/loginMobileView/LoginMobileView'
-import { useLocation ,useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { url } from '../../../utils/api';
 import { useUserDashboardContext } from '../../../context/userDashboardContext/userDashboard'
 import { useGlobalContext } from '../../../context/GlobalContext/globalContext'
@@ -15,52 +15,54 @@ const LoginRegister = () => {
   const [signinClicked, setSigninClicked] = useState(false)
   const [mobileSignupClicked, setMobileSignupClicked] = useState(true)
 
-  const {setMainLoader} = useGlobalContext();
-   const {setUserToken} =useUserDashboardContext();
-  
-    const [isTokenValid, setIsTokenValid] = useState(false); 
-  
-    const checkToken = async () => {
-      const token = localStorage.getItem('userToken');
-      if (token) {
-          try {
-            setMainLoader(true);
-              const response = await fetch(`${url}/api/v1/web-users/verify-token`, {
-                  method: "GET",
-                  headers: {
-                      authorization: `${token}`,
-                  },
-              });
-              if (response.ok) {
-                  const data = await response.json();
-                  setUserToken(token);
-                  setIsTokenValid(true);
-                  setMainLoader(false);
-                  navigate("/user-dashboard")
-              } else {
-                  console.warn("Token is invalid or expired. Removing it.");
-                  localStorage.removeItem('userToken');
-                  setUserToken(null);
-                  setIsTokenValid(false);
-                  setMainLoader(false);
-              }
-          } catch (error) {
-              console.error("Error verifying token:", error);
-              localStorage.removeItem('userToken');
-              setUserToken(null);
-              setIsTokenValid(false);
-              setMainLoader(false);
-          }
-  
+  const { setMainLoader } = useGlobalContext();
+  const { setUserToken } = useUserDashboardContext();
+
+  const [isTokenValid, setIsTokenValid] = useState(false);
+
+  // const url = "http://localhost:8080"
+
+  const checkToken = async () => {
+    const token = localStorage.getItem('userToken');
+    if (token) {
+      try {
+        setMainLoader(true);
+        const response = await fetch(`${url}/api/v1/web-users/verify-token`, {
+          method: "GET",
+          headers: {
+            authorization: `${token}`,
+          },
+        });
+        if (response.ok) {
+          const data = await response.json();
+          setUserToken(token);
+          setIsTokenValid(true);
           setMainLoader(false);
-      }
-      else{
+          navigate("/user-dashboard")
+        } else {
+          console.warn("Token is invalid or expired. Removing it.");
+          localStorage.removeItem('userToken');
+          setUserToken(null);
+          setIsTokenValid(false);
+          setMainLoader(false);
+        }
+      } catch (error) {
+        console.error("Error verifying token:", error);
+        localStorage.removeItem('userToken');
+        setUserToken(null);
+        setIsTokenValid(false);
         setMainLoader(false);
       }
-      
+
+      setMainLoader(false);
+    }
+    else {
+      setMainLoader(false);
+    }
+
   };
-  
-  
+
+
   const moveToLoginDash = async () => {
     await checkToken();
   }
@@ -72,7 +74,7 @@ const LoginRegister = () => {
   // Check if the state exists and set default values accordingly
   useEffect(() => {
     if (!prevState) {
-        moveToLoginDash();
+      moveToLoginDash();
     }
   }, [prevState]);
 
@@ -87,20 +89,20 @@ const LoginRegister = () => {
   return (
     <>
       <div className='login-register-main-page'>
-        <Register 
+        <Register
           handleBtnClicked={handleSigninSlide}
           signinClicked={signinClicked}
         />
-        <Login 
+        <Login
           signupclicked={signinClicked}
         />
       </div>
       <div className='mobile-login-and-register-page'>
-        <LoginMobileView 
+        <LoginMobileView
           mobileSignupClicked={mobileSignupClicked}
           handleRegisteView={handleMobileSignup}
         />
-        <RegisterMobileView 
+        <RegisterMobileView
           mobileSignupClicked={mobileSignupClicked}
           handleRegisterView={handleMobileSignup}
         />

@@ -27,7 +27,6 @@ import FinancingModal from '../../Modals/FinancingModal/FinancingModal';
 import AppointmentModal from '../../../Global-Components/AppointmentModal/AppointmentModal';
 import ProductCardTwo from '../../Components/ProductCardTwo/ProductCardTwo';
 
-
 function SamplePrevArrow(props) {
   const { className, style, onClick } = props;
   return (
@@ -221,7 +220,7 @@ const Cart = () => {
     { title: `Tax (${totalTax?.tax_name})`, price: totalTax ? formatedPrice(calculateTotalTax(subTotal, parseFloat(totalTax?.tax_value))) : 0 }
   ]
 
-  
+
 
   // Define conditional visibility logic
   const filteredOrderPriceDetails = orderPriceDetails.filter((_, index) => {
@@ -240,7 +239,7 @@ const Cart = () => {
   }
 
   useEffect(() => {
-    if(applyFinancing) {
+    if (applyFinancing) {
       document.body.style.overflow = 'hidden'
     } else {
       document.body.style.overflow = 'auto'
@@ -451,7 +450,7 @@ const Cart = () => {
         </div>
 
       </div>
- 
+
       <div className='cart-related-products-display-section'>
         <h3>You May Also Like</h3>
         <div className='cart-related-products-slider-main-div'>
@@ -496,41 +495,41 @@ const Cart = () => {
                     handleCardClick={() => handleProductClick(item)}
                     handleQuickView={() => handleQuickViewOpen(item)}
                     handleWishListclick={() => handleWishList(item)}
-                    // key={index}
-                    // slug={item.slug}
-                    // singleProductData={item}
-                    // maxWidthAccordingToComp="98%"
-                    // // justWidth={'320px'}
-                    // tagIcon={item.productTag ? item.productTag : heart}
-                    // tagClass={item.productTag ? 'tag-img' : 'heart-icon'}
-                    // mainImage={`${item.image.image_url}`}
-                    // productCardContainerClass="product-card"
-                    // ProductSku={item.sku}
-                    // percent={'12%'}
-                    // tags={item.tags}
-                    // ProductTitle={truncateTitle(item.name, maxLength)}
-                    // stars={[
-                    //   { icon: star, title: 'filled' },
-                    //   { icon: star, title: 'filled' },
-                    //   { icon: star, title: 'filled' },
-                    //   { icon: star, title: 'filled' },
-                    //   { icon: star, title: 'filled' },
-                    // ]}
-                    // reviewCount={item.reviewCount}
-                    // lowPriceAddvertisement={item.lowPriceAddvertisement}
-                    // priceTag={item.regular_price}
-                    // sale_price={item.sale_price}
-                    // financingAdd={item.financingAdd}
-                    // learnMore={item.learnMore}
-                    // mainIndex={index}
-                    // deliveryTime={item.deliveryTime}
-                    // stock={item.manage_stock}
-                    // attributes={item.attributes}
-                    // handleCardClick={() => handleQuickViewOpen(item)}
-                    // handleQuickView={() => handleQuickViewOpen(item)}
-                    // type={item.type}
-                    // variation={item.variations}
-                    // handleWishListclick={() => handleWishList(item)}
+                  // key={index}
+                  // slug={item.slug}
+                  // singleProductData={item}
+                  // maxWidthAccordingToComp="98%"
+                  // // justWidth={'320px'}
+                  // tagIcon={item.productTag ? item.productTag : heart}
+                  // tagClass={item.productTag ? 'tag-img' : 'heart-icon'}
+                  // mainImage={`${item.image.image_url}`}
+                  // productCardContainerClass="product-card"
+                  // ProductSku={item.sku}
+                  // percent={'12%'}
+                  // tags={item.tags}
+                  // ProductTitle={truncateTitle(item.name, maxLength)}
+                  // stars={[
+                  //   { icon: star, title: 'filled' },
+                  //   { icon: star, title: 'filled' },
+                  //   { icon: star, title: 'filled' },
+                  //   { icon: star, title: 'filled' },
+                  //   { icon: star, title: 'filled' },
+                  // ]}
+                  // reviewCount={item.reviewCount}
+                  // lowPriceAddvertisement={item.lowPriceAddvertisement}
+                  // priceTag={item.regular_price}
+                  // sale_price={item.sale_price}
+                  // financingAdd={item.financingAdd}
+                  // learnMore={item.learnMore}
+                  // mainIndex={index}
+                  // deliveryTime={item.deliveryTime}
+                  // stock={item.manage_stock}
+                  // attributes={item.attributes}
+                  // handleCardClick={() => handleQuickViewOpen(item)}
+                  // handleQuickView={() => handleQuickViewOpen(item)}
+                  // type={item.type}
+                  // variation={item.variations}
+                  // handleWishListclick={() => handleWishList(item)}
                   />
                 </div>
               ))
@@ -561,12 +560,12 @@ const Cart = () => {
       </div>
 
       <QuickView setQuickViewProduct={quickViewProduct} quickViewShow={quickViewClicked} quickViewClose={handleQuickViewClose} />
-        <FinancingModal
-          applyFinancing={applyFinancing}
-          handleCloseModal={handleCloseFinancingModal}
-        />
+      <FinancingModal
+        applyFinancing={applyFinancing}
+        handleCloseModal={handleCloseFinancingModal}
+      />
 
-      <AppointmentModal 
+      <AppointmentModal
         showAppointMentModal={appointmentModal}
         setAppointmentModal={setAppointmentModal}
         handleCloseModal={handleCloseModal}
