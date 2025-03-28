@@ -70,6 +70,7 @@ export const CartProvider = ({ children }) => {
 
 
     // initialize cart from local storage
+    const [subTotal0, setSubTotal0] = useState(0);
     const [subTotal, setSubTotal] = useState(0);
     const [savings, setSavings] = useState(0);
 
@@ -755,6 +756,7 @@ export const CartProvider = ({ children }) => {
             // Calculate savings
             savings += (regularPrice - salePrice) * quantity;
         });
+        setSubTotal0(total);
         setSubTotal(total + (isCartProtected ? totalProtectionValue : 0) + (isProfessionalAssembly ? professionalAssemblyValue : 0));
 
         // Assuming you have a state or method to update the savings
@@ -776,6 +778,7 @@ export const CartProvider = ({ children }) => {
                 calculateTotalPrice,
                 addSingleProduct,
                 subTotal,
+                subTotal0,
                 taxValue,
                 deliveryCharges,
                 grandValue,

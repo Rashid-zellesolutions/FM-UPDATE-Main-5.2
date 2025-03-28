@@ -90,8 +90,8 @@
 }
 
 .terms-agree input[type='checkbox']:checked{
-    background-color: #C61B1A;
-    border: 2px solid #C61B1A;
+    background-color: var(--primary-color);
+    border: 2px solid var(--primary-color);
 }
 
 .terms-agree input[type='checkbox']:checked::after {
@@ -140,9 +140,9 @@
 }
 
 .procced-btn-div button{
-    background-color: #595959;
+    background-color: var(--secondary-color);
     color: var(--text-white);
-    border: 2px solid #595959;
+    border: 2px solid var(--secondary-color);
     outline: none;
     display: flex;
     align-items: center;

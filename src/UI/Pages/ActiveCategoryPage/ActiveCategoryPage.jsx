@@ -73,7 +73,7 @@ export default function ActiveCategoryPage() {
     
     return(
         <div className="activeCategoryPage">
-             <Sliderr  images={ salesData ? salesData?.data?.mainSlider?.desktop_view : []} />
+             {salesData  && <Sliderr  images={salesData?.data?.mainSlider} />}
              
              <div className="section_1_ASP">
              <h3 className='category-heading'>{ salesData ? salesData?.data?.categoryData?.name : ""}</h3>
@@ -128,7 +128,7 @@ export default function ActiveCategoryPage() {
                 </div>
              </div>
              
-             <Sliderr height={"auto"} images={ salesData ? salesData?.data?.banner1?.desktop_view : []} />
+             <Sliderr height={"auto"} images={ salesData ? salesData?.data?.banner1 : []} />
              <div className="content_1_section">
                 <div className="left_side_cont">
                 <div dangerouslySetInnerHTML={{ __html: salesData?.data?.content1 || "" }} />
@@ -137,7 +137,7 @@ export default function ActiveCategoryPage() {
                     <img src={ salesData ? url+salesData?.data?.banner2[0]?.image_url : ""} alt="" srcset="" />
                 </div>
              </div>
-             <Sliderr height={"auto"} images={ salesData ? salesData?.data?.banner3?.desktop_view : []} />
+             <Sliderr height={"auto"} images={ salesData ? salesData?.data?.banner3 : []} />
              <div className="section_3_ASP" dangerouslySetInnerHTML={{ __html: salesData?.data?.content2 || "" }} />
              <CartSidePannel 
             cartData={cartProducts}
@@ -150,7 +150,7 @@ export default function ActiveCategoryPage() {
         <div className={`quick-view-section ${quickViewClicked ? 'show-quick-view-section' : ''}`} onClick={handleQuickViewClose}>
             <button className={`quick-view-close`} onClick={handleQuickViewClose}>
                 {/* <img src={closeBtn} alt='close' /> */}
-                <IoMdClose size={25} style={{color: '#595959'}} />
+                <IoMdClose size={25} style={{color: 'var(--secondary-color)'}} />
             </button> 
             <div className={`quickview-containt ${quickViewClicked ? 'show-quick-view-containt' : ''}`} onClick={(e) => e.stopPropagation()}>
                 <QuickView setQuickViewProduct={quickViewProduct} />

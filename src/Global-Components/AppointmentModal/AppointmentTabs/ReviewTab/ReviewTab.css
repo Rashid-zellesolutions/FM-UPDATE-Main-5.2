@@ -119,8 +119,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #4487C5;
-  border: 1px solid #4487C5;
+  background-color: var(--tertiary-color);
+  border: 1px solid var(--tertiary-color);
   border-radius: 5px;
   color: #fff;
   font-size: var(--sub-section-size);

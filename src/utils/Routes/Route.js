@@ -35,6 +35,14 @@ const routes = (
 
         {/* Sale Day */}
         <Route
+            path="/sale/:slug"
+            element={
+                <ActiveCategoryPage
+                />
+            }
+        />
+
+        <Route
             path="/holiday-sale"
             element={
                 <ActiveCategoryPage
@@ -52,7 +60,7 @@ const routes = (
             }
         />
 
-        <Route 
+        <Route
             path="/searched-products"
             element={
                 <ProductArchive
@@ -133,28 +141,28 @@ const routes = (
             path="/wishlist"
             element={<WishList />}
         />
-        
-        <Route 
+
+        <Route
             path="/contact-us"
             element={<Contact />}
         />
-        <Route 
+        <Route
             path="/privacy-policy"
             element={<PrivacyPolicy />}
         />
-        <Route 
+        <Route
             path="/terms-and-conditions"
             element={<TermsAndConditions />}
         />
-        <Route 
+        <Route
             path="/shipping-and-delivery"
             element={<ShippingAndDelivery />}
         />
-        <Route 
+        <Route
             path="/return-policy"
             element={<ReturnPolicy />}
         />
-        <Route 
+        <Route
             path="/book-an-appointment"
             element={<BookAppointment />}
         />
@@ -164,9 +172,9 @@ const routes = (
         />
         <Route
             path="/user-dashboard/:id"
-            element={<UserDashboard />}
+            element={<UserDashboard />}
         />
-        <Route 
+        <Route
             path="/about-us"
             element={<AboutUs />}
         />
@@ -175,7 +183,7 @@ const routes = (
             element={<ProductDisplay />}
         /> */}
 
-        <Route exact path="/order-confirmation/:_id" element={<OrderConfirmationPage />} />
+        <Route exact path="/order-confirmation/:_id" element={<OrderConfirmationPage />} />
 
         {/* not found routes */}
         <Route path='*' element={<PageNotFound />} />

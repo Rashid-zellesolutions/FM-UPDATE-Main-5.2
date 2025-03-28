@@ -105,7 +105,7 @@ const CartSidePannel = (
                 />
                 Professional Assembly (+ ${totalProtectionValue})
               </label>
-              <p className='order-summary-proffesional-check-item-detail'>Use professional assembly for all products and save up to $80</p>
+              <p className='order-summary-proffesional-check-item-detail'>Delivery right inside the front door of your home. You do the unpacking and assembly.</p>
             </div>
           ) : (<></>)}
 
@@ -120,7 +120,7 @@ const CartSidePannel = (
                 />
                 Elite Platinum Furniture Protection(+ ${professionalAssemblyValue})
               </label>
-              <p className='order-summary-proffesional-check-item-detail'>Use professional assembly for all products and save up to $80</p>
+              <p className='order-summary-proffesional-check-item-detail'>Our Elite Furniture Protection Plan covers accidental stains and damage to your new fabric, leather, and wood (and other hard surfaces) furniture.</p>
             </div>
           ) : (<></>)}
 

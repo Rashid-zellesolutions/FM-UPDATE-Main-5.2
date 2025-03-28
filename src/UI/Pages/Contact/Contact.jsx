@@ -250,7 +250,7 @@ const Contact = () => {
                                     name='name'
                                     value={contactForm.name}
                                     onChange={handleContactValue}
-                                    style={{ borderColor: error.name ? 'red' : '#d7d7d7', color: error.name ? 'red' : '#595959' }}
+                                    style={{ borderColor: error.name ? 'red' : '#d7d7d7', color: error.name ? 'red' : 'var(--secondary-color)' }}
                                 />
                             </label>
                             <label>
@@ -262,7 +262,7 @@ const Contact = () => {
                                     value={contactForm.contactNo}
                                     onChange={handleContactValue}
                                     maxLength={14}
-                                    style={{ borderColor: error.contactNo ? 'red' : '#d7d7d7', color: error.contactNo ? 'red' : '#595959' }}
+                                    style={{ borderColor: error.contactNo ? 'red' : '#d7d7d7', color: error.contactNo ? 'red' : 'var(--secondary-color)' }}
                                 />
                             </label>
                         </div>
@@ -274,7 +274,7 @@ const Contact = () => {
                                 name='email'
                                 value={contactForm.email}
                                 onChange={handleContactValue}
-                                style={{ borderColor: error.email ? 'red' : '#d7d7d7', color: error.email ? 'red' : '#595959' }}
+                                style={{ borderColor: error.email ? 'red' : '#d7d7d7', color: error.email ? 'red' : 'var(--secondary-color)' }}
                             />
                         </label>
                         <div className='contact-form-combined-inputs'>
@@ -286,7 +286,7 @@ const Contact = () => {
                                     name='zipcode'
                                     value={contactForm.zipcode}
                                     onChange={handleZipCode}
-                                    style={{ borderColor: error.zipcode ? 'red' : '#d7d7d7', color: error.zipcode ? 'red' : '#595959' }}
+                                    style={{ borderColor: error.zipcode ? 'red' : '#d7d7d7', color: error.zipcode ? 'red' : 'var(--secondary-color)' }}
                                 />
                             </label>
                             <label>
@@ -297,7 +297,7 @@ const Contact = () => {
                                     name='state'
                                     value={contactForm.state}
                                     onChange={handleContactValue}
-                                    style={{ borderColor: error.state ? 'red' : '#d7d7d7', color: error.state ? 'red' : '#595959' }}
+                                    style={{ borderColor: error.state ? 'red' : '#d7d7d7', color: error.state ? 'red' : 'var(--secondary-color)' }}
                                 />
                             </label>
                         </div>
@@ -317,7 +317,7 @@ const Contact = () => {
                                     lineHeight: '18px',
                                     fontWeight: '400',
                                     borderRadius: '5px',
-                                    color: error.message ? 'red' : '#595959',
+                                    color: error.message ? 'red' : 'var(--secondary-color)',
                                     padding: '8px 10px',
                                     outline: 'none',
                                     fontFamily: "inherit", // Uses the default (Poppins)

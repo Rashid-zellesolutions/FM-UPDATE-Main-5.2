@@ -78,17 +78,17 @@ const FrequentlyBought = ({ relatedProducts, isPadding }) => {
     // }
 
     // wish list
-    const {addToList, removeFromList, isInWishList} = useList()
+    const { addToList, removeFromList, isInWishList } = useList()
     const notify = (str) => toast.success(str);
     const notifyRemove = (str) => toast.error(str)
     const handleWishList = (item) => {
-        if(isInWishList(item.uid)){
+        if (isInWishList(item.uid)) {
             removeFromList(item.uid);
             notifyRemove('Removed from wish list', {
                 autoClose: 10000,
                 className: "toast-message",
             })
-        }else{
+        } else {
             addToList(item)
             notify("added to wish list", {
                 autoClose: 10000,
@@ -115,14 +115,15 @@ const FrequentlyBought = ({ relatedProducts, isPadding }) => {
             <div className='frequently-bought-card'>
                 {data ? (
                     data && data.slice(0, 5).map((item, index) => (
-                    <ProductCardTwo
+                        <ProductCardTwo
                             key={index}
                             slug={item.slug}
                             singleProductData={item}
-                            maxWidthAccordingToComp={"100%"}
+                            maxWidthAccordingToComp={"98%"}
                             justWidth={'100%'}
+                            showOnPage={true}
                             percent={'12%'}
-                            showOnPage={false}
+                            titleHeight={true}
                             // colTwo={selectedGrid === 'single-col' ? false : true}
                             tagIcon={item.productTag ? item.productTag : heart}
                             tagClass={item.productTag ? 'tag-img' : 'heart-icon'}
@@ -182,8 +183,8 @@ const FrequentlyBought = ({ relatedProducts, isPadding }) => {
                         // sale_price={item.sale_price}
                         // handleWishListclick={() => handleWishList(item)}
                         // handleCardClick={() => handleCardClick(item)}
-                    />
-                ))
+                        />
+                    ))
                 ) : (
                     Array.from({ length: 4 }).map((_, index) => (
                         <ProductCardShimmer />

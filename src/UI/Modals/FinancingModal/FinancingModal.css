@@ -63,8 +63,8 @@
     gap: 15px;
     width: 80%;
     background-color: transparent;
-    border: 1px solid #4487C5;
-    color:  #4487C5;
+    border: 1px solid var(--tertiary-color);
+    color:  var(--tertiary-color);
     height: 50px;
     border-radius: 4px;
     text-decoration: none;

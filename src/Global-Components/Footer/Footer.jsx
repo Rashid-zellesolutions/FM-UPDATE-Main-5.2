@@ -32,7 +32,33 @@ import axios from 'axios';
 import { useGlobalContext } from '../../context/GlobalContext/globalContext';
 import SnakBar from '../SnakeBar/SnakBar';
 
+
+
 const Footer = ({ notLandingPage, checkoutPage }) => {
+    const [headerData, setHeaderData] = useState([]);
+
+
+     async function fetchHeaderPayloads() {
+        try {
+          const response = await fetch(`${url}/api/v1/header-payloads/get`, {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json", // Adjust headers as needed
+            },
+          });
+    
+          if (!response.ok) {
+            throw new Error(`Error: ${response.status} ${response.statusText}`);
+          }
+    
+          const data = await response.json();
+          return data;
+        } catch (error) {
+          console.error("Error fetching data:", error.message);
+          throw error;
+        }
+      }
+    
 
     const navigate = useNavigate();
 
@@ -127,6 +153,15 @@ const Footer = ({ notLandingPage, checkoutPage }) => {
     useEffect(() => {
         fetchGoogleRating();
     }, [])
+
+     useEffect(() => {
+        fetchHeaderPayloads().then(data => {
+          setHeaderData(data.data[0].categories);
+          console.log(data.data[0].categories,"here us footer")
+        }).catch(error => {
+          console.error(error);
+        });
+      }, [])
 
 
     const footerNavLinks = [
@@ -306,10 +341,10 @@ const Footer = ({ notLandingPage, checkoutPage }) => {
             details: defaultStore?.phone
 
         },
-        {
-            icon: clock,
-            details: defaultStoreTimings?.time
-        },
+        // {
+        //     icon: clock,
+        //     details: defaultStoreTimings?.time
+        // },
         {
             icon: calander,
             details: 'Monday - Sunday'
@@ -346,18 +381,20 @@ const Footer = ({ notLandingPage, checkoutPage }) => {
 
     return (
         <>
-            <div className={`footer-main-container ${checkoutPage ? 'hide-whole-footer' : ''}`}>
+            <div  className={`footer-main-container ${checkoutPage ? 'hide-whole-footer' : ''}`}>
                 <div className='footer-nav'>
-                    {footerNavLinks.map((items, index) => {
+                    {headerData && headerData?.map((items, index) => {
                         return <div key={index} className='footer-nav-links'>
-                            <h3 className='footer-nav-link-heading'>{items.heading}</h3>
-                            {items.navItems.map((item, innerIndex) => {
-                                return <FooterNav key={innerIndex} link={item.link} linkName={item.name} />
+                            <h3 className='footer-nav-link-heading'>{items?.category}</h3>
+                            {items?.subCategories.map((item, innerIndex) => {
+                                return <FooterNav key={innerIndex} link={`/${items?.category_slug}/${item?.slug}`} linkName={item.name} />
                             })}
                         </div>
                     })}
                 </div>
-                <div className='footer-second-contant-section'>
+                <div 
+                // style={notLandingPage ?{height:"500px"}:null} 
+                className='footer-second-contant-section'>
                     <div className='footer-left-section'>
                         <div className='left-section-contact'>
                             <div className='left-section-social-icons-div'>
@@ -380,6 +417,7 @@ const Footer = ({ notLandingPage, checkoutPage }) => {
                                     <p className='owner-tag-review'>{googleRating?.number_of_reviews} Google Reviews</p>
                                 </div>
                             </div>}
+                            
                             <div className='footer-left-contact-section'>
                                 {locationPhoneMail.map((item, index) => (
                                     <span key={index}>
@@ -388,39 +426,8 @@ const Footer = ({ notLandingPage, checkoutPage }) => {
                                     </span>
                                 ))}
                             </div>
-                        </div>
 
-                        <div className='left-section-location-section'>
-                            <h3 className='footer-location-section'>Nearest Store</h3>
-                            <div className='near-store-containt-section'>
-                                <div className='near-store-image-div'>
-                                    <img src={`${url}${defaultStore?.images?.[0]?.image_url}`} alt='near store' />
-                                </div>
-                                <div className='near-store-details-section'>
-                                    {nearStoreDetails.map((item, index) => (
-                                        <span key={index}>
-                                            <img src={item.icon} alt='icon' />
-                                            <p>{item.details}</p>
-                                        </span>
-                                    ))}
-                                </div>
-                                <div className='appointment-and-outlet-div'>
-                                    <span>
-                                        <p onClick={handleNavigateStores}>Outlet</p>
-                                    </span>
-                                    <Link to={'#'}>
-                                        <p onClick={handleClick}>Directions</p>
-                                    </Link>
-                                    <Link to={'/book-an-appointment'}>
-                                        <p>Book an Appointment</p>
-                                    </Link>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div className='footer-right-section'>
-                        <div className={`footer-right-get-scoop ${notLandingPage ? 'show-footer-get-the-scoop' : ''}`}>
+                            <div style={{marginTop:"30px"}} className={`footer-right-get-scoop ${notLandingPage ? '' : ''}`}>
                             <h3>Get The Scoop</h3>
                             {!isSubscribed ? <form style={{ width: "100%" }} onSubmit={handleSubmit}>
                                 <div className='footer-get-scoop-and-conditions'>
@@ -445,15 +452,73 @@ const Footer = ({ notLandingPage, checkoutPage }) => {
                                     <p className=''>Your Subscription Has Been Done Successfully.</p>
                                 </div>}
                         </div>
+                        </div>
+
+                        <div className='left-section-location-section'>
+                            <h3 className='footer-location-section'>Nearest Store</h3>
+                            <div className='near-store-containt-section'>
+                                <div className='near-store-image-div'>
+                                    <img src={`${url}${defaultStore?.images?.[0]?.image_url}`} alt='near store' />
+                                </div>
+                                <div className='near-store-details-section'>
+                                    {nearStoreDetails.map((item, index) => (
+                                        <span key={index}>
+                                            <img src={item.icon} alt='icon' />
+                                            <p>{item.details}</p>
+                                        </span>
+                                    ))}
+                                     <div className='appointment-and-outlet-div'>
+                                    <span>
+                                        <p onClick={handleNavigateStores}>Outlet</p>
+                                    </span>
+                                    <Link to={'#'}>
+                                        <p onClick={handleClick}>Directions</p>
+                                    </Link>
+                                    <Link to={'/book-an-appointment'}>
+                                        <p>Book an Appointment</p>
+                                    </Link>
+                                </div>
+                                </div>
+                               
+                            </div>
+                        </div>
+
+                    </div>
+                    <div className='footer-right-section'>
+                        {/* <div className={`footer-right-get-scoop ${notLandingPage ? 'show-footer-get-the-scoop' : ''}`}>
+                            <h3>Get The Scoop</h3>
+                            {!isSubscribed ? <form style={{ width: "100%" }} onSubmit={handleSubmit}>
+                                <div className='footer-get-scoop-and-conditions'>
+                                    <div className='footer-get-scoop-input-search'>
+                                        <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "flex-start" }}>
+                                            <input type='text'
+                                                placeholder='Email Address'
+                                                value={email}
+                                                onChange={handleEmailChange} />
+                                            {error && <p style={{ color: 'red', fontSize: "13px", margin: "10px 0 0 0 ", padding: "0", lineHeight: "10px" }}>{error}</p>}
+                                        </div>
+                                        {isSubmitting ? <img className='scoop_loader' src={LoaderAnimation} alt="" /> : <button type='submit' disabled={isSubmitting}>
+                                            Sign me up
+                                        </button>}
+                                    </div>
+                                    <p>By signing up, you agree to our <Link to={'/privacy-policy'}> Privacy Policy </Link>  and  <Link to={'/terms-and-conditions'}>Terms of Use.</Link> </p>
+                                </div>
+                            </form>
+                                :
+                                <div className="subscribtion_done_1">
+                                    <img src={checked_white} />
+                                    <p className=''>Your Subscription Has Been Done Successfully.</p>
+                                </div>}
+                        </div> */}
 
                         <div className='right-section-care-and-about'>
                             {footerCustomerCareAndAbout.map((item, index) => (
                                 <div key={index} className='footer-costumer-care-and-about'>
                                     <h3>{item.heading}</h3>
                                     {item.navLinks.map((navItem, inn) => (
-                                        <div key={inn} onClick={() => { navigateToRoute(navItem.link) }} className='about-and-care-link'>
-                                            {navItem.name}
-                                        </div>
+                                        <Link  to={navItem.link}  key={inn} className='about-and-care-link'>
+                                          {navItem.name}
+                                        </Link>
                                     ))}
                                 </div>
                             ))}

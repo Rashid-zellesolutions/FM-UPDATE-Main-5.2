@@ -42,7 +42,7 @@
 .dashboard_tab>.circular_button {
   height: 50px;
   width: 50px;
-  background-color: #4487C5;
+  background-color: var(--tertiary-color);
   border-radius: 50%;
   position: absolute;
   top: 2px;
@@ -63,15 +63,15 @@
 
 
 .dashboard_tab.white>.heading {
-  color: #4487C5;
+  color: var(--tertiary-color);
 }
 
 .dashboard_tab.white>.count {
-  color: #4487C5;
+  color: var(--tertiary-color);
 }
 
 .dashboard_tab.white>.count>span {
-  color: #4487C5;
+  color: var(--tertiary-color);
 }
 
 
@@ -79,7 +79,7 @@
 
 .dashboard_tab.white>.circular_button {
   background-color: #fff;
-  color: #4487C5;
+  color: var(--tertiary-color);
 }
 
 .bar_chart_order_stats {

@@ -8,7 +8,7 @@ import DealOfTheDayCard from './DealOfTheDayCard/DealOfTheDayCard';
 
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { url } from '../../../utils/api';
+import { url,calculateDiscountPercentage } from '../../../utils/api';
 import { useSingleProductContext } from '../../../context/singleProductContext/singleProductContext';
 import { useList } from '../../../context/wishListContext/wishListContext';
 import { toast } from 'react-toastify';
@@ -16,6 +16,7 @@ import ShareProduct from '../ShareProduct/ShareProduct';
 import DealOfTheMonthShimmer from './DealOfTheMonthShimmer/DealOfTheMonthShimmer';
 import { IoIosArrowDroprightCircle } from "react-icons/io";
 import { IoIosArrowDropleftCircle } from "react-icons/io";
+
 
 
 const SamplePrevArrow = (props) => {
@@ -185,9 +186,8 @@ const DealOfTheDay = ({ dealEndTime, setDealEndTime, allProducts, setAllProducts
     slidesToScroll: 4,
     initialSlide: 0,
     arrows: true,
-    nextArrow: 
-      allProducts && allProducts.length > 4 ?  <SampleNextArrow to="next" /> : null,
-    prevArrow: <SamplePrevArrow to="prev" />,
+    nextArrow:   <SampleNextArrow to="next" />,
+      prevArrow:<SamplePrevArrow to="prev" />,
     responsive: [
       {
         breakpoint: 1024,
@@ -230,16 +230,17 @@ const DealOfTheDay = ({ dealEndTime, setDealEndTime, allProducts, setAllProducts
       <div className='deal-of-the-day-border-heading'>
         <p>Deal Of The Month</p>
         <div className='deal-of-the-day-end-time'>
-          <p>Ends in: {days}d : {hours}h : {minutes}m</p>
+          <p>Ends in:</p>
+          <p>{days} Days &nbsp; {hours} Hours &nbsp; {minutes} Min &nbsp; {seconds} Sec</p>
         </div>
       </div>
       <div className='deal-of-the-day-outer-container'>
-        <div className='mobile-view-deal-of-the-day-timer-and-product-count'>
+        {/* <div className='mobile-view-deal-of-the-day-timer-and-product-count'>
           <div className='mobile-view-timer'>
             <p>{days}d: {hours}h: {minutes}m</p>
           </div>
           <h3 className='mobile-view-deal-of-the-day-product-count'>{productCount} Products</h3>
-        </div>
+        </div> */}
         <div className='slider-main-container'>
           
           {/* <Slider {...settings}> */}
@@ -266,6 +267,7 @@ const DealOfTheDay = ({ dealEndTime, setDealEndTime, allProducts, setAllProducts
                 price={items.regular_price}
                 newPrice={items.newPrice}
                 descount={items.disc}
+                dicountPercent={calculateDiscountPercentage(items.sale_price,items.regular_price)}
                 handleDealCardClick={() => handleDealCardClick(items)}
                 handleWishListClick={() => handleWishList(items)}
                 handleCartSection={() => handleCartPanel(items)}

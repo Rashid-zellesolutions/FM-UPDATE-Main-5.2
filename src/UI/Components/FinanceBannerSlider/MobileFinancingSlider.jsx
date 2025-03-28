@@ -4,8 +4,9 @@ import payFour from '../../../Assets/Furniture Mecca/Landing Page/sale banner/pa
 import monthCountBanner from '../../../Assets/Furniture Mecca/Landing Page/sale banner/12Month.png';
 import noCredit from '../../../Assets/Furniture Mecca/Landing Page/sale banner/noCreditNeed.png'
 import Slider from 'react-slick';
+import { url } from '../../../utils/api';
 
-const MobileFinancingSlider = () => {
+const MobileFinancingSlider = ({images}) => {
     const mobileSlider = [
         payFour,
         monthCountBanner,
@@ -28,14 +29,14 @@ const MobileFinancingSlider = () => {
     return (
         <div className="mobile-carousel-container">
             <Slider {...settings}>
-                {mobileSlider.map((image, index) => (
-                    <div className="carousel-slide" key={index}>
-                        <img
-                            src={image}
-                            alt={`slide ${index + 1}`}
-                        />
-                    </div>
-                ))}
+                {images?.mobile?.map((image, index) => (
+                                   <div className="carousel-slide" key={index}>
+                                       <img
+                                           src={`${url}${image.image_url}`}
+                                           alt={`slide ${index + 1}`}
+                                       />
+                                   </div>
+                               ))}
             </Slider>
         </div>
     )

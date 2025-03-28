@@ -172,8 +172,9 @@ const SimillerProducts = ({collection, isPadding}) => {
                     singleProductData={item}
                     maxWidthAccordingToComp={"98%"}
                     justWidth={'100%'}
-                    showOnPage={false}
+                    showOnPage={true}
                     percent={'12%'}
+                    titleHeight={true}
                     // colTwo={selectedGrid === 'single-col' ? false : true}
                     tagIcon={item.productTag ? item.productTag : heart}
                     tagClass={item.productTag ? 'tag-img' : 'heart-icon'}

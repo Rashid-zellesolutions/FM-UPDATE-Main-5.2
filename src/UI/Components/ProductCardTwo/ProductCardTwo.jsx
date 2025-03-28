@@ -33,6 +33,8 @@ const ProductCardTwo = ({
     colTwo,
     showOnPage,
     handleInfoModal,
+    showExtraLines,
+    titleHeight
 }) => {
 
     const [isImageLoaded, setImageLoaded] = useState(false);
@@ -78,7 +80,7 @@ const ProductCardTwo = ({
                     attribute?.options?.some(option => option?.value === color)
                 )
             );
-            setSelectedColorImage(matchingAttribute?.images[0]?.image_url)
+            setSelectedColorImage(matchingAttribute?.images[1]?.image_url)
             setHoveredImage(matchingAttribute?.images[1]?.image_url)
             return matchingAttribute;
 
@@ -89,7 +91,7 @@ const ProductCardTwo = ({
             );
 
             if (simpleAttribute) {
-                setSelectedColorImage(singleProductData?.images[0]?.image_url);
+                setSelectedColorImage(singleProductData?.images[1]?.image_url);
                 setHoveredImage(singleProductData?.images[1]?.image_url);
             }
             return simpleAttribute;
@@ -108,14 +110,14 @@ const ProductCardTwo = ({
                     attribute?.options?.some(option => option?.value === image)
                 )
             );
-            setSelectedColorImage(matchingAttribute?.images[0]?.image_url)
+            setSelectedColorImage(matchingAttribute?.images[1]?.image_url)
             setHoveredImage(matchingAttribute?.images[1]?.image_url)
             return matchingAttribute;
         } else if (singleProductData?.type === "simple") {
             const simpleAttribute = singleProductData?.attributes?.find(attribute =>
                 attribute?.type === "image"
             );
-            setSelectedColorImage(singleProductData?.images[0]?.image_url);
+            setSelectedColorImage(singleProductData?.images[1]?.image_url);
             setHoveredImage(singleProductData?.images[1]?.image_url);
             return simpleAttribute;
         }
@@ -246,7 +248,7 @@ const ProductCardTwo = ({
                                         <VscHeartFilled
                                             // size={25}
                                             className='wishlist-heart'
-                                            style={{ color: '#C61B1A' }}
+                                            style={{ color: 'var(--primary-color)' }}
                                             onClick={(e) => {
                                                 e.stopPropagation();
                                                 handleWishListclick(singleProductData)
@@ -256,7 +258,7 @@ const ProductCardTwo = ({
                                         <VscHeart
                                             size={25}
                                             className='wishlist-heart'
-                                            style={{ float: 'right', color: '#C61B1A' }}
+                                            style={{ float: 'right', color: 'var(--primary-color)' }}
                                             onClick={(e) => {
                                                 e.stopPropagation();
                                                 handleWishListclick(singleProductData)
@@ -294,7 +296,7 @@ const ProductCardTwo = ({
                                     <VscHeartFilled
                                         size={25}
                                         className='wishlist-heart'
-                                        style={{ color: '#C61B1A' }}
+                                        style={{ color: 'var(--primary-color)' }}
                                         onClick={(e) => {
                                             e.stopPropagation();
                                             handleWishListclick(singleProductData)
@@ -304,7 +306,7 @@ const ProductCardTwo = ({
                                     <VscHeart
                                         size={25}
                                         className='wishlist-heart'
-                                        style={{ float: 'right', color: '#C61B1A' }}
+                                        style={{ float: 'right', color: 'var(--primary-color)' }}
                                         onClick={(e) => {
                                             e.stopPropagation();
                                             handleWishListclick(singleProductData)
@@ -323,7 +325,7 @@ const ProductCardTwo = ({
                                         <VscHeartFilled
                                             size={25}
                                             className='wishlist-heart'
-                                            style={{ color: '#C61B1A' }}
+                                            style={{ color: 'var(--primary-color)' }}
                                             onClick={(e) => {
                                                 e.stopPropagation();
                                                 handleWishListclick(singleProductData)
@@ -333,7 +335,7 @@ const ProductCardTwo = ({
                                         <VscHeart
                                             size={25}
                                             className='wishlist-heart'
-                                            style={{ float: 'right', color: '#C61B1A' }}
+                                            style={{ float: 'right', color: 'var(--primary-color)' }}
                                             onClick={(e) => {
                                                 e.stopPropagation();
                                                 handleWishListclick(singleProductData)
@@ -389,7 +391,7 @@ const ProductCardTwo = ({
                             </div>} */}
                             {/* <p className={`product-sku ${colTwo ? 'apply-col-two-styling' : showOnPage ? 'show-product-sku' : ''}`} onClick={handleCardClick}>SKU : {ProductSku}</p> */}
 
-                            <h3 className={`product-title ${colTwo ? 'apply-col-two-styling' : ''}`}> {ProductTitle} </h3>
+                            <h3 className={`product-title ${colTwo ? 'apply-col-two-styling' : ''} ${titleHeight ? "heighted":""}`}> {ProductTitle} </h3>
 
                             {priorityAttribute && (
                                 <div className={`product-card-attr ${colTwo ? 'hide-squire-attribute' : ''}`} >
@@ -553,7 +555,7 @@ const ProductCardTwo = ({
                                             </div>
                                     }
 
-                                    <span className={`product-card-installment-plan ${showOnPage ? 'show-installment-plan' : ''}`}>
+                                    <span className={`product-card-installment-plan ${showExtraLines ? 'show-installment-plan' : ''}`}>
                                         <p className={`installment-plan-detail ${colTwo ? 'apply-col-two-styling' : ''}`}>or $35/week for 48 mos</p>
                                         <GoInfo onClick={(e) => { e.stopPropagation(); handleInfoModal ()}} 
                                         />
@@ -562,10 +564,10 @@ const ProductCardTwo = ({
                                 </div>
 
 
-                                <span className={`product-card-get-it-by-title ${showOnPage ? 'show-product-card-get-it-by-title' : ''}`}>
+                                {/* <span className={`product-card-get-it-by-title ${showOnPage ? 'show-product-card-get-it-by-title' : ''}`}>
                                     <p className={`get-it-by ${colTwo ? 'apply-col-two-styling' : ''}`}>Get it By</p>
                                     <h3 className={`get-by-delivery ${colTwo ? 'apply-col-two-styling' : ''}`}>{getDeliveryDate()}</h3>
-                                </span>
+                                </span> */}
                             </div>
 
                             {/* <span>
@@ -577,6 +579,10 @@ const ProductCardTwo = ({
                                 <div className={`product-rating-stars-div ${colTwo ? 'apply-col-two-styling' : ''}`}>
                                     <RatingReview rating={parseFloat(reviewCount)} size={"12px"} disabled={true} />
                                 </div>
+                                <span className={`product-card-get-it-by-title ${showExtraLines ? 'show-product-card-get-it-by-title' : ''}`}>
+                                    <p className={`get-it-by ${colTwo ? 'apply-col-two-styling' : ''}`}>Get it By</p>
+                                    <h3 className={`get-by-delivery ${colTwo ? 'apply-col-two-styling' : ''}`}>{getDeliveryDate()}</h3>
+                                </span>
                                 <button className={`card-two-quick-view-button ${colTwo ? 'apply-col-two-styling' : ''}`} 
                                 onClick={(e) => {
                                     e.stopPropagation();

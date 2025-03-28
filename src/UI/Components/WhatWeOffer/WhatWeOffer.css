@@ -130,7 +130,7 @@
 }
 
 .how-it-work{
-    color: var(--active-nav-item-color);
+    color: var(--primary-color);
     text-decoration: underline;
     cursor: pointer;
     font-size: 16px;

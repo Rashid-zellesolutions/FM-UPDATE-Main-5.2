@@ -4,8 +4,8 @@
     align-items: center;
     justify-content: start;
     gap: 40px;
-    border-top: 1px solid #595959;
-    border-bottom: 1px solid #595959;
+    border-top: 1px solid var(--secondary-color);
+    border-bottom: 1px solid var(--secondary-color);
     padding: 15px;
     position: relative;
     /* flex-wrap: wrap; */
@@ -39,7 +39,7 @@
     position: absolute;
     bottom: 13px;
     height: 60%;
-    background: #4487C5;
+    background: var(--tertiary-color);
     transition: all 0.3s ease-in-out;
     border-radius: 5px;
     z-index: 0;
@@ -52,8 +52,8 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
-    border-top: 1px solid #595959;
-    border-bottom: 1px solid #595959;
+    border-top: 1px solid var(--secondary-color);
+    border-bottom: 1px solid var(--secondary-color);
     padding: 10px;
 }
 

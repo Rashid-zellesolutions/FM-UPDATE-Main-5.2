@@ -1,13 +1,12 @@
 :root{
   --text-color: #595959;
   --text-white: #fff;
-  --icon-color: #C30000;
   --button-color: #2F7A97;
   --bg-color: #FFFFFF;
   --work-sans-font: "Work Sans", sans-serif;
-  --hover-font-color: #C30000;
-  --border-color: #d7d7d7;
-  --active-nav-item-color: #C61B1A;
+  /* --primary-color: #C30000; */
+  
+  /* --primary-color: #C61B1A; */
   --button-color: #484F59;
   --footer-bg-color: #484F59;
   --footer-nav-items-color: #F8F8F8;
@@ -24,6 +23,23 @@
   --heading-line-height: 28px;
   --tertiary-color:#4487C5;
   --tick-color: #595959;
+
+
+  --primary-color: #C61B1A;    /* Main brand color (e.g., blue) */
+  --secondary-color: #595959;  /* Supporting color (e.g., gray) */
+  --tertiary-color: #4487C5;   /* Accent color (e.g., teal) */
+  --quaternary-color: #484F59; /* Additional highlight (e.g., yellow) */
+
+
+  --text-primary: #595959;  /* Default text color */
+  --text-secondary: #484F59;  /* Muted text */
+  --text-tertiary: #4487C5;  /* Accent text */
+  --text-quaternary: #C61B1A;  /* Highlighted text */
+
+  --border-color: #D7D7D7;
+  --secondary-background: #f1f1f1;
+  --tertiary-background: #f9f9f9;
+  --quaternary-background: #f1f1f1;
 
 
   /* font sizings */

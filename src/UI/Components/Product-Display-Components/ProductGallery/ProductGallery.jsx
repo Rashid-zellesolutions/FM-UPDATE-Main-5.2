@@ -205,9 +205,28 @@ const ProductGallery = (
 
     const handleDragMove = (e) => {
         if (!isDragging) return;
-
+    
+        const imageLength = productData.type === 'variable' 
+            ? selectedVariationData?.images.length 
+            : productData?.images.length;
+    
+        const index = activeIndex;
+    
         const currentX = e.type.includes("mouse") ? e.pageX : e.touches[0].pageX;
         const distance = currentX - startX;
+    
+        // Prevent dragging forward at the last image
+        if (index >= imageLength - 1 && distance < 0) {
+            setDragDistance(0); // Reset distance to prevent movement
+            return;
+        }
+    
+        // Prevent dragging backward at the first image
+        if (index <= 0 && distance > 0) {
+            setDragDistance(0); // Reset distance to prevent movement
+            return;
+        }
+    
         setDragDistance(distance);
     };
 
@@ -248,7 +267,7 @@ const ProductGallery = (
                                     className={`product-thumbnail-single-image-div ${thumbIndex === thumbActiveIndex ? 'active-thumb' : ''}`}
                                     onClick={() => handleThumbnailClick(thumbIndex)}
                                 >
-                                    <IoMdArrowDropleft size={30} color='#4487C5' className={`arrow-pointer ${thumbIndex === thumbActiveIndex ? 'show-pointer-arrow' : ''}`} />
+                                    <IoMdArrowDropleft size={30} color='var(--tertiary-color)' className={`arrow-pointer ${thumbIndex === thumbActiveIndex ? 'show-pointer-arrow' : ''}`} />
                                     <img src={`${url}${thumbItem.image_url}`} alt="thumb" className="product-thumbnail-single-image" />
                                 </div>
                             ))
@@ -258,7 +277,7 @@ const ProductGallery = (
                                     className={`product-thumbnail-single-image-div ${thumbIndex === thumbActiveIndex ? 'active-thumb' : ''}`}
                                     onClick={() => handleThumbnailClick(thumbIndex)}
                                 >
-                                    <IoMdArrowDropleft size={30} color='#4487C5' className={`arrow-pointer ${thumbIndex === thumbActiveIndex ? 'show-pointer-arrow' : ''}`} />
+                                    <IoMdArrowDropleft size={30} color='var(--tertiary-color)' className={`arrow-pointer ${thumbIndex === thumbActiveIndex ? 'show-pointer-arrow' : ''}`} />
                                     <img src={`${url}${thumbItem.image_url}`} alt="thumb" className="product-thumbnail-single-image" />
                                 </div>
                             ))

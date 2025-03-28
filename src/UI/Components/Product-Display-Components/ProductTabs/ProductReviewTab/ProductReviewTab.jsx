@@ -61,6 +61,7 @@ const ProductReviewTab = ({ id, reviewRef, productData }) => {
 
   return (
     <div
+    className='reviews'
       id={'Reviews'}
       ref={reviewRef}
     >

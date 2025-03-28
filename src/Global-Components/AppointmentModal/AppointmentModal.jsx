@@ -147,10 +147,10 @@ const AppointmentModal = (
 
                 <div className='appointment-inner-content'>
                     <button className='appointment-modal-close-btn' onClick={handleCloseModal}>
-                        <IoIosClose size={30} color='#595959' />
+                        <IoIosClose size={30} color='var(--secondary-color)' />
                     </button>
                     <div className='appointment-modal-head'>
-                        <SlCalender size={25} color='#4487C5' />
+                        <SlCalender size={25} color='var(--tertiary-color)' />
                         <p>Schedule a Consultation</p>
                     </div>
 

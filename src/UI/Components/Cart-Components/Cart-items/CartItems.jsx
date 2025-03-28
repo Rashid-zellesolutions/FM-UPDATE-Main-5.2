@@ -147,7 +147,7 @@ const CartItems = ({
                         </button>
                         <button className='save-for-leter' onClick={(e) => { e.stopPropagation(); handleWishList(productData) }}>
                             {/* <img src={rotatedArrow} className={`${saveForLeter ? 'arrow-rotate' : ''}`} />  */}
-                            <FaArrowsRotate color='#595959' size={15} />
+                            <FaArrowsRotate color='var(--secondary-color)' size={15} />
                             Save For Later
                         </button>
                         <div className='desktop-name-and-single-price'>
@@ -160,7 +160,7 @@ const CartItems = ({
                             })}
                             <div className='cart-side-section-price-and-count'>
                                 <p><del style={{
-                                    color: "#595959", opacity: 0.8
+                                    color: "var(--secondary-color)", opacity: 0.8
                                 }} >{formatedRegularPrice}</del></p>
                                 <p>{formatedSalePrice}</p>
                             </div>

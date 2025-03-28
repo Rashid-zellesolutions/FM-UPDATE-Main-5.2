@@ -26,11 +26,11 @@ const ShareProduct = ({ isSharePopup, setIsSharePopup, selectedUid, selectedProd
     }
 
     const socialPlatforms = [
-        { name: 'Facebook', img: <FaFacebook size={38} style={{ color: '#595959' }} />, link: 'https://www.facebook.com/myfurnituremecca' },
-        { name: 'Instagram', img: <FaFacebookMessenger size={38} style={{ color: '#595959' }} />, link: '#' },
-        { name: 'Email', img: <FaInstagram size={38} style={{ color: '#595959' }} />, link: 'https://www.instagram.com/myfurnituremecca/?igshid=MzRlODBiNWFlZA%3D%3D' },
-        { name: 'Email', img: <FaWhatsapp size={38} style={{ color: '#595959' }} />, link: '#' },
-        { name: 'Email', img: <FaRegEnvelope size={38} style={{ color: '#595959' }} />, link: '#' }
+        { name: 'Facebook', img: <FaFacebook size={38} style={{ color: 'var(--secondary-color)' }} />, link: 'https://www.facebook.com/myfurnituremecca' },
+        { name: 'Instagram', img: <FaFacebookMessenger size={38} style={{ color: 'var(--secondary-color)' }} />, link: '#' },
+        { name: 'Email', img: <FaInstagram size={38} style={{ color: 'var(--secondary-color)' }} />, link: 'https://www.instagram.com/myfurnituremecca/?igshid=MzRlODBiNWFlZA%3D%3D' },
+        { name: 'Email', img: <FaWhatsapp size={38} style={{ color: 'var(--secondary-color)' }} />, link: '#' },
+        { name: 'Email', img: <FaRegEnvelope size={38} style={{ color: 'var(--secondary-color)' }} />, link: '#' }
     ]
 
     const [isCopied, setIsCpoied] = useState(false);

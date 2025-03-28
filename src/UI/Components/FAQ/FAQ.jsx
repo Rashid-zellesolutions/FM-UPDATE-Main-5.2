@@ -117,7 +117,7 @@ const FAQ = () => {
                             <div className='question-section' onClick={() => handleToggle(index)}>
                                 <p>{item.question}</p>
                                 <i className='add-button-round'>
-                                    <FaPlus size={15} color='#595959' className={activeIndex === index ? 'rotate' : 'rotate-back'} />
+                                    <FaPlus size={15} color='var(--secondary-color)' className={activeIndex === index ? 'rotate' : 'rotate-back'} />
                                 </i>
                                 {/* <img src={item.icon} alt='add btn' className={`${activeIndex === index ? 'rotate' : ''}`} /> */}
                             </div>

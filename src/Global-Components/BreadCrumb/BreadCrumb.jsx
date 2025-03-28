@@ -7,6 +7,7 @@ import rightArrow from "../../Assets/right-arrow.png";
 
 const Breadcrumb = ({ category, productName, sku, categorySlug }) => {
     const [parentCategory, setParentCategory] = useState(null)
+    const [parentCategorySlug, setParentCategorySlug] = useState(null)
     const location = useLocation();
 
     useEffect(() => {
@@ -14,6 +15,7 @@ const Breadcrumb = ({ category, productName, sku, categorySlug }) => {
             // Set the parent category if the route is a product page
             const mainCategory = category?.find(main => main.is_main === 1);
             setParentCategory(mainCategory ? mainCategory.name : null);
+            setParentCategorySlug(mainCategory ? mainCategory.slug : null)
         } else {
             // Reset parent category if not on a product page
             setParentCategory(null);
@@ -38,8 +40,8 @@ const Breadcrumb = ({ category, productName, sku, categorySlug }) => {
     }
 
     // Ensure previous route is retained on product pages
-    if (location.pathname.includes('product') && categorySlug) {
-        fullPathNames.splice(fullPathNames.indexOf('product'), 1, categorySlug); // Replace "product" with categorySlug
+    if (location.pathname.includes('product') && parentCategorySlug) {
+        fullPathNames.splice(fullPathNames.indexOf('product'), 1, parentCategorySlug); // Replace "product" with categorySlug
     }
 
     const pagePath = window.location.pathname

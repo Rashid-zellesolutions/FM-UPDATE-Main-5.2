@@ -360,6 +360,7 @@ const Products = ({ navigationType, browserReload }) => {
         setIsDeliveryCheck(e.target.checked);
     }
 
+    
 
     const relevanceData = [
         { name: 'Recent' },
@@ -371,11 +372,12 @@ const Products = ({ navigationType, browserReload }) => {
         { name: 'By Ratings (High to Low)' },
     ]
 
-    const [selectedRelevanceValue, setSelectedRelevanceValue] = useState(relevanceData[0].name)
+    const [selectedRelevanceValue, setSelectedRelevanceValue] = useState('Recent')
 
 
     const handleRelevance = () => {
         setRelevanceTrue(!relevanceTrue);
+        
     }
 
     const sortProducts = (criteria) => {
@@ -409,7 +411,8 @@ const Products = ({ navigationType, browserReload }) => {
         setProducts(sortedProducts)
     }
 
-    // Fetch Products Initially and by pagination click
+  
+    
 
     const fetchProductData = async () => {
         const queryApi = `/api/v1/products/by-name?name`;
@@ -612,7 +615,7 @@ const Products = ({ navigationType, browserReload }) => {
             <div className='product-archive-sub-categories-container'>
                 {subCategories.map((item, index) => (
                     <div key={index} className='product-archive-single-sub-category' onClick={() => handleCategorySelect(item)}>
-                        <img src={`${url}${item.image2}`} alt='sub category' />
+                        {item.filterImage !=="" ? <img src={` ${url}${item.filterImage}`} alt='sub category' /> : <img src={` ${url}${item.image2}`} alt='sub category' />}
                     </div>
                 ))}
             </div>
@@ -632,7 +635,7 @@ const Products = ({ navigationType, browserReload }) => {
 
                             <div className={`hide-filters-btn`}>
                                 <button onClick={handleFilterSection}>
-                                    <IoArrowBack size={20} color='#595959' />
+                                    <IoArrowBack size={20} color='var(--secondary-color)' />
                                     Hide Filters
                                 </button>
                             </div>
@@ -662,7 +665,7 @@ const Products = ({ navigationType, browserReload }) => {
                                         <span onClick={() => handleColorFilterOpenClose('color-filter')}>
                                             <h3 className='filters-heading'>{allFilters?.colors?.[0]?.name}</h3>
                                             <i className='add-button-round'>
-                                                {isOpen === 'color-filter' ? <FaMinus ize={14} color='#595959' /> : <FaPlus ize={14} color='#595959' />}
+                                                {isOpen === 'color-filter' ? <FaMinus ize={14} color='var(--secondary-color)' /> : <FaPlus ize={14} color='var(--secondary-color)' />}
                                             </i>
                                         </span>
                                         <div className={`single-filter-items-container ${isOpen === 'color-filter' ? 'show-single-filter-icons' : ''}`}>
@@ -689,7 +692,7 @@ const Products = ({ navigationType, browserReload }) => {
                                         <span onClick={() => handleColorFilterOpenClose('rating-filter')}>
                                             <h3 className='filters-heading'>Ratings</h3>
                                             <i className='add-button-round'>
-                                                {isOpen === 'rating-filter' ? <FaMinus ize={15} color='#595959' /> : <FaPlus ize={15} color='#595959' />}
+                                                {isOpen === 'rating-filter' ? <FaMinus ize={15} color='var(--secondary-color)' /> : <FaPlus ize={15} color='var(--secondary-color)' />}
                                             </i>
                                         </span>
                                         <div className={`single-filter-items-container ${ratingOpen === 'rating-filter' ? 'show-single-filter-icons' : ''}`}>
@@ -717,7 +720,7 @@ const Products = ({ navigationType, browserReload }) => {
                                             <span onClick={() => handleColorFilterOpenClose('category-filter')}>
                                                 <h3 className='filters-heading'>Product Type</h3>
                                                 <i className='add-button-round'>
-                                                    {isOpen === 'category-filter' ? <FaMinus ize={15} color='#595959' /> : <FaPlus ize={15} color='#595959' />}
+                                                    {isOpen === 'category-filter' ? <FaMinus ize={15} color='var(--secondary-color)' /> : <FaPlus ize={15} color='var(--secondary-color)' />}
                                                 </i>
                                             </span>
                                             <div className={`single-filter-items-container ${categoryOpen === 'category-filter' ? 'show-single-filter-icons' : ''}`}>
@@ -778,10 +781,10 @@ const Products = ({ navigationType, browserReload }) => {
                                                     </span>
                                                 </label>
                                             </div>
-                                            <FaTruck size={20} color={isDeliveryCheck ? '#4487C5' : 'rgba(89, 89, 89, 0.5)'} />
+                                            <FaTruck size={20} color={isDeliveryCheck ? 'var(--tertiary-color)' : 'rgba(89, 89, 89, 0.5)'} />
                                             <span>
                                                 <p>Get it by</p>
-                                                <h3 style={{ color: `${isDeliveryCheck ? '#4487C5' : '#595959'}` }}>{getDeliveryDate()}</h3>
+                                                <h3 style={{ color: `${isDeliveryCheck ? 'var(--tertiary-color)' : 'var(--secondary-color)'}` }}>{getDeliveryDate()}</h3>
                                             </span>
                                         </div>
 
@@ -794,10 +797,10 @@ const Products = ({ navigationType, browserReload }) => {
                                                     </span>
                                                 </label>
                                             </div>
-                                            <FaLocationDot size={20} color={isLocationCheck ? '#4487C5' : 'rgba(89, 89, 89, 0.5)'} />
+                                            <FaLocationDot size={20} color={isLocationCheck ? 'var(--tertiary-color)' : 'rgba(89, 89, 89, 0.5)'} />
                                             <span>
                                                 <p>See it in Person</p>
-                                                <h3 style={{ color: `${isLocationCheck ? '#4487C5' : '#595959'}` }}>Venango</h3>
+                                                <h3 style={{ color: `${isLocationCheck ? 'var(--tertiary-color)' : 'var(--secondary-color)'}` }}>Venango</h3>
                                             </span>
                                         </div>
                                     </div>
@@ -809,7 +812,7 @@ const Products = ({ navigationType, browserReload }) => {
                                                 <div className='selected-relevance-item'>
                                                     <p className='selected-relevance-text'>{selectedRelevanceValue}</p>
                                                     <i className='relevance-heading-icon'>
-                                                        <MdKeyboardArrowDown className='relevance-heading-icon-rotate' color='#595959' size={15} />
+                                                        <MdKeyboardArrowDown className='relevance-heading-icon-rotate' color='var(--secondary-color)' size={15} />
                                                     </i>
                                                 </div>
                                             </div>
@@ -838,12 +841,14 @@ const Products = ({ navigationType, browserReload }) => {
                                     {products && products?.length > 0 ? (
                                         products?.map((item, index) => {
                                             return <ProductCardTwo
-                                                key={index}
+                                                key={item.slug}
                                                 slug={item.slug}
                                                 singleProductData={item}
                                                 showOnPage={true}
+                                                showExtraLines={true}
+                                                titleHeight={true}
                                                 maxWidthAccordingToComp={"100%"}
-                                                justWidth={hideFilters ? '310px' : '100%'}
+                                                justWidth={hideFilters ? '100%' : '100%'}
                                                 tagIcon={item.productTag ? item.productTag : heart}
                                                 tagClass={item.productTag ? 'tag-img' : 'heart-icon'}
                                                 mainImage={`${item.image.image_url}`}
@@ -893,14 +898,14 @@ const Products = ({ navigationType, browserReload }) => {
                                                 onClick={handlePrevPage}
                                                 style={{
                                                     pointerEvents: activePageIndex === 1 ? 'none' : 'auto',
-                                                    color: activePageIndex === 1 ? '#ccc' : '#4487C5',
+                                                    color: activePageIndex === 1 ? '#ccc' : 'var(--tertiary-color)',
                                                 }}
                                             >
                                                 <FaRegArrowAltCircleLeft
                                                     size={18}
                                                     style={{
                                                         pointerEvents: activePageIndex === 1 ? 'none' : 'auto',
-                                                        color: activePageIndex === 1 ? '#ccc' : '#4487C5',
+                                                        color: activePageIndex === 1 ? '#ccc' : 'var(--tertiary-color)',
                                                     }}
                                                 />
                                                 Prev
@@ -930,7 +935,7 @@ const Products = ({ navigationType, browserReload }) => {
                                                 onClick={handleNextPage}
                                                 style={{
                                                     pointerEvents: activePageIndex === totalPages?.totalPages ? 'none' : 'auto',
-                                                    color: activePageIndex === totalPages?.totalPages ? '#ccc' : '#4487C5',
+                                                    color: activePageIndex === totalPages?.totalPages ? '#ccc' : 'var(--tertiary-color)',
                                                 }}
                                             >
                                                 Next
@@ -938,7 +943,7 @@ const Products = ({ navigationType, browserReload }) => {
                                                     size={18}
                                                     style={{
                                                         pointerEvents: activePageIndex === totalPages?.totalPages ? 'none' : 'auto',
-                                                        color: activePageIndex === totalPages?.totalPages ? '#ccc' : '#4487C5',
+                                                        color: activePageIndex === totalPages?.totalPages ? '#ccc' : 'var(--tertiary-color)',
                                                     }}
                                                 />
                                             </span>
@@ -1001,12 +1006,13 @@ const Products = ({ navigationType, browserReload }) => {
                     ) : (
                         products.map((item, index) => {
                             return <ProductCardTwo
-                                key={index}
+                                key={item.slug}
                                 slug={item.slug}
                                 singleProductData={item}
                                 maxWidthAccordingToComp={"100%"}
                                 justWidth={'100%'}
                                 showOnPage={true}
+                                showExtraLines={true}
                                 percent={'12%'}
                                 colTwo={selectedGrid === 'single-col' ? false : true}
                                 tagIcon={item.productTag ? item.productTag : heart}
@@ -1038,6 +1044,7 @@ const Products = ({ navigationType, browserReload }) => {
                                 handleQuickView={() => handleQuickViewOpen(item)}
                                 handleWishListclick={() => handleWishList(item)}
                                 handleInfoModal={handleOpennfoModal}
+                                
                             />
                         })
                     )}
@@ -1050,14 +1057,14 @@ const Products = ({ navigationType, browserReload }) => {
                             onClick={handlePrevPage}
                             style={{
                                 pointerEvents: activePageIndex === 1 ? 'none' : 'auto',
-                                color: activePageIndex === 1 ? '#ccc' : '#4487C5',
+                                color: activePageIndex === 1 ? '#ccc' : 'var(--tertiary-color)',
                             }}
                         >
                             <FaRegArrowAltCircleLeft
                                 size={18}
                                 style={{
                                     pointerEvents: activePageIndex === 1 ? 'none' : 'auto',
-                                    color: activePageIndex === 1 ? '#ccc' : '#4487C5',
+                                    color: activePageIndex === 1 ? '#ccc' : 'var(--tertiary-color)',
                                 }}
                             />
                             <p className='hide-on-mob'> Previous </p>
@@ -1089,7 +1096,7 @@ const Products = ({ navigationType, browserReload }) => {
                             onClick={handleNextPage}
                             style={{
                                 pointerEvents: activePageIndex === totalPages?.totalPages ? 'none' : 'auto',
-                                color: activePageIndex === totalPages?.totalPages ? '#ccc' : '#4487C5',
+                                color: activePageIndex === totalPages?.totalPages ? '#ccc' : 'var(--tertiary-color)',
                             }}
                         >
                             <p className='hide-on-mob'> Next </p>
@@ -1097,7 +1104,7 @@ const Products = ({ navigationType, browserReload }) => {
                                 size={18}
                                 style={{
                                     pointerEvents: activePageIndex === totalPages?.totalPages ? 'none' : 'auto',
-                                    color: activePageIndex === totalPages?.totalPages ? '#ccc' : '#4487C5',
+                                    color: activePageIndex === totalPages?.totalPages ? '#ccc' : 'var(--tertiary-color)',
                                 }}
                             />
                         </span>

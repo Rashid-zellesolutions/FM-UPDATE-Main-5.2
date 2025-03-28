@@ -33,7 +33,7 @@
 }
 
 .might-need-cards-main-container::-webkit-scrollbar-thumb {
-    background-color: #595959;
+    background-color: var(--secondary-color);
     /* Color for the scrollbar thumb */
     border-radius: 10px;
     /* Rounded corners for the thumb */

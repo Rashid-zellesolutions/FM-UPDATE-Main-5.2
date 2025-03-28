@@ -30,12 +30,12 @@
 }
 
 .shipping-form-head-tag{
-    background-color: #4487C5;
+    background-color: var(--tertiary-color);
     padding: 3px 10px;
     font-size: 10px;
     line-height: 15px;
     font-weight: 600;
-    border: 1px solid #4487C5;
+    border: 1px solid var(--tertiary-color);
     border-radius: 2px;
     color: #FFFFFF;
     cursor: pointer;
@@ -47,9 +47,9 @@
     font-size: 10px;
     line-height: 15px;
     font-weight: 600;
-    border: 1px solid #4487C5;
+    border: 1px solid var(--tertiary-color);
     border-radius: 2px;
-    color: #4487C5;
+    color: var(--tertiary-color);
     cursor: pointer;
 }
 
@@ -117,7 +117,7 @@
 
 .zipcode-label-container strong{
     font-weight: 500;
-    color: var(--active-nav-item-color);
+    color: var(--primary-color);
 }
 
 .zipcode-input-container{
@@ -148,7 +148,7 @@
 }
 
 .zipcode-update-button{
-    background-color: var(--active-nav-item-color);
+    background-color: var(--primary-color);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -160,7 +160,7 @@
     border-bottom-right-radius: 5px; */
     outline: none;
     cursor: pointer;
-    /* border: 1px solid var(--active-nav-item-color); */
+    /* border: 1px solid var(--primary-color); */
     font-size: 12px;
     line-height: 18px;
     font-weight: 500;
@@ -202,8 +202,8 @@
 }
 
 .different-billing-checkox input[type='checkbox']:checked{
-    background-color: #C61B1A;
-    border: 2px solid #C61B1A;
+    background-color: var(--primary-color);
+    border: 2px solid var(--primary-color);
 }
 
 .different-billing-checkox input[type='checkbox']:checked::after {
@@ -266,7 +266,7 @@
     width: 40%;
     height: 40px;
     color: #fff;
-    background-color: #595959;
+    background-color: var(--secondary-color);
     border: none;
     outline: none;
     border-radius: 4px;
@@ -369,7 +369,7 @@
     width: 100%;
     height: 40px;
     color: #fff;
-    background-color: var(--active-nav-item-color);
+    background-color: var(--primary-color);
     border: none;
     outline: none;
     border-radius: 8px;
@@ -446,7 +446,7 @@
     justify-content: start;
     width: 100%;
     padding: 10px;
-    /* border: 1px solid #4487C5; */
+    /* border: 1px solid var(--tertiary-color); */
     border: 1px solid rgba(215, 215, 215, 0.6);
 }
 
@@ -487,7 +487,7 @@
 }
 
 .selected-address-save-button{
-    background-color: #595959;
+    background-color: var(--secondary-color);
     padding: 10px 30px;
     width: max-content;
     font-size: 15px;
@@ -495,7 +495,7 @@
     font-weight: 500;
     color: #FFFFFF;
     border-radius: 5px;
-    border: 1px solid #595959;
+    border: 1px solid var(--secondary-color);
     outline: none;
     cursor: pointer;
 }

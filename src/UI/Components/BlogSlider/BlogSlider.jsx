@@ -120,7 +120,7 @@ const BlogSlider = () => {
                   navigateToSingleBlog={() => handleNavigateToSingleBlog(item)}
                   img={item?.image?.image_url}
                   category={item?.category?.name}
-                  title={truncateTitle(item?.title, maxLength)}
+                  title={item?.title}
                   createdBy={item?.author}
                   comments={'4 comments'}
                   date={26}

@@ -156,10 +156,10 @@
     align-items: center;
     justify-content: center;
     background-color: #fff;
-    border: 1px solid #C61B1A;
+    border: 1px solid var(--primary-color);
     height: 50px;
     border-radius: 3px;
-    color: #C61B1A;
+    color: var(--primary-color);
     font-size: 15px;
     line-height: 23px;
     font-weight: 600;
@@ -172,8 +172,8 @@
     width: 50%;
     align-items: center;
     justify-content: center;
-    background-color: #595959;
-    border: 1px solid #595959;
+    background-color: var(--secondary-color);
+    border: 1px solid var(--secondary-color);
     height: 50px;
     border-radius: 3px;
     color: var(--text-white);
@@ -189,10 +189,10 @@
     align-items: center;
     justify-content: center;
     background-color: #fff;
-    border: 1px solid #C61B1A;
+    border: 1px solid var(--primary-color);
     height: 50px;
     border-radius: 3px;
-    color: #C61B1A;
+    color: var(--primary-color);
     font-size: 15px;
     line-height: 23px;
     font-weight: 600;

@@ -14,11 +14,11 @@
     font-size: 25px;
     font-weight: 600;
     line-height: var(--heading-line-height);
-    color: #595959;
+    color: var(--secondary-color);
 }
 
 .blogs-main-container h3 span{
-    color: var(--active-nav-item-color);
+    color: var(--primary-color);
 }
 
 .blogs-main-para{

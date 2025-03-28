@@ -107,11 +107,11 @@
 
 .scop-input-email button:hover {
     background-color: transparent;
-    border: 2px solid var(--active-nav-item-color);
+    border: 2px solid var(--primary-color);
 }
 
 .scop-input-email button:hover a {
-    color: var(--active-nav-item-color);
+    color: var(--primary-color);
     font-weight: 500;
 }
 

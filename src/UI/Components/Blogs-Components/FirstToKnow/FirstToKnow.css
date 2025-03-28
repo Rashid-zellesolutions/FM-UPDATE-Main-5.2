@@ -65,7 +65,7 @@
     font-size: 15px;
     line-height: 21px;
     font-weight: 500;
-    background-color: var(--active-nav-item-color);
+    background-color: var(--primary-color);
     border: none;
     outline: none;
     cursor: pointer;
@@ -81,7 +81,7 @@
 }
 
 .first-to-know-link{
-    color: var(--active-nav-item-color);
+    color: var(--primary-color);
     font-size: 14px;
     line-height: 21px;
     font-weight: 500;

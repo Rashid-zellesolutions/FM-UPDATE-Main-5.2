@@ -316,7 +316,7 @@ export const MyOrdersProvider = ({ children }) => {
                     id: selectedOption?._id || "",
                     method_id: selectedOption?.id || "",
                     tax: selectedOption?.tax || "0",
-                    cost: selectedOption?.cost || ""
+                    cost: selectedOption?.cost || "0"
                 },
             };
 
@@ -334,7 +334,7 @@ export const MyOrdersProvider = ({ children }) => {
                     orderNumber: response.data.order.uid || "",
                     billing: {
                         ...prev.billing,
-                        ...response.data.order.billing, // Merge new billing details with existing
+                        ...response.data.order.billing,
                     },
                 }));
 

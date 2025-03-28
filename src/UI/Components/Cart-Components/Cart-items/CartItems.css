@@ -310,7 +310,7 @@
 
 }
 .eye_icon.active{
-    color: #C61B1A;
+    color: var(--primary-color);
 }
 .guard-title-and-details-head{
     width: 100%;
@@ -379,20 +379,20 @@
 }
 
 .protection-buttons.select-not-protection{
-    background-color: #595959;
-    border: 1px solid #595959;
+    background-color: var(--secondary-color);
+    border: 1px solid var(--secondary-color);
     color: #fff;
 }
 
 .protection-buttons.selected-yes-protect{
-    background-color: #595959;
-    border: 1px solid #595959;
+    background-color: var(--secondary-color);
+    border: 1px solid var(--secondary-color);
     color: #fff;
 }
 
 .protection-buttons:hover{
-    border: 1px solid #595959;
-    background-color: #595959;
+    border: 1px solid var(--secondary-color);
+    background-color: var(--secondary-color);
     color: #fff;
 }
 
@@ -402,7 +402,7 @@
     font-size: 18px;
     font-weight: 600;
     line-height: 18px;
-    color: var(--active-nav-item-color);
+    color: var(--primary-color);
 }
 
 .protect-product-tag{
@@ -490,8 +490,8 @@
     height: 30px;
     padding: 0px 5px;
     /* border-radius: 10px; */
-    /* border: 1px solid #595959;
-    background-color: #595959;
+    /* border: 1px solid var(--secondary-color);
+    background-color: var(--secondary-color);
     color: var(--text-white); */
     border: none;
     /* border-bottom: 1px solid var(--text-color); */
@@ -552,7 +552,7 @@
     font-size: 18px;
     font-weight: 700;
     line-height: 27px;
-    color: #C61B1A;
+    color: var(--primary-color);
     margin-right: 20px;
 }
 
@@ -606,7 +606,7 @@
 .protection-all-protected p{
     margin: 0 0 0 5px;
     font-size: 10.5px;
-    color: #595959;
+    color: var(--secondary-color);
     padding: 0;
     font-style: italic;
     font-weight: 300;

@@ -36,7 +36,7 @@
 
 .pagination-buttons-container span:hover{
     background-color: rgba(68, 135, 197, 0.1);
-    color: #4487C5;
+    color: var(--tertiary-color);
 }
 
 .pagination-buttons-container span:nth-last-child(1){
@@ -45,7 +45,7 @@
 
 .active-page-span{
     background-color: rgba(68, 135, 197, 0.1);
-    color: #4487C5;
+    color: var(--tertiary-color);
 }
 
 .pagination-buttons-container span.disabled {

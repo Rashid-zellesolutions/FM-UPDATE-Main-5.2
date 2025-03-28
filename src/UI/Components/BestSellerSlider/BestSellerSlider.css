@@ -68,7 +68,7 @@
 }
 
 .best-seller-menu-bar p.active{
-    border-bottom: 3px solid var(--active-nav-item-color);
+    border-bottom: 3px solid var(--primary-color);
     font-size: 18px;
     font-weight: 600;
     line-height: 27px;
@@ -193,7 +193,7 @@
     font-size: 18px;
     line-height: 27px;
     font-weight: 600;
-    color: var(--active-nav-item-color);
+    color: var(--primary-color);
 }
 
 .price-and-heart img{
@@ -307,7 +307,7 @@
 .mobile-view-best-seller-nav.mobile-view-nav-active{
     font-weight: 700;
     font-size: 12px;
-    border-bottom: 2px solid var(--active-nav-item-color);
+    border-bottom: 2px solid var(--primary-color);
 }
 
 .mobile-view-slider-cards{
@@ -403,7 +403,7 @@
         line-height: 16px;
     }
     .best-seller-menu-bar p.active {
-        border-bottom: 3px solid var(--active-nav-item-color);
+        border-bottom: 3px solid var(--primary-color);
         font-size: 10px;
         font-weight: 600;
     }
@@ -462,7 +462,7 @@
         font-size: 15px;
         line-height: 23px;
         font-weight: 600;
-        color: var(--active-nav-item-color);
+        color: var(--primary-color);
     }
     .price-and-heart img{
         height: 25px;

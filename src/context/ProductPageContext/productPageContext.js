@@ -9,6 +9,7 @@ export const ProductPageProvider = ({ children }) => {
     const [selectedVariationData,setSelectedVariationData]=useState(null);
 
     function findObjectByUID(uid, list) {
+        console.log(list?.find(obj => obj?.uid === uid))
         return list?.find(obj => obj?.uid === uid) || null;
     }
     

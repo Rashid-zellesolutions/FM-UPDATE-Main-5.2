@@ -30,7 +30,7 @@ import {
 const QuickView = ({ setQuickViewProduct, quickViewClose, quickViewShow, }) => {
 
 
-    // console.log("Quick View Data", setQuickViewProduct)
+    console.log("Quick View Data", setQuickViewProduct)
 
     const {
         cart,
@@ -74,7 +74,7 @@ const QuickView = ({ setQuickViewProduct, quickViewClose, quickViewShow, }) => {
             para: setQuickViewProduct.description,
         },
         {
-            name: 'Weight & Dimension',
+            name: 'Details',
             para: [
                 { id: 1, name: 'Dimensions (in)', val: `L: 88.5" x W: 37.5" x H: 37"` },
                 { id: 2, name: 'Color', val: `Sugar Shack Cafe` },
@@ -219,7 +219,7 @@ const QuickView = ({ setQuickViewProduct, quickViewClose, quickViewShow, }) => {
                             isInWishList(setQuickViewProduct.uid) ?
                                 <VscHeartFilled
                                     size={20}
-                                    style={{ color: '#C61B1A' }}
+                                    style={{ color: 'var(--primary-color)' }}
                                     onClick={(e) => {
                                         e.stopPropagation();
                                         handleWishList(setQuickViewProduct)
@@ -228,7 +228,7 @@ const QuickView = ({ setQuickViewProduct, quickViewClose, quickViewShow, }) => {
                                 :
                                 <VscHeart
                                     size={20}
-                                    style={{ color: '#C61B1A' }}
+                                    style={{ color: 'var(--primary-color)' }}
                                     onClick={(e) => {
                                         e.stopPropagation();
                                         handleWishList(setQuickViewProduct)
@@ -245,21 +245,47 @@ const QuickView = ({ setQuickViewProduct, quickViewClose, quickViewShow, }) => {
                         {isCartLoading ? ' Almost there...' : 'Add To Cart'}
                     </button>
                 </div>
-                <div className='quick-view-details-section'>
-                    {quickViewData.slice(startFrom, quickViewData.length).map((items, index) => (
-                        <div key={index} className='quick-view-detail-single-section'>
-                            <div className='quick-view-details-heading' onClick={() => handleViewDetails(index)}>
-                                <p>{items.name}</p>
-                                <button >
-                                    <IoIosArrowDown className={viewDetails === index ? 'quick-view-rotate-up' : 'quick-view-rotate-down'} size={20} color='#595959' />
-                                    {/* <img src={arrowDown} alt='arrow down' className={viewDetails === index ? 'quick-view-rotate-up' : 'quick-view-rotate-down'} /> */}
-                                </button>
-                            </div>
-                            <div className={`quick-view-details ${viewDetails === index ? 'show-details' : ''}`}>
-                                {
-                                    setQuickViewProduct?.dimension_image !== null && index === 0
-                                        ? <img src={url + setQuickViewProduct?.dimension_image?.image_url} className='quick-view-dimension-image' alt='dimension' />
-                                        : index === quickViewData.length - 1 ? <div className='quick-view-drop-down-dimension-data'>
+                <div className="quick-view-details-section">
+                    {quickViewData?.map((items, index) => {
+                        const isDimensionSection = items.name === "Dimensions";
+                        const hasDimensionImage = setQuickViewProduct?.dimension_image;
+                        const hasWeightDimension = setQuickViewProduct?.weight_dimension;
+                        const shouldSetHeight = isDimensionSection && !hasDimensionImage && !hasWeightDimension;
+
+                        return (
+                            <div key={index} className="quick-view-detail-single-section">
+                                <div className="quick-view-details-heading" onClick={() => handleViewDetails(index)}>
+                                    <p>{items.name}</p>
+                                    <button>
+                                        <IoIosArrowDown
+                                            className={viewDetails === index ? "quick-view-rotate-up" : "quick-view-rotate-down"}
+                                            size={20}
+                                            color="var(--secondary-color)"
+                                        />
+                                    </button>
+                                </div>
+                                <div
+                                    className={`quick-view-details ${viewDetails === index ? "show-details" : ""}`}
+                                    style={shouldSetHeight ? { height: "120px !important" } : {}}
+                                >
+                                    {items.name === "Description" ? (
+                                        <p dangerouslySetInnerHTML={{ __html: items.para }} />
+                                    ) : isDimensionSection ? (
+                                        <div className='dimension-views'>
+                                            {hasDimensionImage ? (
+                                                <img
+                                                    src={url + setQuickViewProduct.dimension_image.image_url}
+                                                    className="quick-view-dimension-image"
+                                                    alt="dimension"
+                                                />
+                                            ) : null}
+                                            {hasWeightDimension ? (
+                                                <p dangerouslySetInnerHTML={{ __html: setQuickViewProduct.weight_dimension }} />
+                                            ) : null}
+                                            {!hasDimensionImage && !hasWeightDimension ? <p>No dimensions available</p> : null}
+                                        </div>
+                                    ) : (
+                                        <div className="quick-view-drop-down-dimension-data">
                                             {items.para.map((item) => (
                                                 <span key={item.id}>
                                                     <h3>{item.name}</h3>
@@ -267,12 +293,13 @@ const QuickView = ({ setQuickViewProduct, quickViewClose, quickViewShow, }) => {
                                                 </span>
                                             ))}
                                         </div>
-                                            : <p dangerouslySetInnerHTML={{ __html: items.para }} />}
+                                    )}
+                                </div>
                             </div>
-                        </div>
-                    ))}
-
+                        );
+                    })}
                 </div>
+
             </div>
             <CartSidePannel
                 cartData={cartProducts}

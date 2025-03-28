@@ -35,7 +35,7 @@
     font-size: 12px;
     line-height: 18px;
     font-weight: 500;
-    color: var(--active-nav-item-color);
+    color: var(--primary-color);
     text-decoration: none;
     cursor: pointer;
 }

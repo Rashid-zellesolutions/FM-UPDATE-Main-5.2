@@ -28,7 +28,7 @@ const BarChart = () => {
           },
         },
       },
-      colors: ["#4487C5", "#76A7D4"], // Colors for the bars
+      colors: ["var(--tertiary-color)", "#76A7D4"], // Colors for the bars
       states: {
         hover: {
           enable: false

@@ -119,8 +119,8 @@ const PromotionalBanner = (
               <img src={crossButton} alt='cross' />
           </button>
           <div className='login-warning-modal-inner-content'>
-            <p>Session Expired</p>
-            <p>Your session has expired. Please login again to continue.</p>
+            <p>Login Required</p>
+            <p>To access your orders dashboard, please log in.</p>
             <div className='navigate-to-login-btn-container'>
               <button className='navigate-to-login-btn' onClick={handleNavigateToLogin}>
                 Login

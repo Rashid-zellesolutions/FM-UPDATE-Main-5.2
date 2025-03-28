@@ -53,13 +53,13 @@ const DropdownMenu = (
                             to={{ pathname: `/product/${item.slug}`, state: item }}
                         >
                             <img src={url + item.image} alt={item.name} />
-                            <p className='image-title'><Link to={item.slug}>{item.name}</Link> </p>
+                            <Link className='image-title' to={item.slug}>{item.name}</Link>
                             <div className='pricing'>
                                 {item.sale_price === "" ?
                                     <p className='price'>${item.regular_price}</p>
                                     : <span className='sale-price-container'>
-                                        <del className='price'>{formatedPrice(item.regular_price)}</del>
                                         <p className='price-sale-price'>{formatedPrice(item.sale_price)}</p>
+                                        <del className='price'>{formatedPrice(item.regular_price)}</del>
                                     </span>
                                 }
                             </div>

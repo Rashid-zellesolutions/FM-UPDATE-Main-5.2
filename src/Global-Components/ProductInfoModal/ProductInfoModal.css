@@ -94,8 +94,8 @@
     width: max-content;
     height: max-content;
     padding: 16px 22px;
-    background-color: #4487C5;
-    border: 1px solid #4487C5;
+    background-color: var(--tertiary-color);
+    border: 1px solid var(--tertiary-color);
     border-radius: 5px;
     cursor: pointer;
     color: #fff;
@@ -105,7 +105,7 @@
 }
 
 .info-modal-eligibility-check-container > a {
-    color: #4487C5;
+    color: var(--tertiary-color);
     font-size: 13px;
     line-height: 16px;
     font-weight: 400;

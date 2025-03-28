@@ -58,7 +58,7 @@
     font-size: 18px;
     line-height: 27px;
     font-weight: 600;
-    border-bottom: 3px solid var(--active-nav-item-color);
+    border-bottom: 3px solid var(--primary-color);
 }
 
 /* Best Seller Product Cards */
@@ -93,8 +93,8 @@
 }
 
 .category-product-image img{
-    width: 75%;
-    height: 100%;
+    width: 100%;
+    height: auto;
     object-fit: contain;
 }
 
@@ -177,7 +177,7 @@
     height: 100%;
     max-height: 320px;
     object-fit: contain;
-    background-color: var(--active-nav-item-color);
+    background-color: var(--primary-color);
 }
 
 .category-pagination-dots{
@@ -256,8 +256,8 @@
 }
 
 .mobile-view-nav-link.mobile-view-nav-active{
-    border-bottom: 2px solid var(--active-nav-item-color);
-    color: var(--active-nav-item-color);
+    border-bottom: 2px solid var(--primary-color);
+    color: var(--primary-color);
     transform: scale(1.1);
     font-weight: 600;
 }

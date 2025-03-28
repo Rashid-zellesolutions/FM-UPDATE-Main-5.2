@@ -38,8 +38,8 @@ const Categories = ({
   } = useLPContentContext();
 
   useEffect(() => {
-    if(!financingBanners.length){
-      getFinanceBannerImagesFromApi()
+    if(!financingBanners?.length){
+      // getFinanceBannerImagesFromApi()
     }
   }, [financingBanners]);
 
@@ -106,14 +106,16 @@ const Categories = ({
 
   return (
     <>
-      <LatestModulerBanner customWidth={false} showBanners={false} mainImgShow={true} mobileMainImage={location.state ? location.state?.bannerImage2 : categoryData?.bannerImage2}  /* { url+(location.state? location.state?.bannerImage2 : categoryData?.bannerImage2) } */ mainImage={url + (location.state ? location.state?.bannerImage : categoryData?.bannerImage)} />
+    
+      <LatestModulerBanner customWidth={false} showBanners={false} mainImgShow={true} mobileMainImage={location.state ? location.state?.bannerImage2 : categoryData?.bannerImage2}  mainImage={url + (location.state ? location.state?.bannerImage : categoryData?.bannerImage)} />
+      
       <Category title={location.state ? location.state?.name : categoryData?.name} categorySlug={categorySlug} categoryData={categoryPageData} handleNavigate={handleNavigate} />
       {bestSelling &&  (<BestSeller categoryData={bestSelling} />) }
       
       {/* <ShipBanner bannerImg={shipBanner} showBanner={false} paddindTrue={false} /> */}
       <CategoriesGetScop text={paragraph} contentImages={contentImages} isTrue={true} />
       {/* <LatestModulerBanner customWidth={false} showBanners={true} paddingTop={true} mainImgShow={false} /> */}
-      <FinanceBannerSlider images={financingBanners} />
+      {/* <FinanceBannerSlider images={financingBanners} /> */}
       {/* <CustomerServicePanel /> */}
     </>
   )

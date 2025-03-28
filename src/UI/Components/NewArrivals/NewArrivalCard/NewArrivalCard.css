@@ -90,7 +90,7 @@
 }
 
 .card-buttons a:hover{
-    background-color: var(--active-nav-item-color);
+    background-color: var(--primary-color);
     border-radius: 6px;
 }
 

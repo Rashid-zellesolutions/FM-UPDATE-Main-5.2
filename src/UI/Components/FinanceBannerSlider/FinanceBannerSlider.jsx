@@ -88,7 +88,7 @@ function FinanceBannerSlider({ images }) {
     return (
         <div className="carousel-container">
             <Slider {...settings}>
-                {images.map((image, index) => (
+                {images?.desktop?.map((image, index) => (
                     <div className="carousel-slide" key={index}>
                         <img
                             src={`${url}${image.image_url}`}

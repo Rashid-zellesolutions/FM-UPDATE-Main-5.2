@@ -15,7 +15,7 @@
 }
 
 .bread-crumb-list li a {
-    color: #595959;
+    color: var(--secondary-color);
     font-size: 14px;
     line-height: 21px;
     font-weight: 500;
@@ -48,15 +48,15 @@
 
 .bread_links :hover {
     background-color: #F5F9FC;
-    color: #4487C5;
+    color: var(--tertiary-color);
 }
 
 .active-last-bread-link {
     background-color: #F5F9FC;
-    color: #4487C5;
+    color: var(--tertiary-color);
 }
 
 .bread_links_sub.active {
-    color: #484F59;
+    color: var(--quaternary-color);
     font-weight: 600;
 }

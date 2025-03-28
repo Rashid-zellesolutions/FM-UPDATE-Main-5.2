@@ -75,7 +75,7 @@
 }
 
 .shipping-details a{
-    color: var(--active-nav-item-color);
+    color: var(--primary-color);
     font-size: 16px;
     line-height: 24px;
     font-weight: 400;
@@ -103,7 +103,7 @@
 }
 
 .return-policy-details a{
-    color: var(--active-nav-item-color);
+    color: var(--primary-color);
     font-size: 16px;
     line-height: 24px;
     font-weight: 400;

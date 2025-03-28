@@ -37,7 +37,7 @@
 }
 
 .living-room-links a:hover{
-    color: var(--hover-font-color);
+    color: var(--primary-color);
     text-decoration: underline;
 }
 

@@ -102,18 +102,19 @@ export const LPContentProvider = ({ children }) => {
     }
   };
 
-  const [financingBanners, setFinancingBanners] = useState([])
+  const [financingBanners, setFinancingBanners] = useState(null)
   // Standard Function
   const getFinanceBannerImagesFromApi = async () => {
     try {
-      if (financingBanners === null) {
-        const response = await axios.get(`${url}/api/v1/pages/home/finance-slider/get`);
+      // if (financingBanners === null) {
+        const response = await axios.get(`${url}/api/v1/pages/home/upd-finance-slider/get`);
         if (response.status === 200) {
-          setFinancingBanners(response?.data?.homeSliders)
+          setFinancingBanners(response?.data?.slider)
+          console.log(response?.data?.slider,"here is data of fin slider")
         } else {
           console.log("UnExpected Error", response.status)
         }
-      }
+      // }
     } catch (error) {
       console.error("UnExpected Server Error", error);
     }

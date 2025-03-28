@@ -74,7 +74,7 @@ const ProductCard = ({
                     attribute?.options?.some(option => option?.value === color)
                 )
             );
-            setSelectedColorImage(matchingAttribute?.images[0]?.image_url)
+            setSelectedColorImage(matchingAttribute?.images[1]?.image_url)
             setHoveredImage(matchingAttribute?.images[1]?.image_url)
             return matchingAttribute;
 
@@ -85,7 +85,7 @@ const ProductCard = ({
             );
 
             if (simpleAttribute) {
-                setSelectedColorImage(singleProductData?.images[0]?.image_url);
+                setSelectedColorImage(singleProductData?.images[1]?.image_url);
                 setHoveredImage(singleProductData?.images[1]?.image_url);
             }
             return simpleAttribute;
@@ -102,14 +102,14 @@ const ProductCard = ({
                     attribute?.options?.some(option => option?.value === image)
                 )
             );
-            setSelectedColorImage(matchingAttribute?.images[0]?.image_url)
+            setSelectedColorImage(matchingAttribute?.images[1]?.image_url)
             setHoveredImage(matchingAttribute?.images[1]?.image_url)
             return matchingAttribute;
         } else if (singleProductData?.type === "simple") {
             const simpleAttribute = singleProductData?.attributes?.find(attribute =>
                 attribute?.type === "image"
             );
-            setSelectedColorImage(singleProductData?.images[0]?.image_url);
+            setSelectedColorImage(singleProductData?.images[1]?.image_url);
             setHoveredImage(singleProductData?.images[1]?.image_url);
             return simpleAttribute;
         }
@@ -236,7 +236,7 @@ const ProductCard = ({
                                     <VscHeartFilled
                                         size={25}
                                         className='wishlist-heart'
-                                        style={{ color: '#C61B1A' }}
+                                        style={{ color: 'var(--primary-color)' }}
                                         onClick={(e) => {
                                             e.stopPropagation();
                                             handleWishListclick(singleProductData)
@@ -246,7 +246,7 @@ const ProductCard = ({
                                     <VscHeart
                                         size={25}
                                         className='wishlist-heart'
-                                        style={{ float: 'right', color: '#C61B1A' }}
+                                        style={{ float: 'right', color: 'var(--primary-color)' }}
                                         onClick={(e) => {
                                             e.stopPropagation();
                                             handleWishListclick(singleProductData)

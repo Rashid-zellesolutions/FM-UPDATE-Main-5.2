@@ -57,7 +57,7 @@
     font-size: 14px;
     line-height: 16px;
     font-weight: 500;
-    color: var(--active-nav-item-color);
+    color: var(--primary-color);
 }
 
 .cart-suggestion-product-containt p{

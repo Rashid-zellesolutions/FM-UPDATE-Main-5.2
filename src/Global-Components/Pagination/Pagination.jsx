@@ -14,14 +14,14 @@ const Pagination = ({ activePageIndex, totalPages, handleActivePage, handlePrevP
                         onClick={handlePrevPage}
                         style={{
                             pointerEvents: activePageIndex === 1 ? 'none' : 'auto',
-                            color: activePageIndex === 1 ? '#ccc' : '#4487C5',
+                            color: activePageIndex === 1 ? '#ccc' : 'var(--tertiary-color)',
                         }}
                     >
                         <FaRegArrowAltCircleLeft
                             size={18}
                             style={{
                                 pointerEvents: activePageIndex === 1 ? 'none' : 'auto',
-                                color: activePageIndex === 1 ? '#ccc' : '#4487C5',
+                                color: activePageIndex === 1 ? '#ccc' : 'var(--tertiary-color)',
                             }}
                         />
                         Prev
@@ -51,7 +51,7 @@ const Pagination = ({ activePageIndex, totalPages, handleActivePage, handlePrevP
                         onClick={handleNextPage}
                         style={{
                             pointerEvents: activePageIndex === totalPages?.totalPages ? 'none' : 'auto',
-                            color: activePageIndex === totalPages?.totalPages ? '#ccc' : '#4487C5',
+                            color: activePageIndex === totalPages?.totalPages ? '#ccc' : 'var(--tertiary-color)',
                         }}
                     >
                         Next
@@ -59,7 +59,7 @@ const Pagination = ({ activePageIndex, totalPages, handleActivePage, handlePrevP
                             size={18}
                             style={{
                                 pointerEvents: activePageIndex === totalPages?.totalPages ? 'none' : 'auto',
-                                color: activePageIndex === totalPages?.totalPages ? '#ccc' : '#4487C5',
+                                color: activePageIndex === totalPages?.totalPages ? '#ccc' : 'var(--tertiary-color)',
                             }}
                         />
                     </span>

@@ -54,7 +54,7 @@ const BestSeller = ({ categoryData }) => {
 
     // Functions
     const getBestSellerProducts = async (slug) => {
-        const api = `/api/v1/products/by-category?categorySlug=${slug}&best_selling_product=1`
+        const api = `/api/v1/products/by-category?categorySlug=${slug}&best_selling_product=1&per_page=6`
         try {
             setLoading(true);
             const response = await axios.get(`${url}${api}`)
@@ -94,7 +94,7 @@ const BestSeller = ({ categoryData }) => {
 
     const itemPerPage = 6
     const maxIndex = Math.ceil(products && products.length / itemPerPage) - 1;
-    const [currentIndex, setCurrentIndex] = useState(1)
+    const [currentIndex, setCurrentIndex] = useState(0)
     const handlePageChange = (index) => {
         setCurrentIndex(index)
     }
@@ -204,7 +204,7 @@ const BestSeller = ({ categoryData }) => {
 
                             <div className='products-slider-container'>
                                 {!loading ? <div className='best-seller-slider' style={{ transform: `translateX(-${(currentIndex / maxIndex) * 0}%)` }}>
-                                    {products && products.slice(currentIndex, currentIndex + itemPerPage).map((item, index) => (
+                                    {products && products.slice(currentIndex * itemPerPage, (currentIndex + 1) * itemPerPage).map((item, index) => (
                                         <BestSellerProductCard
                                             key={index}
                                             productData={item}

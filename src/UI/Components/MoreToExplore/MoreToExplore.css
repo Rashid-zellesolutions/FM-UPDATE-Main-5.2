@@ -45,7 +45,7 @@
     font-size: 25px;
     line-height: 20px;
     font-weight: 700;
-    color: var(--active-nav-item-color);
+    color: var(--primary-color);
     text-decoration: underline;
     cursor: pointer;
 }
@@ -67,7 +67,7 @@
     font-size: 16px;
     line-height: 24px;
     font-weight: 400;
-    color: var(--active-nav-item-color);
+    color: var(--primary-color);
     cursor: pointer;
 }
 

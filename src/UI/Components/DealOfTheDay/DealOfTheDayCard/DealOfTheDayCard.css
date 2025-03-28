@@ -36,7 +36,7 @@
   font-size: 12px;
   font-weight: 300;
   line-height: 18px;
-  color: #595959;
+  color: var(--secondary-color);
 }
 
 .deal-of-the-day-stars{
@@ -47,7 +47,7 @@
   font-size: 16px;
   font-weight: 500;
   line-height: 18px;
-  color: #595959;
+  color: var(--secondary-color);
   margin-bottom: 0px;
   height: 38px;
 }
@@ -129,7 +129,7 @@
 .deal-of-the-day-product-discount{
   display: flex;
   position: absolute;
-  background-color: #C61B1A;
+  background-color: var(--primary-color);
   top: 10px;
   right: 10px;
   padding: 5px 15px;
@@ -179,7 +179,7 @@
 }
 
 .deal-of-the-day-icon-one:hover{
-  background-color: var(--active-nav-item-color);
+  background-color: var(--primary-color);
 }
 
 .deal-of-the-day-icon-one:hover .deal-of-month-cart-icon{
@@ -200,11 +200,11 @@
 }
 
 .deal-of-the-day-icon-two:hover{
-  background-color: var(--active-nav-item-color);
+  background-color: var(--primary-color);
 }
 
 .deal-of-the-day-icon-two.active-wish-list-btn{
-  background-color: var(--active-nav-item-color);
+  background-color: var(--primary-color);
 }
 
 .deal-of-month-heart-icon{
@@ -236,7 +236,7 @@
 }
 
 .deal-of-the-day-icon-three:hover{
-  background-color: var(--active-nav-item-color);
+  background-color: var(--primary-color);
 }
 
 .deal-of-month-share-icon{

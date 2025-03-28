@@ -76,16 +76,20 @@
     font-size: 12px;
     font-weight: 500;
     line-height: 18px;
-    color: #C61B1A;
+    color: var(--primary-color);
 }
 
-.blog-arther-details h3{
+.blog-arther-details h3 {
     font-size: 20px;
     line-height: 21px;
     font-weight: 500;
-    height: 45px;
     text-align: center;
+    white-space: nowrap;      /* Keeps text on one line */
+    overflow: hidden;         /* Hides overflow content */
+    text-overflow: ellipsis;  /* Adds "..." when text overflows */
+    max-width: 100%;          /* Ensures it doesn't break layout */
 }
+
 
 .blog-created-by-and-comments{
     display: flex;
@@ -117,14 +121,14 @@
 
 
 .blog-created-by-and-comments p span{
-    color: #C61B1A;
+    color: var(--primary-color);
 }
 
 .blog-created-by-and-comments p{
     font-size: 12px;
     line-height: 18px;
     font-weight: 400;
-    color: #595959;
+    color: var(--secondary-color);
     display: flex;
     align-items: center;
 }
@@ -144,7 +148,7 @@
     font-size: 12px;
     line-height: 18px;
     font-weight: 400;
-    color: #595959;
+    color: var(--secondary-color);
 }
 
 .blog-para-and-see-more button{
@@ -165,8 +169,8 @@
 }
 
 .blog-para-and-see-more button:hover{
-    color: #C61B1A;
-    border-bottom: 1px solid #C61B1A;
+    color: var(--primary-color);
+    border-bottom: 1px solid var(--primary-color);
     gap: 10px;
 }
 
@@ -184,7 +188,7 @@
 
 .mobile-view-blog-card-author p{
     font-weight: 500;
-    color: var(--active-nav-item-color);
+    color: var(--primary-color);
 }
 
 @media only screen and (max-width: 480px){

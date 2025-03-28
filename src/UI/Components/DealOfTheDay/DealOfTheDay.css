@@ -24,13 +24,14 @@
 
 .deal-of-the-day-end-time{
     display: flex;
-    background-color: #C61B1A;
+    background-color: var(--primary-color);
     height: 43px;
-    width: 235px;
+    width: 370px;
     align-items: center;
-    justify-content: center;
-    border-radius: 25px;
+    justify-content: space-between;
+    border-radius: 8px;
     margin-top: -3px;
+    padding: 0 10px;
 }
 
 .deal-of-the-day-end-time p{
@@ -44,15 +45,15 @@
     font-size: 25px;
     font-weight: 600;
     line-height: var(--heading-line-height);
-    color: #595959;
-    margin-top: 5px;
+    color: var(--secondary-color);
+    /* margin-top: 5px; */
 }
 
 .deal-of-the-day-outer-container{
     width: 100%;
     display: flex;
     flex-direction: column;
-    border: 2px solid #C61B1A;
+    border: 2px solid var(--primary-color);
     border-radius: 8px;
     padding: 38px 15px 32px 38px;
     position: relative;
@@ -147,7 +148,7 @@ position: absolute;
 
 .mobile-view-timer{
     display: none;
-    background-color: #C61B1A;
+    background-color: var(--primary-color);
     width: max-content;
     padding: 10px 42px;
     border-radius: 20px;
@@ -178,7 +179,7 @@ position: absolute;
 
     .deal-of-the-day-border-heading p{
         margin-top: 0px;
-        color: var(--active-nav-item-color);
+        color: var(--primary-color);
         font-size: 20px;
         line-height: 24px;
         font-weight: 600;

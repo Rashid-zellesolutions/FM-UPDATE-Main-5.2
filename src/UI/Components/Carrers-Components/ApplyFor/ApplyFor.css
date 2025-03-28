@@ -80,7 +80,7 @@
     gap: 10px;
     width: max-content;
     background-color: #ffff;
-    border: 1px solid #595959;
+    border: 1px solid var(--secondary-color);
     color: var(--text-color);
     cursor: pointer;
     border-radius: 5px;
@@ -98,7 +98,7 @@
 }
 
 .apply-for-career-button:hover{
-    background-color: #595959;
+    background-color: var(--secondary-color);
     color: #fff;
 }
 

@@ -13,114 +13,124 @@ import { IoChevronForward } from "react-icons/io5";
 import { IoChevronBack } from "react-icons/io5";
 import { Link } from 'react-router-dom';
 
+const Sliderr = ({ images, height, autoSlideSpeed = 5000 }) => { 
 
-// Slider component accepting images as props
-const Sliderr = ({ images, height }) => {
-
-    console.log("new images", images)
-
-    // State and variables
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isHovered, setIsHovered] = useState(false);
+    const [isDragging, setIsDragging] = useState(false);
     const [imagePreloader, setImagePreloader] = useState(false);
 
-    // Functions
-    const handleMouseEnter = () => {
-        setIsHovered(true);
-    }
-
-    const handleMouseLeave = () => {
-        setIsHovered(false);
-    }
+    const handleMouseEnter = () => setIsHovered(true);
+    const handleMouseLeave = () => setIsHovered(false);
 
     const nextSlide = () => {
         setCurrentIndex(prevIndex => (images?.length ? (prevIndex + 1) % images?.length : 0));
     };
 
-    useEffect(() => {
-        const interval = setInterval(nextSlide, 3000);
-        return () => clearInterval(interval);
-    }, [images]);
+    // These events will help determine if a drag is happening
+    const handleMouseDown = (e) => {
+        setIsDragging(false); // Reset drag state on mouse down
+    };
 
-    const mobileViewSLider = [
-        { img: sliderImageOne },
-        { img: sliderImageThree },
-        { img: sliderImageFour },
-    ]
+    const handleMouseMove = (e) => {
+        if (e.buttons === 1) {
+            setIsDragging(true); // Mark as dragging when moving with the left mouse button
+        }
+    };
+
+    const handleClick = (e) => {
+        if (isDragging) {
+            e.preventDefault(); // Prevent navigation if it was a drag
+        }
+    };
+
+    useEffect(() => {
+        const interval = setInterval(nextSlide, autoSlideSpeed);
+        return () => clearInterval(interval);
+    }, [images, autoSlideSpeed]);
 
     // Custom arrows
     const CustomPrevArrow = ({ onClick }) => (
         <div className="arrow left-arrow" onClick={onClick} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-            
             <IoChevronBack />
         </div>
     );
 
     const CustomNextArrow = ({ onClick }) => (
         <div className="arrow right-arrow" onClick={onClick} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-            
             <IoChevronForward />
         </div>
     );
 
-
     const settings = {
-        dots: false, // Set to true if you want dot navigation
+        dots: false,
         infinite: true,
         speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1,
         autoplay: true,
-        autoplaySpeed: 3000,
+        autoplaySpeed: autoSlideSpeed,  // Using the passed prop for auto-slide speed
         pauseOnHover: false,
         prevArrow: imagePreloader ? <CustomPrevArrow /> : <></>,
         nextArrow: imagePreloader ? <CustomNextArrow /> : <></>,
+        beforeChange: () => setIsDragging(true),
+        afterChange: () => setIsDragging(false),
     };
-
-    console.log("slider images", images)
 
     return (
         <>
-            <div className="slider" style={{ cursor: 'grab', height: height ? height : "calc(100vw * 0.26355)" }}>
+            <div className="slider" style={{ cursor: 'grab', height: height || "calc(100vw * 0.26355)" }}>
                 <Slider {...settings}>
-                    {images?.desktop?.map((img, index) => (
-                        <Link to={`/product/${img?.link_url}`} className="slide" key={index}>
+                    {images && images?.desktop?.map((img, index) => (
+                        <Link
+                            to={`/product/${img.link_url}`}
+                            className="slide"
+                            key={index}
+                            onMouseDown={handleMouseDown}
+                            onMouseMove={handleMouseMove}
+                            onClick={handleClick}  // prevent click if dragging
+                        >
                             <img
                                 src={`${url}${img.image_url}`}
                                 alt={`slide ${index + 1}`}
-                                onDragStart={(e) => e.preventDefault()}
+                                onDragStart={(e) => e.preventDefault()}  // Prevent drag
                                 onLoad={() => setImagePreloader(true)}
                             />
-
                         </Link>
                     ))}
                 </Slider>
                 {!imagePreloader && <div className='image_preloader'>
-                    <img src={loader} alt="" srcset="" />
+                    <img src={loader} alt="" />
                 </div>}
             </div>
 
             {/* Mobile View */}
-
             <div className="mobile-view-slider">
                 {images?.mobile?.length > 0 ? (
                     <Slider {...settings}>
                         {images?.mobile?.map((img, index) => (
-                            <div className="mobile-slide" key={index}>
+                            <Link
+                                to={`/product/${img.link_url}`}
+                                className="mobile-slide"
+                                key={index}
+                                onMouseDown={handleMouseDown}
+                                onMouseMove={handleMouseMove}
+                                onClick={handleClick}  // prevent click if dragging
+                            >
                                 <img
                                     src={`${url}${img.image_url}`}
                                     alt={`slide ${index + 1}`}
-                                    onDragStart={(e) => e.preventDefault()}
+                                    onDragStart={(e) => e.preventDefault()}  // Prevent drag
                                 />
-                            </div>
+                            </Link>
                         ))}
                     </Slider>
                 ) : (
                     <div className='mobile-view-slider-shimmer'></div>
                 )}
-                
             </div>
         </>
     );
 };
+
 export default Sliderr;

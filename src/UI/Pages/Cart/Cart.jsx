@@ -19,10 +19,13 @@ import { useGlobalContext } from '../../../context/GlobalContext/globalContext'
 import { formatedPrice, url } from '../../../utils/api';
 import QuickView from '../../Components/QuickView/QuickView';
 
-import masterCard from '../../../Assets/icons/master.png';
-import visaCard from '../../../Assets/icons/visa.png'
-import americanExpressCard from '../../../Assets/icons/american-express.png';
-import discover from '../../../Assets/icons/discover.png'
+import masterCard from '../../../Assets/icons/mastercard-1.png';
+import visaCard from '../../../Assets/icons/visa-1.png'
+import americanExpressCard from '../../../Assets/icons/ae-1.png';
+import discover from '../../../Assets/icons/discover-1.png'
+import paypal from '../../../Assets/icons/paypal-1.png'
+
+
 import FinancingModal from '../../Modals/FinancingModal/FinancingModal';
 import AppointmentModal from '../../../Global-Components/AppointmentModal/AppointmentModal';
 import ProductCardTwo from '../../Components/ProductCardTwo/ProductCardTwo';
@@ -70,6 +73,7 @@ const Cart = () => {
   const {
     cart,
     subTotal,
+    subTotal0,
     savings,
     isCartProtected,
     cartProducts,
@@ -215,8 +219,8 @@ const Cart = () => {
 
   const orderPriceDetails = [
     { title: 'Subtotal', price: formatedPrice(subTotal) },
-    { title: 'Protection plan', price: formatedPrice(protectionPrice) },
-    { title: 'Professional Assembly', price: formatedPrice(assemblyPrice) },
+    // { title: 'Protection plan', price: formatedPrice(protectionPrice) },
+    // { title: 'Professional Assembly', price: formatedPrice(assemblyPrice) },
     { title: `Tax (${totalTax?.tax_name})`, price: totalTax ? formatedPrice(calculateTotalTax(subTotal, parseFloat(totalTax?.tax_value))) : 0 }
   ]
 
@@ -302,35 +306,54 @@ const Cart = () => {
             </div> */}
 
             <div className='cart-order-summary-price-details'>
-              {isProfessionalAssembly ? (
-                <div className='if-professional-assembly-container'>
-                  <p className='if-professional-assembly-heading'>Professional Assembly</p>
-                  <p className='if-professional-assembly-value'>{formatedPrice(210)}</p>
-                </div>
-              ) : (
-                <></>
-              )}
-              {isCartProtected ? (
-                <div className='if-professional-assembly-container'>
-                  <p className='if-professional-assembly-heading'>Protect Entire Order</p>
-                  <p className='if-professional-assembly-value'>{formatedPrice(200)}</p>
-                </div>
-              ) : (
-                <></>
-              )}
-              {filteredOrderPriceDetails.map((price, index) => (
+
+              {/* {filteredOrderPriceDetails.map((price, index) => (
                 <div key={index} className='cart-order-summary-price-detail-single-item'>
                   <p className='cart-order-summary-price-detail-single-item-title'>{price.title}</p>
                   <p className='cart-order-summary-price-detail-single-item-price'>{price.price}</p>
                 </div>
-              ))}
+            ))} */}
+
+              <div className='cart-order-summary-price-detail-single-item'>
+                <p className='cart-order-summary-price-detail-single-item-title'>Subtotal</p>
+                <p className='cart-order-summary-price-detail-single-item-price'>{formatedPrice(subTotal0)}</p>
+              </div>
+
+              
+
+
               <div className='cart-order-summary-price-detail-save-discount'>
                 <p>Savings</p>
-                <p>{formatedPrice(savings)}</p>
+                <p style={{ color: "var(--primary-color)" }} >-{formatedPrice(savings)}</p>
               </div>
-              <div className='if-professional-assembly-container'>
-                <p className='if-professional-assembly-heading'>{selectedOption?.name}</p>
-                <p className='if-professional-assembly-value'>{selectedOption?.cost === 0 ? '' : selectedOption?.cost}</p>
+
+              {isCartProtected ? (
+                <div className='cart-order-summary-price-detail-single-item'>
+                  <p className='cart-order-summary-price-detail-single-item-title'>Protect Entire Order</p>
+                  <p className='cart-order-summary-price-detail-single-item-price'>{formatedPrice(200)}</p>
+                </div>
+              ) : (
+                <></>
+              )}
+              {isProfessionalAssembly ? (
+                <div className='cart-order-summary-price-detail-single-item'>
+                  <p className='cart-order-summary-price-detail-single-item-title'>Professional Assembly</p>
+                  <p className='cart-order-summary-price-detail-single-item-price'>{formatedPrice(210)}</p>
+                </div>
+              ) : (
+                <></>
+              )}
+
+
+
+              <div className='cart-order-summary-price-detail-single-item'>
+                <p className='cart-order-summary-price-detail-single-item-title'>{selectedOption?.name}</p>
+                <p className='cart-order-summary-price-detail-single-item-price'>{selectedOption?.cost === 0 ? '' : selectedOption?.cost}</p>
+              </div>
+
+              <div className='cart-order-summary-price-detail-single-item'>
+                <p className='cart-order-summary-price-detail-single-item-title'>{`Tax (${totalTax?.tax_name})`}</p>
+                <p className='cart-order-summary-price-detail-single-item-price'>{totalTax ? formatedPrice(calculateTotalTax(subTotal, parseFloat(totalTax?.tax_value))) : 0}</p>
               </div>
 
 
@@ -397,15 +420,7 @@ const Cart = () => {
                   ))}
               </div> */}
 
-              <div className='order-summary-coupon-div'>
-                <p onClick={handleCouponInput}>Add Coupon Code <IoIosArrowDown className={`cart-order-summary-coupon-arrow ${isCouponOpen ? 'cart-order-summary-coupon-arrow-rotate' : ''}`} size={20} /></p>
-                <div className={`cart-order-summary-coupon-input-div ${isCouponOpen ? 'show-coupon-update-input' : ''}`}>
-                  <div className='cart-order-summary-coupon-input-and-button'>
-                    <input type='text' placeholder='Coupon Code' className='cart-summary-update-coupon-input' />
-                    <button className='cart-summary-update-coupon-btn'>Update</button>
-                  </div>
-                </div>
-              </div>
+              
 
             </div>
 
@@ -420,6 +435,16 @@ const Cart = () => {
               </div> */}
             </div>
 
+            <div className='order-summary-coupon-div'>
+                <p onClick={handleCouponInput}>Add Coupon Code <IoIosArrowDown className={`cart-order-summary-coupon-arrow ${isCouponOpen ? 'cart-order-summary-coupon-arrow-rotate' : ''}`} size={20} /></p>
+                <div className={`cart-order-summary-coupon-input-div ${isCouponOpen ? 'show-coupon-update-input' : ''}`}>
+                  <div className='cart-order-summary-coupon-input-and-button'>
+                    <input type='text' placeholder='Coupon Code' className='cart-summary-update-coupon-input' />
+                    <button className='cart-summary-update-coupon-btn'>Update</button>
+                  </div>
+                </div>
+              </div>
+
             <button
               onClick={navigateToCheckout}
               className='cart-summary-proceed-btn'>
@@ -429,7 +454,7 @@ const Cart = () => {
             <div className='payment-card-container'>
               <h3 className='payment-cards-heading'>Securely accepted at checkout</h3>
               <div className='payment-cards-inner-container'>
-                {[masterCard, visaCard, discover, americanExpressCard, masterCard, americanExpressCard].map((item, index) => (
+                {[masterCard, visaCard, discover, americanExpressCard, paypal].map((item, index) => (
                   <img src={item} alt='payment card' className='payment-card' />
                 ))}
               </div>
@@ -465,7 +490,7 @@ const Cart = () => {
                     maxWidthAccordingToComp={"100%"}
                     justWidth={'100%'}
                     percent={'12%'}
-                    showOnPage={false}
+                    showOnPage={true}
                     // colTwo={selectedGrid === 'single-col' ? false : true}
                     tagIcon={item.productTag ? item.productTag : heart}
                     tagClass={item.productTag ? 'tag-img' : 'heart-icon'}

@@ -187,12 +187,21 @@ const SizeVariant = ({
                                     <div className="attribute-single-color" key={index}>
                                         <div title={option.name}
                                             className={`attribute-color-variation-box ${selectedSelectAttrs[attribute.name] === option.value
-                                                    ? 'selected'
+                                                    ? 'show-tick-mark selected'
                                                     : ''
                                                 }`}
                                             onClick={() => handleClickColor(attribute.name, option.value, option.name)}
+                                            // style={{
+                                            //     backgroundColor: option.value,
+                                            // }}
                                             style={{
                                                 backgroundColor: option.value,
+                                                // border: 'none',
+                                                border: selectedSelectAttrs[attribute.name] === option.value ? `1px solid ${option.value}` : 'none',
+                                                // boxShadow: ''
+                                                boxShadow: selectedSelectAttrs[attribute.name] === option.value ? `inset 0 0 0 2px #FFFF` : '',
+                                                "--tick-color": option.value
+
                                             }}
                                         ></div>
                                         {/* <p className='quick-view-atribute-option-name'>{option.name}</p> */}

@@ -160,11 +160,11 @@ export default function OrderConfirmationPage() {
                             <p className="sub_content">
                                 {/* <img src={card} alt="" /> */}
                                 <svg width="25" height="25" viewBox="0 0 91 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M0.183594 9H90.0453V15.5L86.5 17L84.5 18L82.6836 19H0.183594V9Z" fill="#595959" />
+                                    <path d="M0.183594 9H90.0453V15.5L86.5 17L84.5 18L82.6836 19H0.183594V9Z" fill="var(--secondary-color)" />
                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M0 4C0 1.79086 1.79086 0 4 0H86C88.2091 0 90 1.79086 90 4V9H0V4ZM82.6853 19H0V56C0 58.2091 1.79086 60 4 60H86C88.2091 60 90 58.2091 90 56V50.554C81.984 48.7351 76 41.5663 76 33C76 27.3455 78.6073 22.2999 82.6853 19Z" fill="#FDFDFD" />
-                                    <rect x="5" y="50" width="36" height="6" fill="#595959" />
-                                    <rect x="62" y="50" width="18" height="6" fill="#595959" />
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M90 9H0V19H82.6836C84.7852 17.3008 87.2734 16.0645 90 15.4453V9Z" fill="#595959" />
+                                    <rect x="5" y="50" width="36" height="6" fill="var(--secondary-color)" />
+                                    <rect x="62" y="50" width="18" height="6" fill="var(--secondary-color)" />
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M90 9H0V19H82.6836C84.7852 17.3008 87.2734 16.0645 90 15.4453V9Z" fill="var(--secondary-color)" />
                                 </svg>
                             </p>
 

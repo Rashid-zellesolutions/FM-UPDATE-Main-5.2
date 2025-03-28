@@ -5,7 +5,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 11px 70px 11px 20px;
-    background-color: #F0F0F0;
+    background-color: var(--secondary-background);
 }
 
 .rotating-message{
@@ -36,7 +36,7 @@
     height: 25px;
     align-items: center;
     gap: 30px;
-    /* border-right: 1px solid #595959; */
+    /* border-right: 1px solid var(--secondary-color); */
 }
 
 .banner-link-container a{

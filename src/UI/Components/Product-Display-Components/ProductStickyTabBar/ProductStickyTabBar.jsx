@@ -126,7 +126,7 @@ const ProductStickyTabBar = (
                         <div className='product-sticky-fixed-details'>
                             <h3>{productData?.name}</h3>
                             <span className='product-sticky-fixed-delivery-detail'>
-                                <CiDeliveryTruck size={20} color='#595959' />
+                                <CiDeliveryTruck size={20} color='var(--secondary-color)' />
                                 <p>Get it by</p>
                                 <strong>{getDeliveryDate()}</strong>
                                 <i onClick={handleSearchModal}>

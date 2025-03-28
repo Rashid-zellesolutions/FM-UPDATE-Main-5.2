@@ -43,6 +43,11 @@
     justify-content: center;
 }
 
+.payment-solution-single-card > img{
+    width: 100%;
+    height: auto;
+}
+
 .payment-solution-single-card h3{
     font-size: 30px;
     line-height: 45px;
@@ -70,6 +75,10 @@
     height: auto;
 }
 
+.payment-solutions.mobileview{
+    display: none;
+}
+
 @media only screen and (max-width: 480px){
 
     .desktop-finance-secondBanner{
@@ -83,6 +92,12 @@
         display: block;
     }
     .mobile-finance-secondBanner{
+        display: flex;
+    }
+    .payment-solutions.desktopview{
+        display: none;
+    }
+    .payment-solutions.mobileview{
         display: flex;
     }
     .payment-solutions {

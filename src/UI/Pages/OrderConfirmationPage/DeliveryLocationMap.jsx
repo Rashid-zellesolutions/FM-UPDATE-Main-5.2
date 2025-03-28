@@ -67,7 +67,7 @@ const mapOptions = {
 
 function DeliveryLocationMap({ address_info }) {
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: "AIzaSyB9nW_l7Dw8WnnSCOJyJSGjtTYyF9ct3qk",
+    googleMapsApiKey: "AIzaSyBCllVZsJjrhrGSJLJTE5NzPNt94ChqHc8",
   });
 
   const [location, setLocation] = useState(null);
@@ -75,7 +75,7 @@ function DeliveryLocationMap({ address_info }) {
   const fetchLatLngFromAddress = async (address) => {
     const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(
       address
-    )}&key=AIzaSyB9nW_l7Dw8WnnSCOJyJSGjtTYyF9ct3qk`;
+    )}&key=AIzaSyBCllVZsJjrhrGSJLJTE5NzPNt94ChqHc8`;
 
     try {
       const response = await fetch(url);

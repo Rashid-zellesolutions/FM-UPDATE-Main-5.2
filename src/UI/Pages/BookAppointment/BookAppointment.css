@@ -61,11 +61,11 @@
 }
 
 .tab-select-card.selected-tab{
-    background-color: var(--active-nav-item-color);
+    background-color: var(--primary-color);
 }
 
 .tab-select-card:hover {
-    background-color: var(--active-nav-item-color);
+    background-color: var(--primary-color);
     
 }
 

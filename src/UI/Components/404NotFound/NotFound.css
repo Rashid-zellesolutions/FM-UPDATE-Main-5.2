@@ -34,7 +34,7 @@
     font-size: 30px;
     font-weight: 700;
     line-height: 45px;
-    color: #C61B1A;
+    color: var(--primary-color);
 }
 
 .error-response-div{
@@ -50,7 +50,7 @@
     font-size: 15px;
     font-weight: 500;
     line-height: 23px;
-    color: #595959;
+    color: var(--secondary-color);
 }
 
 .appreciation-text{

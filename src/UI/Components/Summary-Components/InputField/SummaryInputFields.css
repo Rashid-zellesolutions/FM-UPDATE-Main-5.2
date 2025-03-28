@@ -19,7 +19,7 @@
 
 .required-field::after{
     content: '*';
-    color: var(--active-nav-item-color);
+    color: var(--primary-color);
     margin-left: 4px;
 }
 

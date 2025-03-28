@@ -36,8 +36,8 @@
     width: 66px;
     height: 33px;
     padding: 0px 10px;
-    border: 1px solid var(--active-nav-item-color);
-    background-color: var(--active-nav-item-color);
+    border: 1px solid var(--primary-color);
+    background-color: var(--primary-color);
     border-radius: 4px;
     color: #fff;
     font-size: 15px;
@@ -97,7 +97,7 @@
 
 .sold-out p:nth-child(2){
     font-weight: 700;
-    color: var(--active-nav-item-color);
+    color: var(--primary-color);
 }
 
 /* Right Section */
@@ -158,7 +158,7 @@
     font-size: 18px;
     font-weight: 600;
     line-height: 27px;
-    color: var(--active-nav-item-color);
+    color: var(--primary-color);
 }
 
 /* Brand div */
@@ -236,7 +236,7 @@
 }
 
 .deal-card-add-to-cart-btn:hover{
-    background-color: var(--active-nav-item-color);
+    background-color: var(--primary-color);
     color: var(--text-white);
 }
 
@@ -271,7 +271,7 @@
     font-size: 15px;
     line-height: 22px;
     font-weight: 600;
-    color: var(--active-nav-item-color);
+    color: var(--primary-color);
 }
 
 
@@ -294,10 +294,10 @@
     justify-content: center;
     width: 195px;
     height: 40px;
-    background-color: var(--active-nav-item-color);
+    background-color: var(--primary-color);
     color: var(--text-white);
     border-radius: 20px;
-    border: 1px solid var(--active-nav-item-color);
+    border: 1px solid var(--primary-color);
     font-size: 15px;
     line-height: 22px;
     font-weight: 600px;

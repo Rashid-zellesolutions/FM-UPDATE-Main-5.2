@@ -176,7 +176,7 @@
 }
 
 .use-current-location:hover {
-    background-color: #595959;
+    background-color: var(--secondary-color);
 }
 
 .use-current-location:hover > h3 {
@@ -216,7 +216,7 @@
     }
 
     .update-zip-btn {
-        background-color: var(--active-nav-item-color);
+        background-color: var(--primary-color);
         width: 135px;
         color: var(--text-white);
         border-radius: 8px;

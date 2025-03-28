@@ -13,6 +13,8 @@ import { useList } from "../../../context/wishListContext/wishListContext";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { type } from "@testing-library/user-event/dist/type";
+import ProductCardTwo from "../../Components/ProductCardTwo/ProductCardTwo";
+import ProductInfoModal from "../../../Global-Components/ProductInfoModal/ProductInfoModal";
 
 
 export default function FurnitureAtEveryBudget() {
@@ -85,6 +87,16 @@ export default function FurnitureAtEveryBudget() {
         }
     }
 
+
+      const [isInfoOpen, setIsInfoOpen] = useState(false);
+        const handleOpennfoModal = () => {
+            setIsInfoOpen(true);
+        }
+    
+        const handleCloseInfoModal = () => {
+            setIsInfoOpen(false);
+        }
+    
 
 
 
@@ -170,40 +182,45 @@ export default function FurnitureAtEveryBudget() {
                 <div className="product-grid">
                     {data ? (
                         data.products.map((item, index) => (
-                            <ProductCard
-                                key={index}
-                                slug={item.slug}
-                                singleProductData={item}
-                                maxWidthAccordingToComp="100%"
-                                tagIcon={item.productTag ? item.productTag : heart}
-                                tagClass={item.productTag ? 'tag-img' : 'heart-icon'}
-                                mainImage={`${item.image.image_url}`}
-                                productCardContainerClass="product-card"
-                                ProductSku={item.sku}
-                                tags={item.tags}
-                                ProductTitle={truncateTitle(item.name, maxLength)}
-                                stars={[
-                                    { icon: star, title: 'filled' },
-                                    { icon: star, title: 'filled' },
-                                    { icon: star, title: 'filled' },
-                                    { icon: star, title: 'filled' },
-                                    { icon: star, title: 'filled' },
-                                ]}
-                                reviewCount={item.reviewCount}
-                                lowPriceAddvertisement={item.lowPriceAddvertisement}
-                                priceTag={item.variationPayload?.regular_price ? item.variationPayload?.regular_price : item.regular_price}
-                                sale_price={item.variationPayload?.sale_price ? item.variationPayload?.sale_price : item.regular_price}
-                                financingAdd={item.financingAdd}
-                                learnMore={item.learnMore}
-                                mainIndex={index}
-                                deliveryTime={item.deliveryTime}
-                                stock={item.manage_stock}
-                                attributes={item.attributes}
-                                handleCardClick={() => handleProductClick(item)}
-                                handleQuickView={() => handleQuickViewOpen(item)}
-                                handleWishListclick={() => handleWishList(item)}
-                                type={item.type}
-                                variation={item.variations}
+                            <ProductCardTwo
+                            key={index}
+                            slug={item.slug}
+                            singleProductData={item}
+                            maxWidthAccordingToComp={"100%"}
+                            justWidth={'100%'}
+                            showOnPage={true}
+                            showExtraLines={true}
+                            percent={'12%'}
+                            colTwo={selectedGrid === 'single-col' ? false : true}
+                            tagIcon={item.productTag ? item.productTag : heart}
+                            tagClass={item.productTag ? 'tag-img' : 'heart-icon'}
+                            mainImage={`${item.image.image_url}`}
+                            productCardContainerClass="product-card"
+                            ProductSku={item.sku}
+                            tags={item.tags}
+                            allow_back_order={item?.allow_back_order}
+                            ProductTitle={truncateTitle(item.name, maxLength)}
+                            stars={[
+                                { icon: star, title: 'filled' },
+                                { icon: star, title: 'filled' },
+                                { icon: star, title: 'filled' },
+                                { icon: star, title: 'filled' },
+                                { icon: star, title: 'filled' },
+                            ]}
+                            reviewCount={item.reviewCount}
+                            lowPriceAddvertisement={item.lowPriceAddvertisement}
+                            priceTag={item.regular_price}
+                            sale_price={item.sale_price}
+                            financingAdd={item.financingAdd}
+                            learnMore={item.learnMore}
+                            mainIndex={index}
+                            deliveryTime={item.deliveryTime}
+                            stock={item.manage_stock}
+                            attributes={item.attributes}
+                            handleCardClick={() => handleProductClick(item)}
+                            handleQuickView={() => handleQuickViewOpen(item)}
+                            handleWishListclick={() => handleWishList(item)}
+                            handleInfoModal={handleOpennfoModal}
                             />
                         ))
                     ) : (
@@ -216,41 +233,45 @@ export default function FurnitureAtEveryBudget() {
                 <div className={`mobile-view-furniture-for-every-budget ${selectedGrid === 'single-col' ? 'single-col' : 'two-col'} `}>
                     {data ? (
                         data.products.map((item, index) => (
-                            <ProductCard
-                                key={index}
-                                slug={item.slug}
-                                singleProductData={item}
-                                maxWidthAccordingToComp="100%"
-                                justWidth={'100%'}
-                                tagIcon={item.productTag ? item.productTag : heart}
-                                tagClass={item.productTag ? 'tag-img' : 'heart-icon'}
-                                mainImage={`${item.image.image_url}`}
-                                productCardContainerClass="product-card"
-                                ProductSku={item.sku}
-                                tags={item.tags}
-                                ProductTitle={truncateTitle(item.name, maxLength)}
-                                stars={[
-                                    { icon: star, title: 'filled' },
-                                    { icon: star, title: 'filled' },
-                                    { icon: star, title: 'filled' },
-                                    { icon: star, title: 'filled' },
-                                    { icon: star, title: 'filled' },
-                                ]}
-                                reviewCount={item.reviewCount}
-                                lowPriceAddvertisement={item.lowPriceAddvertisement}
-                                priceTag={item.variationPayload?.regular_price ? item.variationPayload?.regular_price : item.regular_price}
-                                sale_price={item.variationPayload?.sale_price ? item.variationPayload?.sale_price : item.regular_price}
-                                financingAdd={item.financingAdd}
-                                learnMore={item.learnMore}
-                                mainIndex={index}
-                                deliveryTime={item.deliveryTime}
-                                stock={item.manage_stock}
-                                attributes={item.attributes}
-                                handleCardClick={() => handleProductClick(item)}
-                                handleQuickView={() => handleQuickViewOpen(item)}
-                                handleWishListclick={() => handleWishList(item)}
-                                type={item.type}
-                                variation={item.variations}
+                            <ProductCardTwo
+                            key={index}
+                            slug={item.slug}
+                            singleProductData={item}
+                            maxWidthAccordingToComp={"100%"}
+                            justWidth={'100%'}
+                            showOnPage={true}
+                            showExtraLines={true}
+                            percent={'12%'}
+                            colTwo={selectedGrid === 'single-col' ? false : true}
+                            tagIcon={item.productTag ? item.productTag : heart}
+                            tagClass={item.productTag ? 'tag-img' : 'heart-icon'}
+                            mainImage={`${item.image.image_url}`}
+                            productCardContainerClass="product-card"
+                            ProductSku={item.sku}
+                            tags={item.tags}
+                            allow_back_order={item?.allow_back_order}
+                            ProductTitle={truncateTitle(item.name, maxLength)}
+                            stars={[
+                                { icon: star, title: 'filled' },
+                                { icon: star, title: 'filled' },
+                                { icon: star, title: 'filled' },
+                                { icon: star, title: 'filled' },
+                                { icon: star, title: 'filled' },
+                            ]}
+                            reviewCount={item.reviewCount}
+                            lowPriceAddvertisement={item.lowPriceAddvertisement}
+                            priceTag={item.regular_price}
+                            sale_price={item.sale_price}
+                            financingAdd={item.financingAdd}
+                            learnMore={item.learnMore}
+                            mainIndex={index}
+                            deliveryTime={item.deliveryTime}
+                            stock={item.manage_stock}
+                            attributes={item.attributes}
+                            handleCardClick={() => handleProductClick(item)}
+                            handleQuickView={() => handleQuickViewOpen(item)}
+                            handleWishListclick={() => handleWishList(item)}
+                            handleInfoModal={handleOpennfoModal}
                             />
                         ))
                     ) : (
@@ -260,26 +281,16 @@ export default function FurnitureAtEveryBudget() {
                     )}
                 </div>
 
-
-                <div className={`quick-view-section ${quickViewClicked ? 'show-quick-view-section' : ''}`}>
-                    <button className={`quick-view-close`} onClick={handleQuickViewClose}>
-                        {/* <img src={closeBtn} alt='close' /> */}
-                        <IoMdClose size={25} />
-                    </button>
-                    <div className={`quickview-containt ${quickViewClicked ? 'show-quick-view-containt' : ''}`}>
-                        <QuickView
+                <QuickView
                             setQuickViewProduct={quickViewProduct}
+                            quickViewShow={quickViewClicked}
                             quickViewClose={handleQuickViewClose}
-                            stars={[
-                                { icon: star, title: 'filled' },
-                                { icon: star, title: 'filled' },
-                                { icon: star, title: 'filled' },
-                                { icon: star, title: 'filled' },
-                                { icon: star, title: 'filled' },
-                            ]}
                         />
-                    </div>
-                </div>
+                <ProductInfoModal
+                openModal={isInfoOpen}
+                closeModal={handleCloseInfoModal}
+            />
+               
             </div>
 
         </>

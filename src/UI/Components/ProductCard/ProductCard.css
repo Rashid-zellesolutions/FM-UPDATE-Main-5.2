@@ -40,7 +40,7 @@
 }
 
 .stock-label.out{
-    background-color: var(--active-nav-item-color) !important;
+    background-color: var(--primary-color) !important;
 }
 
 .stock-label.back{
@@ -237,7 +237,7 @@
 
 
 .text-tag {
-    padding: 5px 15px;
+    /* padding: 5px 15px; */
     font-size: var(--attribute-size);
     font-weight: var(--attribute-weight);
     line-height: var(--attribute-height);
@@ -320,6 +320,7 @@
     font-weight: var(--sub-section-weight);
     color: var(--text-color);
     opacity: 0.5;
+    margin-left: 4px;
 }
 
 .category-product-price {
@@ -351,7 +352,7 @@
 }
 
 .product-financing-addvertisement-div a:hover {
-    color: var(--active-nav-item-color);
+    color: var(--primary-color);
 }
 
 .variable-colors-variations-div {
@@ -395,7 +396,7 @@
 
 .percent-label {
     display: none;
-    background-color: var(--active-nav-item-color);
+    background-color: var(--primary-color);
     padding: 3px 9px;
     font-size: 10px;
     line-height: 15px;

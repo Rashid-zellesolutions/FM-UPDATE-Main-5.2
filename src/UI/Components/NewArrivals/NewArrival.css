@@ -104,7 +104,7 @@ position: absolute;
     border: none;
     cursor: pointer;
     z-index: 9999;
-    background-color: var(--active-nav-item-color);
+    background-color: var(--primary-color);
     background-repeat: no-repeat;
     background-position: center;
     background-size: auto;
@@ -148,7 +148,7 @@ position: absolute;
     .slick-arrow.slick-next.category-arrow,
     .slick-arrow.slick-prev.category-arrow{
         background-color: #FFFFFF;
-        border: 1px solid #595959;
+        border: 1px solid var(--secondary-color);
     }
      .new-arrival-desktop-arrows{
         display: none;

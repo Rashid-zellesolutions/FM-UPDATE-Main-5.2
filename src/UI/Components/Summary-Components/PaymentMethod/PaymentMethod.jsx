@@ -37,7 +37,7 @@ const PaymentMethod = ({ handleSubmitOrder }) => {
     { name: 'Pay with', icon: paypalFullLogo, bgColor: '#F2BA36', textColor: '#000' },
     { name: 'Pay with', icon: venmaLogo, bgColor: '#008CFF', textColor: '#fff' },
     { logoBefore: paypalLogo, name: 'Pay Later', bgColor: '#F2BA36', textColor: '#000' },
-    { logoBefore: cardIcon, name: 'Debit or Credit Card', bgColor: '#595959', textColor: '#fff' }
+    { logoBefore: cardIcon, name: 'Debit or Credit Card', bgColor: 'var(--secondary-color)', textColor: '#fff' }
   ]
 
   // new design scripts

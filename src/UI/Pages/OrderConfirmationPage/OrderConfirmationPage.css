@@ -63,7 +63,7 @@
 .order_description_1_0>.order_no {
     font-size: 18px;
     font-weight: 500;
-    color: #595959;
+    color: var(--secondary-color);
     line-height: auto;
     margin: 0;
     padding: 0;
@@ -72,7 +72,7 @@
 .order_description_1_0>.order_placer {
     font-size: 22px;
     font-weight: 600;
-    color: #595959;
+    color: var(--secondary-color);
     line-height: auto;
     margin: 0;
     padding: 0;
@@ -92,7 +92,7 @@
 .order_description_1_1 .heading2 {
     font-size: 15px;
     font-weight: 600;
-    color: #595959;
+    color: var(--secondary-color);
     line-height: 18px;
     padding: 0;
     margin: 0 0 5px 0;
@@ -101,7 +101,7 @@
 .order_description_1_1 .para2 {
     font-size: 12px;
     font-weight: 500;
-    color: #595959;
+    color: var(--secondary-color);
     line-height: 16px;
     padding: 0;
     margin: 0 0 5px 0;
@@ -133,7 +133,7 @@
 .order_description_1_2 .heading {
     font-size: 18px;
     font-weight: 600;
-    color: #595959;
+    color: var(--secondary-color);
     padding: 0;
     margin: 0 0 10px 0;
 }
@@ -154,7 +154,7 @@
 .order_description_1_2_0>.column>.sub_heading {
     font-size: 15px;
     font-weight: 600;
-    color: #595959;
+    color: var(--secondary-color);
     margin: 0;
     line-height: 21px;
 }
@@ -162,7 +162,7 @@
 .order_description_1_2_0>.column>.sub_content {
     font-size: 14px;
     font-weight: 400;
-    color: #595959;
+    color: var(--secondary-color);
     margin: 0;
     line-height: 16px;
 }
@@ -199,7 +199,7 @@
     font-size: 13px;
     line-height: 18px;
     font-weight: 600;
-    color: #595959;
+    color: var(--secondary-color);
     text-decoration: none;
     cursor: pointer;
 }
@@ -210,13 +210,13 @@
     justify-content: center;
     width: max-content;
     padding: 10px;
-    background-color: #595959;
+    background-color: var(--secondary-color);
     border-radius: 5px;
     font-size: 13px;
     line-height: 18px;
     font-weight: 600;
     color: #FFFFFF;
-    border: 1px solid #595959;
+    border: 1px solid var(--secondary-color);
     outline: none;
     cursor: pointer;
 }
@@ -256,7 +256,7 @@
     font-size: 14px;
     font-weight: 500;
     color: white;
-    background-color: #595959;
+    background-color: var(--secondary-color);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -407,7 +407,7 @@
     margin: 0;
     padding: 0;
     font-size: 15px;
-    color: #595959;
+    color: var(--secondary-color);
     font-weight: 500;
 }
 
@@ -415,7 +415,7 @@
     margin: 0;
     padding: 0;
     font-size: 15px;
-    color: #595959;
+    color: var(--secondary-color);
     font-weight: 500;
 }
 
@@ -424,7 +424,7 @@
     margin: 0;
     padding: 0;
     font-size: 25px;
-    color: #595959;
+    color: var(--secondary-color);
     font-weight: 600;
 }
 
@@ -432,7 +432,7 @@
     margin: 0;
     padding: 0;
     font-size: 25px;
-    color: #595959;
+    color: var(--secondary-color);
     font-weight: 600;
 }
 
@@ -457,7 +457,7 @@
 
 .mobile-screen-svg-icon{
     display: none;
-    color: #595959;
+    color: var(--secondary-color);
 }
 
 .google-map-mobile{

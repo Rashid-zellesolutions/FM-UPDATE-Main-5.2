@@ -44,7 +44,7 @@
 }
 
 .stock-label.out {
-    background-color: var(--active-nav-item-color) !important;
+    background-color: var(--primary-color) !important;
 }
 
 .stock-label.back {
@@ -161,7 +161,7 @@
     aspect-ratio: 3 / 2;
     /* border-bottom: 1px solid var(--border-color); */
     /* box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 5px; */
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    /* box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px; */
     object-fit: contain;
     cursor: pointer;
     transition: transform 0.3s ease;
@@ -308,6 +308,16 @@
 
     /* Optionally, enforce a fixed height based on your line-height for consistency */
     max-height: calc(var(--sub-section-height) * 2);
+}
+
+.product-title.apply-col-two-styling{
+    line-height: 1.5 !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+}
+
+.product-title.heighted{
+    height: 45px;
 }
 
 .attr-var {
@@ -463,7 +473,7 @@
     gap: 5px;
     width: max-content;
     flex-shrink: 0;
-    margin-top: 5px;
+    margin-top: 0px;
 }
 
 .product-card-get-it-by-title.show-product-card-get-it-by-title {
@@ -507,11 +517,11 @@
     font-size: 13px;
     line-height: 1.5;
     font-weight: 600;
-    color: #4487C5;
+    color: var(--tertiary-color);
 }
 
 .text-tag {
-    padding: 5px 15px;
+    /* padding: 5px 15px; */
     font-size: var(--attribute-size);
     font-weight: var(--attribute-weight);
     line-height: var(--attribute-height);
@@ -646,7 +656,7 @@
 }
 
 .product-financing-addvertisement-div a:hover {
-    color: var(--active-nav-item-color);
+    color: var(--primary-color);
 }
 
 .variable-colors-variations-div {
@@ -764,7 +774,7 @@
 
 .percent-label {
     display: none;
-    background-color: var(--active-nav-item-color);
+    background-color: var(--primary-color);
     padding: 3px 9px;
     font-size: 10px;
     line-height: 15px;
@@ -818,7 +828,11 @@
     }
 
     .product-tagging {
-        display: none;
+        /* display: none; */
+    }
+
+    .text-tag{
+        font-size: 10px !important;
     }
 
     .wishlist-heart {
@@ -844,10 +858,10 @@
         cursor: pointer;
     } */
 
-    .product-title {
-        height: 35px;
+    /* .product-title {
+        height: 30px;
         line-height: var(--sub-section-size) !important;
-    }
+    } */
 
     .product-card-data .product-main-img {
         height: auto;
@@ -912,12 +926,26 @@
     }
 
     .product-card-quick-view-container {
-        align-items: start;
+        align-items: center;
         gap: 5px;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+
+
+        
+    }
+    .product-card-quick-view-container.apply-col-two-styling{
+        flex-direction: column;
+        justify-content: start;
+        width: auto;
+        align-items: start;
+        gap: 0px;
     }
 
     .card-two-quick-view-button.apply-col-two-styling {
-        font-size: 10px;
+        font-size: 11px;
+        font-weight: 600;
     }
 
     .product-price-tag.apply-col-two-styling {
@@ -960,8 +988,8 @@
 
     .product-price-starting-at.apply-two-col-styling {
         /* font-size: clamp(10px, calc(1vw + 0.2rem), 13px); */
-        font-size: 13px;
-        line-height: 1.5;
+        font-size: 8px;
+        line-height: 10px;
         font-weight: 400;
     }
 

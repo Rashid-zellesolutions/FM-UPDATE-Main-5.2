@@ -158,7 +158,7 @@
     padding: 10px;
     border: none;
     outline: none;
-    background-color: var(--active-nav-item-color);
+    background-color: var(--primary-color);
 }
 
 /* .pop-up-header-search img{
@@ -212,7 +212,7 @@
     font-size: 12px;
     line-height: 15px;
     font-weight: 500;
-    color: #595959;
+    color: var(--secondary-color);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -230,7 +230,7 @@
 /* .pop-up-header-location p{
     font-size: 14px;
     line-height: 24px;
-    color: var(--active-nav-item-color);
+    color: var(--primary-color);
     display: flex;
     align-items: center;
     gap: 5px;
@@ -239,14 +239,14 @@
 } */
 
 /* .pop-up-header-location p a{
-    color: var(--active-nav-item-color);
+    color: var(--primary-color);
 } */
 
 @media only screen and (max-width: 1200px){
     .pop-up-header-location p{
         font-size: 12px;
         line-height: 16px;
-        color: var(--active-nav-item-color);
+        color: var(--primary-color);
         display: flex;
         align-items: center;
         gap: 5px;
@@ -254,7 +254,7 @@
     }
     
     .pop-up-header-location p a{
-        color: var(--active-nav-item-color);
+        color: var(--primary-color);
     }
 }
 
@@ -381,7 +381,7 @@
 }
 
 .pop-up-store-open-time span{
-    color: var(--active-nav-item-color);
+    color: var(--primary-color);
 }
 
 .pop-up-complete-address{

@@ -75,7 +75,7 @@
 }
 
 .cart-order-summery-inner-section::-webkit-scrollbar-thumb {
-    background-color: #595959;
+    background-color: var(--secondary-color);
     /* Scrollbar color */
     border-radius: 3px;
     /* Rounded corners for the scrollbar */
@@ -126,7 +126,7 @@
     appearance: none;
     width: 16px;
     height: 16px;
-    border: 1px solid #595959;
+    border: 1px solid var(--secondary-color);
     border-radius: 4px;
     position: relative;
     padding: 0px !important;
@@ -211,8 +211,9 @@
     padding: 0;
     align-items: center;
     justify-content: space-between;
-    padding-top: 10px;
+    padding: 10px 0;
     border-top: 2px solid var(--border-color);
+    border-bottom: 2px solid var(--border-color);
 }
 
 .cart-order-summary-price-detail-single-item-title-total{
@@ -256,7 +257,7 @@
     font-weight: var(--section-weight);
     font-size: var(--sub-section-size);
     line-height: var(--sub-section-height);
-    color: var(--active-nav-item-color);
+    color: var(--primary-color);
     cursor: pointer;
 }
 
@@ -291,7 +292,7 @@
     justify-content: start;
     gap: 0;
     height: max-content;
-    border: 1px solid #595959;
+    border: 1px solid var(--secondary-color);
     border-radius: 5px;
 }
 
@@ -311,7 +312,7 @@
     height: 40px;
     padding: 11px 15px;
     border: none;
-    background-color: var(--active-nav-item-color);
+    background-color: var(--primary-color);
     color: #fff;
     cursor: pointer;
 
@@ -379,7 +380,7 @@ mobile-cart-order-summary-total{
     justify-content: start;
     gap: 0;
     height: max-content;
-    border: 1px solid #595959;
+    border: 1px solid var(--secondary-color);
     border-radius: 5px;
 }
 
@@ -396,7 +397,7 @@ mobile-cart-order-summary-total{
     height: 40px;
     padding: 11px 15px;
     border: none;
-    background-color: var(--active-nav-item-color);
+    background-color: var(--primary-color);
     color: #fff;
     cursor: pointer;
 }
@@ -592,7 +593,7 @@ mobile-cart-order-summary-total{
     font-size: 14px;
     font-weight: 500;
     line-height: 21px;
-    color: #595959;
+    color: var(--secondary-color);
 }
 
 .delivery-option-container-description {
@@ -600,7 +601,7 @@ mobile-cart-order-summary-total{
     font-size: 12px;
     font-weight: 400;
     line-height: 18px;
-    color: #595959;
+    color: var(--secondary-color);
 }
 
 .delivery-opt-heading {
@@ -608,7 +609,7 @@ mobile-cart-order-summary-total{
     font-size: 12px;
     font-weight: 400;
     line-height: 18px;
-    color: #595959;
+    color: var(--secondary-color);
 }
 
 .delivery-opt-heading:nth-child(2){
@@ -645,15 +646,15 @@ mobile-cart-order-summary-total{
 .payment-cards-inner-container{
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     width: 100%;
-    gap: 10px;
+    gap: 5px;
     flex-grow: 1;
 }
 
 .payment-card{
-    width: 100%;
-    height: 100%;
+    width: auto;
+    height: 35px;
 }
 
 .financing-months-range-container{
@@ -690,8 +691,8 @@ mobile-cart-order-summary-total{
 }
 
 .financing-month-range-apply-button:hover{
-    background-color: var(--text-color);
-    color: #FFFFFF;
+    background-color: rgba(89, 89, 89, 0.2);
+    color: var(--secondary-color);
 }
 
 .mobile-total-save-and-checkout-button{
@@ -699,7 +700,7 @@ mobile-cart-order-summary-total{
     position: fixed;
     flex-direction: column;
     gap: 15px;
-    border-top: 1px solid 1px solid #595959;
+    border-top: 1px solid 1px solid var(--secondary-color);
     width: 100%;
     z-index: 99999;
     bottom: 0;
@@ -738,11 +739,11 @@ mobile-cart-order-summary-total{
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid var(--active-nav-item-color);
+    border: 1px solid var(--primary-color);
     width: 100%;
     height: 48px;
     border-radius: 1px;
-    background-color: var(--active-nav-item-color);
+    background-color: var(--primary-color);
     color: #FFFFFF;
     font-size: 15px;
     line-height: 18px;

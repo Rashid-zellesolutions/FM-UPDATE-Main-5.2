@@ -84,7 +84,7 @@
     font-size: var(--sub-section-size);
     line-height: var(--sub-section-height);
     font-weight: var(--sub-section-weight);
-    color: #4487C5;
+    color: var(--tertiary-color);
     text-decoration: underline;
 }
 
@@ -159,13 +159,13 @@
 .location-tab-store-head>button {
     width: max-content;
     padding: 5px 15px;
-    border: 1px solid #4487C5;
+    border: 1px solid var(--tertiary-color);
     border-radius: 25px;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: transparent;
-    color: #4487C5;
+    color: var(--tertiary-color);
     font-size: var(--sub-section-size);
     line-height: var(--sub-section-height);
     font-weight: var(--sub-section-weight);
@@ -224,7 +224,7 @@
     font-size: var(--content-one-size);
     line-height: var(--content-one-height);
     font-weight: var(--content-two-weight);
-    color: #4487C5;
+    color: var(--tertiary-color);
 }
 
 .location-tab-right-section {
@@ -266,8 +266,8 @@
     justify-content: center;
     padding: 10px 22px;
     cursor: pointer;
-    background-color: #4487C5;
-    border: 1px solid #4487C5;
+    background-color: var(--tertiary-color);
+    border: 1px solid var(--tertiary-color);
     border-radius: 5px;
     color: #fff;
     font-size: 13px;

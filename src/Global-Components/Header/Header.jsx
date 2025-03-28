@@ -9,6 +9,7 @@ import logo from '../../Assets/Logo/m_logo_360 2.png'
 import searchIcon from '../../Assets/icons/search-icon-charcol.png';
 import HeartIcon from '../../Assets/icon/favourites-icon.svg';
 import cartIcon from '../../Assets/icons/shopping-bag.png';
+import { HiOutlineShoppingBag } from "react-icons/hi2";
 import profileIcon from '../../Assets/icon/profile-icon.svg'
 import locationIcon from '../../Assets/icons/location-red.png';
 import navToggler from '../../Assets/icons/Union.png'
@@ -34,6 +35,12 @@ import MobileNavbar from '../Navbar/MobileNavbar/MobileNavbar';
 import { useCart } from '../../context/cartContext/cartContext';
 import { getCurrentDay, getCurrentTimeForNewYork, url, useDisableBodyScroll } from '../../utils/api';
 import { useGlobalContext } from '../../context/GlobalContext/globalContext';
+
+import { FaRegUser } from "react-icons/fa6";
+import { CiUser } from "react-icons/ci";
+
+import { GiHamburgerMenu } from "react-icons/gi";
+import { IoLocationOutline } from "react-icons/io5";
 
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -428,12 +435,12 @@ const Header = ({ checkoutPage }) => {
                   >
                     <img src={`${url}${items.image.image_url}`} alt='main' />
                     <div className='searched-product-name-and-sku'>
-                      <h3>{highLightText(truncateTitle(items.name, maxLength), searchQuery)}</h3>
+                      <h3>{highLightText(items.name, searchQuery)}</h3>
                       <p>SKU: ({items.sku})</p>
                     </div>
                     <div className='searched-product-prices'>
                       {
-                        items.sale_price === "0" ?
+                        items.sale_price === "" ?
                           <h3 className='searched-product-regular-price'>${items.regular_price}</h3> :
                           <h3 className='searched-product-sale-price'> <del>${items.regular_price}</del>  ${items.sale_price}</h3>
                       }
@@ -458,13 +465,13 @@ const Header = ({ checkoutPage }) => {
                 />
               </div>
               <div className='searched-selected-product-name-and-price'>
-                <h3 className='searched-selected-product-name'>{truncateTitle(searchedProducts?.[currentInd]?.name, maxLength)}</h3>
+                <h3 className='searched-selected-product-name'>{searchedProducts?.[currentInd]?.name}</h3>
                 <p className='searched-selected-product-sku'>SKU: {searchedProducts?.[currentInd]?.sku?.split(':')}</p>
                 <div className='searched-selected-product-price'>
                   {
-                    searchedProducts?.[currentInd]?.sale_price === "0" ?
+                    searchedProducts?.[currentInd]?.sale_price === "" ?
                       <h3 className='searched-product-regular-price'>${searchedProducts?.[currentInd]?.regular_price}</h3> :
-                      <h3 className='searched-product-sale-price-on-single-view'> <del>${searchedProducts?.[currentInd]?.regular_price}</del>  ${searchedProducts?.[currentInd]?.sale_price}</h3>
+                      <h3 className='searched-product-sale-price-on-single-view'>${searchedProducts?.[currentInd]?.sale_price} <del>${searchedProducts?.[currentInd]?.regular_price}</del></h3>
                   }
                 </div>
               </div>
@@ -489,7 +496,7 @@ const Header = ({ checkoutPage }) => {
                   className='near-store-svg'
                   onClick={handleNearStorePopUp}
                 >
-                  <path d="M59.5177 0C59.733 0.000356785 59.9448 0.0544467 60.1336 0.157315C60.3224 0.260183 60.4823 0.408542 60.5985 0.5888L60.7015 0.7808L63.8976 8.2688C63.9738 8.4474 64.0083 8.6409 63.9983 8.83469C63.9883 9.02848 63.9342 9.21747 63.84 9.38738C63.7458 9.55729 63.614 9.70368 63.4546 9.81546C63.2951 9.92725 63.1122 10.0015 62.9197 10.0326L62.7138 10.048H56.458V47.36C56.4581 47.6596 56.3526 47.9497 56.1598 48.1799C55.967 48.41 55.6991 48.5656 55.4029 48.6195L55.1713 48.64H8.83273C8.53158 48.6401 8.23994 48.5351 8.00859 48.3433C7.77724 48.1515 7.62084 47.8851 7.56664 47.5904L7.54605 47.36L7.53833 10.048H1.28763C1.09252 10.0481 0.899938 10.0041 0.724444 9.91933C0.54895 9.83452 0.395143 9.71111 0.274657 9.55845C0.154171 9.40579 0.0701612 9.22787 0.0289833 9.03815C-0.0121947 8.84843 -0.00946265 8.65188 0.0369727 8.46336L0.101307 8.2688L3.3 0.7808C3.38406 0.583138 3.51673 0.409676 3.68581 0.276368C3.85488 0.14306 4.05494 0.0541859 4.26758 0.01792L4.48375 0H59.5177ZM53.8846 10.048H10.1194V46.0774H17.1215V20.2035C17.1214 19.9039 17.227 19.6138 17.4198 19.3837C17.6126 19.1535 17.8804 18.9979 18.1766 18.944L18.4082 18.9235H45.5958C45.8965 18.924 46.1876 19.0293 46.4184 19.221C46.6492 19.4128 46.8052 19.6789 46.8593 19.9731L46.8825 20.2035L46.8799 46.0774H53.8898V10.048H53.8846ZM30.7115 29.7114H19.6949L19.6923 46.0774H30.7141L30.7115 29.7114ZM44.3014 29.7114H33.2874V46.0774H44.304L44.3014 29.7114ZM30.7141 21.481H19.6923V27.1514H30.7089V21.481H30.7141ZM44.3014 21.481H33.2874V27.1514H44.3014V21.481ZM58.6634 2.56H5.33296L3.23052 7.488H60.7658L58.6634 2.56Z" fill="#C61B1A" />
+                  <path d="M59.5177 0C59.733 0.000356785 59.9448 0.0544467 60.1336 0.157315C60.3224 0.260183 60.4823 0.408542 60.5985 0.5888L60.7015 0.7808L63.8976 8.2688C63.9738 8.4474 64.0083 8.6409 63.9983 8.83469C63.9883 9.02848 63.9342 9.21747 63.84 9.38738C63.7458 9.55729 63.614 9.70368 63.4546 9.81546C63.2951 9.92725 63.1122 10.0015 62.9197 10.0326L62.7138 10.048H56.458V47.36C56.4581 47.6596 56.3526 47.9497 56.1598 48.1799C55.967 48.41 55.6991 48.5656 55.4029 48.6195L55.1713 48.64H8.83273C8.53158 48.6401 8.23994 48.5351 8.00859 48.3433C7.77724 48.1515 7.62084 47.8851 7.56664 47.5904L7.54605 47.36L7.53833 10.048H1.28763C1.09252 10.0481 0.899938 10.0041 0.724444 9.91933C0.54895 9.83452 0.395143 9.71111 0.274657 9.55845C0.154171 9.40579 0.0701612 9.22787 0.0289833 9.03815C-0.0121947 8.84843 -0.00946265 8.65188 0.0369727 8.46336L0.101307 8.2688L3.3 0.7808C3.38406 0.583138 3.51673 0.409676 3.68581 0.276368C3.85488 0.14306 4.05494 0.0541859 4.26758 0.01792L4.48375 0H59.5177ZM53.8846 10.048H10.1194V46.0774H17.1215V20.2035C17.1214 19.9039 17.227 19.6138 17.4198 19.3837C17.6126 19.1535 17.8804 18.9979 18.1766 18.944L18.4082 18.9235H45.5958C45.8965 18.924 46.1876 19.0293 46.4184 19.221C46.6492 19.4128 46.8052 19.6789 46.8593 19.9731L46.8825 20.2035L46.8799 46.0774H53.8898V10.048H53.8846ZM30.7115 29.7114H19.6949L19.6923 46.0774H30.7141L30.7115 29.7114ZM44.3014 29.7114H33.2874V46.0774H44.304L44.3014 29.7114ZM30.7141 21.481H19.6923V27.1514H30.7089V21.481H30.7141ZM44.3014 21.481H33.2874V27.1514H44.3014V21.481ZM58.6634 2.56H5.33296L3.23052 7.488H60.7658L58.6634 2.56Z" fill="var(--primary-color)" />
                 </svg>
                 <NearStorePopUp isOpen={nearStorePopUp} handleCloseNearBy={handleCloseNearStoreModal} />
                 {stores && stores?.[0]?.distance ? (
@@ -551,7 +558,8 @@ const Header = ({ checkoutPage }) => {
             <img src={HeartIcon} alt="heart" />
           </Link>
           <button className='header-cart-icon-count' onClick={handleCartSectionOpen}>
-            <img src={cartIcon} alt="cart" />
+            {/* <img src={cartIcon} alt="cart" /> */}
+            <HiOutlineShoppingBag className='cartIcon'  strokeWidth={1} />
             {/* <PiShoppingCartThin size={22} /> */}
             <p className='header-cart-products-count'>{cartItemCount}</p>
           </button>
@@ -568,13 +576,14 @@ const Header = ({ checkoutPage }) => {
           <div className='tab-view-logo-and-searchbar'>
             <Link to={'/'}><img src={logo} alt='logo' /></Link>
             <div className='tab-view-searchbar-container'>
-              <input type='search' placeholder="Search all things Bob's" />
+              <input type='search' placeholder="Search all things Furniture Mecca" />
               <img src={searchRed} alt="search" />
             </div>
           </div>
           <div className='tab-view-card-and-location'>
             <img src={locationIcon} alt="location" />
-            <img src={cartIcon} alt="cart" />
+            {/* <img src={cartIcon} alt="cart" /> */}
+            <HiOutlineShoppingBag className='cartIcon'  strokeWidth={1} />
           </div>
         </div>
       </div>
@@ -583,15 +592,20 @@ const Header = ({ checkoutPage }) => {
       <div className='mobile-view-header'>
 
         <div className='mobile-view-logo-and-other-containt-section'>
-          <img className='nav-toggler' src={navToggler} alt="togle button" onClick={showMobileNav} />
-          <Link to='/'>
+          <div className="left_section_1">
+          <GiHamburgerMenu strokeWidth={1.3} onClick={showMobileNav} className='nav-toggler'  />
+          </div>
+          {/* <img className='nav-toggler' src={navToggler} alt="togle button" onClick={showMobileNav} /> */}
+          <Link className='center_section_logo' to='/'>
             <img className='mobile-logo' src={logo} alt='mobile-logo' />
           </Link>
           <div className='mobile-view-cart-and-location'>
-            <img src={locationIcon} alt='location' onClick={handleNearStorePopUp} />
+            {/* <img src={locationIcon} alt='location' onClick={handleNearStorePopUp} /> */}
+            <IoLocationOutline  strokeWidth={1.2} className='locationIcon'  onClick={handleNearStorePopUp} />
             <NearStorePopUp isOpen={nearStorePopUp} handleCloseNearBy={handleCloseNearStoreModal} />
             <button className='header-cart-icon-count' onClick={handleCartSectionOpen}>
-              <img src={cartIcon} alt="cart" />
+              {/* <img src={cartIcon} alt="cart" /> */}
+              <HiOutlineShoppingBag className='cartIcon' strokeWidth={1.5} />
               <p className='header-cart-products-count'>{cartItemCount}</p>
             </button>
           </div>
@@ -602,14 +616,15 @@ const Header = ({ checkoutPage }) => {
             <img src={searchIcon} alt='search-icon' />
             <input
               type='text'
-              placeholder='Search All Things Mecca'
+              placeholder='Search Furniture Mecca'
               // value={mobileProductSearch}
               onFocus={handleMobileSearchModal}
             // onChange={handleMobileSearchValue}
             />
           </div>
           <div onClick={() => { moveToLoginDash() }}>
-            <img className='mobile-user-icon' src={mobileUserIcon} alt='user-icon' />
+            {/* <img className='mobile-user-icon' src={mobileUserIcon} alt='user-icon' /> */}
+             <  CiUser strokeWidth={0.8} className='mobile-user-icon' />
           </div>
         </div>
 

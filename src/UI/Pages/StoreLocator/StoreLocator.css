@@ -99,7 +99,7 @@
     border: none;
     outline: none;
     cursor: pointer;
-    background-color: var(--active-nav-item-color);
+    background-color: var(--primary-color);
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     display: flex;
@@ -144,7 +144,7 @@
 }
 
 .all-store-location-button:hover{
-    background-color: var(--active-nav-item-color);
+    background-color: var(--primary-color);
     color: #fff;
 }
 
@@ -187,7 +187,7 @@
     font-size: 20px;
     line-height: 30px;
     font-weight: 600;
-    color: #484F59;
+    color: var(--quaternary-color);
 }
 
 .single-store-head p{
@@ -215,7 +215,7 @@
 .single-card-address-and-contact-span svg{
     width: 21px;
     height: auto;
-    color: #484F59;
+    color: var(--quaternary-color);
 }
 
 .single-card-span-heading{
@@ -244,8 +244,8 @@
     gap: 5px;
     padding: 6px 10px;
     border-radius: 5px;
-    border: 1px solid #4487C5;
-    background-color: #4487C5;
+    border: 1px solid var(--tertiary-color);
+    background-color: var(--tertiary-color);
     align-items: center;
     justify-content: center;
     font-size: 12px;
@@ -385,7 +385,7 @@
     font-size: 20px;
     line-height: 30px;
     font-weight: 600;
-    color: #484F59;
+    color: var(--quaternary-color);
 }
 
 .single-location-direction-button{
@@ -393,8 +393,8 @@
     align-items: center;
     justify-content: center;
     padding: 5px;
-    background-color: #4487C5;
-    border: 1px solid var(--active-nav-item-color);
+    background-color: var(--tertiary-color);
+    border: 1px solid var(--primary-color);
     border-radius: 5px;
     cursor: pointer;
 }
@@ -540,7 +540,7 @@
 }
 
 .selected-store-list-map-button.selected-store-list-map-button{
-    background-color: var(--active-nav-item-color);
+    background-color: var(--primary-color);
     color: #fff;
 }
 
@@ -550,7 +550,7 @@
 }
 
 .mobile-view-map-button.selected-store-map{
-    background-color: var(--active-nav-item-color);
+    background-color: var(--primary-color);
     color: #fff;
 }
 
@@ -794,7 +794,7 @@
     flex: 1; /* Each takes up 50% of the container width */
     text-align: start; /* Center the text */
     font-size: 14px;
-    color: #484F59;
+    color: var(--quaternary-color);
     line-height: 14px;
   }
   .day{

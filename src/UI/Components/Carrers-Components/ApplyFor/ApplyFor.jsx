@@ -223,7 +223,7 @@ const ApplyFor = ({setLoading}) => {
                         name='firstName'
                         value={applyForData.name}
                         onChange={handleInputChange}
-                        style={{ borderColor: error.firstName ? 'red' : '#d7d7d7', color: error.lastName ? 'red' : '#595959' }}
+                        style={{ borderColor: error.firstName ? 'red' : '#d7d7d7', color: error.lastName ? 'red' : 'var(--secondary-color)' }}
                     />
                 </label>
 
@@ -235,7 +235,7 @@ const ApplyFor = ({setLoading}) => {
                         name='lastName'
                         value={applyForData.lastName}
                         onChange={handleInputChange}
-                        style={{ borderColor: error.lastName ? 'red' : '#d7d7d7', color: error.lastName ? 'red' : '#595959' }}
+                        style={{ borderColor: error.lastName ? 'red' : '#d7d7d7', color: error.lastName ? 'red' : 'var(--secondary-color)' }}
                     />
                 </label>
             </div>
@@ -248,7 +248,7 @@ const ApplyFor = ({setLoading}) => {
                     name='contact'
                     value={applyForData.contact}
                     onChange={handleInputChange}
-                    style={{ borderColor: error.contact ? 'red' : '#d7d7d7', color: error.contact ? 'red' : '#595959' }}
+                    style={{ borderColor: error.contact ? 'red' : '#d7d7d7', color: error.contact ? 'red' : 'var(--secondary-color)' }}
                 />
             </label>
 
@@ -260,7 +260,7 @@ const ApplyFor = ({setLoading}) => {
                     value={applyForData.email}
                     placeholder={error.email ? 'Email is required' : 'alex.james@gmail.com'}
                     onChange={handleInputChange}
-                    style={{ borderColor: error.email ? 'red' : '#d7d7d7', color: error.email ? 'red' : '#595959' }}
+                    style={{ borderColor: error.email ? 'red' : '#d7d7d7', color: error.email ? 'red' : 'var(--secondary-color)' }}
                 />
             </label>
 
@@ -275,7 +275,7 @@ const ApplyFor = ({setLoading}) => {
                             name='zipCode'
                             value={applyForData.zipCode}
                             onChange={handleZipCode}
-                            style={{ borderColor: error.zipCode ? 'red' : '#d7d7d7', color: error.zipCode ? 'red' : '#595959' }}
+                            style={{ borderColor: error.zipCode ? 'red' : '#d7d7d7', color: error.zipCode ? 'red' : 'var(--secondary-color)' }}
                         />
                     </label>
                 </div>
@@ -288,7 +288,7 @@ const ApplyFor = ({setLoading}) => {
                         name='city'
                         value={applyForData.city}
                         onChange={handleInputChange}
-                        style={{ borderColor: error.city ? 'red' : '#d7d7d7', color: error.city ? 'red' : '#595959' }}
+                        style={{ borderColor: error.city ? 'red' : '#d7d7d7', color: error.city ? 'red' : 'var(--secondary-color)' }}
                     />
                 </label>
             </div>
@@ -301,7 +301,7 @@ const ApplyFor = ({setLoading}) => {
                     name='state'
                     value={applyForData.state}
                     onChange={handleInputChange}
-                    style={{ borderColor: error.state ? 'red' : '#d7d7d7', color: error.state ? 'red' : '#595959' }}
+                    style={{ borderColor: error.state ? 'red' : '#d7d7d7', color: error.state ? 'red' : 'var(--secondary-color)' }}
                 />
             </label>
 

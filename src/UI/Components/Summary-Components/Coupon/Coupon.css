@@ -65,10 +65,10 @@
 }
 
 .coupon-input-container button{
-    background-color: #595959;
+    background-color: var(--secondary-color);
     width: 200px;
     height: 48px;
-    border: 1px solid #595959;
+    border: 1px solid var(--secondary-color);
     border-radius: 4px;
     color: #F6FAFE;
     font-size: 14px;

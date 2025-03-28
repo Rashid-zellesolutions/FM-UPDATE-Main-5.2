@@ -9,7 +9,7 @@
 
 .write_review_main {
     padding: 25px 60px 0px 60px;
-    background-color: #f7f7f7;
+    background-color: var(--secondary-background);
 }
 
 
@@ -314,6 +314,10 @@
 @media only screen and (max-width: 480px) {
     .write_review_main {
         padding: 20px;
+        align-items: center;
+        justify-content: center;
+        display: flex
+;
     }
 
     .desktop_write_review_form {

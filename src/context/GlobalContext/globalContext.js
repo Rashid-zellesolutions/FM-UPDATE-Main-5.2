@@ -218,12 +218,12 @@ export const GlobalContextProvider = ({ children }) => {
     // Case 3: METHOD-3 (Local Pickup)
     const method3 = shippingMethods.find((method) => method.id === "METHOD-3");
     if (method3 && method3.cost === 0) {
-      selectedMethods.push(method3);
+      selectedMethods.push({...method3,cost:0});
     }
 
     // Handle default selection logic
     if (selectedMethods.length === 2) {
-      const defaultMethod = selectedMethods.find((method) => method.id === "METHOD-2") || method3;
+      const defaultMethod = selectedMethods.find((method) => method.id === "METHOD-1") || method3;
       setSelectedOption(defaultMethod); // Set METHOD-2 by default, or METHOD-3 if METHOD-2 is unavailable
     } else if (selectedMethods.length > 0) {
       setSelectedOption(selectedMethods[0]); // Default to the first available method

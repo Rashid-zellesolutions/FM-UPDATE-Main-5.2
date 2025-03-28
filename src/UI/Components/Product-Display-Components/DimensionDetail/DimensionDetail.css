@@ -15,7 +15,7 @@
     justify-content: start;
     gap: 5px;
     padding: 25px 10px;
-    background-color: #f9f9f9;
+    background-color: var(--tertiary-background);
 }
 
 .dimension-detail-section > h3{

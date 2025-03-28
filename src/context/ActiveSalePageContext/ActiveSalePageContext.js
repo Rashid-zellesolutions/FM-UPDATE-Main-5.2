@@ -42,6 +42,7 @@ export const ActiveSalePageProvider = ({ children }) => {
             const data = await fetchWithRetry(api, options);
            await fetchProductsByCategory(data?.data?.subCategory)
             setSalesData(data); // Store the fetched data in state
+            console.log(data?.data,"here is sales data")
         } catch (error) {
             setError(error.message);
             console.error('Error fetching data:', error);

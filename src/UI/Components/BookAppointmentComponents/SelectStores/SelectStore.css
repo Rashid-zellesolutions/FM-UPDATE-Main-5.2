@@ -33,7 +33,7 @@
 }
 
 .single-store-card:hover {
-    background-color: var(--active-nav-item-color);
+    background-color: var(--primary-color);
 }
 
 .single-store-card-img{
@@ -66,7 +66,7 @@
     justify-content: center;
     gap: 10px;
     padding: 10px 15px;
-    background-color: var(--active-nav-item-color);
+    background-color: var(--primary-color);
     border: none;
     outline: none;
     border-radius: 8px;

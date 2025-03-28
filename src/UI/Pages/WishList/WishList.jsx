@@ -7,6 +7,8 @@ import star from '../../../Assets/icons/Star 19.png'
 import ProductCard from '../../Components/ProductCard/ProductCard';
 import heart from '../../../Assets/icons/heart-vector.png'
 import { toast } from 'react-toastify';
+import ProductCardTwo from '../../Components/ProductCardTwo/ProductCardTwo';
+import QuickView from '../../Components/QuickView/QuickView';
 
 
 const WishList = () => {
@@ -73,6 +75,9 @@ const WishList = () => {
     setSelectedGrid(grid)
   }
 
+  
+
+
   return (
     <div className='wish-list-main-container'>
       <div className='wish-list-heading-container'>
@@ -100,7 +105,7 @@ const WishList = () => {
         ) : (
           wishList.map((item, index) => {
             return (
-              <ProductCard
+              <ProductCardTwo
                 key={index}
                 slug={item.slug}
                 singleProductData={item}
@@ -184,7 +189,7 @@ const WishList = () => {
       <div className={`wishlist-mobile-cards ${selectedGrid === 'single-col' ? 'single-col' : 'two-col'}`}>
         {wishList && wishList.length > 0 ? (
           wishList.map((item, index) => {
-            return <ProductCard
+            return <ProductCardTwo
               key={index}
               slug={item.slug}
               singleProductData={item}
@@ -225,6 +230,11 @@ const WishList = () => {
           ))
         )}
       </div>
+       <QuickView
+                      setQuickViewProduct={quickViewProduct}
+                      quickViewShow={quickViewClicked}
+                      quickViewClose={handleQuickViewClose}
+                  />
     </div>
   )
 }

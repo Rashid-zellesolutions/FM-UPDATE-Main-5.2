@@ -75,8 +75,8 @@
 
 .mobile-view-register-btn{
     padding: 5px 30px;
-    background-color: var(--active-nav-item-color);
-    border: 1px solid var(--active-nav-item-color);
+    background-color: var(--primary-color);
+    border: 1px solid var(--primary-color);
     border-radius: 5px;
     color: #fff;
     font-size: 15px;

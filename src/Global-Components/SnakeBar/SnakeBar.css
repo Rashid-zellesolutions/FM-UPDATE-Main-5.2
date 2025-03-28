@@ -5,7 +5,7 @@
     background-color: transparent;
     /* justify-content: space-between; */
     /* padding: 10px 20px; */
-    /* background-color: #4487C5; */
+    /* background-color: var(--tertiary-color); */
     /* position: relative; */
     position: fixed;
     bottom: -50px;
@@ -33,7 +33,7 @@
     width: max-content;
     padding: 10px 20px;
     width: 420px;
-    background-color: #4487C5;
+    background-color: var(--tertiary-color);
     border-radius: 5px;
 }
 

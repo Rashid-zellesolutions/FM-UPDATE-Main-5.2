@@ -1,5 +1,5 @@
 <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<circle cx="32" cy="32" r="31.5" fill="#C61B1A" stroke="white"/>
+<circle cx="32" cy="32" r="31.5" fill="var(--primary-color)" stroke="white"/>
 <mask id="mask0_9544_60778" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="26" y="22" width="14" height="22">
 <rect x="26" y="22" width="14" height="22" fill="url(#pattern0_9544_60778)"/>
 </mask>

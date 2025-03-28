@@ -26,7 +26,7 @@ const SortModal = ({ isOpenSort, handleCloseSortModal, setSelectedOption, handle
     <div className={`sort-product-modal-main-container ${isOpenSort ? 'open-sort-product-modal' : ''}`} onClick={handleCloseSortModal}>
       <div className='sort-product-modal-inner-container' onClick={(e) => e.stopPropagation()}>
         <button onClick={handleCloseSortModal} className='sort-modal-close-button'>
-          <IoIosClose size={20} color='#595959' />
+          <IoIosClose size={20} color='var(--secondary-color)' />
         </button>
         {sortOptions.map((item, index) => (
           <p key={index} onClick={() => {

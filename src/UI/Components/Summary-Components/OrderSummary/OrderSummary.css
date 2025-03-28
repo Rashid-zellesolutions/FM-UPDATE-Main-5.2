@@ -39,7 +39,7 @@
 }
 
 .order-summary-selected-products-container::-webkit-scrollbar-thumb {
-    background-color: #595959; /* Scrollbar color */
+    background-color: var(--secondary-color); /* Scrollbar color */
     border-radius: 3px; /* Rounded corners for the scrollbar */
 }
 

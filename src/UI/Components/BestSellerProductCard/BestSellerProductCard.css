@@ -109,14 +109,21 @@
     width: 100%;
 }
 
-.category-product-name h3{
+.category-product-name h3 {
     font-size: 16px;
-    line-height: 18px;
+    line-height: 20px;
     font-weight: 500;
-    height: 28px;
     margin-bottom: 15px;
     color: var(--text-color);
+    
+    display: -webkit-box !important;  /* Enables multi-line ellipsis */
+    -webkit-line-clamp: 2 !important; /* Limits to 2 lines */
+    -webkit-box-orient: vertical !important; /* Ensures vertical layout */
+    overflow: hidden !important;  /* Hides overflow text */
+    text-overflow: ellipsis !important; /* Adds "..." at the cutoff */
 }
+
+
 
 .category-product-price-and-heart{
     display: flex;

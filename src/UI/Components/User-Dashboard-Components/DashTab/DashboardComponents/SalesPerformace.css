@@ -97,6 +97,6 @@
     font-size: 12px;
     line-height: 15px;
     font-weight: 400;
-    color: #595959;
+    color: var(--secondary-color);
 }
 

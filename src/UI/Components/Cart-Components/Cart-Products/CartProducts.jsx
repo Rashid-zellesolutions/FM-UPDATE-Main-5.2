@@ -126,7 +126,7 @@ const CartProducts = () => {
                     </span>
                     <div className='mobile-view-update-zip-on-cart-page'>
                         <span>
-                            <IoLocationOutline size={20} color='#595959' />
+                            <IoLocationOutline size={20} color='var(--secondary-color)' />
                             <p>Product availability and delivery options for 19134</p>
                         </span>
                         <p onClick={handleLocationModal}> Change Location </p>

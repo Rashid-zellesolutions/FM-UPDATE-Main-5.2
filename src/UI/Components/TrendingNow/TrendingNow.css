@@ -35,7 +35,7 @@
     font-size: 25px;
     line-height: var(--heading-line-height);
     font-weight: 600;
-    color: #595959;
+    color: var(--secondary-color);
     margin-bottom: 15px;
 }
 

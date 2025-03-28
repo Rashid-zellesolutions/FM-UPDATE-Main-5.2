@@ -57,7 +57,7 @@ const BestSellerSlider = (
     const [loading, setLoading] = useState(false);
 
     const getBestSellerProducts = async (slug) => {
-        const api = `/api/v1/products/get-deal-of-month-products?slug=${slug}`
+        const api = `/api/v1/products/get-best-selling-products?category=${slug}`
         try {
             setLoading(true);
             const response = await axios.get(`${url}${api}`)

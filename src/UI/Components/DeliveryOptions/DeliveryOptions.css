@@ -19,14 +19,14 @@
     font-size: 13px;
     line-height: 18px;
     font-weight: 500;
-    color: #595959;
+    color: var(--secondary-color);
 }
 
 .zip-code-section h3{
     font-size: 13px;
     line-height: 18px;
     font-weight: 700;
-    color: #595959;
+    color: var(--secondary-color);
     text-decoration: underline;
 }
 
@@ -59,14 +59,14 @@
     font-size: 14px;
     line-height: 24px;
     font-weight: 500;
-    color: #595959;
+    color: var(--secondary-color);
 }
 
 .delivery-delails-inner p{
     font-size: 12px;
     line-height: 14px;
     font-weight: 400;
-    color: #595959;
+    color: var(--secondary-color);
 }
 
 .pick-up-avail-or-not{
@@ -95,14 +95,14 @@
     font-size: 16px;
     line-height: 24px;
     font-weight: 500;
-    color: #595959;
+    color: var(--secondary-color);
 }
 
 .pick-up-inner h3{
     font-size: 16px;
     line-height: 24px;
     font-weight: 600;
-    color: #595959;
+    color: var(--secondary-color);
     text-decoration: underline;
     cursor: pointer;
 }

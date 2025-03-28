@@ -8,7 +8,7 @@
     gap: 15px;
     /* background-color: var(--bg-color); */
     /* background: rgba(249,249,2490. 0.9); */
-    background-color: #f0f0f0;
+    background-color: var(--secondary-background);
     z-index: 99999999999; 
     overflow-y: auto;
     overflow-x: hidden;
@@ -90,7 +90,7 @@
 }
 
 .mattres-links.active a{
-    color: var(--active-nav-item-color);
+    color: var(--primary-color);
     font-weight: 600;
 }
 
@@ -107,9 +107,9 @@
     display: flex;
     flex-direction: column;
     position: relative;
-    /* width: 315px !important; */
+    width: 315px !important;
     height: auto;
-    gap: 10px;
+    gap: 5px;
     text-decoration: none;
 }
 
@@ -126,22 +126,36 @@
  justify-content: flex-start;
 }
 
-.image-title{
-    height: 43px;
+.mattress-image > .pricing >.price{
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 12px;
 }
 
-.image-title > a{
+.image-title{
+    padding: 0;
+    margin: 0;
+}
+
+.image-title{
     color: var(--text-color);
     /* font-size: 18px !important;
     line-height: 20px !important;
     font-weight: 500 !important; */
-    /* letter-spacing: normal !important;
-    text-decoration: none !important; */
-    font-size: 13px;
-    line-height: 12px;
+    letter-spacing: normal !important;
+   /*  text-decoration: none !important; */
+    font-size: 18px;
+    line-height: 18px;
     font-weight: 500;
     text-decoration: none;
     /* letter-spacing: 1px; */
+    white-space: nowrap;  /* Prevents text from wrapping */
+    overflow: hidden;     /* Hides overflow */
+    text-overflow: ellipsis; /* Adds "..." if text is too long */
+    max-width: 100%;      /* Ensures it doesn’t exceed the container */
+    display: inline-block;
+    padding: 0;
+    margin: 0;
 }
 
 .pricing{
@@ -150,16 +164,17 @@
     align-items: start;
     justify-content: start;
     gap: 5px;
-    margin-top: -5px;
+    /* margin-top: -5px; */
+    letter-spacing: normal !important;
     /* margin-top: 3px; */
 }
 
 .price{
     color: var(--text-color);
-    font-size: 14px !important;
-    line-height: 21px;
-    font-weight: 500;
     letter-spacing: normal;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 12px;
 }
 
 .sale-price-container{
@@ -171,9 +186,9 @@
 }
 
 .price-sale-price{
-    font-size: 17px;
+    font-size: 15px;
     line-height: 21px;
-    font-weight: 600;
+    font-weight: 500;
     color: var(--text-color);
 }
 

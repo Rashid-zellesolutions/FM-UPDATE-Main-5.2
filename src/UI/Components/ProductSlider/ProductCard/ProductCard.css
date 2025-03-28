@@ -136,11 +136,11 @@
 .product-detail-btn:hover{
     gap: 20px;
     /* padding-bottom: 5px; */
-    border-bottom: 1px solid var(--active-nav-item-color);
+    border-bottom: 1px solid var(--primary-color);
 }
 
 .product-detail-btn:hover > div{
-    color: var(--active-nav-item-color);
+    color: var(--primary-color);
 }
 
 @media only screen and (max-width: 700px){

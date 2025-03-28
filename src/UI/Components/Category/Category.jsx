@@ -21,7 +21,7 @@ const Category = ({ title, categoryData, handleNavigate, categorySlug }) => {
            <>
               <Link to={categorySlug !== undefined ? `/${categorySlug}/${item.slug}` : `/${item.slug}` } state={item}>
             <img
-              key={index}
+              key={item.image}
               // onClick={() => handleNavigate(item.slug, item)}
               src={url + item.image}
               alt='img'
@@ -44,7 +44,7 @@ const Category = ({ title, categoryData, handleNavigate, categorySlug }) => {
           categoryData.map((item, index) => (
            <>
             <img
-              key={index}
+              key={item.image}
               onClick={() => handleNavigate(item.slug, item)}
               src={url + item.image2}
               alt='img'

@@ -71,13 +71,13 @@ const Financing = () => {
         }
     }, [financingPageData]);
 
-    const handleClick = (items) => {
-        if (items?.desktop_view?.link_url) {
-            window.open(items.desktop_view.link_url, "_blank");
-        } else {
-            console.error("Link URL is not available.");
-        }
-    };
+    // const handleClick = (items) => {
+    //     if (items?.desktop_view?.link_url) {
+    //         window.open(items.desktop_view.link_url, "_blank");
+    //     } else {
+    //         console.error("Link URL is not available.");
+    //     }
+    // };
 
     return (
         <div className='financing-main-container'>
@@ -85,8 +85,8 @@ const Financing = () => {
                 customWidth={false}
                 // showBanners={financingBanner} 
                 mainImgShow={true}
-                mobileMainImage={url + financingPageData?.main_banner?.mobile_view?.image_url}
-                mainImage={url + financingPageData?.main_banner?.desktop_view?.image_url}
+                mobileMainImage={url + financingPageData?.main_banner?.mobile?.image_url}
+                mainImage={url + financingPageData?.main_banner?.desktop?.image_url}
             />}
             <div className='mobile-finance-secondBanner'>
                 <img src={mobileSecondBanner} alt='mobile-second-banner' />
@@ -95,18 +95,29 @@ const Financing = () => {
                 <img src={url + "/uploads/media/Pages/home/financeSlider/1737797410760_405_Finance-Page-Points-2.jpg"} alt='desktop-second-banner' />
             </div>
             {/* <LeaseToOwn /> */}
-            <div className='payment-solutions' style={{ flexDirection: "column" }}>
-                {financingPageData && financingPageData?.slides.map((items, index) => (
+            <div className='payment-solutions desktopview' style={{ flexDirection: "column" }}>
+                {financingPageData && financingPageData?.slides?.desktop?.map((items, index) => (
                     <a
                         className="payment-solution-single-card"
-                        href={items?.desktop_view?.link_url} target='_blank' >
-                        <img className='desktopview' src={url + items?.desktop_view?.image_url} alt="" srcset="" />
-                        <img className='mobileview' src={url + items?.desktop_view?.image_url} alt="" srcset="" />
+                        href={items?.link_url} target='_blank' >
+                        <img className='' src={url + items?.image_url} alt="" srcset="" />
+                        {/* <img className='mobileview' src={url + items?.mobile?.image_url} alt="" srcset="" /> */}
                     </a>
 
                 ))}
             </div>
-            <div className='financing-services-categories'>
+            <div className='payment-solutions mobileview' style={{ flexDirection: "column" }}>
+                {financingPageData && financingPageData?.slides?.mobile?.map((items, index) => (
+                    <a
+                        className="payment-solution-single-card"
+                        href={items?.link_url} target='_blank' >
+                        <img className='' src={url + items?.image_url} alt="" srcset="" />
+                        {/* <img className='mobileview' src={url + items?.mobile?.image_url} alt="" srcset="" /> */}
+                    </a>
+
+                ))}
+            </div>
+            {/* <div className='financing-services-categories'>
                 {financingServiceCategoryData.map((items, index) => (
                     <FinanceServiceCategoryCard
                         marginTop={items.marginTop}
@@ -115,7 +126,7 @@ const Financing = () => {
                         cardDesc={items.desc}
                     />
                 ))}
-            </div>
+            </div> */}
         </div>
     )
 }

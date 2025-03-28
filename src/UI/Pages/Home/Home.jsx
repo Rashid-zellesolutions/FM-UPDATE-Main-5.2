@@ -89,7 +89,7 @@ const Home = () => {
     if (!trendingNow) {
       getTrendingProductsData();
     }
-    if (!financingBanners.length) {
+    if (!financingBanners?.length) {
       getFinanceBannerImagesFromApi();
     }
   }, []);
@@ -103,10 +103,11 @@ const Home = () => {
     <div className='home-page-main-container'>
       <NearStorePopUp />
       <Sliderr images={slides ? slides : []} />
-      <ShipBanner bannerImg={shipBanner} showBanner={true} paddindTrue={false} />
-      <Category title={'Shop by Category'} categoryData={landingPageCategories} handleNavigate={handleNavigate} />
+      {/* <ShipBanner bannerImg={shipBanner} showBanner={true} paddindTrue={false} /> */}
       <FinanceBannerSlider images={financingBanners} />
-      <MobileFinancingSlider />
+      <MobileFinancingSlider images={financingBanners} />
+      <Category title={'Shop by Category'} categoryData={landingPageCategories} handleNavigate={handleNavigate} />
+      
       <LandingPageFinancing />
       <TrendingNow data={trendingNow ? trendingNow : null} />
 

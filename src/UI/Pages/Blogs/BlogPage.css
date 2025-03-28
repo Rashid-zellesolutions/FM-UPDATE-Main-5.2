@@ -22,7 +22,7 @@
 }
 
 .blogs-page-main-heading span{
-    color: var(--active-nav-item-color);
+    color: var(--primary-color);
 }
 
 /* Mobile view styling */

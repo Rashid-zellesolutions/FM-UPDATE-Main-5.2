@@ -7,7 +7,7 @@ import { useEffect } from "react";
 export const url = `https://fmapi.myfurnituremecca.com`;
 // export const url = `http://fm_api.myfurnituremecca.com`;
 // export const url = `http://localhost:8080`
-export const siteUrl = `https://furnituremecca.zellesolutions.com`
+export const siteUrl = `https://fm.myfurnituremecca.com`
 // export const url = `https://furniture-mecca-apis.vercel.app`
 
 export function formatTime(stateName, timestamp) {
@@ -110,14 +110,12 @@ export async function getLatLngFromAddress(address, apiKey) {
   }
 }
 
-
 export const formatedPrice = (price) => {
   return new Intl.NumberFormat('en-us', {
     style: 'currency',
     currency: 'USD'
   }).format(price)
 }
-
 
 export function openLink(link) {
   if (link) {
@@ -139,7 +137,6 @@ export function getCurrentTimeForNewYork() {
   return currentTime;
 }
 
-
 export async function getGoogleStoreDetails(placeId) {
 
   const baseUrl = `https://fm.skyhub.pk/api/v1/stores/get-google-store-details`;
@@ -158,19 +155,19 @@ export async function getGoogleStoreDetails(placeId) {
 }
 
 export const formatPhoneNumber = (value) => {
-    // Remove all non-numeric characters
-    const cleaned = value.replace(/\D/g, "").slice(0, 10); // Keep only the first 10 digits
+  // Remove all non-numeric characters
+  const cleaned = value.replace(/\D/g, "").slice(0, 10); // Keep only the first 10 digits
 
-    // Apply formatting progressively as user types
-    if (cleaned.length > 6) {
-        return `(${cleaned.slice(0, 3)}) ${cleaned.slice(3, 6)}-${cleaned.slice(6)}`;
-    } else if (cleaned.length > 3) {
-        return `(${cleaned.slice(0, 3)}) ${cleaned.slice(3)}`;
-    } else if (cleaned.length > 0) {
-        return `(${cleaned}`;
-    }
-    
-    return "";
+  // Apply formatting progressively as user types
+  if (cleaned.length > 6) {
+    return `(${cleaned.slice(0, 3)}) ${cleaned.slice(3, 6)}-${cleaned.slice(6)}`;
+  } else if (cleaned.length > 3) {
+    return `(${cleaned.slice(0, 3)}) ${cleaned.slice(3)}`;
+  } else if (cleaned.length > 0) {
+    return `(${cleaned}`;
+  }
+
+  return "";
 };
 
 export const useDisableBodyScroll = (...states) => {
@@ -187,5 +184,32 @@ export const capitalize = (str) => {
     .join(" "); // Join words back
 };
 
+export const getDeliveryDate = () => {
+  const options = { weekday: "long", month: "short", day: "numeric" };
+  const today = new Date();
 
+  const optionWithTimeZone = { ...options, timeZone: "America/New_York" };
 
+  today.setDate(today.getDate() + 3);
+  return today.toLocaleDateString("en-us", optionWithTimeZone);
+}
+
+export const calculateDiscountPercentage = (sale_price, regular_price) => {
+  // Check if sale_price is null, empty, or undefined
+  if (!sale_price) {
+    return "0%";
+  }
+
+  // Convert to numbers
+  const sale = parseFloat(sale_price);
+  const regular = parseFloat(regular_price);
+
+  // Validate numbers
+  if (isNaN(sale) || isNaN(regular) || regular <= 0 || sale > regular) {
+    return "0%";
+  }
+
+  // Calculate discount percentage and round off
+  const discount = Math.round(((regular - sale) / regular) * 100);
+  return `-${discount}%`;
+};

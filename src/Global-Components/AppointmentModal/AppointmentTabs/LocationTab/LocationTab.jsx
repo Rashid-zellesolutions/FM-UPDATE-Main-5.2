@@ -50,7 +50,7 @@ const LocationTab = ({ selectedTab, setSelectedTab, handleSelectStore }) => {
         </h3>
 
         <div className='location-search-container'>
-          <IoIosSearch size={25} color='#595959' />
+          <IoIosSearch size={25} color='var(--secondary-color)' />
           <label>
             {/* Enter Zip Code or City  */}
             <input type='text' placeholder='Enter Zip Code or City' />
@@ -78,7 +78,7 @@ const LocationTab = ({ selectedTab, setSelectedTab, handleSelectStore }) => {
                       className={`location-tab-arrow ${showLocationDetails === index ?'rotate-location-tab-arrow' : ''}`} 
                       onClick={() => handleLocationDetails(index)} 
                       size={20} 
-                      color='#595959' 
+                      color='var(--secondary-color)' 
                     />
                   </span>
                 </div>
@@ -91,11 +91,11 @@ const LocationTab = ({ selectedTab, setSelectedTab, handleSelectStore }) => {
                   <p>{item.address_1}</p>
                   <div className='location-tab-phone-and-direction'>
                     <span>
-                      <FaPhoneAlt size={15} color='#595959' />
+                      <FaPhoneAlt size={15} color='var(--secondary-color)' />
                       <p>{item.phone}</p>
                     </span>
                     <span>
-                      <FaLocationDot size={15} color='#595959' />
+                      <FaLocationDot size={15} color='var(--secondary-color)' />
                       <p>Get Directions</p>
                     </span>
                   </div>

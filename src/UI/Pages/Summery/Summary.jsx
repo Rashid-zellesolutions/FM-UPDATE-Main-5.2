@@ -73,6 +73,9 @@ const Summary = () => {
     savings,
     cartProducts,
     cartUid,
+    subTotal0,
+    isCartProtected,
+    isProfessionalAssembly
 
   } = useCart();
 
@@ -283,19 +286,45 @@ const Summary = () => {
             </div>
 
             <div className='right-section-order-pricing-details'>
-              {filteredOrderPriceDetails && filteredOrderPriceDetails.map((price, index) => (
+              {/* {filteredOrderPriceDetails && filteredOrderPriceDetails.map((price, index) => (
                 <div className='right-section-price-and-value'>
                   <p className='right-section-price-text'>{price.title}</p>
                   <p className='right-section-price-text'>{price.price}</p>
                 </div>
-              ))}
-              <div className='right-section-price-and-value'>
-                <p className='right-section-price-text'>Savings</p>
-                <p className='right-section-price-text'>{formatedPrice(savings)}</p>
+              ))} */}
+              <div className='cart-order-summary-price-detail-single-item'>
+                <p className='cart-order-summary-price-detail-single-item-title'>Subtotal</p>
+                <p className='cart-order-summary-price-detail-single-item-price'>{formatedPrice(subTotal0)}</p>
               </div>
-              <div className='right-section-price-and-value'>
-                <p className='right-section-price-text'>{selectedOption?.name}</p>
-                <p className='right-section-price-text'>{selectedOption?.cost === 0 ? '' : selectedOption?.cost}</p>
+              <div className='cart-order-summary-price-detail-single-item'>
+                <p className='cart-order-summary-price-detail-single-item-title'>Savings</p>
+                <p className='cart-order-summary-price-detail-single-item-price' style={{ color: "var(--primary-color)" }} >-{formatedPrice(savings)}</p>
+              </div>
+
+              {isCartProtected ? (
+                <div className='cart-order-summary-price-detail-single-item'>
+                  <p className='cart-order-summary-price-detail-single-item-title'>Protect Entire Order</p>
+                  <p className='cart-order-summary-price-detail-single-item-price'>{formatedPrice(200)}</p>
+                </div>
+              ) : (
+                <></>
+              )}
+              {isProfessionalAssembly ? (
+                <div className='cart-order-summary-price-detail-single-item'>
+                  <p className='cart-order-summary-price-detail-single-item-title'>Professional Assembly</p>
+                  <p className='cart-order-summary-price-detail-single-item-price'>{formatedPrice(210)}</p>
+                </div>
+              ) : (
+                <></>
+              )}
+              <div className='cart-order-summary-price-detail-single-item'>
+                <p className='cart-order-summary-price-detail-single-item-title'>{selectedOption?.name}</p>
+                <p className='cart-order-summary-price-detail-single-item-price'>{selectedOption?.cost === 0 ? '' : selectedOption?.cost}</p>
+              </div>
+
+              <div className='cart-order-summary-price-detail-single-item'>
+                <p className='cart-order-summary-price-detail-single-item-title'>{`Tax (${totalTax?.tax_name})`}</p>
+                <p className='cart-order-summary-price-detail-single-item-price'>{totalTax ? formatedPrice(calculateTotalTax(subTotal, parseFloat(totalTax?.tax_value))) : 0}</p>
               </div>
 
               <div className='cart-order-summary-zip-code'>

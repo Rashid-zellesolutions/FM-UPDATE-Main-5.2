@@ -53,22 +53,22 @@ const SalesPerformance = () => {
                 gradient: {
                     shade: 'dark',
                     type: 'linear',
-                    gradientToColors: ['#4487C5'], // Last color in the gradient
+                    gradientToColors: ['var(--tertiary-color)'], // Last color in the gradient
                     stops: [13.68, 49.84, 86.01], // Matching percentages of the gradient
                     colorStops: [
                         {
                             offset: 13.68,
-                            color: '#4487C5',
+                            color: 'var(--tertiary-color)',
                             opacity: 1,
                         },
                         {
                             offset: 49.84,
-                            color: '#4487C5',
+                            color: 'var(--tertiary-color)',
                             opacity: 1,
                         },
                         {
                             offset: 86.01,
-                            color: '#4487C5',
+                            color: 'var(--tertiary-color)',
                             opacity: 1,
                         },
                     ],
@@ -94,13 +94,13 @@ const SalesPerformance = () => {
                     endAngle: 140,
                     track: {
                         // background: 'rgba(198, 27, 26, 0.2)',
-                        fill: '#4487C5',
+                        fill: 'var(--tertiary-color)',
                         strokeWidth: '100%'
                     },
                     dataLabels: {
                         name: {
                             fontSize: '10px',
-                            color: '#595959',
+                            color: 'var(--secondary-color)',
                             offsetY: 20,
                             // show: false
 
@@ -123,22 +123,22 @@ const SalesPerformance = () => {
                 gradient: {
                     shade: 'dark',
                     type: 'linear',
-                    gradientToColors: ['#4487C5'], // Last color in the gradient
+                    gradientToColors: ['var(--tertiary-color)'], // Last color in the gradient
                     stops: [13.68, 49.84, 86.01], // Matching percentages of the gradient
                     colorStops: [
                         {
                             offset: 13.68,
-                            color: '#4487C5',
+                            color: 'var(--tertiary-color)',
                             opacity: 1,
                         },
                         {
                             offset: 49.84,
-                            color: '#4487C5',
+                            color: 'var(--tertiary-color)',
                             opacity: 1,
                         },
                         {
                             offset: 86.01,
-                            color: '#4487C5',
+                            color: 'var(--tertiary-color)',
                             opacity: 1,
                         },
                     ],
@@ -147,7 +147,7 @@ const SalesPerformance = () => {
 
             stroke: {
                 dashArray: 10,
-                // color: ['#C61B1A'] // Stroke color set to #C611B1A
+                // color: ['var(--primary-color)'] // Stroke color set to #C611B1A
             },
             labels: ['Out of 100 points'],
         },

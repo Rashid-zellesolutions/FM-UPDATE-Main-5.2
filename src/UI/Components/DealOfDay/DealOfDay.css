@@ -23,7 +23,7 @@
     width: 84px; /* Adjust this percentage as needed */
     height: 2px; /* Match the border thickness */
     z-index: 222;
-    background-color: var(--active-nav-item-color); /* Use the desired border color */
+    background-color: var(--primary-color); /* Use the desired border color */
 }
 
 .deal-of-the-day-heading h3{

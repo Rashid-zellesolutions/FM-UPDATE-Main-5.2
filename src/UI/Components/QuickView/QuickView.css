@@ -187,7 +187,7 @@
 }
 
 .quick-view-arrow.disabled:hover .quick-view-product-gallery-arrow-left{
-    color: #595959;
+    color: var(--secondary-color);
 }
 
 /* .quick-view-arrow img{
@@ -201,7 +201,7 @@
 }
 
 .quick-view-arrow.quick-view-left:hover{
-    background-color: #4487C5;
+    background-color: var(--tertiary-color);
 }
 
 .quick-view-arrow.quick-view-left:hover .quick-view-product-gallery-arrow-left {
@@ -213,7 +213,7 @@
 }
 
 .quick-view-arrow.quick-view-right:hover {
-    background-color:  #4487C5;
+    background-color:  var(--tertiary-color);
 }
 
 .quick-view-arrow.quick-view-right:hover .quick-view-product-gallery-arrow-right {
@@ -322,8 +322,8 @@
     width: max-content;
     height: 100%;
     width: 40px;
-    /* border: 1px solid var(----active-nav-item-color); */
-    border: 1px solid var(--active-nav-item-color);
+    /* border: 1px solid var(--var(--primary-color)); */
+    border: 1px solid var(--primary-color);
     /* background-color: orange; */
     border-radius: 50%;
     /* padding: 5px; */
@@ -368,7 +368,7 @@
     justify-content: center;
     padding-top: 10px;
     /* margin-top: 10px; */
-    background-color: #f9f9f9;
+    background-color: var(--tertiary-background);
     border-bottom: 1px solid var(--border-color);
 }
 
@@ -420,13 +420,15 @@
     display: flex;
     width: 100%;
     height: 0;
-    align-items: center;
-    justify-content: center;
+    /* align-items: center; */
+    justify-content: flex-start;
     overflow: hidden;
     /* background-color: orange; */
     margin-top: 10px;
     transition: height 0.3s ease;
+    padding: 0 0 0 10px !important;
 }
+
 
 .quick-view-details.show-details{
     height: 220px;
@@ -436,7 +438,7 @@
 }
 
 .quick-view-dimension-image {
-    width: 90%;
+    width: 100%;
     height: 100%;
 }
 
@@ -456,6 +458,13 @@
 
 .quick-view-details.show-details::-webkit-scrollbar-thumb:hover {
     background: #555; /* Thumb on hover */
+}
+
+.dimension-views{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
 }
 
 .quick-view-drop-down-dimension-data {
@@ -511,7 +520,7 @@
     }
 
     .quick-view-add-item-or-cart-btn input {
-        width: 30px;
+        width: 30%;
         padding: 5px;
     }
     .quick-view-add-to-cart {
@@ -521,6 +530,9 @@
     .quick-view-wish-list-container {
         width: 45px !important;
     }
-
+    .quick-view-dimension-image{
+        width: auto;
+        height: 190px;
+    }
 
 }

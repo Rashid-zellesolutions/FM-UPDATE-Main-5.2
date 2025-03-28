@@ -103,7 +103,7 @@
     justify-content: center;
     width: 76px;
     height: 30px;
-    /* background-color: #595959; */
+    /* background-color: var(--secondary-color); */
     background-color: #fff;
     border: 1px solid var(--border-color);
     color: var(--text-white);

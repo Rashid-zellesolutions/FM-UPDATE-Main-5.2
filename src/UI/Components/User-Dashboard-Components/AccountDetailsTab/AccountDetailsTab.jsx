@@ -96,7 +96,7 @@ const AccountDetailsTab = () => {
             {userDetails.profile_image !== null ? (
               <img src={imgUrl} alt='user profile' className='user-profile-picture' />
             ) : (
-              <CiUser color='#595959' size={80} />
+              <CiUser color='var(--secondary-color)' size={80} />
             )}
           </div>
 
@@ -111,7 +111,7 @@ const AccountDetailsTab = () => {
           <div className='user-info-head'>
             <h3>User Information</h3>
             <button>
-              <FaEdit size={24} color='#595959' onClick={handleOpenBillingModal} />
+              <FaEdit size={24} color='var(--secondary-color)' onClick={handleOpenBillingModal} />
             </button>
           </div>
 
@@ -135,7 +135,7 @@ const AccountDetailsTab = () => {
             <div className='user-info-pass-head' onClick={handleShowPasswordContainer}>
               <h3>Update Password</h3>
               <button>
-                {showInputs ? <CiCircleMinus size={24} color='#595959' /> : <CiCirclePlus size={24} color='#595959' />}
+                {showInputs ? <CiCircleMinus size={24} color='var(--secondary-color)' /> : <CiCirclePlus size={24} color='var(--secondary-color)' />}
               </button>
             </div>
 
@@ -145,7 +145,7 @@ const AccountDetailsTab = () => {
                 <p>Old Password</p>
                 <div className='input-pass-container'>
                   <input type={showOldPass ? 'text' : 'password'} name='old_password' value={password.old_password} onChange={handlePasswordChange} />
-                  {showOldPass ? <FaEyeSlash size={18} color='#595959' onClick={() => handleShowHidePassword('old_password')} /> : <FaEye size={18} color='#595959' onClick={() => handleShowHidePassword('old_password')} /> }
+                  {showOldPass ? <FaEyeSlash size={18} color='var(--secondary-color)' onClick={() => handleShowHidePassword('old_password')} /> : <FaEye size={18} color='var(--secondary-color)' onClick={() => handleShowHidePassword('old_password')} /> }
                 </div>
               </label>
 
@@ -154,7 +154,7 @@ const AccountDetailsTab = () => {
                 <p>New Password</p>
                 <div className='input-pass-container'>
                   <input type={showNewPass ? 'text' : 'password'} name='new_password' value={password.new_password} onChange={handlePasswordChange} />
-                  {showNewPass ? <FaEyeSlash size={18} color='#595959' onClick={() => handleShowHidePassword('new_password')} /> : <FaEye size={18} color='#595959' onClick={() => handleShowHidePassword('new_password')} /> }
+                  {showNewPass ? <FaEyeSlash size={18} color='var(--secondary-color)' onClick={() => handleShowHidePassword('new_password')} /> : <FaEye size={18} color='var(--secondary-color)' onClick={() => handleShowHidePassword('new_password')} /> }
                 </div>
               </label>
 

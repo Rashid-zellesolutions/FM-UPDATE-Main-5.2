@@ -171,7 +171,7 @@ const Login = ({ signupclicked, setSignupclicked }) => {
             {/* First Name and Last Name in one row */}
             <div className="form-row">
               <label className="signup-sec-label">
-                <p>First Name<span style={{ color: "var(--icon-color)" }} >*</span></p>
+                <p>First Name<span style={{ color: "var(--primary-color)" }} >*</span></p>
                 <input
                   className="login-and-register-input"
                   type="text"
@@ -182,7 +182,7 @@ const Login = ({ signupclicked, setSignupclicked }) => {
                 />
               </label>
               <label className="signup-sec-label">
-                <p>Last Name<span style={{ color: "var(--icon-color)" }} >*</span></p>
+                <p>Last Name<span style={{ color: "var(--primary-color)" }} >*</span></p>
                 <input
                   className="login-and-register-input"
                   type="text"
@@ -197,7 +197,7 @@ const Login = ({ signupclicked, setSignupclicked }) => {
             {/* Email in second row */}
             <div className="form-row">
               <label className="signup-sec-label">
-                <p>Email<span style={{ color: "var(--icon-color)" }} >*</span></p>
+                <p>Email<span style={{ color: "var(--primary-color)" }} >*</span></p>
                 <input
                   className="login-and-register-input"
                   type="email"
@@ -212,7 +212,7 @@ const Login = ({ signupclicked, setSignupclicked }) => {
             {/* Password and Confirm Password in third row */}
             <div className="form-row">
               <label className="signup-sec-label">
-                <p>Password<span style={{ color: "var(--icon-color)" }} >*</span></p>
+                <p>Password<span style={{ color: "var(--primary-color)" }} >*</span></p>
                 <input
                   className="login-and-register-input"
                   type="password"
@@ -223,7 +223,7 @@ const Login = ({ signupclicked, setSignupclicked }) => {
                 />
               </label>
               <label className="signup-sec-label">
-                <p>Confirm Password<span style={{ color: "var(--icon-color)" }} >*</span></p>
+                <p>Confirm Password<span style={{ color: "var(--primary-color)" }} >*</span></p>
                 <input
                   className="login-and-register-input"
                   type="password"
@@ -276,7 +276,7 @@ const Login = ({ signupclicked, setSignupclicked }) => {
         <div className='login-sec-id-pass-content'>
           <form className="login-form" onSubmit={handleSubmitLogin}>
             <label className="signup-sec-label">
-              <p>Email<span style={{ color: "var(--icon-color)" }} >*</span></p>
+              <p>Email<span style={{ color: "var(--primary-color)" }} >*</span></p>
               <input
                 className="login-and-register-input"
                 type="email"
@@ -287,7 +287,7 @@ const Login = ({ signupclicked, setSignupclicked }) => {
               />
             </label>
             <label className="signup-sec-label">
-              <p>Password<span style={{ color: "var(--icon-color)" }} >*</span></p>
+              <p>Password<span style={{ color: "var(--primary-color)" }} >*</span></p>
               <input
                 className="login-and-register-input"
                 type="password"

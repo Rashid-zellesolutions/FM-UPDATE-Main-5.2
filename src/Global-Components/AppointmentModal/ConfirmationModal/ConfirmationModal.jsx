@@ -24,11 +24,11 @@ const ConfirmationModal = ({ confirmAppointment, handleAppointmentModalClose }) 
             <div className={`appointment-confirmation-modal-inner-container`}>
 
                 <button className='appointment-modal-close-button' onClick={handleAppointmentModalClose}>
-                    <IoIosClose size={20} color='#595959' />
+                    <IoIosClose size={20} color='var(--secondary-color)' />
                 </button>
 
                 <div className='appointment-confirmation-modal-head'>
-                    <SlCalender size={20} color='#4487C5' />
+                    <SlCalender size={20} color='var(--tertiary-color)' />
                     <h3>Schedule a Consultation</h3>
                 </div>
 

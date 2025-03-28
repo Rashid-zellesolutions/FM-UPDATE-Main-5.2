@@ -26,7 +26,7 @@ const BillingAddressModal = ({ showBilling, handleCloseBillingModal }) => {
             <h3>Billing Address</h3>
 
             <button className='billing-modal-close-button' onClick={handleCloseBillingModal}>
-              <IoClose size={25} color='#595959' />
+              <IoClose size={25} color='var(--secondary-color)' />
             </button>
 
           </div>

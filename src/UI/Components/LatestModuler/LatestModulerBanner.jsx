@@ -41,7 +41,7 @@ const LatestModulerBanner = ({ images, mobileMainImage, customWidth, mainImage, 
         <div className={`dining-image-div ${mainImgShow ? 'show-main-img' : ''}`}>
           <img onLoad={() => setImagePreloader(true)} src={mainImage} alt='dining ' className='desktop-main-banner' />
           {mobileMainImage !== undefined ? (
-            <img onLoad={() => setImagePreloader(true)} src={url + mobileMainImage} alt='mobile-main-image' className='mobile-main-banner' />
+            <img onLoad={() => setImagePreloader(true)} src={mobileMainImage} alt='mobile-main-image' className='mobile-main-banner' />
           ) : (
             <div className='mobile-view-main-banner-shimmer'></div>
           )}

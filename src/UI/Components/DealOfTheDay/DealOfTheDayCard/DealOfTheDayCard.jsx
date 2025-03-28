@@ -33,6 +33,7 @@ const DealOfTheDayCard = ({
     handleWishListClick,
     handleCartSection,
     handleShareProduct,
+    dicountPercent
   }) => {
 
     const formatePrice = (price) => {
@@ -84,7 +85,7 @@ const DealOfTheDayCard = ({
 
         <div className='deal-of-the-day-product-image'>
           <img src={heartIcon} alt='heart-icon' className='mobile-view-deal-day-card-heart-icon' />
-          <div className='deal-of-the-day-product-discount'><p>-12%</p></div>
+          <div className='deal-of-the-day-product-discount'><p>{dicountPercent}</p></div>
           <img src={`${url}${productImage}`} alt='img' effect='blur' />
           <div className='deal-of-the-day-card-icons-div'>
               <button 

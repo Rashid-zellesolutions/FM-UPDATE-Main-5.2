@@ -19,7 +19,7 @@ const ProductDisplay = () => {
   const { slug } = useParams();
   const location = useLocation();
   const [product, setProduct] = useState(location.state || null);
-  
+
   const [isSticky, setIsSticky] = useState(false)
 
 
@@ -34,11 +34,16 @@ const ProductDisplay = () => {
   };
 
   useEffect(() => {
-    if (!product) {
-      fetchProductBySlug(slug);
+    const fetchProduct = async () => {
+      setProduct(null); // Reset product state to trigger loading state
+      await fetchProductBySlug(slug);
+    };
+  
+    if (slug) {
+      fetchProduct();
     }
-  }, [product, slug]);
-
+  }, [slug]);
+  
 
 
   const sectionRefs = {
@@ -105,6 +110,7 @@ const ProductDisplay = () => {
     selectedVariationData
   } = useProductPage();
 
+   const [currentIndex, setCurrentIndex] = useState(0);
   const [activeIndex, setActiveIndex] = useState(0); // For main slider image
   const [thumbActiveIndex, setThumbActiveIndex] = useState(0); // For active thumbnail
   const thumbnailContainerRef = useRef(null); // To control the vertical scroll
@@ -120,11 +126,13 @@ const ProductDisplay = () => {
     setDimensionModal(false)
     setActiveIndex(0)
     setThumbActiveIndex(0)
+    setCurrentIndex(0)
   }
 
   const handleThumbnailClick = (index) => {
     setActiveIndex(index);
     setThumbActiveIndex(index);
+    setCurrentIndex(index)
 
     // Prevent page scroll
     if (thumbnailContainerRef.current) {
@@ -153,6 +161,7 @@ const ProductDisplay = () => {
       const newIndex = prevIndex - 1;
       setThumbActiveIndex(newIndex); // Update active thumbnail index
       // setZoomIn(false);
+      setCurrentIndex(newIndex)
 
       // Scroll thumbnail container
       if (thumbnailContainerRef.current) {
@@ -186,6 +195,7 @@ const ProductDisplay = () => {
 
       const newIndex = prevIndex + 1;
       setThumbActiveIndex(newIndex); // Update active thumbnail index
+      setCurrentIndex(newIndex)
       // setZoomIn(false);
 
       // Scroll thumbnail container
@@ -209,6 +219,13 @@ const ProductDisplay = () => {
     });
   };
 
+  const handleDotClick = (index) => {
+    setCurrentIndex(index);
+    setActiveIndex(index); // Ensure the main slider image updates
+    setThumbActiveIndex(index); // Ensure the thumbnail updates
+    // setZoomIn(false);
+};
+
   useEffect(() => {
     if (dimensionModal) {
       document.body.style.overflow = 'hidden'
@@ -219,77 +236,82 @@ const ProductDisplay = () => {
 
 
   return (
-    <div className='product-display-page-main-container'>
-      <Breadcrumb category={product?.categories} />
-      <ProductDetailSticky
-        productData={product}
-        decreaseLocalQuantity={decreaseLocalQuantity}
-        quantity={quantity}
-        handleQuantityChange={handleQuantityChange}
-        increaseLocalQuantity={increaseLocalQuantity}
-        isLoading={isLoading}
-        handleClick={handleClick}
-        addToCart0={addToCart0}
-        isProtectionCheck={isProtectionCheck}
-        handleAddToCartProduct={handleAddToCartProduct}
-        cartProducts={cartProducts}
-        cartSection={cartSection}
-        variationData={variationData}
-        setVariationData={setVariationData}
-        handleCartClose={handleCartClose}
-        setCartSection={setCartSection}
-        removeFromCart={removeFromCart}
-        decreamentQuantity={decreamentQuantity}
-        increamentQuantity={increamentQuantity}
-        isSticky={isSticky}
-        handleGalleryModal={handleOpenModal}
-        isCartLoading={isCartLoading}
-      // parentCategories={parentCategories}
-      />
+    <div>
+      <div className='product-display-page-main-container'>
+        <Breadcrumb category={product?.categories} />
+        <ProductDetailSticky
+          productData={product}
+          decreaseLocalQuantity={decreaseLocalQuantity}
+          quantity={quantity}
+          handleQuantityChange={handleQuantityChange}
+          increaseLocalQuantity={increaseLocalQuantity}
+          isLoading={isLoading}
+          handleClick={handleClick}
+          addToCart0={addToCart0}
+          isProtectionCheck={isProtectionCheck}
+          handleAddToCartProduct={handleAddToCartProduct}
+          cartProducts={cartProducts}
+          cartSection={cartSection}
+          variationData={variationData}
+          setVariationData={setVariationData}
+          handleCartClose={handleCartClose}
+          setCartSection={setCartSection}
+          removeFromCart={removeFromCart}
+          decreamentQuantity={decreamentQuantity}
+          increamentQuantity={increamentQuantity}
+          isSticky={isSticky}
+          handleGalleryModal={handleOpenModal}
+          isCartLoading={isCartLoading}
+        // parentCategories={parentCategories}
+        />
 
-      <ProductStickyTabBar
-        sectionRefs={sectionRefs}
-        productData={product}
-        isSticky={isSticky}
-        setIsSticky={setIsSticky}
-        variationData={variationData}
-        addToCart0={addToCart0}
-        handleAddToCartProduct={handleAddToCartProduct}
-        isProtectionCheck={isProtectionCheck}
-        quantity={quantity}
-      />
+        <ProductStickyTabBar
+          sectionRefs={sectionRefs}
+          productData={product}
+          isSticky={isSticky}
+          setIsSticky={setIsSticky}
+          variationData={variationData}
+          addToCart0={addToCart0}
+          handleAddToCartProduct={handleAddToCartProduct}
+          isProtectionCheck={isProtectionCheck}
+          quantity={quantity}
+        />
 
-      <ProductDescriptionTab
-        descriptionRef={sectionRefs.Description}
-        productData={product}
-        addMarginTop={isSticky}
-      />
+        <ProductDescriptionTab
+          descriptionRef={sectionRefs.Description}
+          productData={product}
+          addMarginTop={isSticky}
+        />
 
-      <ProductDetailTab
-        detailsRef={sectionRefs.Details}
-        productData={product}
-      />
-      <ProductRecommendationTab
-        recommendationRef={sectionRefs.Recommendations}
-        product={product}
-      />
+        <ProductDetailTab
+          detailsRef={sectionRefs.Details}
+          productData={product}
+        />
+        <ProductRecommendationTab
+          recommendationRef={sectionRefs.Recommendations}
+          product={product}
+        />
+
+
+        <GalleryModal
+          dimensionModal={dimensionModal}
+          handleCloseDimensionModal={handleCloseDimensionModal}
+          productData={product}
+          variationData={selectedVariationData}
+          handleNextImage={handleNextImage}
+          handlePrevImage={handlePrevImage}
+          activeIndex={activeIndex}
+          handleThumbnailClick={handleThumbnailClick}
+          thumbActiveIndex={thumbActiveIndex}
+          currentIndex={currentIndex}
+          handleDotClick={handleDotClick}
+        />
+
+      </div>
       <ProductReviewTab
         reviewRef={sectionRefs.Reviews}
         product={product}
       />
-
-      <GalleryModal
-        dimensionModal={dimensionModal}
-        handleCloseDimensionModal={handleCloseDimensionModal}
-        productData={product}
-        variationData={selectedVariationData}
-        handleNextImage={handleNextImage}
-        handlePrevImage={handlePrevImage}
-        activeIndex={activeIndex}
-        handleThumbnailClick={handleThumbnailClick}
-        thumbActiveIndex={thumbActiveIndex}
-      />
-
     </div>
   )
 }

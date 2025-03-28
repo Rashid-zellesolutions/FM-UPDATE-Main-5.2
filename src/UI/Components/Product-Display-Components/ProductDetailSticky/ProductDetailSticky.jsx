@@ -6,7 +6,7 @@ import { useProductPage } from '../../../../context/ProductPageContext/productPa
 import RatingReview from '../../starRating/starRating'
 import { FaShareSquare } from 'react-icons/fa'
 import axios from 'axios'
-import { formatedPrice, truncateTitle, url } from '../../../../utils/api'
+import { formatedPrice, truncateTitle, url ,getDeliveryDate} from '../../../../utils/api'
 import { useNavigate, useParams } from 'react-router-dom'
 import AlsoNeed from '../../AlsoNeed/AlsoNeed'
 import SizeVariant from '../../SizeVariant/SizeVariant'
@@ -29,7 +29,10 @@ import AppointmentModal from '../../../../Global-Components/AppointmentModal/App
 import LocationPopUp from '../../LocationPopUp/LocationPopUp'
 import ConfirmationModal from '../../../../Global-Components/AppointmentModal/ConfirmationModal/ConfirmationModal'
 import SnakBar from '../../../../Global-Components/SnakeBar/SnakBar'
-import { useAppointment } from '../../../../context/AppointmentContext/AppointmentContext'
+import { useAppointment } from '../../../../context/AppointmentContext/AppointmentContext';
+import { useCart } from '../../../../context/cartContext/cartContext'
+import { BsTruck } from "react-icons/bs";
+
 
 
 const ProductDetailSticky = (
@@ -59,7 +62,7 @@ const ProductDetailSticky = (
     // parentCategories,
   }) => {
 
-    // console.log("product data initial state", productData)
+  // console.log("product data initial state", productData)
 
   const navigate = useNavigate()
   const { setAppointmentPayload } = useAppointment()
@@ -87,6 +90,11 @@ const ProductDetailSticky = (
       console.error("Error Fetching fetching data with slug", error);
     }
   }
+
+  useEffect(() => {
+    console.log(productData, "here is pdata")
+  }, [])
+
 
   // Effect to fetch data if user came directly via link
   useEffect(() => {
@@ -117,7 +125,7 @@ const ProductDetailSticky = (
     } else if (!productData || Object.keys(productData).length === 0 || !productData.images) {
       setProduct(getBySlug);
     }
-  }, [productData, slug, getBySlug ])
+  }, [productData, slug, getBySlug])
   // product from this dependancy
 
 
@@ -244,9 +252,9 @@ const ProductDetailSticky = (
   }
 
   // const contectInfo = [
-  //   { title: 'Call', icon: <IoCallOutline size={18} color='#595959' />, disableColor: false, tel: true },
-  //   { title: 'Chat', icon: <IoChatbubbleOutline size={18} color='#595959' />, disableColor: true, tel: false },
-  //   { title: 'Visit', icon: <PiStorefrontLight size={18} color='#595959' />, disableColor: false, tel: false },
+  //   { title: 'Call', icon: <IoCallOutline size={18} color='var(--secondary-color)' />, disableColor: false, tel: true },
+  //   { title: 'Chat', icon: <IoChatbubbleOutline size={18} color='var(--secondary-color)' />, disableColor: true, tel: false },
+  //   { title: 'Visit', icon: <PiStorefrontLight size={18} color='var(--secondary-color)' />, disableColor: false, tel: false },
   // ]
 
   const [appointmentModal, setAppointmentModal] = useState(false);
@@ -308,7 +316,7 @@ const ProductDetailSticky = (
 
   }, [cartDivRef]);
   const [errorMessage, setErrorMessage] = useState('Something went wrong! Please try again later.');
-      const [snakebarOpen, setSnakebarOpen] = useState(false);
+  const [snakebarOpen, setSnakebarOpen] = useState(false);
 
   const handleOpenSnakeBar = () => {
     console.log("snakebar open function called")
@@ -319,14 +327,14 @@ const ProductDetailSticky = (
     setSnakebarOpen(false);
   }
 
-  useEffect(() => {  }, [addCartSticky])
+  useEffect(() => { }, [addCartSticky])
 
   const [isProtectionCheck, setIsProtectionCheck] = useState(true)
 
 
+  const { eachProtectionValue } = useCart();
 
 
-  
 
   return (
     <div className='product-detail-sticky-section-main-container'>
@@ -336,6 +344,20 @@ const ProductDetailSticky = (
         <div className='product-detail-product-gallery-section'>
 
           <div className='mobile-view-slider-top-details'>
+            {
+              product?.tags?.length > 0 && <div className="product-tagging">
+                {
+                  product?.tags[0] && product?.tags[0].type.toLowerCase() === "text" ?
+                    <div className='text-tag' style={{ backgroundColor: product?.tags[0].bg_color, color: product?.tags[0].text_color }} >
+                      {product?.tags[0].text}
+                    </div> :
+                    <div className='image-tag' >
+                      <img src={url + product?.tags[0]?.image} alt="" srcset="" />
+                    </div>
+                }
+              </div>
+            }
+
             <h3>{product?.name}</h3>
             {/* <p>SKU : {product.sku}</p> */}
             <div className='product-detail-rating-and-share'>
@@ -350,9 +372,28 @@ const ProductDetailSticky = (
                 <FaShareSquare className='single-product-share-icon' size={20} />
               </span>
             </div>
+            {product?.type === "simple" ? <>
+              {product?.sale_price !== "" ? <div className='single-product-prices'>
 
-              <RatingReview rating={(product?.average_rating)} disabled={true} size={"20px"} />
-            
+                <h3 className='single-product-new-price'>{formatedPrice(productData?.sale_price)}</h3>
+                <del className='single-product-old-price'>{formatedPrice(productData?.regular_price)}</del>
+              </div> : <div className='single-product-prices'>
+                <h3 className='single-product-new-price'>{formatedPrice(productData?.regular_price)}</h3>
+              </div>
+              }
+            </> : <>
+              {selectedVariationData?.sale_price !== "" ? <div className='single-product-prices'>
+
+                <h3 className='single-product-new-price'>{formatedPrice(selectedVariationData?.sale_price)}</h3>
+                <del className='single-product-old-price'>{formatedPrice(selectedVariationData?.regular_price)}</del>
+              </div> : <div className='single-product-prices'>
+                <h3 className='single-product-new-price'>{formatedPrice(product?.regular_price)}</h3>
+              </div>
+              }
+            </>}
+
+            <RatingReview rating={(product?.average_rating)} disabled={true} size={"20px"} />
+
           </div>
 
           <ProductGallery
@@ -380,6 +421,19 @@ const ProductDetailSticky = (
 
           <div className='product-detail-info-sticky'>
             <div className='product-detail-name-and-rating-etc'>
+              {
+                product?.tags?.length > 0 && <div className="product-tagging">
+                  {
+                    product?.tags[0] && product?.tags[0].type.toLowerCase() === "text" ?
+                      <div className='text-tag' style={{ backgroundColor: product?.tags[0].bg_color, color: product?.tags[0].text_color }} >
+                        {product?.tags[0].text}
+                      </div> :
+                      <div className='image-tag' >
+                        <img src={url + product?.tags[0]?.image} alt="" srcset="" />
+                      </div>
+                  }
+                </div>
+              }
               <h3>{product?.name}</h3>
               <p>SKU : {product.sku}</p>
 
@@ -444,9 +498,9 @@ const ProductDetailSticky = (
                 <div
                   className='product-details-add-to-wishlist-icon'
                   onClick={(e) => { e.stopPropagation(); handleWishList(product) }}
-                  style={{ border: isInWishList(product.uid) ? '1px solid red' : '1px solid #595959' }}
+                  style={{ border: isInWishList(product.uid) ? '1px solid red' : '1px solid var(--secondary-color)' }}
                 >
-                  {isInWishList(product.uid) ? <IoMdHeart size={20} color={isInWishList(product.uid) ? 'red' : '#595959'} />
+                  {isInWishList(product.uid) ? <IoMdHeart size={20} color={isInWishList(product.uid) ? 'red' : 'var(--secondary-color)'} />
                     : <IoMdHeartEmpty size={20} />}
                 </div>
                 <button
@@ -515,9 +569,9 @@ const ProductDetailSticky = (
               <div
                 className='product-details-add-to-wishlist-icon'
                 onClick={(e) => { e.stopPropagation(); handleWishList(product) }}
-                style={{ border: isInWishList(product.uid) ? '1px solid red' : '1px solid #595959' }}
+                style={{ border: isInWishList(product.uid) ? '1px solid red' : '1px solid var(--secondary-color)' }}
               >
-                {isInWishList(product.uid) ? <IoMdHeart size={20} color={isInWishList(product.uid) ? 'red' : '#595959'} />
+                {isInWishList(product.uid) ? <IoMdHeart size={20} color={isInWishList(product.uid) ? 'red' : 'var(--secondary-color)'} />
                   : <IoMdHeartEmpty size={20} />}
               </div>
 
@@ -532,18 +586,18 @@ const ProductDetailSticky = (
                 {isLoading ? 'Loading...' : 'Add To Cart'}
               </button> */}
 
-              
+
 
               <button
-                  className={`add-to-cart-btn ${isLoading ? 'loading' : ''}`}
-                  onClick={() => {
-                    handleClick();
-                    addToCart0(product, variationData, !isProtected ? 1 : 0, quantity)
-                    // handleAddToCartProduct(product);
-                  }
-                  }>
-                  {isCartLoading  && <div className="loader_2"></div>}
-                  {isCartLoading ? ' Almost there...' : 'Add To Cart'}
+                className={`add-to-cart-btn ${isLoading ? 'loading' : ''}`}
+                onClick={() => {
+                  handleClick();
+                  addToCart0(product, variationData, !isProtected ? 1 : 0, quantity)
+                  // handleAddToCartProduct(product);
+                }
+                }>
+                {isCartLoading && <div className="loader_2"></div>}
+                {isCartLoading ? ' Almost there...' : 'Add To Cart'}
               </button>
             </div>
 
@@ -562,14 +616,18 @@ const ProductDetailSticky = (
 
             {product.may_also_need && product.may_also_need.length > 0 ? <AlsoNeed productsUid={product.may_also_need} /> : <></>}
 
-            <div className='back-in-order-container'>
-              <p>
-                Back in stock 2/28/2025. Order now! We'll contact you to schedule delivery once your item is ready.
-              </p>
-              <span onClick={handleOpenLocationModal}>
-                <FaLocationDot size={17} color='#4487C5' />
-                <p>19134</p>
-              </span>
+            <div className='get-in-timeline-offer'>
+              <BsTruck size={21} color='var(--secondary-color)' />
+              <div className='get-offer-details'>
+                <h3 >Get it by <span style={{fontWeight:"600",color:"var(--primary-color)"}}>{getDeliveryDate()}</span></h3>
+                <p>
+                  Fully assembled & placed in your room, or in-store pickup.
+                </p>
+                <span className='location' onClick={handleOpenLocationModal}>
+                  <FaLocationDot size={17} color='var(--tertiary-color)' />
+                  <p>19134</p>
+                </span>
+              </div>
             </div>
 
             <div className='product-details-protection-plan-container'>
@@ -577,13 +635,13 @@ const ProductDetailSticky = (
               <div className='product-details-protection-plan-details-and-add'>
 
                 <div className='product-details-protection-plan'>
-                  <SiAdguard size={30} color='#595959' />
+                  <SiAdguard size={21} color='var(--secondary-color)' />
 
                   <div className='product-details-info'>
-                    <p>5-Year Platinum Protection (2)</p>
+                    <p>5-Year Platinum Protection</p>
 
                     <span>
-                      <p>+$499.95</p>
+                      <p>+${eachProtectionValue}</p>
                       <strong onClick={handleWarrantyModal}>
                         What's Covered
                       </strong>
@@ -620,7 +678,7 @@ const ProductDetailSticky = (
             <div className='see-in-person-container'>
 
               <div className='see-it-in-person-head'>
-                <PiStorefrontLight size={20} color='#595959' />
+                <PiStorefrontLight size={20} color='var(--secondary-color)' />
                 <h3>See it in Person</h3>
               </div>
 
@@ -633,7 +691,7 @@ const ProductDetailSticky = (
                   <div className='see-it-in-person-distance-drop-down'>
                     <span onClick={handleMilesDropdown}>
                       <p>{miles}</p>
-                      <MdOutlineKeyboardArrowDown size={15} color='#4487C5' />
+                      <MdOutlineKeyboardArrowDown size={15} color='var(--tertiary-color)' />
                     </span>
                     <div className={`miles-dropdown-body ${showMiles ? 'show-miles-dropdown' : ''}`}>
                       {milesData.map((item, index) => (
@@ -648,7 +706,7 @@ const ProductDetailSticky = (
                   <p>of</p>
 
                   <span onClick={handleOpenLocationModal}>
-                    <FaLocationDot size={17} color='#4487C5' />
+                    <FaLocationDot size={17} color='var(--tertiary-color)' />
                     <p>19134</p>
                   </span>
 
@@ -657,33 +715,34 @@ const ProductDetailSticky = (
               </div>
 
               <div className='see-it-in-person-book-appointment-container'>
-                <SlCalender size={20} color='#4487C5' />
+                <SlCalender size={20} color='var(--tertiary-color)' />
                 <p onClick={handleShowAppointmentModal}>MAKE AN APPOINTMENT</p>
               </div>
 
-              <div className='talk-with-expert-main-container'>
+              
+
+            </div>
+            <div className='talk-with-expert-main-container'>
                 <p>Talk with an Expert</p>
                 <div className='talk-with-expert-options'>
 
                   <a href='tel:2153521600'>
-                    <IoCallOutline size={18} color='#595959' />
+                    <IoCallOutline size={18} color='var(--secondary-color)' />
                     Call
                   </a>
 
                   <button className='disable-chat' disabled={true}>
-                    <IoChatbubbleOutline size={18} color='#595959' />
+                    <IoChatbubbleOutline size={18} color='var(--secondary-color)' />
                     Chat
                   </button>
 
                   <button onClick={handleShowAppointmentModal} >
-                    <PiStorefrontLight size={18} color='#595959' />
+                    <PiStorefrontLight size={18} color='var(--secondary-color)' />
                     Visit
                   </button>
 
                 </div>
               </div>
-              
-            </div>
 
           </div>
         </div>
@@ -725,9 +784,9 @@ const ProductDetailSticky = (
       />
 
 
-      <div 
+      <div
         className={`add-to-cart-sticky-section ${addCartSticky ? 'show-sticky-add-to-cart' : ''}`}
-        style={{ boxShadow: !isSticky ? 'rgba(0, 0, 0, 0.24) 0px 3px 8px' : 'none'}}
+        style={{ boxShadow: !isSticky ? 'rgba(0, 0, 0, 0.24) 0px 3px 8px' : 'none' }}
       >
         <div className='mobile-product-sticky-fixed-add-to-cart'>
           <div className='mobile-sticky-product-sale-and-price'>

@@ -185,7 +185,7 @@
     font-size: 10px;
     line-height: var(--content-one-height);
     font-weight: var(--content-one-weight);
-    color: #4487C5;
+    color: var(--tertiary-color);
     text-decoration: underline;
     cursor: pointer;
 }
