@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import './PaymentTypes.css'
 import { RiSecurePaymentLine, RiInformationLine } from "react-icons/ri";
-import paypalLogo from '../../../../Assets/icons/paypal.png'
+import paypal2 from '../../../../Assets/icons/paypal-2.png'
+import acima2 from '../../../../Assets/icons/acima-2.png'
+import card2 from '../../../../Assets/icons/card-2.png'
 import { useMyOrders } from '../../../../context/orderContext/ordersContext';
 
 
 const PaymentTypes = ({selectedPaymentType, setSelectedPaymentType, onSelectLabel}) => {
 
     const paymentTypeCheckData = [
-        {type: 'credit-card', sign: 'Credit Card', paymentMethodId: '9879079j7mummjh'},
-        {type: 'finance-account', sign: 'Finance Account', paymentMethodId: '961803160m79delmiw'},
-        {type: 'progressive-leasing', sign: 'Progressive Leasing', paymentMethodId: '19783168sagsk879'},
-        {type: 'paypal', logo: paypalLogo},
+        {type: 'credit-card', sign: 'Credit/Debit Card', logo:card2, paymentMethodId: '9879079j7mummjh'},
+        {type: 'paypal',sign: 'Paypal', logo: paypal2},
+        // {type: 'finance-account', sign: 'Finance Account', paymentMethodId: '961803160m79delmiw'},
+        {type: 'acima-leasing', sign: 'Acima Leasing',logo:acima2, paymentMethodId: '19783168sagsk879'},
+        
     ]
 
     const {
@@ -62,7 +65,11 @@ const PaymentTypes = ({selectedPaymentType, setSelectedPaymentType, onSelectLabe
                         name='selectedPaymentType'
                         onChange={() => handleSelectPaymentType(item.type)}
                     />
-                    {item.logo ? <img src={item.logo} alt='logo' className='payment-type-paypal-logo' /> : item.sign}
+                     
+                    <div className='payment-types-select-label'>
+                    {item.sign}
+                    <img src={item.logo} alt='logo' className='payment-type-paypal-logo' /> 
+                    </div>
                     
                     
                 </label>

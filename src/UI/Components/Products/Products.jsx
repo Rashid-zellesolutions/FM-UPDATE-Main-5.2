@@ -1,6 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Products.css';
-import { Link, useLocation, useNavigationType, useParams, useSearchParams } from 'react-router-dom';
+import { useLocation, useParams, useSearchParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
 // Assets
@@ -34,10 +34,10 @@ import SortModal from '../../Modals/SortModal/SortModal';
 import { IoArrowBack } from "react-icons/io5";
 import SnakBar from '../../../Global-Components/SnakeBar/SnakBar';
 import ProductInfoModal from '../../../Global-Components/ProductInfoModal/ProductInfoModal';
-import Loader from '../Loader/Loader';
 import SectionLoader from '../Loader/SectionLoader';
+import Loader from '../Loader/Loader';
 
-const Products = ({ navigationType, browserReload }) => {
+const Products = ({ navigationType }) => {
 
     // All Contexts
     const {
@@ -64,20 +64,15 @@ const Products = ({ navigationType, browserReload }) => {
         setTotalPages,
         colorValue,
         setColorValue,
+        sortProducts,
+        selectedRelevanceValue,
+        setSelectedRelevanceValue,
     } = useProductArchive()
-
-
-    // Sub Category States
-
-
-    console.log("products after reload",)
 
     useEffect(() => {
         if (navigationType !== 'POP' || products.length > 0) {
-            console.log("this is inner if  console")
             setActivePage(1);
             setActivePageIndex(1);
-            // setColorValue([])
         }
     }, [navigationType])
 
@@ -85,7 +80,6 @@ const Products = ({ navigationType, browserReload }) => {
     // Local State Variables
     const { subCategorySlug } = useParams();
     const location = useLocation();
-
     const params = new URLSearchParams(location.search);
     const query = params.get('query');
     const [searchParams, setSearchParams] = useSearchParams();
@@ -95,35 +89,25 @@ const Products = ({ navigationType, browserReload }) => {
     const [addToCartClicked, setAddToCartClicked] = useState(false);
     const [quickViewClicked, setQuickView] = useState(false);
     const [colors, setColors] = useState([]);
-
     const [mobileFilters, setMobileFilters] = useState(false);
-
-    // const [totalPages, setTotalPages] = useState()
-
     const [quickViewProduct, setQuickViewProduct] = useState({})
     const [noProducts, setNoProducts] = useState();
     const [filtereState, setFilterState] = useState(false);
-    const [clearFilters, setClearFilters] = useState(false);
+    const [clearFilters, setClearFilters] = useState(true);
 
     // Filters Section
     const [isOpen, setIsOpen] = useState(false);
     const [ratingOpen, setRatingOpen] = useState(false);
-    const [categoryOpen, setCategoryOpen] = useState(false);
 
     // Sub Categories show
     const { categorySlug } = useParams();
 
     const getSubCategories = async () => {
         const api = `/api/v1/sub-category/get/${categorySlug}`
-        const pathName = window.location.pathname; // "/living-room/living-room-sets"
-        const segments = pathName.split("/");
-        const extractedValue = segments[2];
         try {
             const response = await axios.get(`${url}${api}`);
             if (response.status === 200) {
-                // Selected Value will not be display
                 const result = response.data.sub_categories
-                // const filteredData = result.filter((item) => item.slug !== extractedValue)
                 setSubCategories(result)
             } else {
                 console.log("UnExpected Error", response.status)
@@ -134,12 +118,10 @@ const Products = ({ navigationType, browserReload }) => {
     }
 
     useEffect(() => {
-        if (navigationType !== 'POP' || products?.length > 0) {
+        if (navigationType !== 'POP' || products?.length > 0 || !subCategories?.length > 0) {
             getSubCategories()
         }
     }, [subCategorySlug])
-
-
 
     // Hide and Show Filter section
     const handleFilterSection = () => {
@@ -159,29 +141,21 @@ const Products = ({ navigationType, browserReload }) => {
             } else {
                 console.error(`UnExpected ${response.status} Error`)
             }
-
         } catch (error) {
             console.error("Server Error");
         }
     }
-
-    // useEffect(() => {fetchFilters()}, [])
 
     // Filters Functions
 
     const handleColorFilterOpenClose = (type) => {
         setIsOpen((prevOpen) => prevOpen === type ? '' : type)
         setRatingOpen((prevOpen) => prevOpen === type ? '' : type)
-        setCategoryOpen((prevOpen) => prevOpen === type ? '' : type)
     }
 
-    // const [colorValue, setColorValue] = useState([]);
     const [ratingValue, setRatingValue] = useState([]);
-    const [categoryValue, setCategoryValue] = useState([]);
 
     const handleRangeChange = (newRange) => {
-        // setActivePage(1);
-        // setActivePageIndex(1);
 
         if (newRange[0] !== priceRange[0] || newRange[1] !== priceRange[1]) {
             setPriceRange(newRange);
@@ -190,7 +164,6 @@ const Products = ({ navigationType, browserReload }) => {
         const params = new URLSearchParams(searchParams);
         params.set('price', priceRange.join(','));
 
-        // const currentPage = searchParams.get('page');
         params.set('page', 1);
         setActivePageIndex(1)
 
@@ -220,7 +193,6 @@ const Products = ({ navigationType, browserReload }) => {
             params.delete('color');
         }
 
-        // const currentPage = searchParams.get('page');
         params.set('page', 1);
 
 
@@ -252,11 +224,10 @@ const Products = ({ navigationType, browserReload }) => {
 
     const handleCategorySelect = (value) => {
 
-        console.log("Category Select", value)
         // Get current URL params
         const params = new URLSearchParams(searchParams);
 
-        setCategoryValue(value.slug)
+        // setCategoryValue(value.slug)
 
         // Set the productType parameter with the slug value
         const currentProductType = params.get('productType')
@@ -266,8 +237,6 @@ const Products = ({ navigationType, browserReload }) => {
         } else {
             params.set("productType", value.slug);
         }
-
-
 
         // Maintain the current page parameter
 
@@ -281,50 +250,55 @@ const Products = ({ navigationType, browserReload }) => {
 
         setSearchParams(categoryString);
         filterProducts(categoryString);
-
-
-
-        // const params = new URLSearchParams(searchParams);
-        // if (updatedCategory.length > 0) {
-        //     params.set('productType', updatedCategory.join(','));
-        // } else {
-        //     params.delete('category');
-        // }
-
-        // const currentPage = searchParams.get('page');
-        // params.set('page', currentPage);
-
-        // let categoryString = params.toString().replace(/%2C/g, ',').replace(/\+/g, ' ');
-
-        // setSearchParams(categoryString)
-        // filterProducts(categoryString)
     }
 
     const handleClearFilters = () => {
         setPriceRange([300, 900])
         setColorValue([]);
         setRatingValue([]);
-        setCategoryValue([]);
+        // setCategoryValue([]);
         fetchProductData();
         fetchFilters();
         setActivePage(1);
         setActivePageIndex(1);
     }
 
-    useEffect(() => {
-    }, [colorValue, categoryValue, ratingValue])
-
     const filterProducts = async (filter) => {
 
         const api = `/api/v1/products/by-category?categorySlug=${subCategorySlug}&${filter}&per_page=12`;
         try {
             setClearFilters(true)
-            // setProducts([])
             const response = await axios.get(`${url}${api}`)
+            let data = response.data.products
+            switch (selectedRelevanceValue) {
+                case 'Recent':
+                    data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+                    break;
+                case 'By Price (Low to High)':
+                    data.sort((a, b) => a.sale_price - b.sale_price);
+                    break
+                case 'By Price (High to Low)':
+                    data.sort((a, b) => b.sale_price - a.sale_price);
+                    break;
+                case 'Alphabetic (A to Z)':
+                    data.sort((a, b) => a.name.localeCompare(b.name));
+                    break
+                case 'Alphabetic (Z to A)':
+                    data.sort((a, b) => b.name.localeCompare(a.name));
+                    break
+                case 'By Ratings (Low to High)':
+                    data.sort((a, b) => parseFloat(a.average_rating) - parseFloat(b.average_rating));
+                    break
+                case 'By Ratings (High to Low)':
+                    data.sort((a, b) => parseFloat(b.average_rating) - parseFloat(a.average_rating));
+                    break
+
+                default:
+                    data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+            };
+
             setProducts(response.data.products)
             setTotalPages(response.data.pagination)
-
-            
 
             if (!response.data.products.length > 0) {
                 setFilterState(true);
@@ -360,8 +334,6 @@ const Products = ({ navigationType, browserReload }) => {
         setIsDeliveryCheck(e.target.checked);
     }
 
-    
-
     const relevanceData = [
         { name: 'Recent' },
         { name: 'By Price (Low to High)' },
@@ -372,51 +344,12 @@ const Products = ({ navigationType, browserReload }) => {
         { name: 'By Ratings (High to Low)' },
     ]
 
-    const [selectedRelevanceValue, setSelectedRelevanceValue] = useState('Recent')
-
-
     const handleRelevance = () => {
         setRelevanceTrue(!relevanceTrue);
-        
     }
-
-    const sortProducts = (criteria) => {
-        let sortedProducts = [...products];
-        switch (criteria) {
-            case 'Recent':
-                sortedProducts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-                break;
-            case 'By Price (Low to High)':
-                sortedProducts.sort((a, b) => a.sale_price - b.sale_price);
-                break
-            case 'By Price (High to Low)':
-                sortedProducts.sort((a, b) => b.sale_price - a.sale_price);
-                break;
-            case 'Alphabetic (A to Z)':
-                sortedProducts.sort((a, b) => a.name.localeCompare(b.name));
-                break
-            case 'Alphabetic (Z to A)':
-                sortedProducts.sort((a, b) => b.name.localeCompare(a.name));
-                break
-            case 'By Ratings (Low to High)':
-                sortedProducts.sort((a, b) => parseFloat(a.average_rating) - parseFloat(b.average_rating));
-                break
-            case 'By Ratings (High to Low)':
-                sortedProducts.sort((a, b) => parseFloat(b.average_rating) - parseFloat(a.average_rating));
-                break
-
-            default:
-                sortedProducts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-        }
-        setProducts(sortedProducts)
-    }
-
-  
-    
 
     const fetchProductData = async () => {
         const queryApi = `/api/v1/products/by-name?name`;
-
         try {
             setClearFilters(true)
             let response;
@@ -428,19 +361,44 @@ const Products = ({ navigationType, browserReload }) => {
                 );
             }
 
-            const data = response.data.products;
-
+            const data = response.data.products || [];
             setTotalPages(response.data.pagination)
 
-            setProducts(data);
+            switch (selectedRelevanceValue) {
+                case 'Recent':
+                    data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+                    break;
+                case 'By Price (Low to High)':
+                    data.sort((a, b) => a.sale_price - b.sale_price);
+                    break
+                case 'By Price (High to Low)':
+                    data.sort((a, b) => b.sale_price - a.sale_price);
+                    break;
+                case 'Alphabetic (A to Z)':
+                    data.sort((a, b) => a.name.localeCompare(b.name));
+                    break
+                case 'Alphabetic (Z to A)':
+                    data.sort((a, b) => b.name.localeCompare(a.name));
+                    break
+                case 'By Ratings (Low to High)':
+                    data.sort((a, b) => parseFloat(a.average_rating) - parseFloat(b.average_rating));
+                    break
+                case 'By Ratings (High to Low)':
+                    data.sort((a, b) => parseFloat(b.average_rating) - parseFloat(a.average_rating));
+                    break
+
+                default:
+                    data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+            };
+            setProducts(data)
             setColors(colors);
+
             if (!response.data.products.length > 0) {
                 setNoProducts(true)
             } else {
                 setNoProducts(false);
             }
             fetchFilters();
-            setSearchParams({ page: navigationType !== 'POP' ? 1 : activePage })
 
         } catch (error) {
             console.error("Error fetching data:", error);
@@ -451,11 +409,10 @@ const Products = ({ navigationType, browserReload }) => {
     };
 
     useEffect(() => {
-        if (navigationType !== 'POP') {
+        if (navigationType !== 'POP' || !products?.length > 0) {
             fetchProductData()
         }
     }, [location.pathname])
-
 
     // Product Click Functions 
 
@@ -499,7 +456,6 @@ const Products = ({ navigationType, browserReload }) => {
     // Pagination Click Functions
 
     const handleActivePage = (index) => {
-
         if (index !== activePageIndex) {
             const params = new URLSearchParams(searchParams);
             params.set('page', index);
@@ -515,8 +471,6 @@ const Products = ({ navigationType, browserReload }) => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     }
-
-    // useEffect(() => { console.log("active Page", activePage) }, [activePage])
 
     const handlePrevPage = () => {
         if (activePage > 1) {
@@ -556,6 +510,32 @@ const Products = ({ navigationType, browserReload }) => {
         }
     };
 
+
+
+
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+
+        const pageFromURL = parseInt(searchParams.get("page")) || 1;
+
+        // Update the active page and index
+        setActivePage(pageFromURL);
+        setActivePageIndex(pageFromURL);
+        sortProducts(selectedRelevanceValue);
+        filterProducts(searchParams.toString());
+
+        setTimeout(() => {
+            const currentScroll = window.scrollY;
+
+            if (currentScroll > 10) {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            }
+        }, 100);
+
+    }, [location.search]);
+
+
+
     const maxLength = 50;
 
     // Mobile view Script
@@ -570,13 +550,6 @@ const Products = ({ navigationType, browserReload }) => {
     const handleMobileFilters = () => {
         setMobileFilters(true)
     }
-
-    // Sub Category Click To Navigate 
-    // const handleNavigate = (item) => {
-    //     navigate(`/${categorySlug}/${item.slug}`)
-    //     setActivePage(1);
-    //     setActivePageIndex(1);
-    // }
 
     const [showSortModal, setShowSortModal] = useState(false);
     const [selectedOption, setSelectedOption] = useState('')
@@ -615,7 +588,7 @@ const Products = ({ navigationType, browserReload }) => {
             <div className='product-archive-sub-categories-container'>
                 {subCategories.map((item, index) => (
                     <div key={index} className='product-archive-single-sub-category' onClick={() => handleCategorySelect(item)}>
-                        {item.filterImage !=="" ? <img src={` ${url}${item.filterImage}`} alt='sub category' /> : <img src={` ${url}${item.image2}`} alt='sub category' />}
+                        {item.filterImage !== "" ? <img src={` ${url}${item.filterImage}`} alt='sub category' /> : <img src={` ${url}${item.image2}`} alt='sub category' />}
                     </div>
                 ))}
             </div>
@@ -715,39 +688,13 @@ const Products = ({ navigationType, browserReload }) => {
                                         </div>
                                     </div>
 
-                                    {/* Category Filter */}
-                                    {/* <div className='single-filter'>
-                                            <span onClick={() => handleColorFilterOpenClose('category-filter')}>
-                                                <h3 className='filters-heading'>Product Type</h3>
-                                                <i className='add-button-round'>
-                                                    {isOpen === 'category-filter' ? <FaMinus ize={15} color='var(--secondary-color)' /> : <FaPlus ize={15} color='var(--secondary-color)' />}
-                                                </i>
-                                            </span>
-                                            <div className={`single-filter-items-container ${categoryOpen === 'category-filter' ? 'show-single-filter-icons' : ''}`}>
-                                                {allFilters?.categories?.map((item, index) => (
-                                                    <span key={index} className={`color-span`} >
-                                                        <input
-                                                            type='checkbox'
-                                                            placeholder='checkbox'
-                                                            className='custom-checkbox'
-                                                            id={`filter-${index}`}
-                                                            value={item.name}
-                                                            checked={categoryValue?.includes(item.name)}
-                                                            // onChange={(e) => handleCategorySelect(e.target.value)}
-                                                        />
-                                                        <label className='filter-inner-text' htmlFor={`filter-${index}`}>{item.name}</label>
-                                                    </span>
-                                                ))}
-                                            </div>
-                                        </div> */}
-
                                 </div>
 
                             </div>
                         </div>
 
                         {filtereState ? (
-                                <div className='product-not-found-container' >
+                            <div className='product-not-found-container' >
                                 <p>
                                     We didn’t find any products that match all your selections.Try Adjusting Your Filters for More Results.
                                 </p>
@@ -845,6 +792,7 @@ const Products = ({ navigationType, browserReload }) => {
                                                 slug={item.slug}
                                                 singleProductData={item}
                                                 showOnPage={true}
+                                                // createdDate={item.createdAt}
                                                 showExtraLines={true}
                                                 titleHeight={true}
                                                 maxWidthAccordingToComp={"100%"}
@@ -857,14 +805,14 @@ const Products = ({ navigationType, browserReload }) => {
                                                 tags={item.tags}
                                                 allow_back_order={item?.allow_back_order}
                                                 ProductTitle={truncateTitle(item.name, maxLength)}
-                                                stars={[
-                                                    { icon: star, title: 'filled' },
-                                                    { icon: star, title: 'filled' },
-                                                    { icon: star, title: 'filled' },
-                                                    { icon: star, title: 'filled' },
-                                                    { icon: star, title: 'filled' },
-                                                ]}
-                                                reviewCount={item.reviewCount}
+                                                // stars={[
+                                                //     { icon: star, title: 'filled' },
+                                                //     { icon: star, title: 'filled' },
+                                                //     { icon: star, title: 'filled' },
+                                                //     { icon: star, title: 'filled' },
+                                                //     { icon: star, title: 'filled' },
+                                                // ]}
+                                                reviewCount={item.average_rating}
                                                 lowPriceAddvertisement={item.lowPriceAddvertisement}
                                                 priceTag={item.regular_price}
                                                 sale_price={item.sale_price}
@@ -1023,14 +971,14 @@ const Products = ({ navigationType, browserReload }) => {
                                 tags={item.tags}
                                 allow_back_order={item?.allow_back_order}
                                 ProductTitle={truncateTitle(item.name, maxLength)}
-                                stars={[
-                                    { icon: star, title: 'filled' },
-                                    { icon: star, title: 'filled' },
-                                    { icon: star, title: 'filled' },
-                                    { icon: star, title: 'filled' },
-                                    { icon: star, title: 'filled' },
-                                ]}
-                                reviewCount={item.reviewCount}
+                                // stars={[
+                                //     { icon: star, title: 'filled' },
+                                //     { icon: star, title: 'filled' },
+                                //     { icon: star, title: 'filled' },
+                                //     { icon: star, title: 'filled' },
+                                //     { icon: star, title: 'filled' },
+                                // ]}
+                                reviewCount={item.average_rating}
                                 lowPriceAddvertisement={item.lowPriceAddvertisement}
                                 priceTag={item.regular_price}
                                 sale_price={item.sale_price}
@@ -1044,7 +992,7 @@ const Products = ({ navigationType, browserReload }) => {
                                 handleQuickView={() => handleQuickViewOpen(item)}
                                 handleWishListclick={() => handleWishList(item)}
                                 handleInfoModal={handleOpennfoModal}
-                                
+
                             />
                         })
                     )}
@@ -1111,15 +1059,6 @@ const Products = ({ navigationType, browserReload }) => {
                     </div>
                 </div>
             </div>
-
-            {/* // <div className='related-categories-div'>
-            //     <h3>Related Categories</h3>
-            //     <div className='related-categories-items'>
-            //         {relatedCategoriesData.map((item, index) => {
-            //             return <Link key={index} to={item.link}>{item.categoryName}</Link>
-            //         })}
-            //     </div>
-            // </div> */}
 
             <CartSidePannel
                 cartData={cartProducts}

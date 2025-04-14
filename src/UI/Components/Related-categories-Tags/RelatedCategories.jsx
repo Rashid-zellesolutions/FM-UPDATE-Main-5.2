@@ -41,7 +41,7 @@ const RelatedCategories = ({ navigationType }) => {
     const [relatedCategoriesData, setRelatedCategoriesData] = useState([])
 
     useEffect(() => {
-        if (navigationType !== 'POP') {
+        if (navigationType !== 'POP' || relatedCategoriesData.length === 0) {
             fetchHeaderPayloads().then(data => {
                 setCategoryData(data.data[0].categories)
             }).catch(error => {

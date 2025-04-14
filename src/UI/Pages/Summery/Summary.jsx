@@ -17,6 +17,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import { Link } from 'react-router-dom';
 import DeliveryInfo from './DeliveryInfo/DeliveryInfo';
 import axios from 'axios';
+import TermsConditionsModal from '../../../Global-Components/TermsConditionsModal/termsConditionModal';
 
 
 const Summary = () => {
@@ -25,6 +26,17 @@ const Summary = () => {
 
   const handleDeliveryFormSubmit = () => {
   };
+
+
+
+  const [isTermsConditionsOpen, setIsTermsConditionsOpen] = useState(false);
+  const handleOpenTermsConditionsModal = () => {
+    setIsTermsConditionsOpen(true);
+  }
+
+  const handleCloseTermsConditionsModal = () => {
+    setIsTermsConditionsOpen(false);
+  }
 
 
   const checkoutSections = [
@@ -81,6 +93,22 @@ const Summary = () => {
 
 
   const [isLoading, setIsLoading] = useState(false);
+
+
+  const moveToNextTab = async () => {
+    if (deliveryInfoRef.current) {
+      const isValid = await deliveryInfoRef.current.validateAndSubmit(); // Ensure it's awaited
+
+      if (!isValid) {
+        return; // Stop here if validation fails
+      }
+
+      // If validation passes, proceed to the next tab
+      handleTabOpen(1);
+    }
+  };
+
+
   const handleContinueToPayment = async () => {
 
     if (deliveryInfoRef.current) {
@@ -93,7 +121,7 @@ const Summary = () => {
       }
 
       try {
-        const response = await axios.put(`https://fm.zellehost.com/api/v1/unused-cart/edit/${cartUid}`, { cart: cartProducts, checkout: orderPayload.billing });
+        const response = await axios.put(`${url}/api/v1/unused-cart/edit/${cartUid}`, { cart: cartProducts, checkout: orderPayload.billing });
 
         console.log("API Response:", response.data);
 
@@ -184,7 +212,11 @@ const Summary = () => {
 
             {checkoutSectionsData.map((item, index) => (
               <div
-                onClick={() => handleTabOpen(index)}
+                onClick={() => {
+                  index === 0 ?
+                    handleTabOpen(index) :
+                    moveToNextTab();
+                }}
                 className={`checkout-page-select-option-container ${selectedTab === index ? 'selected-option' : ''}`}
                 key={item.id}
               >
@@ -354,7 +386,12 @@ const Summary = () => {
               <div className='right-section-order-place-container'>
                 <span className='right-section-place-order-terms-and-rights'>
                   By placing this order I agree to the Furniture Mecca
-                  <Link to={'/terms-and-conditions'}>Terms & Conditions</Link>
+                  <Link 
+                  onClick={()=>{
+                    handleOpenTermsConditionsModal()
+                  }}
+                  // to={'/terms-and-conditions'}
+                  >Terms & Conditions</Link>
                 </span>
                 {
                   selectedTab === 0 ? <button onClick={handleContinueToPayment} className='right-section-place-order-button'>Continue</button>
@@ -370,6 +407,11 @@ const Summary = () => {
       {isLoading && <div className="cart_products_overlay">
         <div className="loader"></div>
       </div>}
+
+      <TermsConditionsModal
+        openModal={isTermsConditionsOpen}
+        closeModal={handleCloseTermsConditionsModal}
+      />
     </div>
   )
 }

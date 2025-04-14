@@ -387,7 +387,7 @@ const ProductDetailSticky = (
                 <h3 className='single-product-new-price'>{formatedPrice(selectedVariationData?.sale_price)}</h3>
                 <del className='single-product-old-price'>{formatedPrice(selectedVariationData?.regular_price)}</del>
               </div> : <div className='single-product-prices'>
-                <h3 className='single-product-new-price'>{formatedPrice(product?.regular_price)}</h3>
+                <h3 className='single-product-new-price'>{formatedPrice(selectedVariationData?.regular_price)}</h3>
               </div>
               }
             </>}
@@ -460,7 +460,7 @@ const ProductDetailSticky = (
                   <del className='single-product-old-price'>{formatedPrice(selectedVariationData?.regular_price)}</del>
                   <h3 className='single-product-new-price'>{formatedPrice(selectedVariationData?.sale_price)}</h3>
                 </div> : <div className='single-product-prices'>
-                  <h3 className='single-product-new-price'>{formatedPrice(product?.regular_price)}</h3>
+                  <h3 className='single-product-new-price'>{formatedPrice(selectedVariationData?.regular_price)}</h3>
                 </div>
                 }
               </>}

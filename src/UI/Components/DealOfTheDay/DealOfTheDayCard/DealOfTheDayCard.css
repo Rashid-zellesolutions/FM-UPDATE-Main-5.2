@@ -55,24 +55,25 @@
 .deal-of-the-day-price{
   display: flex;
   width: 100%;
-  align-items: center;
+  align-items: flex-end;
   justify-content: start;
-  gap: 5px;
+  gap: 0px;
 }
 
 .deal-of-the-day-price del{
-  font-size: 15px;
-  font-weight: 600;
-  line-height: 22px;
+  font-size: var(--sub-section-size);
+  line-height: var(--sub-section-height);
+  font-weight: var(--sub-section-weight);
   color: var(--text-color);
   opacity: 0.5;
+  margin-left: 4px;
 }
 
 .deal-of-the-day-price p{
-  font-size: 18px;
-  font-weight: 600;
-  line-height: 27px;
-  color: var(--text-color);
+  font-size: var(--section-size) !important;
+  line-height: 1.2 !important;
+  font-weight: var(--section-weight) !important;
+  color: var(--text-color) !important;
 }
 
 .deal-of-the-day-product-image{

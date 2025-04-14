@@ -85,7 +85,7 @@ const PaymentMethod = ({ handleSubmitOrder }) => {
                     applyText={'Apply Now'}
                   />
                 )
-                : selectedPaymentType === 'progressive-leasing' ?
+                : selectedPaymentType === 'acima-leasing' ?
                   (
                     <FinancingAccount
                       topHeadng={'Look up your lease account.'}

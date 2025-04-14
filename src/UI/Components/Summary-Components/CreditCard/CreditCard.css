@@ -14,7 +14,11 @@
     align-items: center;
     justify-content: end;
     width: 100%;
-    gap: 10px;
+    gap: 5px;
+}
+.credit-card-type-head img{
+    height: 30px ;
+    width: auto;
 }
 
 .credit-card-type-body{

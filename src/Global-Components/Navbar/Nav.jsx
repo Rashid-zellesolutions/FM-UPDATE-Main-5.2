@@ -4,8 +4,8 @@ import DropdownMenu from './DropdownMenu/DropdownMenu';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 
 const Nav = ({ navLinks, sale_data }) => {
-    const [dropdownOpen, setDropdownOpen] = useState(2);
-    const [activeIndex, setActiveIndex] = useState(2);
+    const [dropdownOpen, setDropdownOpen] = useState(null);
+    const [activeIndex, setActiveIndex] = useState(null);
     const location = useLocation();
     const navigate = useNavigate();
 

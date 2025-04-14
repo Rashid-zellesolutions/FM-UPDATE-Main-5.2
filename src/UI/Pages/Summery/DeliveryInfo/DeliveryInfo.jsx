@@ -301,24 +301,30 @@ const DeliveryInfo = forwardRef((props, ref) => {
 
             <div className='delivery-form-signup-container'>
                 <h3>Your Information</h3>
+             
                 <div
-                    className={`input-container ${focusedField === 'signupEmail' || signupEmail ? "focused" : ""}`}
-                    onClick={() => signupEmailRef.current?.focus()}
-                >
-                    <label className="floating-label">
-                        {error.email ? <span className="error-message">{error.email}</span> : 'Email'}
-                    </label>
-                    <input
-                        type="text"
-                        className="input-field-email"
-                        ref={signupEmailRef}
-                        onFocus={() => setFocusedField("signupEmail")}
-                        onBlur={() => setFocusedField("")}
-                        onChange={(e) => setSignupEmail(e.target.value)}
-                        value={signupEmail}
-                    />
+                        className={`input-container ${focusedField === 'signupEmail' || signupEmail ? "focused" : ""}`}
+                        style={{ border: error?.signupEmail ? '1px solid var(--primary-color)' : '' }}
+                        onClick={() => signupEmailRef.current?.focus()}
+                    >
+                        <label
+                            className="floating-label"
+                        // style={{ color: error.first_name ? 'var(--primary-color)' : '' }}
+                        >
+                            Email
+                        </label>
+                        <input
+                            type="text"
+                            className="input-field-email"
+                            ref={signupEmailRef}
+                            onFocus={() => setFocusedField("signupEmail")}
+                            onBlur={() => setFocusedField("")}
+                            onChange={(e) => setSignupEmail(e.target.value)}
+                            name='signupEmail'
+                            // value={orderPayload.billing?.email}
 
-                </div>
+                        />
+                    </div>
                 <span>Already have an account <p onClick={handleNavigateToSignup}>SIGN IN</p></span>
                 <p>You Can Create an Account After Checkout.</p>
             </div>

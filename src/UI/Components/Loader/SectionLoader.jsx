@@ -4,7 +4,7 @@ import loaderAnimation from '../../../Assets/Loader-animations/loader-check-two.
 
 const SectionLoader = () => {
     return (
-        <div className="loader-overlay">
+        <div className="section-loader-overlay">
             <img src={loaderAnimation} alt='animation' />
             <p>Please Wait</p>
         </div>

@@ -9,12 +9,14 @@ export const ProductPageProvider = ({ children }) => {
     const [selectedVariationData,setSelectedVariationData]=useState(null);
 
     function findObjectByUID(uid, list) {
-        console.log(list?.find(obj => obj?.uid === uid))
+        console.log(list?.find(obj => obj?.uid === uid),"herer det")
         return list?.find(obj => obj?.uid === uid) || null;
     }
     
     useEffect(()=>{
+        // console.log(selectedVariationData,"here is sleected")
     },[singleProductData])
+    
     
     return (
         <ProductPageContext.Provider value={{ 

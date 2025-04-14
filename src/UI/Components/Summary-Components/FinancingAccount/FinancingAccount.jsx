@@ -1,13 +1,14 @@
 import React from 'react'
 import './FinancingAccount.css'
-import financingCard from '../../../../Assets/icons/american-express.png';
+import acima from '../../../../Assets/icons/acima.png';
+
 
 const FinancingAccount = ({topHeadng, buttonText, askQuestion, applyText}) => {
   return (
     <div className='payment-type-financing-main-container'>
       <div className='payment-type-financing-heading'>
         <h3>{topHeadng}</h3>
-        <img src={financingCard} alt='financing card' />
+        <img src={acima} alt='financing card' />
       </div>
       <div className='payment-type-financing-inputs-main'>
         <button>

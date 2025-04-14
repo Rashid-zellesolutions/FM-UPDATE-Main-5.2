@@ -64,13 +64,14 @@ const DealOfTheDayCard = ({
             className='deal-of-the-day-product-rating-and-name'
           >
           <h3 className='deal-of-the-day-product-name'>
-            {truncateTitle(name, maxLength)}
+            {name}
           </h3>
           <div 
             className='deal-of-the-day-price'
           >
-              {isDiscountable ? <del>{formatePrice(price)}</del> : <></>}
-              <p>{formatePrice(newPrice)}</p>
+            <p>{formatePrice(newPrice)}</p>
+            {isDiscountable ? <del>{formatePrice(price)}</del> : <></>}
+              
           </div>
           <div 
               className='deal-of-the-day-rating-and-reviews'>
@@ -123,8 +124,8 @@ const DealOfTheDayCard = ({
           
             <div 
             className='mobile-view-deal-of-the-day-price'>
-              {isDiscountable ? <del>{formatePrice(price)}</del> : <></>}
               <p>{formatePrice(newPrice)}</p>
+              {isDiscountable ? <del>{formatePrice(price)}</del> : <></>}
           </div>
         </div>
       </div>

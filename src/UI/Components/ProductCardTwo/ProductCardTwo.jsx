@@ -2,27 +2,22 @@ import React, { useState, useEffect } from 'react'
 import './ProductCardTwo.css';
 import { url } from '../../../utils/api';
 import RatingReview from '../starRating/starRating';
-import { IoEyeOutline } from "react-icons/io5";
-import { BsCart3 } from "react-icons/bs";
 import { useList } from '../../../context/wishListContext/wishListContext';
 import { VscHeartFilled } from "react-icons/vsc";
 import { VscHeart } from "react-icons/vsc";
 import ProductCardImageShimmer from '../Loaders/CardImageShimmer/cardImageShimmer';
 import { GoInfo } from "react-icons/go";
+import { FaEye } from "react-icons/fa";
 
 const ProductCardTwo = ({
     mainImage,
     productCardContainerClass,
     ProductTitle,
-    ProductSku,
     reviewCount,
     priceTag,
     sale_price,
     tags,
-    percent,
     singleProductData,
-    stock,
-    allow_back_order,
     handleQuickView,
     maxWidthAccordingToComp,
     borderLeft,
@@ -34,29 +29,10 @@ const ProductCardTwo = ({
     showOnPage,
     handleInfoModal,
     showExtraLines,
-    titleHeight
+    titleHeight,
 }) => {
 
     const [isImageLoaded, setImageLoaded] = useState(false);
-
-    const [cartClicked, setCartClicked] = useState(true);
-
-    const [cardHovered, setCardHovered] = useState(false);
-    const handleMouseEnter = () => {
-        setCardHovered(true)
-    }
-
-    const handleMouseLeave = () => {
-        setCardHovered(false);
-    }
-
-    const [quickViewHovered, setQuickViewHovered] = useState(false);
-    const handleQuickViewHover = () => {
-        setQuickViewHovered(true);
-    }
-    const handlQuickViewLeave = () => {
-        setQuickViewHovered(false)
-    }
 
     const getPriorityAttribute = (attributes) => {
         return attributes && attributes.find(attr => attr.type === "image") ||
@@ -68,7 +44,6 @@ const ProductCardTwo = ({
 
     const [hoveredImage, setHoveredImage] = useState()
     const [selectedColor, setSelectedColor] = useState();
-    const [selectedImage, setSelectedImage] = useState();
     const [selectedColorImage, setSelectedColorImage] = useState();
 
     const handleColorSelect = (color) => {
@@ -99,10 +74,9 @@ const ProductCardTwo = ({
 
     }
 
-    useEffect(() => {  }, [selectedColor])
+    useEffect(() => { }, [selectedColor])
 
     const handleImageSelect = (image) => {
-        setSelectedImage(image)
         if (singleProductData?.type === "variable") {
             const matchingAttribute = singleProductData?.variations?.find(variation =>
                 variation?.attributes?.some(attribute =>
@@ -123,16 +97,12 @@ const ProductCardTwo = ({
         }
     }
 
-
-
-    const [priorArray, setPriorArray] = useState([])
     const moveToFirst = (array, defValue) => {
         const index = array.findIndex(item => item === defValue);
         if (index > 0) {
             const [priorityItem] = array.splice(index, 1);
             array.unshift(priorityItem)
         }
-        setPriorArray(array)
         return array;
     }
 
@@ -196,8 +166,6 @@ const ProductCardTwo = ({
         return today.toLocaleDateString("en-us", optionWithTimeZone);
     }
 
-
-
     return (
         <>
             <div
@@ -209,39 +177,21 @@ const ProductCardTwo = ({
                 >
                     <div className={`product-cart-top-tags-container ${showOnPage ? 'show-product-cart-top-tags' : ''}`}>
                         <div className='tag-and-heart' onClick={(e) => e.stopPropagation()}>
-                            
-                            {tags?.length > 0 && <div className="product-tagging">
-                                {
-                                    tags[0] && tags[0].type.toLowerCase() === "text" ?
-                                        <div className='text-tag' style={{ backgroundColor: tags[0].bg_color, color: tags[0].text_color }} >
-                                            {tags[0].text}
-                                        </div> :
-                                        <div className='image-tag' >
-                                            <img src={url + tags[0]?.image} alt="" srcset="" />
-                                        </div>
-                                }
-                            </div>}
 
-                            {/* {
-                                stock?.is_stock_manage === 0 ? (
-                                    <h4 className={allow_back_order === 1 ? "stock-label back" : "stock-label out"}>{allow_back_order === 1 ? "Back Order" : "Out of Stock"}</h4>
-                                ) : (
-                                    tags?.length > 1 && <div className="product-tagging">
-                                        {
-                                            tags[1] && tags[1].type.toLowerCase() === "text" ?
-                                                <div className={`text-tag ${colTwo ? 'apply-col-two-styling' : ''}`} style={{ backgroundColor: tags[1].bg_color, color: tags[1].text_color }} >
-                                                    {tags[1].text}
-                                                </div> :
-                                                <div className='image-tag' >
-                                                    <img src={url + tags[1]?.image} alt="" srcset="" />
-                                                </div>
-                                        }
-                                    </div>
-                                )
-                            } */}
+                            {
+                                tags?.length > 0 && <div className="product-tagging">
+                                    {
+                                        tags[0] && tags[0].type.toLowerCase() === "text" ?
+                                            <div className='text-tag' style={{ backgroundColor: tags[0].bg_color, color: tags[0].text_color }} >
+                                                {tags[0].text}
+                                            </div> :
+                                            <div className='image-tag' >
+                                                <img src={url + tags[0]?.image} alt="" srcset="" />
+                                            </div>
+                                    }
+                                </div>
+                            }
 
-
-                            {/* <p className='percent-label'>{percent}</p> */}
                             <div className='product-wishlist-icon-container'>
                                 {
                                     isInWishList(singleProductData.uid) ?
@@ -266,56 +216,10 @@ const ProductCardTwo = ({
                                         />
                                 }
                             </div>
-
                         </div>
                     </div>
 
                     <div className='product-main-image-container'>
-
-                        {/* <div className='tag-and-heart' onClick={(e) => e.stopPropagation()}>
-                            {
-                                stock?.is_stock_manage === 0 ? (
-                                    <h4 className={allow_back_order === 1 ? "stock-label back" : "stock-label out"}>{allow_back_order === 1 ? "Back Order" : "Out of Stock"}</h4>
-                                ) : (
-                                    tags?.length > 1 && <div className="product-tagging">
-                                        {
-                                            tags[1] && tags[1].type.toLowerCase() === "text" ?
-                                                <div className={`text-tag ${colTwo ? 'apply-col-two-styling' : ''}`} style={{ backgroundColor: tags[1].bg_color, color: tags[1].text_color }} >
-                                                    {tags[1].text}
-                                                </div> :
-                                                <div className='image-tag' >
-                                                    <img src={url + tags[1]?.image} alt="" srcset="" />
-                                                </div>
-                                        }
-                                    </div>
-                                )
-                            }
-                            <p className='percent-label'>{percent}</p>
-                            {
-                                isInWishList(singleProductData.uid) ?
-                                    <VscHeartFilled
-                                        size={25}
-                                        className='wishlist-heart'
-                                        style={{ color: 'var(--primary-color)' }}
-                                        onClick={(e) => {
-                                            e.stopPropagation();
-                                            handleWishListclick(singleProductData)
-                                        }}
-                                    />
-                                    :
-                                    <VscHeart
-                                        size={25}
-                                        className='wishlist-heart'
-                                        style={{ float: 'right', color: 'var(--primary-color)' }}
-                                        onClick={(e) => {
-                                            e.stopPropagation();
-                                            handleWishListclick(singleProductData)
-                                        }}
-                                    />
-                            }
-
-                        </div> */}
-
 
                         <div className='product-card-product-image-inner-container'>
 
@@ -343,7 +247,7 @@ const ProductCardTwo = ({
                                         />
                                 }
                             </div>
-                            
+
                             <img src={`${url}${selectedColorImage
                                 ? mainImageHoverIndex === singleProductData.uid
                                     ? hoveredImage
@@ -361,37 +265,12 @@ const ProductCardTwo = ({
                                 </div>
                             }
 
-                            {/* {tags?.length > 0 && <div className="product-tagging">
-                                {
-                                    tags[0] && tags[0].type.toLowerCase() === "text" ?
-                                        <div className='text-tag' style={{ backgroundColor: tags[0].bg_color, color: tags[0].text_color }} >
-                                            {tags[0].text}
-                                        </div> :
-                                        <div className='image-tag' >
-                                            <img src={url + tags[0]?.image} alt="" srcset="" />
-                                        </div>
-                                }
-                            </div>} */}
-
 
                         </div>
 
                         <div className='product-card-inner-content-container'>
 
-                            {/* {tags?.length > 0 && <div className="product-tagging">
-                                {
-                                    tags[0] && tags[0].type.toLowerCase() === "text" ?
-                                        <div className='text-tag' style={{ backgroundColor: tags[0].bg_color, color: tags[0].text_color }} >
-                                            {tags[0].text}
-                                        </div> :
-                                        <div className='image-tag' >
-                                            <img src={url + tags[0]?.image} alt="" srcset="" />
-                                        </div>
-                                } 
-                            </div>} */}
-                            {/* <p className={`product-sku ${colTwo ? 'apply-col-two-styling' : showOnPage ? 'show-product-sku' : ''}`} onClick={handleCardClick}>SKU : {ProductSku}</p> */}
-
-                            <h3 className={`product-title ${colTwo ? 'apply-col-two-styling' : ''} ${titleHeight ? "heighted":""}`}> {ProductTitle} </h3>
+                            <h3 className={`product-title ${colTwo ? 'apply-col-two-styling' : ''} ${titleHeight ? "heighted" : ""}`}> {ProductTitle} </h3>
 
                             {priorityAttribute && (
                                 <div className={`product-card-attr ${colTwo ? 'hide-squire-attribute' : ''}`} >
@@ -438,7 +317,7 @@ const ProductCardTwo = ({
                                     )}
                                 </div>
                             )}
- 
+
                             {priorityAttribute && (
                                 <div className={`mobile-product-card-attr ${colTwo ? 'show-rounded-attributes' : ''}`} >
                                     {priorityAttribute.type === "image" && (
@@ -463,9 +342,7 @@ const ProductCardTwo = ({
                                                     onClick={(e) => { e.stopPropagation(); handleColorSelect(item.value) }}
                                                     style={{
                                                         backgroundColor: item.value,
-                                                        // border: 'none',
                                                         border: selectedColor === item.value ? `1px solid ${item.value}` : 'none',
-                                                        // boxShadow: ''
                                                         boxShadow: selectedColor === item.value ? `inset 0 0 0 2px #FFFF` : ''
                                                     }}
                                                 ></span>
@@ -488,128 +365,76 @@ const ProductCardTwo = ({
                     </div>
 
                     <div className='product-card-content-bottom-section'>
-                        {/* <p className='product-sku' onClick={handleCardClick}>SKU : {ProductSku}</p> */}
-                        {/* <h3 className='product-title' > {ProductTitle} </h3> */}
 
-                        {/* <div className='product-card-rating-price-and-quick-view'>
-                            <div className='product-card-rating-and-price'>
-
-                                <div className='product-rating-stars-div'>
-                                    <RatingReview rating={parseFloat(reviewCount)} size={"12px"} disabled={true} />
-                                </div>
-
-                                {
-                                    sale_price === "0" ?
-                                        <h3 className='product-price-del'>${priceTag}</h3> :
-                                        <h3 className='product-price-tag'> ${sale_price} <del className='product-del-price-with-sale-price'>${priceTag}</del>  </h3>
-                                }
-
-                                <span>
-                                    <p>or $35/week for 48 mos</p>
-                                    <GoInfo />
-                                </span>
-
-                            </div>
-
-                            <div className='product-card-quick-view-container'>
-                                <div className='product-rating-stars-div'>
-                                    <RatingReview rating={parseFloat(reviewCount)} size={"12px"} disabled={true} />
-                                </div>
-                                <button onClick={(e) => {
-                                    e.stopPropagation();
-                                    handleQuickView()
-                                }}
-                                >
-                                    Quick View
-                                </button>
-                            </div>
-                        </div> */}
 
                         <div className={`product-card-get-it-by-container ${colTwo ? 'apply-col-two-styling' : ''}`}>
-
-                            {/* <span>
-                                <p>or $35 / mo for 48 mos</p>
-                                <GoInfo />
-                            </span> */}
 
                             <div className={`product-get-it-by-left-side ${colTwo ? 'apply-col-two-styling' : ''}`}>
 
                                 <div className='product-card-rating-and-price'>
 
-                                    {/* <div className='product-rating-stars-div'>
-                                    <RatingReview rating={parseFloat(reviewCount)} size={"12px"} disabled={true} />
-                                </div> */}
 
                                     {
                                         sale_price === "0" ?
                                             <h3 className={`product-price-del ${colTwo ? 'apply-col-two-styling' : ''}`}>${priceTag}</h3> :
                                             <div className='price-and-rating-container'>
-                                                <h3 className={`product-price-tag ${colTwo ? 'apply-col-two-styling' : ''}`}> 
-                                                    <p className={`product-price-starting-at ${colTwo ? 'apply-two-col-styling' : ''}`}>Starting at</p> 
-                                                    ${sale_price} 
-                                                    <del className={`product-del-price-with-sale-price ${colTwo ? 'apply-col-two-styling' : ''}`}>${priceTag}</del> 
+                                                <h3 className={`product-price-tag ${colTwo ? 'apply-col-two-styling' : ''}`}>
+                                                    <p className={`product-price-starting-at ${colTwo ? 'apply-two-col-styling' : ''}`}>Starting at</p>
+                                                    ${sale_price}
+                                                    <del className={`product-del-price-with-sale-price ${colTwo ? 'apply-col-two-styling' : ''}`}>${priceTag}</del>
                                                 </h3>
                                                 <div className={`mobile-view-rating-stars ${colTwo ? 'apply-two-col-styling' : ''}`}>
-                                                    <RatingReview rating={parseFloat(reviewCount)} size={"12px"} disabled={true} />
+                                                    <RatingReview rating={3} size={"12px"} disabled={true} />
                                                 </div>
                                             </div>
                                     }
 
                                     <span className={`product-card-installment-plan ${showExtraLines ? 'show-installment-plan' : ''}`}>
                                         <p className={`installment-plan-detail ${colTwo ? 'apply-col-two-styling' : ''}`}>or $35/week for 48 mos</p>
-                                        <GoInfo onClick={(e) => { e.stopPropagation(); handleInfoModal ()}} 
+                                        <GoInfo onClick={(e) => { e.stopPropagation(); handleInfoModal() }}
                                         />
+                                    </span>
+                                    <span className='product-card-get-it-by'>
+                                        <p>Get it by</p>
+                                        <h3>{getDeliveryDate()}</h3>
                                     </span>
 
                                 </div>
-
-
-                                {/* <span className={`product-card-get-it-by-title ${showOnPage ? 'show-product-card-get-it-by-title' : ''}`}>
-                                    <p className={`get-it-by ${colTwo ? 'apply-col-two-styling' : ''}`}>Get it By</p>
-                                    <h3 className={`get-by-delivery ${colTwo ? 'apply-col-two-styling' : ''}`}>{getDeliveryDate()}</h3>
-                                </span> */}
                             </div>
 
-                            {/* <span>
-                                <p>Get it By</p>
-                                <h3>{getDeliveryDate()}</h3>
-                            </span> */}
-
                             <div className={`product-card-quick-view-container ${colTwo ? 'apply-col-two-styling' : ''}`}>
+                                
                                 <div className={`product-rating-stars-div ${colTwo ? 'apply-col-two-styling' : ''}`}>
-                                    <RatingReview rating={parseFloat(reviewCount)} size={"12px"} disabled={true} />
+                                    <RatingReview rating={reviewCount} size={"12px"} disabled={true} />
                                 </div>
+
                                 <span className={`product-card-get-it-by-title ${showExtraLines ? 'show-product-card-get-it-by-title' : ''}`}>
                                     <p className={`get-it-by ${colTwo ? 'apply-col-two-styling' : ''}`}>Get it By</p>
                                     <h3 className={`get-by-delivery ${colTwo ? 'apply-col-two-styling' : ''}`}>{getDeliveryDate()}</h3>
                                 </span>
-                                <button className={`card-two-quick-view-button ${colTwo ? 'apply-col-two-styling' : ''}`} 
-                                onClick={(e) => {
-                                    e.stopPropagation();
-                                    handleQuickView()
-                                }}
+
+                                <button className={`card-two-quick-view-button ${colTwo ? 'apply-col-two-styling' : ''}`}
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        handleQuickView()
+                                    }}
                                 >
                                     Quick View
                                 </button>
+
+                                    <FaEye
+                                        size={20}
+                                        className='quick-view-eye-icon'
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            handleQuickView()
+                                        }}
+                                    />
+
                             </div>
 
                         </div>
                     </div>
-
-
-
-
-
-
-
-
-                    {/* <p className='mobile-view-low-price'>{lowPriceAddvertisement}</p> */}
-
-
-
-
-
-
                 </div>
             </div>
 

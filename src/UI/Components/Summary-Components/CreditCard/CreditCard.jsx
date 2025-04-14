@@ -1,8 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import './CreditCard.css'
-import americanExpressCard from '../../../../Assets/icons/american-express.png';
-import discoverCard from '../../../../Assets/icons/discover.png';
 import { useMyOrders } from '../../../../context/orderContext/ordersContext';
+
+import masterCard from '../../../../Assets/icons/mastercard-1.png';
+import visaCard from '../../../../Assets/icons/visa-1.png'
+import americanExpressCard from '../../../../Assets/icons/ae-1.png';
+import discover from '../../../../Assets/icons/discover-1.png'
+import paypal from '../../../../Assets/icons/paypal-1.png'
+
+
 
 const CreditCard = () => {
     const [focusedField, setFocusedField] = useState("");
@@ -64,9 +70,9 @@ const CreditCard = () => {
     return (
         <div className='credit-card-type-main-container'>
             <div className='credit-card-type-head'>
-                <img src={americanExpressCard} alt='card' />
-                <img src={discoverCard} alt='card' />
-                <img src={americanExpressCard} alt='card' />
+                <img src={masterCard} alt='card' />
+                <img src={visaCard} alt='card' />
+                <img src={discover} alt='card' />
                 <img src={americanExpressCard} alt='card' />
             </div>
             <div className='credit-card-type-body'>
