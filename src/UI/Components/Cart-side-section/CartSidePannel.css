@@ -183,6 +183,25 @@
     cursor: pointer;
 }
 
+.cart-side-paner-total-and-sub-total-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.cart-side-paner-total-and-sub-total-container > p {
+    font-size: 15px;
+    line-height: 1.5;
+    font-weight: 400;
+}
+
+.cart-side-paner-total-and-sub-total-container > h3 {
+    font-size: 15px;
+    line-height: 1.5;
+    font-weight: 500;
+}
+
 .cart-side-section-continue-shopping {
     display: flex;
     width: 100%;

@@ -12,6 +12,7 @@ import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import { url } from '../../../utils/api';
 import { useSEOContext } from '../../../context/SEOcontext/SEOcontext';
 import { useLPContentContext } from '../../../context/LPContentContext/LPContentContext';
+import Loader from '../../Components/Loader/Loader';
 
 const Categories = ({
 }) => {
@@ -54,6 +55,8 @@ const Categories = ({
         }// Data to send
       });
       const result = await response.json();
+
+      console.log("CAtegory Page Data", result)
       
       setCategoryPageData(result.sub_categories);
       setBestSelling(result.bestSelling);
@@ -61,6 +64,7 @@ const Categories = ({
       setContentImages(result.content_images);
     } catch (error) {
       setError(error.message);
+      setLoading(false)
     } finally {
       setLoading(false);
     }
@@ -76,6 +80,7 @@ const Categories = ({
         }// Data to send
       });
       const result = await response.json();
+      console.log("Category Page Console", result)
       setCategoryData(result.categories[0])
       
       setTitle(result.categories[0].meta.title);
@@ -106,7 +111,7 @@ const Categories = ({
 
   return (
     <>
-    
+      {loading && <Loader />}
       <LatestModulerBanner customWidth={false} showBanners={false} mainImgShow={true} mobileMainImage={location.state ? location.state?.bannerImage2 : categoryData?.bannerImage2}  mainImage={url + (location.state ? location.state?.bannerImage : categoryData?.bannerImage)} />
       
       <Category title={location.state ? location.state?.name : categoryData?.name} categorySlug={categorySlug} categoryData={categoryPageData} handleNavigate={handleNavigate} />

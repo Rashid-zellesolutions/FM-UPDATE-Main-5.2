@@ -201,6 +201,7 @@ export const CartProvider = ({ children }) => {
     }
 
     const handleCartProtected = async () => {
+        console.log("HandleProtection Clicked");
         setIsCartLoading(true);
         try {
             // Toggle `isCartProtected`
@@ -786,6 +787,7 @@ export const CartProvider = ({ children }) => {
                 addSingleProtection,
                 removeProtection,
                 isCartProtected,
+                setIsCartProtected,
                 isProfessionalAssembly,
                 handleCartProtected,
                 handleCartAssembly,

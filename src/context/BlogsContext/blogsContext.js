@@ -28,7 +28,7 @@ export const BlogsProvider = ({ children }) => {
     const fetchBlogCategories = async () => {
         const api = `/api/v1/blog-categories/get`;
         try {
-            if (!blogCategories.length) {
+            if (!Array.isArray(blogCategories) || !blogCategories.length) {
                 const response = await axios.get(`${url}${api}`);
                 if (response.status === 200) {
                     // let result = response.data.categories;
@@ -38,8 +38,8 @@ export const BlogsProvider = ({ children }) => {
                 }
             }
         } catch (error) {
-            console.error("Unexpected Server Error:", error)
-            throw new Error("UnExpected Server Error")
+            console.error("Unexpected Server Error:", error.response || error.message || error);
+            throw new Error("UnExpected Server Error");
         }
     }
 
@@ -66,9 +66,9 @@ export const BlogsProvider = ({ children }) => {
     useEffect(() => {
         fetchBlogCategories()
         fetchBlogs(null)
-      }, [])
+    }, [])
 
-    
+
 
 
     return (

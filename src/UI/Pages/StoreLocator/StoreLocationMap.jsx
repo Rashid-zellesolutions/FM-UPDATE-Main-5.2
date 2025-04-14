@@ -66,7 +66,7 @@ function StoreLocationMap({ storesData,selectedLocation }) {
 
 
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: "AIzaSyB9nW_l7Dw8WnnSCOJyJSGjtTYyF9ct3qk",
+    googleMapsApiKey: "AIzaSyBhUqdMX-GUuJUlMuEj7oggAkLuDkVdjbU",
   });
 
   const [location, setLocation] = useState(null);

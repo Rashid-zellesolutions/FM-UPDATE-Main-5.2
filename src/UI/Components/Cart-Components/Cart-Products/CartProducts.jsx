@@ -27,6 +27,7 @@ const CartProducts = () => {
         removeProtection,
         addSingleProtection,
         isCartProtected,
+        setIsCartProtected,
         isProfessionalAssembly,
         handleCartProtected,
         handleCartAssembly,
@@ -151,11 +152,7 @@ const CartProducts = () => {
                                         type="checkbox"
                                         className='order-summary-checkbox'
                                         checked={isCartProtected}
-                                        // onChange={() => handleCartProtected()}
-                                        onChange={(e) => {
-                                            e.stopPropagation(); // Prevents the parent div's click event from firing twice
-                                            handleCartProtected();
-                                        }}
+                                        readOnly
                                     />
                                 </div>
                             </div>
@@ -171,11 +168,7 @@ const CartProducts = () => {
                                         type="checkbox"
                                         className='order-summary-checkbox'
                                         checked={isProfessionalAssembly}
-                                        // onChange={() => handleCartAssembly()}
-                                        onChange={(e) => {
-                                            e.stopPropagation(); // Prevents the parent div's click event from firing twice
-                                            handleCartAssembly();
-                                        }}
+                                        readOnly
                                     />
                                 </div>
                             </div>
@@ -188,11 +181,11 @@ const CartProducts = () => {
 
                 <div className={`cart-items ${isOpen ? 'low-width' : ''}`}>
                     <div className='cart-container-shipping-details'>
-                        <h3 className='protection-plan-on-cart-container'>Choose Delivery Method</h3>
+                        <h3 className='protection-plan-on-cart-container'>Choose Delivery Options</h3>
                         <div className='cart-protect-or-not-container'>
                             {selectedShippingMethods &&
                                 selectedShippingMethods.map((option, index) => (
-                                    <div className='cart-protect-card'>
+                                    <div className='cart-protect-card' onClick={() => handleChange(null, option)}>
                                         <img src={guardIcon} alt='guard icon' className='cart-protection-card-icon' />
                                         <div className='cart-protection-plan-details-container'>
                                             <p className='cart-protection-plan-card-header'>{option.name}</p>
@@ -208,13 +201,14 @@ const CartProducts = () => {
                                                     margin: "5px 0",
                                                     gap: "10px",
                                                 }}
-                                                onClick={() => handleDeliveryOptionndex(index)}
+                                                // onClick={() => handleDeliveryOptionndex(index)}
                                             >
                                                 <input
                                                     type="radio"
                                                     name="options"
                                                     value={option.id}
                                                     checked={selectedOption?.id === option.id}
+                                                    readOnly
                                                     onChange={(e) => handleChange(e, option, index)} // Pass the `option` object
                                                     style={{
                                                         marginTop: "5px",

@@ -655,7 +655,7 @@ const Header = ({ checkoutPage }) => {
             searchedProducts && searchedProducts.map((item, index) => (
               <div className='mobile-view-searched-product-result' onClick={() => handleNavigateToSingleProduct(item)}>
                 <img
-                  src={`${url}${item.image.image_url}`}
+                  src={`${url}${item?.image?.image_url}`}
                   alt='product'
                   className='mobile-searched-product-image'
                 />

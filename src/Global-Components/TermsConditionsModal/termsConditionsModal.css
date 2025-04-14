@@ -24,6 +24,8 @@
     opacity: 1;
 }
 
+
+
 .html-modal-inner-container {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 60%;
@@ -31,6 +33,25 @@
     background-color: #fff;
     border-radius: 10px;
     padding: 20px;
+    position: relative;
+}
+
+.term-condition-modal-close-button {
+    position: absolute;
+    top: 25px;
+    right: 35px;
+    width: max-content;
+    height: max-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: transparent;
+    /* box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; */
+    outline: none;
+    border: none;
+    z-index: 99999999;
 }
 
 .html-modal-inner-sub-container {

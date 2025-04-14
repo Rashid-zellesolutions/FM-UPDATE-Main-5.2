@@ -82,6 +82,9 @@ const Cart = () => {
     handleCartAssembly,
   } = useCart();
 
+  console.log("sub total", subTotal);
+  console.log("Sub Total 0", formatedPrice(CalculateGrandTotal()))
+
   const subTotalOfAllProducts = cart.map(item => item.product.sub_total);
   const subtotal = subTotalOfAllProducts.reduce((acc, value) => acc + value, 0)
 

@@ -7,211 +7,6 @@ import { useMyOrders } from '../../../../context/orderContext/ordersContext';
 const DeliveryInfo = forwardRef((props, ref) => {
 
 
-    // const [deliveryInfo, setDeliveryInfo] = useState({
-    //     name: '',
-    //     address: '',
-    //     address2: '',
-    //     city: '',
-    //     state: '',
-    //     zipCode: '',
-    //     phone: ''
-    // })
-
-    // const [tokenValid, setTokenValid] = useState(true)
-    // const [userAddress, setUserAddress] = useState({})
-
-
-
-    // const verifyToken = async () => {
-    //     const token = localStorage.getItem('userToken');
-    //     try {
-    //         const response = await fetch(`${url}/api/v1/web-users/verify-token`, {
-    //             method: 'GET',
-    //             headers: {
-    //                 authorization: `${token}`
-    //             }
-    //         })
-    //         if (response.ok) {
-    //             const userId = localStorage.getItem('uuid')
-    //             try {
-    //                 const userResponse = await fetch(`${url}/api/v1/web-users/get/${userId}`, {
-    //                     method: 'GET',
-    //                     headers: {
-    //                         authorization: `${token}`
-    //                     }
-    //                 });
-    //                 if (userResponse.ok) {
-    //                     const data = await userResponse.json();
-    //                     setUserAddress(data.data.billing_address);
-    //                 }
-    //             } catch (error) {
-
-    //             }
-    //             setTokenValid(true);
-    //         } else {
-    //             localStorage.removeItem('userToken')
-    //             setTokenValid(false);
-    //         }
-    //     } catch (error) {
-    //         console.error("server error")
-    //     }
-    // }
-
-    // useEffect(() => {
-    //     verifyToken()
-    // }, [])
-
-    // useEffect(() => { }, [userAddress])
-
-    // const [isCheckedAddress, setIsCheckedAddress] = useState(false);
-    // const handleSelectAddress = () => {
-    //     setIsCheckedAddress(!isCheckedAddress)
-    // }
-
-
-    // // const [userZip, setUserZip] = useState()
-    // const getZipAndState = (zip) => {
-
-    //     let locationData;
-    //     if (zip) {
-    //         locationData = JSON.parse(zip)
-    //         setOrderPayload((prevPayload) => ({
-    //             ...prevPayload,
-    //             billing: {
-    //                 ...prevPayload.billing,
-    //                 city: locationData?.locationData?.city,
-    //                 postal_code: locationData?.locationData?.zipCode,
-    //                 state: locationData?.locationData?.state,
-    //             }
-    //         }))
-    //     } else {
-    //     }
-    // }
-
-
-    // useEffect(() => {
-    //     const zipCode = localStorage.getItem('other_info');
-    //     getZipAndState(zipCode)
-    // }, [])
-
-    // const fillBillingAddress = () => {
-
-    //     setOrderPayload((prevPayload) => ({
-    //         ...prevPayload,
-    //         billing: {
-    //             ...prevPayload.billing,
-    //             first_name: userAddress?.first_name,
-    //             last_name: userAddress?.last_name,
-    //             email: userAddress?.email,
-    //             phone: userAddress?.phone,
-    //             address_1: userAddress?.address_1,
-    //             country: 'USA',
-    //         }
-    //     }))
-
-    //     // setMyAddressPopup(false)
-    // }
-
-    // const checkEmptyOrNot = () => {
-    //     return orderPayload?.billing?.first_name !== '' &&
-    //         orderPayload.billing?.last_name !== '' &&
-    //         orderPayload.billing?.email !== '' &&
-    //         orderPayload.billing?.phone !== '' &&
-    //         orderPayload.billing?.address_1 !== '' ? true : false
-    // }
-
-    // const clearFields = () => {
-    //     setOrderPayload((prevPayload) => ({
-    //         ...prevPayload,
-    //         billing: {
-    //             first_name: '',
-    //             last_name: '',
-    //             email: '',
-    //             phone: '',
-    //             address_1: '',
-    //         }
-    //     }))
-    // }
-
-
-
-    // const clearBtnVisible = checkEmptyOrNot()
-
-    // if (loading) {
-    //     return <div>Loading....</div>
-    // }
-
-
-
-
-
-    // const handleDeliveryInfo = (e) => {
-    //     const { name, value } = e.target;
-
-    //     if (name === 'zipCode') {
-    //         if (/^\d{0,5}$/.test(value)) {
-    //             setDeliveryInfo((prevInfo) => ({
-    //                 ...prevInfo,
-    //                 [name]: value
-    //             }))
-    //         }
-    //     } else if (name === 'phone') {
-    //         let cleaned = value.replace(/\D/g, "");
-
-    //         if (cleaned.length < 3) {
-    //             cleaned = cleaned;
-    //         } else if (cleaned.length < 6) {
-    //             cleaned = `${cleaned.slice(0, 3)}-${cleaned.slice(3)}`;
-    //         } else {
-    //             cleaned = `${cleaned.slice(0, 3)}-${cleaned.slice(3, 6)}-${cleaned.slice(6, 10)}`
-    //         }
-
-    //         setDeliveryInfo((prevInfo) => ({
-    //             ...prevInfo,
-    //             [name]: cleaned
-    //         }))
-
-    //     } else {
-    //         setDeliveryInfo((prevInfo) => ({
-    //             ...prevInfo,
-    //             [name]: value
-    //         }))
-    //     }
-
-
-    // }
-
-
-
-
-    // const handleSubmitDeliveryInfo = () => {
-    //     let newErrors = {};
-
-    //     Object.keys(deliveryInfo).forEach((field) => {
-    //         // Skip validation for address2 since it's optional
-    //         if (field === 'address2') return;
-
-    //         if (!deliveryInfo[field].trim()) {
-    //             newErrors[field] = `${field.charAt(0).toUpperCase() + field.slice(1)} is Required`;
-    //         }
-    //     });
-
-    //     if (Object.keys(newErrors).length > 0) {
-    //         setError((prev) => ({ ...prev, ...newErrors }));
-    //         return false
-    //     }
-
-    //     setError({});
-    //     props.onSubmit();
-    //     return true;
-    // }
-
-    // useImperativeHandle(ref, () => ({
-    //     validateAndSubmit: handleSubmitDeliveryInfo,
-    // }));
-
-
-
     const navigate = useNavigate()
     const signupEmailRef = useRef(null)
     const firstNameRef = useRef(null)
@@ -234,16 +29,7 @@ const DeliveryInfo = forwardRef((props, ref) => {
         handleZipCodeChange
     } = useMyOrders();
 
-    // const [error, setError] = useState({
-    //     email: '',
-    //     first name: '',
-    //     last_name: '',
-    //     address_1: '',
-    //     city: '',
-    //     state: '',
-    //     postal_code: '',
-    //     phone: ''
-    // })
+    
 
     const [error, setError] = useState({})
 
@@ -252,15 +38,15 @@ const DeliveryInfo = forwardRef((props, ref) => {
     };
 
     const handleNavigateToSignup = () => {
-        if (!signupEmail.trim()) {
-            setError((prev) => ({ ...prev, email: 'Email is required' }));
-            return;
-        }
-        if (!validateEmail(signupEmail)) {
-            setError((prev) => ({ ...prev, email: 'Invalid email format' }));
-            return;
-        }
-        setError((prev) => ({ ...prev, email: '' }));
+        // if (!signupEmail.trim()) {
+        //     setError((prev) => ({ ...prev, email: 'Email is required' }));
+        //     return;
+        // }
+        // if (!validateEmail(signupEmail)) {
+        //     setError((prev) => ({ ...prev, email: 'Invalid email format' }));
+        //     return;
+        // }
+        // setError((prev) => ({ ...prev, email: '' }));
         navigate('/my-account');
     }
 
@@ -309,7 +95,6 @@ const DeliveryInfo = forwardRef((props, ref) => {
                     >
                         <label
                             className="floating-label"
-                        // style={{ color: error.first_name ? 'var(--primary-color)' : '' }}
                         >
                             Email
                         </label>
@@ -321,7 +106,6 @@ const DeliveryInfo = forwardRef((props, ref) => {
                             onBlur={() => setFocusedField("")}
                             onChange={(e) => setSignupEmail(e.target.value)}
                             name='signupEmail'
-                            // value={orderPayload.billing?.email}
 
                         />
                     </div>

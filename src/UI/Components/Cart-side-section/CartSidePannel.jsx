@@ -7,6 +7,8 @@ import minusBtn from '../../../Assets/icons/minus-white.png';
 import plusBtn from '../../../Assets/icons/plus-white.png';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../../../context/cartContext/cartContext';
+import { formatedPrice } from '../../../utils/api';
+import { useGlobalContext } from '../../../context/GlobalContext/globalContext';
 
 const CartSidePannel = (
   {
@@ -20,7 +22,14 @@ const CartSidePannel = (
 
   }) => {
 
+    const {
+        CalculateGrandTotal
+      } = useGlobalContext();
+    
+      
+
   const {
+    subTotal,
     isCartProtected,
     isProfessionalAssembly,
     handleCartProtected,
@@ -28,6 +37,9 @@ const CartSidePannel = (
     cartProducts,
     isCartLoading, totalProtectionValue, professionalAssemblyValue
   } = useCart()
+
+  console.log("sub total", subTotal);
+    console.log("Sub Total 0", formatedPrice(CalculateGrandTotal()))
 
   // const [singleCart, setSingleCart] = useState(cartData)
   const navigate = useNavigate()
@@ -96,7 +108,7 @@ const CartSidePannel = (
 
           {cartProducts.products.length > 0 ? (
             <div className='proffesional-assembly-check-sec'>
-              <label className='order-summary-proffesional-check-item-label'>
+              <label className='order-summary-proffesional-check-item-label-one'>
                 <input
                   type="checkbox"
                   className='order-summary-checkbox'
@@ -124,6 +136,11 @@ const CartSidePannel = (
             </div>
           ) : (<></>)}
 
+          <div className='cart-side-paner-total-and-sub-total-container'>
+            <p>Sub Total</p>
+            <h3>{formatedPrice(subTotal)}</h3>
+          </div>
+
           <div className='cart-section-view-cart-and-checkout-btn'>
             <button className='cart-side-section-view-cart' onClick={handleCLoseCartPanel}>
               View Cart
@@ -132,9 +149,17 @@ const CartSidePannel = (
               Checkout
             </button>
           </div>
-          <button onClick={handleContinueShopping} className='cart-side-section-continue-shopping'>
+
+          
+
+          {/* <div className='cart-side-paner-total-and-sub-total-container'>
+            <p>Total</p>
+            <h3>{formatedPrice(CalculateGrandTotal)}</h3>
+          </div> */}
+
+          {/* <button onClick={handleContinueShopping} className='cart-side-section-continue-shopping'>
             Continue Shopping
-          </button>
+          </button> */}
         </div>
       </div>
       {isCartLoading && <div className="loader_overlay">

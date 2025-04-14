@@ -19,7 +19,7 @@
     align-items: center;
     justify-content: start;
     width: 100%;
-    gap: 10px;
+    /* gap: 5px; */
     overflow-y: hidden;
     overflow-x: auto;
     padding: 10px;
@@ -52,6 +52,8 @@
 .product-archive-single-sub-category>img {
     width: 100%;
     height: auto;
+    object-fit: contain;
+    aspect-ratio: 3 / 2;
 
 }
 

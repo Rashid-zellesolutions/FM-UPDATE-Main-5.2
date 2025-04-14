@@ -16,13 +16,13 @@ export default function WarrantyModal(params) {
     // }, [setWarrantyModalState])
 
     return (
-        <div className="loader-overlay">
-            <div className="global_modal">
+        <div className="loader-overlay" onClick={()=>{setWarrantyModalState(false)}}>
+            <div className="global_modal" onClick={(e) => e.stopPropagation()}>
                 <div className="header_popup">
                     <div className="title">
                         Warranty Modal
                     </div>
-                    <div className="close-btn-modal" onClick={()=>{setWarrantyModalState(false)}}>
+                    <div className="close-btn-modal" onClick={(e)=>{e.stopPropagation(); setWarrantyModalState(false)}}>
                         <IoCloseCircle />
                     </div>
                 </div>
@@ -32,7 +32,7 @@ export default function WarrantyModal(params) {
                     <p>5 years coverage for all stains and most accidental damage</p>
                 </div>
                 <div className="footer_popup">
-                    <button className="close_button_footer">
+                    <button className="close_button_footer" onClick={(e) => {e.stopPropagation(); setWarrantyModalState(false)}}>
                         Close
                     </button>
                     <button className="accept_button_footer">

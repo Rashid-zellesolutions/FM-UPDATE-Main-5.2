@@ -36,7 +36,7 @@ export default function CartItemOC({image,name,quantity, regular_price, options,
                     <div className="confirmed-order-name-and-price">
                         <h3>{truncateTitle(name, 15)}</h3>
                         <span>
-                            <del>{regular_price}</del>
+                            <del>{formatedPrice(regular_price)}</del>
                             <p>{formatedPrice(price)}</p>
                         </span>
                     </div>

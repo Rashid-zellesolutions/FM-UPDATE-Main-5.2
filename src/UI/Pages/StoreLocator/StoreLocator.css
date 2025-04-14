@@ -3,7 +3,8 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    padding: var(--global-padding);
+    /* padding: var(--global-padding); */
+    padding: 35px 120px;
     gap: 35px;
 }
 
@@ -161,8 +162,27 @@
     
 }
 
-.all-stores-cards::-webkit-scrollbar{
-    display: none;
+/* .all-stores-cards::-webkit-scrollbar{
+    display: flex;
+    background-color: #595959;
+    width: 4px;
+    height: 150px;
+    border-radius: 12px;
+} */
+
+.all-stores-cards::-webkit-scrollbar {
+    width: 4px;
+    height: 150px;
+}
+
+.all-stores-cards::-webkit-scrollbar-track {
+    background-color: #f7f7f7;
+    border-radius: 12px;
+}
+
+.all-stores-cards::-webkit-scrollbar-thumb {
+    background-color: #595959;
+    border-radius: 12px;
 }
 
 /* store single card */
@@ -266,7 +286,7 @@
     top: 5px;
     left: 102%;
     background-color: #ffffff;
-    width: 0px;
+    width: 0;
     height: 95%;
     border-radius: 5px;
     display: flex;

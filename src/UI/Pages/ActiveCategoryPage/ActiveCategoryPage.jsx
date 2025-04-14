@@ -72,101 +72,120 @@ export default function ActiveCategoryPage() {
     const handleQuickViewClose = () => { setQuickView(false) }
 
     const [isInfoOpen, setIsInfoOpen] = useState(false);
-        const handleOpennfoModal = () => {
-            setIsInfoOpen(true);
-        }
-    
-        const handleCloseInfoModal = () => {
-            setIsInfoOpen(false);
-        }
+    const handleOpennfoModal = () => {
+        setIsInfoOpen(true);
+    }
+
+    const handleCloseInfoModal = () => {
+        setIsInfoOpen(false);
+    }
 
     console.log("sale data ", salesData)
 
     return (
-        <div className="activeCategoryPage">
-            {salesData && <Sliderr images={salesData?.data?.mainSlider} />}
+        <>
+            <div className="activeCategoryPage">
+                {salesData && <Sliderr images={salesData?.data?.mainSlider} />}
 
-            <div className="section_1_ASP">
-                <h3 className='category-heading'>{salesData ? salesData?.data?.categoryData?.name : ""}</h3>
-                <div className="active-sale-cards increase-columns" >
+                <div className="section_1_ASP">
+                    <h3 className='category-heading'>{salesData ? salesData?.data?.categoryData?.name : ""}</h3>
+                    <div className="active-sale-cards increase-columns" >
 
-                    {products && products.length > 0 ? (
-                        products.map((item, index) => {
-                            return <ProductCardTwo
-                                key={index}
-                                slug={item.slug}
-                                singleProductData={item}
-                                maxWidthAccordingToComp={"100%"}
-                                justWidth={'100%'}
-                                tagIcon={item.productTag ? item.productTag : heart}
-                                tagClass={item.productTag ? 'tag-img' : 'heart-icon'}
-                                mainImage={`${item.image.image_url}`}
-                                productCardContainerClass="product-card"
-                                ProductSku={item.sku}
-                                tags={item.tags}
-                                ProductTitle={truncateTitle(item.name, maxLength)}
-                                reviewCount={item.reviewCount}
-                                lowPriceAddvertisement={item.lowPriceAddvertisement}
-                                priceTag={item.regular_price}
-                                sale_price={item.sale_price}
-                                financingAdd={item.financingAdd}
-                                learnMore={item.learnMore}
-                                mainIndex={index}
-                                deliveryTime={item.deliveryTime}
-                                stock={item.manage_stock}
-                                attributes={item.attributes}
-                                handleCardClick={() => handleProductClick(item)}
-                                handleQuickView={() => handleQuickViewOpen(item)}
-                                handleWishListclick={() => handleWishList(item)}
-                                showOnPage={true}
-                                createdDate={item.createdAt}
-                                showExtraLines={true}
-                                titleHeight={true}
-                                allow_back_order={item?.allow_back_order}
-                                handleInfoModal={handleOpennfoModal}
-                            />
-                        })
-                    ) : (
-                        Array.from({ length: 12 }).map((_, index) => (
-                            <ProductCardShimmer />
-                        ))
-                    )}
+                        {products && products.length > 0 ? (
+                            products.map((item, index) => {
+                                return <ProductCardTwo
+                                    key={index}
+                                    slug={item.slug}
+                                    singleProductData={item}
+                                    maxWidthAccordingToComp={"100%"}
+                                    justWidth={'100%'}
+                                    tagIcon={item.productTag ? item.productTag : heart}
+                                    tagClass={item.productTag ? 'tag-img' : 'heart-icon'}
+                                    mainImage={`${item.image.image_url}`}
+                                    productCardContainerClass="product-card"
+                                    ProductSku={item.sku}
+                                    tags={item.tags}
+                                    ProductTitle={truncateTitle(item.name, maxLength)}
+                                    reviewCount={item.reviewCount}
+                                    lowPriceAddvertisement={item.lowPriceAddvertisement}
+                                    priceTag={item.regular_price}
+                                    sale_price={item.sale_price}
+                                    financingAdd={item.financingAdd}
+                                    learnMore={item.learnMore}
+                                    mainIndex={index}
+                                    deliveryTime={item.deliveryTime}
+                                    stock={item.manage_stock}
+                                    attributes={item.attributes}
+                                    handleCardClick={() => handleProductClick(item)}
+                                    handleQuickView={() => handleQuickViewOpen(item)}
+                                    handleWishListclick={() => handleWishList(item)}
+                                    showOnPage={true}
+                                    createdDate={item.createdAt}
+                                    showExtraLines={true}
+                                    titleHeight={true}
+                                    allow_back_order={item?.allow_back_order}
+                                    handleInfoModal={handleOpennfoModal}
+                                />
+                            })
+                        ) : (
+                            Array.from({ length: 12 }).map((_, index) => (
+                                <ProductCardShimmer />
+                            ))
+                        )}
 
+                    </div>
                 </div>
+
+                <div className="banner-1-content">
+                    <img src={`${url}${salesData?.data?.banner1?.desktop?.[0]?.image_url}`} alt="" srcset="" />
+                </div>
+
+                <div className="content_1_section">
+                    <div className="left_side_cont">
+                        <div dangerouslySetInnerHTML={{ __html: salesData?.data?.content1 || "" }} />
+                    </div>
+                    <div className="right_side_cont">
+                        <img src={salesData ? url + salesData?.data?.banner2[0]?.image_url : ""} alt="" srcset="" />
+                    </div>
+                </div>
+
+                <Sliderr height={"auto"} images={salesData ? salesData?.data?.banner3 : []} />
+                <div className="section_3_ASP" dangerouslySetInnerHTML={{ __html: salesData?.data?.content2 || "" }} />
+                <CartSidePannel
+                    cartData={cartProducts}
+                    addToCartClicked={addToCartClicked}
+                    handleCartSectionClose={handleCartSectionClose}
+                    removeFromCart={removeFromCart}
+                    decreamentQuantity={decreamentQuantity}
+                    increamentQuantity={increamentQuantity}
+                />
+
+                <QuickView
+                    setQuickViewProduct={quickViewProduct}
+                    quickViewShow={quickViewClicked}
+                    quickViewClose={handleQuickViewClose}
+                />
+
+                {/* <div className={`quick-view-section ${quickViewClicked ? 'show-quick-view-section' : ''}`} onClick={handleQuickViewClose}>
+                    <button className={`quick-view-close`} onClick={handleQuickViewClose}>
+
+                        <IoMdClose size={25} style={{ color: 'var(--secondary-color)' }} />
+                    </button>
+                    <div className={`quickview-containt ${quickViewClicked ? 'show-quick-view-containt' : ''}`} onClick={(e) => e.stopPropagation()}>
+                        <QuickView 
+                            setQuickViewProduct={quickViewProduct} 
+                            quickViewShow={quickViewClicked}
+                            quickViewClose={handleQuickViewClose}
+                        />
+                    </div>
+                </div> */}
             </div>
 
-            <div className="banner-1-content">
-                <img src={`${url}${salesData?.data?.banner1?.desktop?.[0]?.image_url}`} alt="" srcset="" />
-            </div>
-
-            <div className="content_1_section">
-                <div className="left_side_cont">
-                    <div dangerouslySetInnerHTML={{ __html: salesData?.data?.content1 || "" }} />
-                </div>
-                <div className="right_side_cont">
-                    <img src={salesData ? url + salesData?.data?.banner2[0]?.image_url : ""} alt="" srcset="" />
-                </div>
-            </div>
-
-            <Sliderr height={"auto"} images={salesData ? salesData?.data?.banner3 : []} />
-            <div className="section_3_ASP" dangerouslySetInnerHTML={{ __html: salesData?.data?.content2 || "" }} />
-            <CartSidePannel
-                cartData={cartProducts}
-                addToCartClicked={addToCartClicked}
-                handleCartSectionClose={handleCartSectionClose}
-                removeFromCart={removeFromCart}
-                decreamentQuantity={decreamentQuantity}
-                increamentQuantity={increamentQuantity}
-            />
-            <div className={`quick-view-section ${quickViewClicked ? 'show-quick-view-section' : ''}`} onClick={handleQuickViewClose}>
-                <button className={`quick-view-close`} onClick={handleQuickViewClose}>
-                    
-                    <IoMdClose size={25} style={{ color: 'var(--secondary-color)' }} />
-                </button>
-                <div className={`quickview-containt ${quickViewClicked ? 'show-quick-view-containt' : ''}`} onClick={(e) => e.stopPropagation()}>
-                    <QuickView setQuickViewProduct={quickViewProduct} />
-                </div>
-            </div>
-        </div>
+            {/* <QuickView
+                setQuickViewProduct={quickViewProduct}
+                quickViewShow={quickViewClicked}
+                quickViewClose={handleQuickViewClose}
+            /> */}
+        </>
     )
 }

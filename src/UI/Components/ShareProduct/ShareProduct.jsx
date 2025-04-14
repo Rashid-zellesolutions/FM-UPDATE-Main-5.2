@@ -12,13 +12,15 @@ import { formatedPrice, url } from '../../../utils/api';
 import copy from 'copy-to-clipboard';
 import RatingReview from '../starRating/starRating';
 
-import { FaFacebook, FaInstagram, FaRegEnvelope, FaWhatsapp, FaFacebookMessenger } from "react-icons/fa";
+import { FaFacebook, FaEnvelope , FaFacebookMessenger } from "react-icons/fa";
+import { FaSquareInstagram } from "react-icons/fa6";
+import { RiWhatsappFill } from "react-icons/ri";
 import { Link } from 'react-router-dom';
 
 const ShareProduct = ({ isSharePopup, setIsSharePopup, selectedUid, selectedProduct }) => {
 
     const copyRef = useRef()
-    let generatedLink = `https://furnituremecca.zellesolutions.com/product/${selectedProduct?.slug}`
+    let generatedLink = `https://fm.myfurnituremecca.com/product/${selectedProduct?.slug}`
 
     const handleCloseShareProductPopup = () => {
         setIsSharePopup(null)
@@ -26,11 +28,11 @@ const ShareProduct = ({ isSharePopup, setIsSharePopup, selectedUid, selectedProd
     }
 
     const socialPlatforms = [
-        { name: 'Facebook', img: <FaFacebook size={38} style={{ color: 'var(--secondary-color)' }} />, link: 'https://www.facebook.com/myfurnituremecca' },
-        { name: 'Instagram', img: <FaFacebookMessenger size={38} style={{ color: 'var(--secondary-color)' }} />, link: '#' },
-        { name: 'Email', img: <FaInstagram size={38} style={{ color: 'var(--secondary-color)' }} />, link: 'https://www.instagram.com/myfurnituremecca/?igshid=MzRlODBiNWFlZA%3D%3D' },
-        { name: 'Email', img: <FaWhatsapp size={38} style={{ color: 'var(--secondary-color)' }} />, link: '#' },
-        { name: 'Email', img: <FaRegEnvelope size={38} style={{ color: 'var(--secondary-color)' }} />, link: '#' }
+        { name: 'Facebook', img: <FaFacebook size={30} style={{ color: 'var(--secondary-color)' }} />, link: 'https://www.facebook.com/myfurnituremecca' },
+        { name: 'Instagram', img: <FaFacebookMessenger size={30} style={{ color: 'var(--secondary-color)' }} />, link: '#' },
+        { name: 'Email', img: <FaSquareInstagram size={30} style={{ color: 'var(--secondary-color)' }} />, link: 'https://www.instagram.com/myfurnituremecca/?igshid=MzRlODBiNWFlZA%3D%3D' },
+        { name: 'Email', img: <RiWhatsappFill size={30} style={{ color: 'var(--secondary-color)' }} />, link: '#' },
+        { name: 'Email', img: <FaEnvelope size={30} style={{ color: 'var(--secondary-color)' }} />, link: '#' }
     ]
 
     const [isCopied, setIsCpoied] = useState(false);

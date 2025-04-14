@@ -24,9 +24,10 @@ import { FaPhone } from "react-icons/fa6";
 import { IoIosMailOpen } from "react-icons/io";
 import loader from "../../../Assets/Loader-animations/loader-check-two.gif"
 import { useLocation } from 'react-router-dom';
+import SectionLoader from '../../Components/Loader/SectionLoader';
 
 const StoreLocator = () => {
-  const API_KEY = `AIzaSyB9nW_l7Dw8WnnSCOJyJSGjtTYyF9ct3qk&amp;libraries=maps,marker,places,geometry`
+  const API_KEY = `AIzaSyBhUqdMX-GUuJUlMuEj7oggAkLuDkVdjbU&amp;libraries=maps,marker,places,geometry`
   const [storesApiData, setStoresApiData] = useState()
   const [isFetching, setFetching] = useState(false)
   const location = useLocation()
@@ -39,11 +40,11 @@ const StoreLocator = () => {
       comment: `Owner was Amazing. He had the time to talk with us concerning the couch we bought. We even got a deal. Come here for sure for my next furniture shopping.`,
     }
   ]
-  const [googleReviewDetails, setGoogleReviewDetails] = useState(null);
+  // const [googleReviewDetails, setGoogleReviewDetails] = useState(null);
   const [selectedLatitude, setSelectedLatitude] = useState(null);
   const [selectedLongitude, setSelectedLongitude] = useState(null);
   const [showLocationDetails, setShowLocationDetails] = useState(null);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(null);
   const [selectedStore, setSelectedStore] = useState();
   const [zipCode, setZipCode] = useState('');
 
@@ -63,11 +64,11 @@ const StoreLocator = () => {
     setShowModal((prevIndex) => prevIndex === index ? null : index)
     setSelectedLatitude(null)
     setSelectedLongitude(null)
-    setGoogleReviewDetails(null)
-    setCurrentIndex(index);
+    // setGoogleReviewDetails(null)
+    setCurrentIndex((prevIndex) => prevIndex === index ? null : index);
     setShowLocationDetails(item);
     setSelectedStore(item)
-    setGoogleReviewDetails(await getGoogleStoreDetails(item.placeId))
+    // setGoogleReviewDetails(await getGoogleStoreDetails(item.placeId))
   }
 
   const [sliderIndex, setSliderIndex] = useState(0);
@@ -185,7 +186,7 @@ const StoreLocator = () => {
       {/* Desktop view */}
       <div className='all-stores-side-section-and-map'>
         <div className='all-stores-side-section'>
-
+          {isFetching && <SectionLoader />}
           <div className='all-stores-search-and-location-bar'>
             <div className='all-store-search-bar-container'>
               <form className='all-store-search-bar' onSubmit={fetchStoreUsingZipCode}>
@@ -243,7 +244,7 @@ const StoreLocator = () => {
 
           </div>
 
-          <div className={`single-location-full-details  ${showModal === currentIndex ? 'show-single-location-details' : ''}`}>
+          <div className={`single-location-full-details  ${currentIndex !== null ? 'show-single-location-details' : ''}`}>
 
             <div className='single-location-details-bar-slider'>
               <div className="single-location-slider">
@@ -252,16 +253,16 @@ const StoreLocator = () => {
                     className="slider-track"
                     style={{ transform: `translateX(-${sliderIndex * 100}%)` }}
                   >
-                    {showLocationDetails?.images.map((image, index) => (
+                    {showLocationDetails?.images?.map((image, index) => (
                       <div className="single-location-slide" key={index}>
                         <img src={url + image?.image_url} alt="stores" />
-                        {/* <p>...</p> */}
+                      
                       </div>
                     ))}
                   </div>
                 </div>
                 <div className="slider-dots">
-                  {showLocationDetails?.images.map((_, index) => (
+                  {showLocationDetails?.images?.map((_, index) => (
                     <button
                       key={index}
                       className={`dot ${sliderIndex === index ? "active" : ""}`}
@@ -277,7 +278,7 @@ const StoreLocator = () => {
             <div className={`single-location-details-bar-heading-and-direction-button ${showModal === currentIndex ? 'show-detail-heading-and-direction-button' : ''}`}>
               <div className='single-store-bar-heading-and-rating'>
                 <h3>{showLocationDetails?.name}</h3>
-                <RatingReview rating={googleReviewDetails?.data?.rating} disabled={true} size={"20px"} />
+                {/* <RatingReview rating={googleReviewDetails?.data?.rating} disabled={true} size={"20px"} /> */}
               </div>
               <button className='single-location-direction-button' onClick={() => {
                 setSelectedLatitude(showStore?.length > 0 ? showStore?.latitude : showLocationDetails?.latitude);
@@ -296,7 +297,7 @@ const StoreLocator = () => {
 
             <h3 className='comments-top-heading'>Store Timings</h3>
             <div className="store_timings">
-              {showLocationDetails?.timings.map((item, index) => {
+              {showLocationDetails?.timings?.map((item, index) => {
                 return (
                   <div className="timing_row" key={index}>
                     <p className="day">{item.day}</p>
@@ -305,8 +306,8 @@ const StoreLocator = () => {
                 );
               })}
             </div>
-            <h3 className='comments-top-heading'>Reviews & Ratings:</h3>
-            {
+            {/* <h3 className='comments-top-heading'>Reviews & Ratings:</h3> */}
+            {/* {
               googleReviewDetails?.data?.reviews.map((item, index) => (
                 <div className='single-location-comment-card'>
                   <div className='comment-user-section'>
@@ -323,13 +324,13 @@ const StoreLocator = () => {
                   <UserComment content={item.text} />
                 </div>
               ))
-            }
+            } */}
           </div >
 
-          {isFetching && <div className="loader">
+          {/* {isFetching && <div className="loader">
             <img src={loader} alt='animation' />
             <p>Finding Stores...</p>
-          </div>}
+          </div>} */}
         </div >
         <div className="all-store-map">
           {isLoaded ? (
@@ -385,7 +386,7 @@ const StoreLocator = () => {
                   <img src={directionIcon} alt='direction-icon' />
                 </button>
                 <div className='mobile-view-single-store-image-div'>
-                  <img src={`${url}${item.images[0].image_url}`} alt='store profile' className='mobile-view-single-store-image' />
+                  <img src={`${url}${item?.images?.[0]?.image_url}`} alt='store profile' className='mobile-view-single-store-image' />
                 </div>
                 <div className='mobile-view-single-store-details'>
                   <p>{item.address_1}</p>

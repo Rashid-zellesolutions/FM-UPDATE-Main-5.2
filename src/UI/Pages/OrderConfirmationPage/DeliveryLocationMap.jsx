@@ -67,7 +67,8 @@ const mapOptions = {
 
 function DeliveryLocationMap({ address_info }) {
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: "AIzaSyBCllVZsJjrhrGSJLJTE5NzPNt94ChqHc8",
+    // googleMapsApiKey: "AIzaSyBCllVZsJjrhrGSJLJTE5NzPNt94ChqHc8",
+    googleMapsApiKey:"AIzaSyBhUqdMX-GUuJUlMuEj7oggAkLuDkVdjbU",
   });
 
   const [location, setLocation] = useState(null);
@@ -75,7 +76,7 @@ function DeliveryLocationMap({ address_info }) {
   const fetchLatLngFromAddress = async (address) => {
     const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(
       address
-    )}&key=AIzaSyBCllVZsJjrhrGSJLJTE5NzPNt94ChqHc8`;
+    )}&key=AIzaSyBhUqdMX-GUuJUlMuEj7oggAkLuDkVdjbU`;
 
     try {
       const response = await fetch(url);
@@ -121,7 +122,7 @@ function DeliveryLocationMap({ address_info }) {
       </div>
       <div className="google-map-mobile">
         <GoogleMap
-          mapContainerStyle={mobileContainerStyle}
+          mapContainerStyle={containerStyle}
           center={location || { lat: 37.7749, lng: -122.4194 }} // Default center if location is not available
           zoom={location ? 15 : 7}
           options={mapOptions}

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./termsConditionsModal.css";
 import { Link } from "react-router-dom";
 import { url } from "../../utils/api";
+import { IoClose } from "react-icons/io5";
 
 const TermsConditionsModal = ({ openModal, closeModal }) => {
   const [termsContent, setTermsContent] = useState("");
@@ -31,13 +32,16 @@ const TermsConditionsModal = ({ openModal, closeModal }) => {
       }}
     >
       <div className="html-modal-inner-container">
+      <button className="term-condition-modal-close-button" onClick={closeModal}>
+        <IoClose size={30} color="#595959" />
+      </button>
         <div className="html-modal-inner-sub-container">
           {termsContent ? (
             <div dangerouslySetInnerHTML={{ __html: termsContent }} />
           ) : (
             <p>Loading...</p>
           )}
-          <button onClick={closeModal}>Close</button>
+          {/* <button onClick={closeModal}>Close</button> */}
         </div>
       </div>
     </div>

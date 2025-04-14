@@ -51,7 +51,9 @@ function App() {
   }
 
   return (
-    <div className="main_body">
+    <div className="main_body" 
+    // style={{display: 'flex' , flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}
+    >
       <ToastContainer
         style={{ zIndex: 99999 }}
         position="top-center"

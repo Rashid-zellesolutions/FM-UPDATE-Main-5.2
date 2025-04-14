@@ -115,6 +115,11 @@
 .signup-sec-label.checkbox input{
     width: auto !important;
 }
+ 
+
+.terms-conditions-agre-container > a {
+    color: var(--text-color) !important;
+} 
 
 .login-form{
     display: flex;

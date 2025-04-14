@@ -243,7 +243,7 @@ const Login = ({ signupclicked, setSignupclicked }) => {
                 onChange={(e) => setAcceptTerms(e.target.checked)}
                 required
               />
-              <span>I agree to the <Link to={'/privacy-policy'}>Privacy Policy</Link></span>
+              <span className='terms-conditions-agre-container'>I agree to the <Link to={'/privacy-policy'}>Privacy Policy</Link></span>
             </label>
             <label className="signup-sec-label checkbox">
               <input
@@ -252,7 +252,7 @@ const Login = ({ signupclicked, setSignupclicked }) => {
                 onChange={(e) => setAcceptPrivacy(e.target.checked)}
                 required
               />
-              <span>I agree to the <Link to={'/terms-and-conditions'}>Terms & Conditions</Link></span>
+              <span className='terms-conditions-agre-container'>I agree to the <Link to={'/terms-and-conditions'}>Terms & Conditions</Link></span>
             </label>
 
 
