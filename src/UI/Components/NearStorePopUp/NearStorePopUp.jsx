@@ -15,21 +15,28 @@ import { useGlobalContext } from '../../../context/GlobalContext/globalContext';
 
 const NearStorePopUp = ({ isOpen, setIsOpen, handleCloseNearBy }) => {
 
-    const { savedInfo, fetchAllstores, stores, info } = useGlobalContext();
+    const { savedInfo, fetchAllstores, stores, } = useGlobalContext();
+    const [loading, setLoading] = useState(false);
+    const { 
+        updateLocationData, 
+        zipCode,
+        handleInputChange, 
+        handleButtonClick,
+        info
+      } = useGlobalContext();
+
+    console.log("near store stores", stores);
 
     const [storeOpenIndex, setOpenStoreIndex] = useState(-1);
     const handleStoreHoursDetails = (index) => {
         setOpenStoreIndex(storeOpenIndex === index ? -1 : index)
     };
-    useEffect(() => {
-        fetchAllstores("");
-    }, [])
 
     const [searchQuery, setSearchQuery] = useState('');
 
-    const handleInputChange = (event) => {
-        setSearchQuery(event.target.value); // Update state with the input value
-    };
+    // const handleInputChange = (event) => {
+    //     setSearchQuery(event.target.value); // Update state with the input value
+    // };
 
 
     async function fetchAllStoresUsingZip() {
@@ -112,10 +119,13 @@ const NearStorePopUp = ({ isOpen, setIsOpen, handleCloseNearBy }) => {
             className={`near-store-pop-up ${isOpen ? 'show' : ''}`}
             onClick={handleCloseNearBy}
         >
+            
+            
             <div
                 className={`near-store-container ${isOpen ? 'show-near-store-inner-container' : ''}`}
                 onClick={(e) => e.stopPropagation()}
             >
+                
                 <div className='pop-up-header'>
                     <span onClick={handleCloseNearBy}>
                         <IoCloseOutline size={20} /> 
@@ -139,10 +149,10 @@ const NearStorePopUp = ({ isOpen, setIsOpen, handleCloseNearBy }) => {
                         <input
                             type='search'
                             placeholder='Search by Zip Code or City & State'
-                            value={searchQuery} // Bind the value to the state
+                            value={zipCode} // Bind the value to the state
                             onChange={handleInputChange} // Update state on input change
                         />
-                        <button className='header-search-button'>
+                        <button className='header-search-button' onClick={() => handleButtonClick()}>
                             {/* <img src={searchIcon} onClick={() => { fetchAllStoresUsingZip() }} alt='search' /> */}
                             <IoIosSearch size={22} height={22} color='#fff' />
                         </button>
@@ -159,6 +169,7 @@ const NearStorePopUp = ({ isOpen, setIsOpen, handleCloseNearBy }) => {
                     </div>
                 </div>
                 <div className='pop-up-single-city-card'>
+                
                     <div className='pop-up-single-city-cart'>
                         {/* <img src={NearStore} alt='near' /> */}
 
@@ -176,7 +187,7 @@ const NearStorePopUp = ({ isOpen, setIsOpen, handleCloseNearBy }) => {
                         <h3>Your Store {stores.length}</h3>
                     </div>
                     {stores?.map((items, index) => {
-                        return <div key={index}  >
+                        return <div key={index} className={`${index === 0 ? 'near-stores-current-store' : ''} `}>
                             <div className={`pop-up-city-and-distance ${storeOpenIndex === index ? 'rotate-btn' : ''}`}>
                                 <span>
                                     {/* <img src={AddBtn} alt='add' onClick={() => handleStoreHoursDetails(index)} /> */}

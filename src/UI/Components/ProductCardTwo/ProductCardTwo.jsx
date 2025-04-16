@@ -14,9 +14,11 @@ const ProductCardTwo = ({
     productCardContainerClass,
     ProductTitle,
     reviewCount,
+    mainIndex,
     priceTag,
     sale_price,
     tags,
+    productUid,
     singleProductData,
     handleQuickView,
     maxWidthAccordingToComp,
@@ -40,11 +42,16 @@ const ProductCardTwo = ({
             attributes && attributes.find(attr => attr.type === "select");
     };
 
+    // console.log("single product data", singleProductData)
+
     const priorityAttribute = getPriorityAttribute(attributes);
 
     const [hoveredImage, setHoveredImage] = useState()
     const [selectedColor, setSelectedColor] = useState();
     const [selectedColorImage, setSelectedColorImage] = useState();
+
+    const [isHovered, setIsHovered] = useState(false);
+
 
     const handleColorSelect = (color) => {
         setSelectedColor(color)
@@ -55,8 +62,10 @@ const ProductCardTwo = ({
                     attribute?.options?.some(option => option?.value === color)
                 )
             );
-            setSelectedColorImage(matchingAttribute?.images[1]?.image_url)
+
+            setSelectedColorImage(matchingAttribute?.images[0]?.image_url)
             setHoveredImage(matchingAttribute?.images[1]?.image_url)
+            console.log(matchingAttribute?.images[0]?.image_url, matchingAttribute?.images[1]?.image_url, "two images are")
             return matchingAttribute;
 
         } else if (singleProductData?.type === "simple") {
@@ -66,7 +75,7 @@ const ProductCardTwo = ({
             );
 
             if (simpleAttribute) {
-                setSelectedColorImage(singleProductData?.images[1]?.image_url);
+                setSelectedColorImage(singleProductData?.images[0]?.image_url);
                 setHoveredImage(singleProductData?.images[1]?.image_url);
             }
             return simpleAttribute;
@@ -76,6 +85,8 @@ const ProductCardTwo = ({
 
     useEffect(() => { }, [selectedColor])
 
+
+
     const handleImageSelect = (image) => {
         if (singleProductData?.type === "variable") {
             const matchingAttribute = singleProductData?.variations?.find(variation =>
@@ -84,14 +95,14 @@ const ProductCardTwo = ({
                     attribute?.options?.some(option => option?.value === image)
                 )
             );
-            setSelectedColorImage(matchingAttribute?.images[1]?.image_url)
+            setSelectedColorImage(matchingAttribute?.images[0]?.image_url)
             setHoveredImage(matchingAttribute?.images[1]?.image_url)
             return matchingAttribute;
         } else if (singleProductData?.type === "simple") {
             const simpleAttribute = singleProductData?.attributes?.find(attribute =>
                 attribute?.type === "image"
             );
-            setSelectedColorImage(singleProductData?.images[1]?.image_url);
+            setSelectedColorImage(singleProductData?.images[0]?.image_url);
             setHoveredImage(singleProductData?.images[1]?.image_url);
             return simpleAttribute;
         }
@@ -151,9 +162,9 @@ const ProductCardTwo = ({
     }, [singleProductData]); // Run this effect whenever `singleProductData` changes
 
 
-    const [mainImageHoverIndex, setMainImageHoverIndex] = useState(null)
 
     const { isInWishList } = useList();
+    console.log("main image", mainImage)
 
 
     const getDeliveryDate = () => {
@@ -171,8 +182,11 @@ const ProductCardTwo = ({
             <div
                 className={`${productCardContainerClass} ${borderLeft ? 'hide-after' : ''} `}
                 style={{ maxWidth: maxWidthAccordingToComp, width: justWidth }}
+
             >
                 <div className='product-card-data'
+                    onMouseEnter={() => { setIsHovered(true); console.log("enter") }}
+                    onMouseLeave={() => { setIsHovered(false); console.log("exit") }}
                     onClick={() => handleCardClick(singleProductData)}
                 >
                     <div className={`product-cart-top-tags-container ${showOnPage ? 'show-product-cart-top-tags' : ''}`}>
@@ -248,22 +262,37 @@ const ProductCardTwo = ({
                                 }
                             </div>
 
-                            <img src={`${url}${selectedColorImage
-                                ? mainImageHoverIndex === singleProductData.uid
-                                    ? hoveredImage
-                                    : selectedColorImage
-                                : mainImage
-                                }`}
-                                alt='product img'
-                                className='product-main-img'
-                                effect='blur'
-                                onLoad={() => { setImageLoaded(true) }}
-                            />
-                            {
-                                !isImageLoaded && <div className="image_shimmer_loader">
-                                    <ProductCardImageShimmer />
-                                </div>
-                            }
+                                <img
+                                    src={`${url}${selectedColorImage
+                                        }`}
+                                    alt='product img'
+                                    className={`product-main-img`}
+                                    effect='blur'
+                                    onLoad={() => { setImageLoaded(true) }}
+                                />
+
+                                <img
+                                    src={`${url}${hoveredImage
+                                        }`}
+                                    alt='product img'
+                                    className={`hovered-product-main-img ${isHovered ? 'visible-hovered' : ''}`}
+                                    effect='blur'
+                                    onLoad={() => { setImageLoaded(true) }}
+                                />
+
+                                {
+                                    !isImageLoaded && <div className="image_shimmer_loader">
+                                        <ProductCardImageShimmer />
+                                    </div>
+                                }
+
+
+
+
+
+
+
+
 
 
                         </div>
@@ -394,7 +423,7 @@ const ProductCardTwo = ({
                                         <GoInfo onClick={(e) => { e.stopPropagation(); handleInfoModal() }}
                                         />
                                     </span>
-                                    <span className='product-card-get-it-by'>
+                                    <span className={`product-card-get-it-by ${showExtraLines ? 'show-set-it-by' : 'hide-get-it-by'}`}>
                                         <p>Get it by</p>
                                         <h3>{getDeliveryDate()}</h3>
                                     </span>
@@ -403,7 +432,7 @@ const ProductCardTwo = ({
                             </div>
 
                             <div className={`product-card-quick-view-container ${colTwo ? 'apply-col-two-styling' : ''}`}>
-                                
+
                                 <div className={`product-rating-stars-div ${colTwo ? 'apply-col-two-styling' : ''}`}>
                                     <RatingReview rating={reviewCount} size={"12px"} disabled={true} />
                                 </div>
@@ -422,14 +451,14 @@ const ProductCardTwo = ({
                                     Quick View
                                 </button>
 
-                                    <FaEye
-                                        size={20}
-                                        className='quick-view-eye-icon'
-                                        onClick={(e) => {
-                                            e.stopPropagation();
-                                            handleQuickView()
-                                        }}
-                                    />
+                                <FaEye
+                                    size={20}
+                                    className='quick-view-eye-icon'
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        handleQuickView()
+                                    }}
+                                />
 
                             </div>
 

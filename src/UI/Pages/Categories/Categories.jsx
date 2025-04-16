@@ -13,6 +13,7 @@ import { url } from '../../../utils/api';
 import { useSEOContext } from '../../../context/SEOcontext/SEOcontext';
 import { useLPContentContext } from '../../../context/LPContentContext/LPContentContext';
 import Loader from '../../Components/Loader/Loader';
+import DealOfTheDay from '../../Components/DealOfTheDay/DealOfTheDay';
 
 const Categories = ({
 }) => {
@@ -35,6 +36,10 @@ const Categories = ({
     bestSelling,
     setBestSelling,
     paragraph,
+    allProducts,
+    setAllProducts,
+    dealEndTime,
+    setDealEndTime,
     setParagraph
   } = useLPContentContext();
 
@@ -109,6 +114,9 @@ const Categories = ({
     navigate(`/${categorySlug}/${item.slug}`, { state: item });
   };
 
+
+  useEffect(() => {console.log("all produts", allProducts)}, [allProducts])
+
   return (
     <>
       {loading && <Loader />}
@@ -116,7 +124,19 @@ const Categories = ({
       
       <Category title={location.state ? location.state?.name : categoryData?.name} categorySlug={categorySlug} categoryData={categoryPageData} handleNavigate={handleNavigate} />
       {bestSelling &&  (<BestSeller categoryData={bestSelling} />) }
+      {allProducts.length > 0 ? (
+        <DealOfTheDay
+        allProducts={allProducts}
+        setAllProducts={setAllProducts}
+        dealEndTime={dealEndTime}
+        categorySlug={categorySlug}
+        setDealEndTime={setDealEndTime}
+        api={`/api/v1/products/get-deal-of-month-products?limit=10&slug=${categorySlug}`}
+      />
+      ) : <></>}
       
+      
+
       {/* <ShipBanner bannerImg={shipBanner} showBanner={false} paddindTrue={false} /> */}
       <CategoriesGetScop text={paragraph} contentImages={contentImages} isTrue={true} />
       {/* <LatestModulerBanner customWidth={false} showBanners={true} paddingTop={true} mainImgShow={false} /> */}

@@ -575,6 +575,7 @@ const Products = ({ navigationType }) => {
         setIsInfoOpen(false);
     }
 
+
     // Disable Scroll on Modal Open
     useDisableBodyScroll(
         isInfoOpen,
@@ -792,9 +793,9 @@ const Products = ({ navigationType }) => {
                                                 slug={item.slug}
                                                 singleProductData={item}
                                                 showOnPage={true}
-                                                // createdDate={item.createdAt}
                                                 showExtraLines={true}
                                                 titleHeight={true}
+                                                productUid={item.uid}
                                                 maxWidthAccordingToComp={"100%"}
                                                 justWidth={hideFilters ? '100%' : '100%'}
                                                 tagIcon={item.productTag ? item.productTag : heart}
@@ -805,13 +806,6 @@ const Products = ({ navigationType }) => {
                                                 tags={item.tags}
                                                 allow_back_order={item?.allow_back_order}
                                                 ProductTitle={truncateTitle(item.name, maxLength)}
-                                                // stars={[
-                                                //     { icon: star, title: 'filled' },
-                                                //     { icon: star, title: 'filled' },
-                                                //     { icon: star, title: 'filled' },
-                                                //     { icon: star, title: 'filled' },
-                                                //     { icon: star, title: 'filled' },
-                                                // ]}
                                                 reviewCount={item.average_rating}
                                                 lowPriceAddvertisement={item.lowPriceAddvertisement}
                                                 priceTag={item.regular_price}

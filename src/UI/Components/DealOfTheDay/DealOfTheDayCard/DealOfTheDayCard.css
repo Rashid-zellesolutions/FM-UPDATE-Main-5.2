@@ -79,7 +79,8 @@
 .deal-of-the-day-product-image{
   display: flex;
   width: 100%;
-  height: 205px;
+  /* height: 205px; */
+  height: auto;
   align-items: center;
   justify-content: center;
   /* padding: 10px; */

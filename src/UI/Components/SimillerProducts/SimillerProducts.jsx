@@ -174,6 +174,7 @@ const SimillerProducts = ({collection, isPadding}) => {
                     justWidth={'100%'}
                     showOnPage={true}
                     percent={'12%'}
+                    showExtraLines={false}
                     titleHeight={true}
                     // colTwo={selectedGrid === 'single-col' ? false : true}
                     tagIcon={item.productTag ? item.productTag : heart}
@@ -204,40 +205,6 @@ const SimillerProducts = ({collection, isPadding}) => {
                     handleCardClick={() => handleProductClick(item)}
                     handleQuickView={() => handleQuickViewOpen(item)}
                     handleWishListclick={() => handleWishList(item)}
-                  // key={index}
-                  // slug={item.slug}
-                  // singleProductData={item}
-                  // maxWidthAccordingToComp="98%"
-                  // tagIcon={item.productTag ? item.productTag : heart}
-                  // tagClass={item.productTag ? 'tag-img' : 'heart-icon'}
-                  // mainImage={`${item.image.image_url}`}
-                  // productCardContainerClass="product-card"
-                  // ProductSku={item.sku}
-                  // tags={item.tags}
-                  // ProductTitle={truncateTitle(item.name, maxLength)}
-                  // stars={[
-                  //   { icon: star, title: 'filled' },
-                  //   { icon: star, title: 'filled' },
-                  //   { icon: star, title: 'filled' },
-                  //   { icon: star, title: 'filled' },
-                  //   { icon: star, title: 'filled' },
-                  // ]}
-                  // reviewCount={item.reviewCount}
-                  // lowPriceAddvertisement={item.lowPriceAddvertisement}
-                  // priceTag={item.regular_price}
-                  // sale_price={item.sale_price}
-                  // percent={'12%'}
-                  // financingAdd={item.financingAdd}
-                  // learnMore={item.learnMore}
-                  // mainIndex={index}
-                  // deliveryTime={item.deliveryTime}
-                  // stock={item.manage_stock}
-                  // attributes={item.attributes}
-                  // handleCardClick={() => handleCardClick(item)}
-                  // handleQuickView={() => handleQuickViewOpen(item)}
-                  // type={item.type}
-                  // variation={item.variations}
-                  // handleWishListclick={() => handleWishList(item)}
                 />
               </div>
             ))

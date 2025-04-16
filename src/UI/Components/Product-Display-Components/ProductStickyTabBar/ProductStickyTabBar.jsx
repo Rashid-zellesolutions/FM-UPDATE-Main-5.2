@@ -5,6 +5,7 @@ import { useCart } from '../../../../context/cartContext/cartContext';
 import { formatedPrice } from '../../../../utils/api';
 import LocationPopUp from '../../LocationPopUp/LocationPopUp';
 import Weekdays from 'react-calendar/dist/cjs/MonthView/Weekdays.js';
+import { useGlobalContext } from '../../../../context/GlobalContext/globalContext';
 
 const ProductStickyTabBar = (
     {
@@ -23,6 +24,8 @@ const ProductStickyTabBar = (
     const [activeTab, setIsActiveTab] = useState('Description');
     const [searchLocation, setSearchLocation] = useState(false);
     // const [isSticky, setIsSticky] = useState(false);
+
+    const { info, fetchAllstores } = useGlobalContext();
  
     useEffect(() => {
         const handleScroll = () => {
@@ -131,7 +134,7 @@ const ProductStickyTabBar = (
                                 <strong>{getDeliveryDate()}</strong>
                                 <i onClick={handleSearchModal}>
                                     <CiLocationOn scale={20} />
-                                    <p>19134</p>
+                                    <p>{info.locationData.zipCode} {info.locationData.stateCode}</p>
                                 </i>
                             </span>
                         </div>

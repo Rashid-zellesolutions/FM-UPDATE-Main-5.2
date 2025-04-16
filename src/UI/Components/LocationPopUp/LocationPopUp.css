@@ -146,7 +146,7 @@
     display: flex;
     gap: 5px;
     align-items: center;
-    width: 138px;
+    width: max-content;
     height: 40px;
     background-color: #fff;
     border-radius: 4px;
@@ -176,7 +176,9 @@
 }
 
 .use-current-location:hover {
-    background-color: var(--secondary-color);
+    /* background-color: var(--secondary-color); */
+    background-color: rgba(89, 89, 89, 0.2);
+    color: var(--secondary-color);
 }
 
 .use-current-location:hover > h3 {

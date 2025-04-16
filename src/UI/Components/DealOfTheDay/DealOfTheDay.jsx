@@ -6,7 +6,7 @@ import './DealOfTheDay.css';
 
 import DealOfTheDayCard from './DealOfTheDayCard/DealOfTheDayCard';
 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { url,calculateDiscountPercentage } from '../../../utils/api';
 import { useSingleProductContext } from '../../../context/singleProductContext/singleProductContext';
@@ -39,9 +39,12 @@ function SampleNextArrow(props) {
   )
 }
 
-const DealOfTheDay = ({ dealEndTime, setDealEndTime, allProducts, setAllProducts }) => {
+const DealOfTheDay = ({ dealEndTime, setDealEndTime, allProducts, setAllProducts, api }) => {
 
   const navigate = useNavigate();
+  const { categorySlug } = useParams();
+
+
 
   // const [dealEndTime, setDealEndTime] = useState(null); 
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
@@ -53,6 +56,8 @@ const DealOfTheDay = ({ dealEndTime, setDealEndTime, allProducts, setAllProducts
     const now = new Date().getTime();
     const difference = targetDate - now;
     const padZero = (num) => String(num).padStart(2, '0');
+
+    
 
     let timeLeft = {};
     if (difference > 0) {
@@ -90,7 +95,7 @@ const DealOfTheDay = ({ dealEndTime, setDealEndTime, allProducts, setAllProducts
 
   // const [allProducts, setAllProducts] = useState([])
   const getDealOfTheMonthProducts = async () => {
-    const api = `/api/v1/products/get-deal-of-month-products?limit=10`
+    // const api = `/api/v1/products/get-deal-of-month-products?limit=10`
     try {
       const response = await axios.get(`${url}${api}`);
       setAllProducts(response.data.products)
@@ -101,10 +106,16 @@ const DealOfTheDay = ({ dealEndTime, setDealEndTime, allProducts, setAllProducts
   }
 
   useEffect(() => {
-    if(!allProducts.length) {
+    // if(!allProducts.length) {
       getDealOfTheMonthProducts()
-    }
+    // }
   }, []);
+
+  useEffect(() => {getDealOfTheMonthProducts(); }, [categorySlug])
+  console.log("cat slug", categorySlug)
+  // useEffect(() => {getDealOfTheMonthProducts()}, [allProducts])
+
+
 
   const getPublishedProducts = () => {
     // Filter products where parent === 0
@@ -143,8 +154,8 @@ const DealOfTheDay = ({ dealEndTime, setDealEndTime, allProducts, setAllProducts
   }
 
   let productCount = 0
-  const publishedProductsLength = allProducts.filter(product => product.status === 'published')
-  productCount = publishedProductsLength.length;
+  const publishedProductsLength = allProducts?.filter(product => product.status === 'published')
+  productCount = publishedProductsLength?.length;
 
   // wish list 
   const { addToList, removeFromList, isInWishList } = useList()
@@ -225,6 +236,10 @@ const DealOfTheDay = ({ dealEndTime, setDealEndTime, allProducts, setAllProducts
     ]
   };
 
+  // if(!allProducts.length > 0) {
+  //   return
+  // }
+
   return (
     <div className='deal-of-the-day-main-container'>
       <div className='deal-of-the-day-border-heading'>
@@ -244,7 +259,7 @@ const DealOfTheDay = ({ dealEndTime, setDealEndTime, allProducts, setAllProducts
         <div className='slider-main-container'>
           
           {/* <Slider {...settings}> */}
-            {allProducts.length === 0 ? (
+            {allProducts?.length === 0 ? (
               <div className='deal-of-the-day-cards-shimmer-container'>
                 <div className='desktop-view-shimmer'>
                 {Array.from({ length: 4 }).map((_, index) => <DealOfTheMonthShimmer key={index} />)}
@@ -255,7 +270,7 @@ const DealOfTheDay = ({ dealEndTime, setDealEndTime, allProducts, setAllProducts
               </div>
             ) : (
               <Slider {...settings}>
-               { getPublishedProducts().map((items, index) => (
+               {allProducts?.length > 0 && getPublishedProducts().map((items, index) => (
               <DealOfTheDayCard
                 key={index}
                 isDiscountable={items.discount.is_discountable === 1 ? true : false}

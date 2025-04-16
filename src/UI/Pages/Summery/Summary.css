@@ -4,6 +4,7 @@
     height: auto;
     padding: 35px 60px;
     position: relative;
+    gap: 20px;
     /* max-width: 1400px; */
     margin: 0 auto;
 }
@@ -12,7 +13,11 @@
     display: flex;
     flex-direction: column;
     width: 65%;
-    padding: 0px 20px 30px 60px;
+    /* padding: 0px 20px 30px 60px; */
+    padding: 10px;
+    box-shadow: 1px 1px 6px 0px #00000026;
+    height: max-content;
+    border-radius: 5px;
     gap: 25px;
 }
 
@@ -210,7 +215,7 @@
     overflow-x: hidden;
     overflow-y: auto;
     /* background-color: #F6FAFE; */
-    padding: 0px 50px 72px 0px;
+    padding: 2px 50px 72px 2px;
     gap: 50px;
 }
 
@@ -224,8 +229,10 @@
     width: 100%;
     align-items: start;
     justify-content: start;
+    box-shadow: 1px 1px 6px 0px #00000026;
     /* gap: 15px; */
-    padding: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
 }
 
 .right-section-order-summary-main-heading {

@@ -13,8 +13,10 @@ const LocationPopUp = ({ searchLocation, handleCloseSearch, setLocationDetails, 
     updateLocationData, 
     zipCode,
     handleInputChange, 
-    handleButtonClick 
+    handleButtonClick,
+    info
   } = useGlobalContext();
+
 
   const [userLocation, setUserLocation] = useState(null);
   

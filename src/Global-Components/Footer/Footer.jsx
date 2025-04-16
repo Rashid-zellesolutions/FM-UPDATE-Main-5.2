@@ -38,27 +38,27 @@ const Footer = ({ notLandingPage, checkoutPage }) => {
     const [headerData, setHeaderData] = useState([]);
 
 
-     async function fetchHeaderPayloads() {
+    async function fetchHeaderPayloads() {
         try {
-          const response = await fetch(`${url}/api/v1/header-payloads/get`, {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json", // Adjust headers as needed
-            },
-          });
-    
-          if (!response.ok) {
-            throw new Error(`Error: ${response.status} ${response.statusText}`);
-          }
-    
-          const data = await response.json();
-          return data;
+            const response = await fetch(`${url}/api/v1/header-payloads/get`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json", // Adjust headers as needed
+                },
+            });
+
+            if (!response.ok) {
+                throw new Error(`Error: ${response.status} ${response.statusText}`);
+            }
+
+            const data = await response.json();
+            return data;
         } catch (error) {
-          console.error("Error fetching data:", error.message);
-          throw error;
+            console.error("Error fetching data:", error.message);
+            throw error;
         }
-      }
-    
+    }
+
 
     const navigate = useNavigate();
 
@@ -76,6 +76,8 @@ const Footer = ({ notLandingPage, checkoutPage }) => {
     const [email, setEmail] = useState('');
     const [error, setError] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
+
+    const { stores } = useGlobalContext()
 
     const validateEmail = (email) => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -154,134 +156,134 @@ const Footer = ({ notLandingPage, checkoutPage }) => {
         fetchGoogleRating();
     }, [])
 
-     useEffect(() => {
+    useEffect(() => {
         fetchHeaderPayloads().then(data => {
-          setHeaderData(data.data[0].categories);
-          console.log(data.data[0].categories,"here us footer")
+            setHeaderData(data.data[0].categories);
+            console.log(data.data[0].categories, "here us footer")
         }).catch(error => {
-          console.error(error);
+            console.error(error);
         });
-      }, [])
+    }, [])
 
 
-    const footerNavLinks = [
-        {
-            heading: "Living Room", navItems: [
-                { name: 'Living Room Sets', link: '/product-category/living-room/living-room-sets' },
-                { name: 'Sofa & Lovaseat Sets', link: '/product-category/living-room/sofa-loveseat-sets' },
-                { name: 'Sectionals', link: '/product-category/living-room/sectionals' },
-                { name: 'Reclining Furniture', link: '/product-category/living-room/reclining-sets' },
-                { name: 'Sofas', link: '/product-category/living-room/sofas' },
-                { name: 'Sleeper Sofas', link: '/product-category/living-room/sleeper-sofas' },
-                { name: 'LoveSeats', link: '/product-category/living-room/loveseats' },
-                { name: 'Small Space Living Room', link: '/product-category/living-room/small-space-living-rooms' },
-                { name: 'Outlets', link: '/product-category/living-room/living-room-outlet' },
-            ]
-        },
-        {
-            heading: "Bedroom", navItems: [
-                { name: 'Bedroom Sets', link: '/product-category/bedroom/bedroom-sets' },
-                { name: 'Beds & Headboards', link: '/product-category/bedroom/beds-headboards' },
-                { name: 'Dresser & Mirror Set', link: '/product-category/bedroom/dresser-mirror-sets' },
-                { name: 'Dressers', link: '/product-category/bedroom/dressers' },
-                { name: 'Chests', link: '/product-category/bedroom/chests' },
-                { name: 'NightStands', link: '/product-category/bedroom/nightstands' },
-                { name: 'Mirrors', link: '/product-category/bedroom/mirrors' },
-                { name: 'Twin Beds', link: '/product-category/bedroom/twin-beds' },
-                { name: 'Quen Beds', link: '/product-category/bedroom/queen-beds-fm' },
-                { name: 'Full Beds', link: '/product-category/bedroom/full-beds' },
-                { name: 'King Beds', link: '/product-category/bedroom/king-beds' },
-                { name: 'Small Spaces Bedrooms', link: '/product-category/bedroom/small-space-bedrooms' },
-                { name: 'Outlets', link: '/product-category/bedroom/bedroom-outlet' },
-            ]
-        },
-        {
-            heading: "Dining Rooms", navItems: [
-                { name: 'Dining Room Sets', link: '/product-category/dining-room/dining-room-sets' },
-                { name: 'Pub Heights Dining Sets', link: '/product-category/dining-room/pub-heights-dining-sets' },
-                { name: 'Dining Chairs & Benches', link: '/product-category/dining-room/dining-chairs-benches' },
-                { name: 'Dining Tables', link: '/product-category/dining-room/dining-tables' },
-                { name: 'Bar Stools', link: '/product-category/dining-room/bar-pub-stools' },
-                { name: 'Servers, Buffets & China Cabinets', link: '/product-category/dining-room/servers-buffets-china-cabinets' },
-            ]
-        },
-        {
-            heading: "Mattresses", navItems: [
-                { name: 'Twin Size', link: '/product-category/mattresses/twin-size' },
-                { name: 'Quen Size', link: '/product-category/mattresses/queen-size' },
-                { name: 'Full Size', link: '/product-category/mattresses/full-size' },
-                { name: 'King Size', link: '/product-category/mattresses/king-size' },
-                { name: 'Bed Frames', link: '/product-category/mattresses/bed-frames' },
-                { name: 'Pillows', link: '/product-category/mattresses/pillows' },
-                { name: 'Memory Foam Mattresses', link: '/product-category/mattresses/memory-foam-mattresses' },
-                { name: 'box Spring', link: '/product-category/mattresses/box-springs' },
-                { name: 'Mattresses Protection', link: '/product-category/mattresses/mattress-protection' },
-                { name: 'Outlet', link: '/product-category/mattresses/sale-mattresses' },
-            ]
-        },
-        {
-            heading: "Kids", navItems: [
-                { name: 'Kids Bedroom Sets', link: '/product-category/kids/kids-bedroom-sets' },
-                { name: 'Kids Room', link: '/product-category/kids/kids-room' },
-                { name: 'Kids Beds & Headboards', link: '/product-category/kids/kids-beds-headboards' },
-                { name: 'Kids Bedroom Storage', link: '/product-category/kids/kids-bedroom-storage' },
-                { name: 'Outlet', link: '/product-category/kids/sale-kids-room' },
-            ]
-        },
-        {
-            heading: "Accent", navItems: [
-                { name: 'Accent Tables', link: '/product-category/accent-furniture/accent-tables' },
-                { name: 'Accent Chest & Storage', link: '/product-category/accent-furniture/accent-chests-storage' },
-                { name: 'Coffee & End Tables', link: '/product-category/accent-furniture/coffee-end-tables' },
-                { name: 'Lampes & Lighting', link: '/product-category/accent-furniture/lamps-lighting' },
-                { name: 'Entertainment Centers & TV Stands', link: '/product-category/accent-furniture/entertainment-centers-tv-stands' },
-                { name: 'Home Office', link: '/product-category/accent-furniture/home-office' },
-                { name: 'Benches', link: '/product-category/accent-furniture/benches' },
-                { name: 'Outlets', link: '/product-category/accent-furniture/sale-accent-furniture' },
-            ]
-        },
-        {
-            heading: "Home Decor", navItems: [
-                { name: 'Lampes & Lighting', link: '/product-category/accent-furniture/lamps-lighting' },
-                { name: 'Home Office', link: '/product-category/home-decor/home-office' },
-                { name: 'Mirrored Furniture', link: '/product-category/home-decor/mirrored-furniture' },
-                { name: 'Vanities & Mirror', link: '/product-category/bedroom/vanities-mirror' },
-                { name: 'Wall Art', link: '/product-category/home-decor/wall-art' },
-                { name: 'Audio & Speaker', link: '/product-category/home-decor/audio-speakers' },
-                { name: 'Throw Pillows', link: '/product-category/home-decor/throw-pillows' },
-                { name: 'Jhula Swings', link: '/product-category/home-decor/jhula-swings' },
-                { name: 'Outlets', link: '/product-category/home-decor/sale-home-decor' },
-            ]
-        },
-        {
-            heading: "Rugs", navItems: [
-                { name: 'Machine Washable', link: '/product-category/rugs-main/machine-washable' },
-                { name: 'Indoor/Outdoor Rugs', link: '/product-category/rugs-main/indoor-outdoor-rugs' },
-                { name: 'Runners', link: '/product-category/rugs-main/runners' },
-                { name: 'Small Area Rugs', link: '/product-category/rugs-main/small-area-rugs' },
-                { name: 'Large Area Rugs', link: '/product-category/rugs-main/large-area-rugs' },
-                { name: 'All Area Rugs', link: '/product-category/rugs-main/all-area-rugs' },
-                { name: 'Outlets', link: '/product-category/rugs-main/sale-rugs' },
-            ]
-        },
-        {
-            heading: "Outlet", navItems: [
-                { name: 'Bed Room Sets', link: '#' },
-                { name: 'Bed & HeadBoards', link: '#' },
-                { name: 'Dressers', link: '#' },
-                { name: 'Chest', link: '#' },
-                { name: 'Dresser & Mirror Sets', link: '#' },
-                { name: 'Night Stands', link: '#' },
-                { name: 'Mirrors', link: '#' },
-                { name: 'Twin Beds', link: '#' },
-                { name: 'Queen Beds', link: '#' },
-                { name: 'King Beds', link: '#' },
-                { name: 'Full Bed', link: '#' },
-                { name: 'Small Space Bed Room', link: '#' },
-                { name: 'Outlets', link: '#' },
-            ]
-        },
-    ]
+    // const footerNavLinks = [
+    //     {
+    //         heading: "Living Room", navItems: [
+    //             { name: 'Living Room Sets', link: '/product-category/living-room/living-room-sets' },
+    //             { name: 'Sofa & Lovaseat Sets', link: '/product-category/living-room/sofa-loveseat-sets' },
+    //             { name: 'Sectionals', link: '/product-category/living-room/sectionals' },
+    //             { name: 'Reclining Furniture', link: '/product-category/living-room/reclining-sets' },
+    //             { name: 'Sofas', link: '/product-category/living-room/sofas' },
+    //             { name: 'Sleeper Sofas', link: '/product-category/living-room/sleeper-sofas' },
+    //             { name: 'LoveSeats', link: '/product-category/living-room/loveseats' },
+    //             { name: 'Small Space Living Room', link: '/product-category/living-room/small-space-living-rooms' },
+    //             { name: 'Outlets', link: '/product-category/living-room/living-room-outlet' },
+    //         ]
+    //     },
+    //     {
+    //         heading: "Bedroom", navItems: [
+    //             { name: 'Bedroom Sets', link: '/product-category/bedroom/bedroom-sets' },
+    //             { name: 'Beds & Headboards', link: '/product-category/bedroom/beds-headboards' },
+    //             { name: 'Dresser & Mirror Set', link: '/product-category/bedroom/dresser-mirror-sets' },
+    //             { name: 'Dressers', link: '/product-category/bedroom/dressers' },
+    //             { name: 'Chests', link: '/product-category/bedroom/chests' },
+    //             { name: 'NightStands', link: '/product-category/bedroom/nightstands' },
+    //             { name: 'Mirrors', link: '/product-category/bedroom/mirrors' },
+    //             { name: 'Twin Beds', link: '/product-category/bedroom/twin-beds' },
+    //             { name: 'Quen Beds', link: '/product-category/bedroom/queen-beds-fm' },
+    //             { name: 'Full Beds', link: '/product-category/bedroom/full-beds' },
+    //             { name: 'King Beds', link: '/product-category/bedroom/king-beds' },
+    //             { name: 'Small Spaces Bedrooms', link: '/product-category/bedroom/small-space-bedrooms' },
+    //             { name: 'Outlets', link: '/product-category/bedroom/bedroom-outlet' },
+    //         ]
+    //     },
+    //     {
+    //         heading: "Dining Rooms", navItems: [
+    //             { name: 'Dining Room Sets', link: '/product-category/dining-room/dining-room-sets' },
+    //             { name: 'Pub Heights Dining Sets', link: '/product-category/dining-room/pub-heights-dining-sets' },
+    //             { name: 'Dining Chairs & Benches', link: '/product-category/dining-room/dining-chairs-benches' },
+    //             { name: 'Dining Tables', link: '/product-category/dining-room/dining-tables' },
+    //             { name: 'Bar Stools', link: '/product-category/dining-room/bar-pub-stools' },
+    //             { name: 'Servers, Buffets & China Cabinets', link: '/product-category/dining-room/servers-buffets-china-cabinets' },
+    //         ]
+    //     },
+    //     {
+    //         heading: "Mattresses", navItems: [
+    //             { name: 'Twin Size', link: '/product-category/mattresses/twin-size' },
+    //             { name: 'Quen Size', link: '/product-category/mattresses/queen-size' },
+    //             { name: 'Full Size', link: '/product-category/mattresses/full-size' },
+    //             { name: 'King Size', link: '/product-category/mattresses/king-size' },
+    //             { name: 'Bed Frames', link: '/product-category/mattresses/bed-frames' },
+    //             { name: 'Pillows', link: '/product-category/mattresses/pillows' },
+    //             { name: 'Memory Foam Mattresses', link: '/product-category/mattresses/memory-foam-mattresses' },
+    //             { name: 'box Spring', link: '/product-category/mattresses/box-springs' },
+    //             { name: 'Mattresses Protection', link: '/product-category/mattresses/mattress-protection' },
+    //             { name: 'Outlet', link: '/product-category/mattresses/sale-mattresses' },
+    //         ]
+    //     },
+    //     {
+    //         heading: "Kids", navItems: [
+    //             { name: 'Kids Bedroom Sets', link: '/product-category/kids/kids-bedroom-sets' },
+    //             { name: 'Kids Room', link: '/product-category/kids/kids-room' },
+    //             { name: 'Kids Beds & Headboards', link: '/product-category/kids/kids-beds-headboards' },
+    //             { name: 'Kids Bedroom Storage', link: '/product-category/kids/kids-bedroom-storage' },
+    //             { name: 'Outlet', link: '/product-category/kids/sale-kids-room' },
+    //         ]
+    //     },
+    //     {
+    //         heading: "Accent", navItems: [
+    //             { name: 'Accent Tables', link: '/product-category/accent-furniture/accent-tables' },
+    //             { name: 'Accent Chest & Storage', link: '/product-category/accent-furniture/accent-chests-storage' },
+    //             { name: 'Coffee & End Tables', link: '/product-category/accent-furniture/coffee-end-tables' },
+    //             { name: 'Lampes & Lighting', link: '/product-category/accent-furniture/lamps-lighting' },
+    //             { name: 'Entertainment Centers & TV Stands', link: '/product-category/accent-furniture/entertainment-centers-tv-stands' },
+    //             { name: 'Home Office', link: '/product-category/accent-furniture/home-office' },
+    //             { name: 'Benches', link: '/product-category/accent-furniture/benches' },
+    //             { name: 'Outlets', link: '/product-category/accent-furniture/sale-accent-furniture' },
+    //         ]
+    //     },
+    //     {
+    //         heading: "Home Decor", navItems: [
+    //             { name: 'Lampes & Lighting', link: '/product-category/accent-furniture/lamps-lighting' },
+    //             { name: 'Home Office', link: '/product-category/home-decor/home-office' },
+    //             { name: 'Mirrored Furniture', link: '/product-category/home-decor/mirrored-furniture' },
+    //             { name: 'Vanities & Mirror', link: '/product-category/bedroom/vanities-mirror' },
+    //             { name: 'Wall Art', link: '/product-category/home-decor/wall-art' },
+    //             { name: 'Audio & Speaker', link: '/product-category/home-decor/audio-speakers' },
+    //             { name: 'Throw Pillows', link: '/product-category/home-decor/throw-pillows' },
+    //             { name: 'Jhula Swings', link: '/product-category/home-decor/jhula-swings' },
+    //             { name: 'Outlets', link: '/product-category/home-decor/sale-home-decor' },
+    //         ]
+    //     },
+    //     {
+    //         heading: "Rugs", navItems: [
+    //             { name: 'Machine Washable', link: '/product-category/rugs-main/machine-washable' },
+    //             { name: 'Indoor/Outdoor Rugs', link: '/product-category/rugs-main/indoor-outdoor-rugs' },
+    //             { name: 'Runners', link: '/product-category/rugs-main/runners' },
+    //             { name: 'Small Area Rugs', link: '/product-category/rugs-main/small-area-rugs' },
+    //             { name: 'Large Area Rugs', link: '/product-category/rugs-main/large-area-rugs' },
+    //             { name: 'All Area Rugs', link: '/product-category/rugs-main/all-area-rugs' },
+    //             { name: 'Outlets', link: '/product-category/rugs-main/sale-rugs' },
+    //         ]
+    //     },
+    //     {
+    //         heading: "Outlet", navItems: [
+    //             { name: 'Bed Room Sets', link: '#' },
+    //             { name: 'Bed & HeadBoards', link: '#' },
+    //             { name: 'Dressers', link: '#' },
+    //             { name: 'Chest', link: '#' },
+    //             { name: 'Dresser & Mirror Sets', link: '#' },
+    //             { name: 'Night Stands', link: '#' },
+    //             { name: 'Mirrors', link: '#' },
+    //             { name: 'Twin Beds', link: '#' },
+    //             { name: 'Queen Beds', link: '#' },
+    //             { name: 'King Beds', link: '#' },
+    //             { name: 'Full Bed', link: '#' },
+    //             { name: 'Small Space Bed Room', link: '#' },
+    //             { name: 'Outlets', link: '#' },
+    //         ]
+    //     },
+    // ]
 
     const socialIcons = [
         { name: 'facebook', icon: facebook, link: 'https://www.facebook.com/myfurnituremecca' },
@@ -291,7 +293,7 @@ const Footer = ({ notLandingPage, checkoutPage }) => {
     ]
 
     const locationPhoneMail = [
-        { name: 'Philadelphia', icon: location, link: '#' },
+        { name: stores?.[0]?.city || 'Philadelphia', icon: location, link: '#' },
         { name: '215 352 1600', icon: call, link: '#' },
         { name: 'meccacustomercare@gmail.com', icon: mail, link: '#' }
     ]
@@ -320,7 +322,7 @@ const Footer = ({ notLandingPage, checkoutPage }) => {
         },
     ]
 
-    const { stores } = useGlobalContext()
+
     const findDefaultStore = () => {
         const defaultStore = stores.find(store => store.postal_code === '19134')
         return defaultStore;
@@ -328,17 +330,23 @@ const Footer = ({ notLandingPage, checkoutPage }) => {
 
     const defaultStore = findDefaultStore()
 
+    const today = new Date().toLocaleDateString('en-US', { weekday: 'long' });
+
+    // Find matching day object
+    const todayTiming = stores?.[0]?.timings.find(item => item.day === today);
+
     const currentDay = getCurrentDay(getCurrentTimeForNewYork(), 'en-us')
     const defaultStoreTimings = defaultStore?.timings?.find(day => day.day === currentDay);
+    console.log("Default timings from footer ", defaultStoreTimings)
 
     const nearStoreDetails = [
         {
             icon: location,
-            details: defaultStore?.name
+            details: stores?.[0]?.name ?? defaultStore?.name
         },
         {
             icon: call,
-            details: defaultStore?.phone
+            details: stores?.[0]?.phone ?? defaultStore?.phone
 
         },
         // {
@@ -347,7 +355,7 @@ const Footer = ({ notLandingPage, checkoutPage }) => {
         // },
         {
             icon: calander,
-            details: 'Monday - Sunday'
+            details: todayTiming?.time ?? defaultStoreTimings?.time
         },
     ]
 
@@ -381,7 +389,7 @@ const Footer = ({ notLandingPage, checkoutPage }) => {
 
     return (
         <>
-            <div  className={`footer-main-container ${checkoutPage ? 'hide-whole-footer' : ''}`}>
+            <div className={`footer-main-container ${checkoutPage ? 'hide-whole-footer' : ''}`}>
                 <div className='footer-nav'>
                     {headerData && headerData?.map((items, index) => {
                         return <div key={index} className='footer-nav-links'>
@@ -392,9 +400,9 @@ const Footer = ({ notLandingPage, checkoutPage }) => {
                         </div>
                     })}
                 </div>
-                <div 
-                // style={notLandingPage ?{height:"500px"}:null} 
-                className='footer-second-contant-section'>
+                <div
+                    // style={notLandingPage ?{height:"500px"}:null} 
+                    className='footer-second-contant-section'>
                     <div className='footer-left-section'>
                         <div className='left-section-contact'>
                             <div className='left-section-social-icons-div'>
@@ -417,7 +425,7 @@ const Footer = ({ notLandingPage, checkoutPage }) => {
                                     <p className='owner-tag-review'>{googleRating?.number_of_reviews} Google Reviews</p>
                                 </div>
                             </div>}
-                            
+
                             <div className='footer-left-contact-section'>
                                 {locationPhoneMail.map((item, index) => (
                                     <span key={index}>
@@ -427,38 +435,38 @@ const Footer = ({ notLandingPage, checkoutPage }) => {
                                 ))}
                             </div>
 
-                            <div style={{marginTop:"30px"}} className={`footer-right-get-scoop ${notLandingPage ? '' : ''}`}>
-                            <h3>Get The Scoop</h3>
-                            {!isSubscribed ? <form style={{ width: "100%" }} onSubmit={handleSubmit}>
-                                <div className='footer-get-scoop-and-conditions'>
-                                    <div className='footer-get-scoop-input-search'>
-                                        <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "flex-start" }}>
-                                            <input type='text'
-                                                placeholder='Email Address'
-                                                value={email}
-                                                onChange={handleEmailChange} />
-                                            {error && <p style={{ color: 'red', fontSize: "13px", margin: "10px 0 0 0 ", padding: "0", lineHeight: "10px" }}>{error}</p>}
+                            <div style={{ marginTop: "30px" }} className={`footer-right-get-scoop ${notLandingPage ? '' : ''}`}>
+                                <h3>Get The Scoop</h3>
+                                {!isSubscribed ? <form style={{ width: "100%" }} onSubmit={handleSubmit}>
+                                    <div className='footer-get-scoop-and-conditions'>
+                                        <div className='footer-get-scoop-input-search'>
+                                            <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "flex-start" }}>
+                                                <input type='text'
+                                                    placeholder='Email Address'
+                                                    value={email}
+                                                    onChange={handleEmailChange} />
+                                                {error && <p style={{ color: 'red', fontSize: "13px", margin: "10px 0 0 0 ", padding: "0", lineHeight: "10px" }}>{error}</p>}
+                                            </div>
+                                            {isSubmitting ? <img className='scoop_loader' src={LoaderAnimation} alt="" /> : <button type='submit' disabled={isSubmitting}>
+                                                Sign me up
+                                            </button>}
                                         </div>
-                                        {isSubmitting ? <img className='scoop_loader' src={LoaderAnimation} alt="" /> : <button type='submit' disabled={isSubmitting}>
-                                            Sign me up
-                                        </button>}
+                                        <p>By signing up, you agree to our <Link to={'/privacy-policy'}> Privacy Policy </Link>  and  <Link to={'/terms-and-conditions'}>Terms of Use.</Link> </p>
                                     </div>
-                                    <p>By signing up, you agree to our <Link to={'/privacy-policy'}> Privacy Policy </Link>  and  <Link to={'/terms-and-conditions'}>Terms of Use.</Link> </p>
-                                </div>
-                            </form>
-                                :
-                                <div className="subscribtion_done_1">
-                                    <img src={checked_white} />
-                                    <p className=''>Your Subscription Has Been Done Successfully.</p>
-                                </div>}
-                        </div>
+                                </form>
+                                    :
+                                    <div className="subscribtion_done_1">
+                                        <img src={checked_white} />
+                                        <p className=''>Your Subscription Has Been Done Successfully.</p>
+                                    </div>}
+                            </div>
                         </div>
 
                         <div className='left-section-location-section'>
                             <h3 className='footer-location-section'>Nearest Store</h3>
                             <div className='near-store-containt-section'>
                                 <div className='near-store-image-div'>
-                                    <img src={`${url}${defaultStore?.images?.[0]?.image_url}`} alt='near store' />
+                                    <img src={`${url}${stores?.[0]?.images?.[0]?.image_url ?? defaultStore?.images?.[0]?.image_url}`} alt='near store' />
                                 </div>
                                 <div className='near-store-details-section'>
                                     {nearStoreDetails.map((item, index) => (
@@ -467,19 +475,19 @@ const Footer = ({ notLandingPage, checkoutPage }) => {
                                             <p>{item.details}</p>
                                         </span>
                                     ))}
-                                     <div className='appointment-and-outlet-div'>
-                                    <span>
-                                        <p onClick={handleNavigateStores}>Outlet</p>
-                                    </span>
-                                    <Link to={'#'}>
-                                        <p onClick={handleClick}>Directions</p>
-                                    </Link>
-                                    <Link to={'/book-an-appointment'}>
-                                        <p>Book an Appointment</p>
-                                    </Link>
+                                    <div className='appointment-and-outlet-div'>
+                                        <span>
+                                            <p onClick={handleNavigateStores}>Outlet</p>
+                                        </span>
+                                        <Link to={'#'}>
+                                            <p onClick={handleClick}>Directions</p>
+                                        </Link>
+                                        <Link to={'/book-an-appointment'}>
+                                            <p>Book an Appointment</p>
+                                        </Link>
+                                    </div>
                                 </div>
-                                </div>
-                               
+
                             </div>
                         </div>
 
@@ -516,8 +524,8 @@ const Footer = ({ notLandingPage, checkoutPage }) => {
                                 <div key={index} className='footer-costumer-care-and-about'>
                                     <h3>{item.heading}</h3>
                                     {item.navLinks.map((navItem, inn) => (
-                                        <Link  to={navItem.link}  key={inn} className='about-and-care-link'>
-                                          {navItem.name}
+                                        <Link to={navItem.link} key={inn} className='about-and-care-link'>
+                                            {navItem.name}
                                         </Link>
                                     ))}
                                 </div>
@@ -536,7 +544,7 @@ const Footer = ({ notLandingPage, checkoutPage }) => {
                 <MobileFooter checkoutPage={checkoutPage} />
             </div>
 
-            <SnakBar 
+            <SnakBar
                 message={snakeBarMessage}
                 openSnakeBarProp={showSnakeBar}
                 setOpenSnakeBar={setShowSnakeBar}

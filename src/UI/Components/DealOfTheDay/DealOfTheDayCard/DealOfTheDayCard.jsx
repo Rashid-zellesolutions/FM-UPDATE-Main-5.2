@@ -36,6 +36,7 @@ const DealOfTheDayCard = ({
     dicountPercent
   }) => {
 
+    
     const formatePrice = (price) => {
       return new Intl.NumberFormat('en-us', {
         style: 'currency',

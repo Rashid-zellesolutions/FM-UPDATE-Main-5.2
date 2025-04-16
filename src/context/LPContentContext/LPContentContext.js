@@ -1,4 +1,4 @@
-import { createContext, useContext, useState} from "react";
+import { createContext, useContext, useEffect, useState} from "react";
 import { url } from "../../utils/api";
 import axios from "axios";
 import BestSellerSliderMainBanner from '../../Assets/Furniture Mecca/Landing Page/best seller products/Home Page Banner 396x595.jpg';
@@ -177,6 +177,8 @@ export const LPContentProvider = ({ children }) => {
     const [categoryData, setCategoryData] = useState();
     const [bestSelling, setBestSelling] = useState();
     const [paragraph, setParagraph] = useState(null);
+
+    
 
   return (
     <LPContentContext.Provider value={{

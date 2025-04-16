@@ -46,7 +46,7 @@ export const GlobalContextProvider = ({ children }) => {
     fetchAllstores();
   }, [info])
 
-  const [zipCode, setZipCode] = useState("");
+  const [zipCode, setZipCode] = useState(`${info.locationData.zipCode} ${info.locationData.stateCode}`);
   const handleInputChange = (e) => {
     setZipCode(e.target.value);
   };
@@ -152,6 +152,8 @@ export const GlobalContextProvider = ({ children }) => {
 
         return distanceA - distanceB; // Sort in ascending order (shortest distance first)
       });
+
+      console.log("stores in context", sortedData)
 
       setStores(sortedData); // Set the sorted data to the state
     }

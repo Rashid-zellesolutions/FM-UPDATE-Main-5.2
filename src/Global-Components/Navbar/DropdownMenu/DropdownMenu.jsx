@@ -23,23 +23,48 @@ const DropdownMenu = (
         setActiveIndex(index);
     }
 
+    const chunkArray = (arr, size) => {
+        const result = [];
+        for (let i = 0; i < arr.length; i += size) {
+            result.push(arr.slice(i, i + size));
+        }
+        return result;
+    };
+
+    const chunkedNavData = chunkArray(dropDownNavData, 11);
+
     const handleNavigate = (item) => {
         navigate(`/product/${item.slug}`, { state: item });
     }
 
 
-    return ( 
+    return (
         <div className='mattresses-main-div'>
             <div style={{ display: 'flex', width: '25%' }}>
                 <div className='menu-links'>
                     {/* <h3 className='see-all-heading'>See All {navHeading}</h3> */}
-                    <Link to={`/${parentCategorySlug}`} className='living-room-heading'>See All {navHeading}</Link>
-                    <div className='mattresses-links-div'>
+                    <Link to={`/${parentCategorySlug}`} className='living-room-heading'>{`See All ${navHeading}`}</Link>
+                    {/* <div className='mattresses-links-div'>
                         {dropDownNavData.map((item, index) => {
                             return <p className={`mattres-links ${lastSegment === item.slug ? 'active' : ''}`} key={index} onClick={() => handleActiveIndex(index)}>
                                 <Link to={`/${parentCategorySlug}/${item.slug}`}>{item.name}</Link>
                             </p>
                         })}
+                    </div> */}
+                    <div className='mattresses-links-div'>
+                        {chunkedNavData.map((chunk, columnIndex) => (
+                            <div className='mattress-column' key={columnIndex}>
+                                {chunk.map((item, index) => (
+                                    <p
+                                        className={`mattres-links ${lastSegment === item.slug ? 'active' : ''}`}
+                                        key={index}
+                                        onClick={() => handleActiveIndex(index)}
+                                    >
+                                        <Link to={`/${parentCategorySlug}/${item.slug}`}>{item.name}</Link>
+                                    </p>
+                                ))}
+                            </div>
+                        ))}
                     </div>
                 </div>
             </div>

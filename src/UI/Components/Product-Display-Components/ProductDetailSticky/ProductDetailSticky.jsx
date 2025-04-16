@@ -68,6 +68,8 @@ const ProductDetailSticky = (
   const { setAppointmentPayload } = useAppointment()
   const [selectedTab, setSelectedTab] = useState(1);
 
+  const { info, fetchAllstores } = useGlobalContext();
+
   // Get Product Data from previous route or api
   const {
     setSingleProductData,
@@ -625,7 +627,7 @@ const ProductDetailSticky = (
                 </p>
                 <span className='location' onClick={handleOpenLocationModal}>
                   <FaLocationDot size={17} color='var(--tertiary-color)' />
-                  <p>19134</p>
+                  <p>{info.locationData.zipCode} {info.locationData.stateCode}</p>
                 </span>
               </div>
             </div>
@@ -707,7 +709,7 @@ const ProductDetailSticky = (
 
                   <span onClick={handleOpenLocationModal}>
                     <FaLocationDot size={17} color='var(--tertiary-color)' />
-                    <p>19134</p>
+                    <p>{info.locationData.zipCode} {info.locationData.stateCode}</p>
                   </span>
 
                 </div>

@@ -72,7 +72,7 @@ const Header = ({ checkoutPage }) => {
     cartProducts
   } = useCart()
   const cartItemCount = cartProducts?.products.length;
-  const { info } = useGlobalContext();
+  const { info, fetchAllstores } = useGlobalContext();
   const [isMobileSearched, setIsMobileSearched] = useState(false);
 
   const navLinks = [
@@ -196,11 +196,11 @@ const Header = ({ checkoutPage }) => {
   // }
 
   // Card title words limit
-  
+
   const maxLength = 15;
   // const nameLength = 20;
- 
-  const descriptionLength = 200
+
+  const descriptionLength = 150
   const truncateTitle = (title, maxLength) => {
     if (!title) return '';
     return title.length > maxLength ? title.slice(0, maxLength) + '...' : title
@@ -316,6 +316,8 @@ const Header = ({ checkoutPage }) => {
   const defaultStore = findDefaultStore()
   const defaultStoreTimings = defaultStore?.timings?.find(day => day.day === currentDay)
 
+  // console.log("def store", stores[5].city);
+
   const [timings, setTimings] = useState();
 
   useEffect(() => {
@@ -377,13 +379,17 @@ const Header = ({ checkoutPage }) => {
     await checkToken();
   }
 
-  // useEffect(() => {
-  //   if (isSearchInputFocused) {
-  //     document.body.style.overflow = 'hidden'
-  //   } else {
-  //     document.body.style.overflow = 'auto'
-  //   }
-  //  }, [isSearchInputFocused])
+
+
+  useEffect(() => {
+    fetchAllstores("code", info?.locationData?.zipCode);
+  }, [])
+
+  useEffect(() => {
+    fetchAllstores("code", info?.locationData?.zipCode);
+  }, [info?.locationData?.zipCode])
+
+
 
   useDisableBodyScroll(isSearchInputFocused, nearStorePopUp, changeLanguage, searchLocation, showCart)
 
@@ -476,7 +482,8 @@ const Header = ({ checkoutPage }) => {
                 </div>
               </div>
               <div className='searched-selected-product-description-div'>
-                <p className='searched-selected-product-description'>{truncateTitle(searchedProducts?.[currentInd]?.description, descriptionLength)}</p>
+                {/* <p className='searched-selected-product-description'>{truncateTitle(searchedProducts?.[currentInd]?.description, descriptionLength)}</p> */}
+                <div dangerouslySetInnerHTML={{ __html: truncateTitle(searchedProducts?.[currentInd]?.description, descriptionLength) }} ></div>
               </div>
             </div>
           </div>
@@ -517,7 +524,8 @@ const Header = ({ checkoutPage }) => {
                     <div className='near-by-city-time' onClick={handleNearStorePopUp}>
                       <p>Nearest Store</p>
                       <span>
-                        <Link> {defaultStore?.city} </Link><p> ({defaultStoreTimings?.time})</p>
+                        {/* <Link> {defaultStore?.city} </Link><p> ({defaultStoreTimings?.time})</p> */}
+                        <Link> {stores[0].city} </Link><p> ({defaultStoreTimings?.time})</p>
                       </span>
                     </div>
                     <span className='deliver-to' onClick={handleSearchModal}>
@@ -550,7 +558,7 @@ const Header = ({ checkoutPage }) => {
         </div>
 
         <div className='header-icons-container'>
-          <Link to="/user-dashboard" style={{ paddingTop: '4px' }} onClick={(event) => moveToLoginDash(event) }>
+          <Link to="/user-dashboard" style={{ paddingTop: '4px' }} onClick={(event) => moveToLoginDash(event)}>
             <img src={profileIcon} alt="profile" />
           </Link>
 
@@ -559,7 +567,7 @@ const Header = ({ checkoutPage }) => {
           </Link>
           <button className='header-cart-icon-count' onClick={handleCartSectionOpen}>
             {/* <img src={cartIcon} alt="cart" /> */}
-            <HiOutlineShoppingBag className='cartIcon'  strokeWidth={1} />
+            <HiOutlineShoppingBag className='cartIcon' strokeWidth={1} />
             {/* <PiShoppingCartThin size={22} /> */}
             <p className='header-cart-products-count'>{cartItemCount}</p>
           </button>
@@ -583,7 +591,7 @@ const Header = ({ checkoutPage }) => {
           <div className='tab-view-card-and-location'>
             <img src={locationIcon} alt="location" />
             {/* <img src={cartIcon} alt="cart" /> */}
-            <HiOutlineShoppingBag className='cartIcon'  strokeWidth={1} />
+            <HiOutlineShoppingBag className='cartIcon' strokeWidth={1} />
           </div>
         </div>
       </div>
@@ -593,7 +601,7 @@ const Header = ({ checkoutPage }) => {
 
         <div className='mobile-view-logo-and-other-containt-section'>
           <div className="left_section_1">
-          <GiHamburgerMenu strokeWidth={1.3} onClick={showMobileNav} className='nav-toggler'  />
+            <GiHamburgerMenu strokeWidth={1.3} onClick={showMobileNav} className='nav-toggler' />
           </div>
           {/* <img className='nav-toggler' src={navToggler} alt="togle button" onClick={showMobileNav} /> */}
           <Link className='center_section_logo' to='/'>
@@ -601,7 +609,7 @@ const Header = ({ checkoutPage }) => {
           </Link>
           <div className='mobile-view-cart-and-location'>
             {/* <img src={locationIcon} alt='location' onClick={handleNearStorePopUp} /> */}
-            <IoLocationOutline  strokeWidth={1.2} className='locationIcon'  onClick={handleNearStorePopUp} />
+            <IoLocationOutline strokeWidth={1.2} className='locationIcon' onClick={handleNearStorePopUp} />
             <NearStorePopUp isOpen={nearStorePopUp} handleCloseNearBy={handleCloseNearStoreModal} />
             <button className='header-cart-icon-count' onClick={handleCartSectionOpen}>
               {/* <img src={cartIcon} alt="cart" /> */}
@@ -624,7 +632,7 @@ const Header = ({ checkoutPage }) => {
           </div>
           <div onClick={() => { moveToLoginDash() }}>
             {/* <img className='mobile-user-icon' src={mobileUserIcon} alt='user-icon' /> */}
-             <  CiUser strokeWidth={0.8} className='mobile-user-icon' />
+            <  CiUser strokeWidth={0.8} className='mobile-user-icon' />
           </div>
         </div>
 

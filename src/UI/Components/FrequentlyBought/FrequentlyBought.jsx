@@ -153,36 +153,6 @@ const FrequentlyBought = ({ relatedProducts, isPadding }) => {
                             handleCardClick={() => handleProductClick(item)}
                             handleQuickView={() => handleQuickViewOpen(item)}
                             handleWishListclick={() => handleWishList(item)}
-                        // key={item.uid}
-                        // maxWidthAccordingToComp={'100%'} justWidth={'100%'}
-                        // tagIcon={heart}
-                        // tagClass={` ${item.productTag ? 'tag-img' : 'heart-icon'}`}
-                        // tagDivClass={`${item.productTag ? 'product-tag-div' : 'heart-icon-div'}`}
-                        // mainImage={hoveredIndex === index && item.image.image_url ? item.hoverImage : item.image.image_url}
-                        // productCardContainerClass={`product-card ${hideFilters ? 'card-width-increase' : ''}`}
-                        // mouseEnter={() => handleImageHover(index)}
-                        // mouseLeave={handleImageHoverLeave}
-                        // ProductTitle={truncateTitle(item.name, maxLength)}
-                        // stars={item.ratingStars}
-                        // reviewCount={'200'}
-                        // lowPriceAddvertisement={item.lowPriceAddvertisement}
-                        // priceTag={item.regular_price}
-                        // financingAdd={item.financingAdd}
-                        // learnMore={item.learnMore}
-                        // colorVariation={item.colorVariation}
-                        // mainIndex={index}
-                        // percent={'12%'}
-                        // deliveryTime={item.deliveryTime}
-                        // selectedColorIndices={selectedColorIndices}
-                        // handleVariantColor={() => handleVariantImageClick(index, colorIndex)}
-                        // borderLeft={index % 4 === 3}
-                        // stock={item.manage_stock}
-                        // singleProductData={item}
-                        // attributes={item.attributes}
-                        // ProductSku={item.sku}
-                        // sale_price={item.sale_price}
-                        // handleWishListclick={() => handleWishList(item)}
-                        // handleCardClick={() => handleCardClick(item)}
                         />
                     ))
                 ) : (
