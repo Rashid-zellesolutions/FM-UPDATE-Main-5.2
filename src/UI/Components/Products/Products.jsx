@@ -81,6 +81,7 @@ const Products = ({ navigationType }) => {
     const { subCategorySlug } = useParams();
     const location = useLocation();
     const params = new URLSearchParams(location.search);
+    
     const query = params.get('query');
     const [searchParams, setSearchParams] = useSearchParams();
     const [hideFilters, setHideFilters] = useState(false);
@@ -94,6 +95,11 @@ const Products = ({ navigationType }) => {
     const [noProducts, setNoProducts] = useState();
     const [filtereState, setFilterState] = useState(false);
     const [clearFilters, setClearFilters] = useState(true);
+
+    // Path Extractor
+    const pathSegments = location.pathname.split('/').filter(Boolean)
+    const currentRoute = pathSegments[pathSegments.length - 1];
+    console.log("path name on products", currentRoute)
 
     // Filters Section
     const [isOpen, setIsOpen] = useState(false);
@@ -575,6 +581,8 @@ const Products = ({ navigationType }) => {
         setIsInfoOpen(false);
     }
 
+    // console.log("pagination data", totalPages?.totalPages)
+
 
     // Disable Scroll on Modal Open
     useDisableBodyScroll(
@@ -586,13 +594,15 @@ const Products = ({ navigationType }) => {
     return (
         <div className='products-main-container'>
             <Breadcrumb category={products.categories} />
-            <div className='product-archive-sub-categories-container'>
+            <div className={`product-archive-sub-categories-container ${currentRoute === 'searched-products' ? 'hide-category-images-container' : ''}`}>
                 {subCategories.map((item, index) => (
                     <div key={index} className='product-archive-single-sub-category' onClick={() => handleCategorySelect(item)}>
                         {item.filterImage !== "" ? <img src={` ${url}${item.filterImage}`} alt='sub category' /> : <img src={` ${url}${item.image2}`} alt='sub category' />}
                     </div>
                 ))}
             </div>
+
+            <h3 className={`searched-products-heading ${currentRoute !== 'searched-products' ? 'hide-searched-heading' : ''}`}>Searched Products for: {query}</h3>
 
             {
                 // if no product found
@@ -805,7 +815,7 @@ const Products = ({ navigationType }) => {
                                                 ProductSku={item.sku}
                                                 tags={item.tags}
                                                 allow_back_order={item?.allow_back_order}
-                                                ProductTitle={truncateTitle(item.name, maxLength)}
+                                                ProductTitle={item.name}
                                                 reviewCount={item.average_rating}
                                                 lowPriceAddvertisement={item.lowPriceAddvertisement}
                                                 priceTag={item.regular_price}
@@ -832,7 +842,7 @@ const Products = ({ navigationType }) => {
                                 {/* Product Card Code End */}
 
                                 <div className='view-more-products-button-div'>
-
+                                {totalPages?.totalPages > 1 ? (
                                     <div className='view-more-products-pagination-main'>
                                         <div className='pagination-buttons-container'>
                                             <span
@@ -891,6 +901,11 @@ const Products = ({ navigationType }) => {
                                             </span>
                                         </div>
                                     </div>
+                                ) : (
+                                    <></>
+                                )}
+
+                                    
 
                                 </div>
 
@@ -964,14 +979,7 @@ const Products = ({ navigationType }) => {
                                 ProductSku={item.sku}
                                 tags={item.tags}
                                 allow_back_order={item?.allow_back_order}
-                                ProductTitle={truncateTitle(item.name, maxLength)}
-                                // stars={[
-                                //     { icon: star, title: 'filled' },
-                                //     { icon: star, title: 'filled' },
-                                //     { icon: star, title: 'filled' },
-                                //     { icon: star, title: 'filled' },
-                                //     { icon: star, title: 'filled' },
-                                // ]}
+                                ProductTitle={item.name}
                                 reviewCount={item.average_rating}
                                 lowPriceAddvertisement={item.lowPriceAddvertisement}
                                 priceTag={item.regular_price}

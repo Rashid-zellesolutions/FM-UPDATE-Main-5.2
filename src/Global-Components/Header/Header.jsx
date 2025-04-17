@@ -482,8 +482,7 @@ const Header = ({ checkoutPage }) => {
                 </div>
               </div>
               <div className='searched-selected-product-description-div'>
-                {/* <p className='searched-selected-product-description'>{truncateTitle(searchedProducts?.[currentInd]?.description, descriptionLength)}</p> */}
-                <div dangerouslySetInnerHTML={{ __html: truncateTitle(searchedProducts?.[currentInd]?.description, descriptionLength) }} ></div>
+                <div className="custom-description" dangerouslySetInnerHTML={{ __html: searchedProducts?.[currentInd]?.description, descriptionLength }} ></div>
               </div>
             </div>
           </div>
@@ -511,7 +510,7 @@ const Header = ({ checkoutPage }) => {
                     <div className='near-by-city-time' onClick={handleNearStorePopUp}>
                       <p>Nearest Store</p>
                       <span>
-                        <Link> {stores[0].city} </Link><p>({timings?.time})</p>
+                        <Link> {stores?.[0]?.name ?? defaultStore?.name} </Link><p>({timings?.time})</p>
                       </span>
                     </div>
                     <span className='deliver-to' onClick={handleSearchModal}>
@@ -525,7 +524,7 @@ const Header = ({ checkoutPage }) => {
                       <p>Nearest Store</p>
                       <span>
                         {/* <Link> {defaultStore?.city} </Link><p> ({defaultStoreTimings?.time})</p> */}
-                        <Link> {stores[0].city} </Link><p> ({defaultStoreTimings?.time})</p>
+                        <Link> {stores?.[0]?.name ?? defaultStore?.name} </Link><p> ({defaultStoreTimings?.time})</p>
                       </span>
                     </div>
                     <span className='deliver-to' onClick={handleSearchModal}>

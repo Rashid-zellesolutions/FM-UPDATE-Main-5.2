@@ -299,7 +299,9 @@ const ProductCardTwo = ({
 
                         <div className='product-card-inner-content-container'>
 
-                            <h3 className={`product-title ${colTwo ? 'apply-col-two-styling' : ''} ${titleHeight ? "heighted" : ""}`}> {ProductTitle} </h3>
+                            <div className='product-card-main-heading-container'>
+                                <h3 className={`product-title ${colTwo ? 'apply-col-two-styling' : ''} ${titleHeight ? "heighted" : ""}`}> {ProductTitle} </h3>
+                            </div>
 
                             {priorityAttribute && (
                                 <div className={`product-card-attr ${colTwo ? 'hide-squire-attribute' : ''}`} >

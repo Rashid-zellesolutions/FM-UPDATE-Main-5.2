@@ -239,6 +239,7 @@ const Login = ({ signupclicked, setSignupclicked }) => {
             <label className="signup-sec-label checkbox">
               <input
                 type="checkbox"
+                className='term-and-condition'
                 checked={acceptTerms}
                 onChange={(e) => setAcceptTerms(e.target.checked)}
                 required
@@ -248,6 +249,7 @@ const Login = ({ signupclicked, setSignupclicked }) => {
             <label className="signup-sec-label checkbox">
               <input
                 type="checkbox"
+                className='term-and-condition'
                 checked={acceptPrivacy}
                 onChange={(e) => setAcceptPrivacy(e.target.checked)}
                 required
@@ -298,8 +300,7 @@ const Login = ({ signupclicked, setSignupclicked }) => {
               />
             </label>
             <div className='login-sec-forgot-pass'>
-              <input type='checkbox' />
-              <p >Forgot Password</p>
+              <Link href={'/'}>Forgot Password</Link>
             </div>
             <button className="login-sec-login-btn" type="submit">Login</button>
           </form>

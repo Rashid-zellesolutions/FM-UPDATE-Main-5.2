@@ -184,7 +184,7 @@ const SimillerProducts = ({collection, isPadding}) => {
                     ProductSku={item.sku}
                     tags={item.tags}
                     allow_back_order={item?.allow_back_order}
-                    ProductTitle={truncateTitle(item.name, maxLength)}
+                    ProductTitle={item.name}
                     stars={[
                       { icon: star, title: 'filled' },
                       { icon: star, title: 'filled' },

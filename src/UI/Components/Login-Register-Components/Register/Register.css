@@ -54,3 +54,8 @@
     color: var(--text-color);
     cursor: pointer;
 }
+
+.register-signin-btn:hover {
+    background-color: rgba(89, 89, 89, 0.2);
+    color: var(--secondary-color);
+}

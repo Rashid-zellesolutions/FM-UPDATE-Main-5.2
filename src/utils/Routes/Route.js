@@ -64,7 +64,7 @@ const routes = (
             path="/searched-products"
             element={
                 <ProductArchive
-                    productArchiveHading={`Search Result`}
+                    productArchiveHading={`Search Result for:`}
                 />
             }
         />

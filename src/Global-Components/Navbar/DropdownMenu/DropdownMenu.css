@@ -1,10 +1,10 @@
 .mattresses-main-div{
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     width: 100%;
     height: auto;
     /* max-height: 100%; */
-    padding: 25px 50px 0px 50px;
+    padding: 25px 50px 25px 50px;
     gap: 15px;
     /* background-color: var(--bg-color); */
     /* background: rgba(249,249,2490. 0.9); */
@@ -40,7 +40,7 @@
     line-height: var(-sub-section-height);
     letter-spacing: 1px;
     position: relative;
-    padding-left: 20px; 
+    /* padding-left: 20px;  */
     padding-bottom: 0px;
     color: var(--text-color);
     display: flex;
@@ -71,6 +71,8 @@
     flex-direction: row;
     flex-wrap: nowrap;
     gap: 20px;
+    width: max-content;
+    flex-shrink: 0;
 }
 
 .mattress-column {
@@ -86,7 +88,8 @@
 } */
 
 .mattres-links{
-    padding: 5px 20px;
+    /* padding: 5px 20px; */
+    padding: 5px 0;
     font-size: 12px;
     font-weight: 400;
     line-height: 1.5;
@@ -115,10 +118,13 @@
 
 .mattresses-images-div{
     display: flex;
-    width: 80%;
+    /* width: 100%; */
     padding: 10px 0px;
     gap: 20px;
-    justify-content: center;
+    flex-grow: 1;
+    justify-content: flex-start;
+    align-items: center;
+    flex-shrink: 0;
     position: relative;
 }
 
@@ -126,17 +132,25 @@
     display: flex;
     flex-direction: column;
     position: relative;
+    /* width: 100%; */
+    flex-grow: 1;
     width: 315px !important;
     height: auto;
     gap: 5px;
     text-decoration: none;
+    
 }
+
+
+
+
 
 .mattress-image img{
     width: 100%;
-    height: 210px;
+    height: auto;
     cursor: pointer;
-    /* object-fit: cover; */
+    object-fit: cover;
+    max-height: 315px !important;
 }
 
 .mattress-image > .pricing{
@@ -149,6 +163,28 @@
     font-size: 10px;
     font-weight: 400;
     line-height: 12px;
+}
+
+@media only screen and (max-width: 1300px) {
+    .mattress-image{
+        max-width: 190px !important;
+    }
+
+    .image-title{
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 12px;
+    }
+
+    .mattress-image > .pricing >.price{
+        font-size: 8px;
+    }
+}
+
+@media only screen and (max-width: 1150px) {
+    .mattress-image:nth-last-child(1) {
+        display: none;
+      }
 }
 
 .image-title{

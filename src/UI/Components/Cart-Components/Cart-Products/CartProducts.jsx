@@ -58,10 +58,10 @@ const CartProducts = () => {
         country: ''
     });
 
-    const [deliveryOptionIndex, setDeliveryOptionIndex] = useState(null);
-    const handleDeliveryOptionndex = (index) => {
-        setDeliveryOptionIndex(index)
-    }
+    // const [deliveryOptionIndex, setDeliveryOptionIndex] = useState(null);
+    // const handleDeliveryOptionndex = (index) => {
+    //     setDeliveryOptionIndex(index)
+    // }
 
     calculateTotalPrice(cart)
 
@@ -193,6 +193,7 @@ const CartProducts = () => {
                                         <div className='cart-protection-radio-container'>
                                             <label
                                                 key={option.id}
+                                                className="custom-radio"
                                                 style={{
                                                     display: "flex",
                                                     alignItems: "flex-start",
@@ -214,6 +215,7 @@ const CartProducts = () => {
                                                         marginTop: "5px",
                                                     }}
                                                 />
+                                                <span className="radio-mark" />
                                             </label>
 
                                         </div>

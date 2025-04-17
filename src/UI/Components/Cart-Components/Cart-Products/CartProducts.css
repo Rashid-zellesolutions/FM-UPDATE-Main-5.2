@@ -149,6 +149,38 @@
     right: 20px;
 }
 
+.custom-radio input[type="radio"] {
+    display: none;
+  }
+  
+  .radio-mark {
+    height: 16px;
+    width: 16px;
+    border: 3px solid #28828A;
+    border-radius: 50%;
+    position: relative;
+    box-sizing: border-box;
+    margin-top: 5px;
+  }
+  
+  .radio-mark::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 7px;
+    width: 7px;
+    border-radius: 50%;
+    background-color: #28828A;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+  
+  .custom-radio input[type="radio"]:checked + .radio-mark::after {
+    opacity: 1;
+  }
+
 
 
 .protect-all-products-button{

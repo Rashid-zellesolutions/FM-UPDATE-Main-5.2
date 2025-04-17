@@ -119,12 +119,12 @@ const Categories = ({
 
   return (
     <>
-      {loading && <Loader />}
+      
       <LatestModulerBanner customWidth={false} showBanners={false} mainImgShow={true} mobileMainImage={location.state ? location.state?.bannerImage2 : categoryData?.bannerImage2}  mainImage={url + (location.state ? location.state?.bannerImage : categoryData?.bannerImage)} />
       
       <Category title={location.state ? location.state?.name : categoryData?.name} categorySlug={categorySlug} categoryData={categoryPageData} handleNavigate={handleNavigate} />
       {bestSelling &&  (<BestSeller categoryData={bestSelling} />) }
-      {allProducts.length > 0 ? (
+      {allProducts && (
         <DealOfTheDay
         allProducts={allProducts}
         setAllProducts={setAllProducts}
@@ -133,7 +133,7 @@ const Categories = ({
         setDealEndTime={setDealEndTime}
         api={`/api/v1/products/get-deal-of-month-products?limit=10&slug=${categorySlug}`}
       />
-      ) : <></>}
+      )}
       
       
 

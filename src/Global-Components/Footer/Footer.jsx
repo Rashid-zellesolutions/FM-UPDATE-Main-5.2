@@ -349,10 +349,6 @@ const Footer = ({ notLandingPage, checkoutPage }) => {
             details: stores?.[0]?.phone ?? defaultStore?.phone
 
         },
-        // {
-        //     icon: clock,
-        //     details: defaultStoreTimings?.time
-        // },
         {
             icon: calander,
             details: todayTiming?.time ?? defaultStoreTimings?.time
@@ -471,8 +467,12 @@ const Footer = ({ notLandingPage, checkoutPage }) => {
                                 <div className='near-store-details-section'>
                                     {nearStoreDetails.map((item, index) => (
                                         <span key={index}>
-                                            <img src={item.icon} alt='icon' />
-                                            <p>{item.details}</p>
+                                            <img src={item.icon} alt="icon" />
+                                            {item.icon === call ? (
+                                                <a className='footer-near-store-tel' href={`tel:${item.details}`}>{item.details}</a>
+                                            ) : (
+                                                <p>{item.details}</p>
+                                            )}
                                         </span>
                                     ))}
                                     <div className='appointment-and-outlet-div'>

@@ -29,9 +29,11 @@ import paypal from '../../../Assets/icons/paypal-1.png'
 import FinancingModal from '../../Modals/FinancingModal/FinancingModal';
 import AppointmentModal from '../../../Global-Components/AppointmentModal/AppointmentModal';
 import ProductCardTwo from '../../Components/ProductCardTwo/ProductCardTwo';
+import { useAppointment } from '../../../context/AppointmentContext/AppointmentContext';
 
 function SamplePrevArrow(props) {
-  const { className, style, onClick } = props;
+  const { className, style, onClick, isVisible } = props;
+  if (!isVisible) return null;
   return (
     <div onClick={onClick} className={`cart-latest-products-slider-arrow cart-latest-products-slider-arrow-left `} >
       <img src={leftArrow} alt='arrow' />
@@ -40,7 +42,8 @@ function SamplePrevArrow(props) {
 }
 
 function SampleNextArrow(props) {
-  const { className, style, onClick } = props;
+  const { className, style, onClick, isVisible } = props;
+  if (!isVisible) return null;
   return (
     <div onClick={onClick} className={`cart-latest-products-slider-arrow cart-latest-products-slider-arrow-right `} >
       <img src={rightArrow} alt='arrow' />
@@ -156,17 +159,28 @@ const Cart = () => {
   }
 
   // Slick
+  let totalSlides = newProducts.length;
+  const [currentSlide, setCurrentSlide] = useState(0);
   let settings = {
     dots: false,
     infinite: false,
     arrows: false,
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow: 5,
     slidesToScroll: 1,
     initialSlide: 0,
     arrows: true,
-    nextArrow: <SampleNextArrow to="next" />,
-    prevArrow: <SamplePrevArrow to="prev" />,
+    beforeChange: (oldIndex, newIndex) => setCurrentSlide(newIndex),
+    nextArrow: (
+      <SampleNextArrow
+        isVisible={currentSlide + 5 < totalSlides} // adjust 5 based on slidesToShow
+      />
+    ),
+    prevArrow: (
+      <SamplePrevArrow
+        isVisible={currentSlide > 0}
+      />
+    ),
     responsive: [
       {
         breakpoint: 1024,
@@ -220,21 +234,21 @@ const Cart = () => {
   }
 
 
-  const orderPriceDetails = [
-    { title: 'Subtotal', price: formatedPrice(subTotal) },
-    // { title: 'Protection plan', price: formatedPrice(protectionPrice) },
-    // { title: 'Professional Assembly', price: formatedPrice(assemblyPrice) },
-    { title: `Tax (${totalTax?.tax_name})`, price: totalTax ? formatedPrice(calculateTotalTax(subTotal, parseFloat(totalTax?.tax_value))) : 0 }
-  ]
+  // const orderPriceDetails = [
+  //   { title: 'Subtotal', price: formatedPrice(subTotal) },
+  //   // { title: 'Protection plan', price: formatedPrice(protectionPrice) },
+  //   // { title: 'Professional Assembly', price: formatedPrice(assemblyPrice) },
+  //   { title: `Tax (${totalTax?.tax_name})`, price: totalTax ? formatedPrice(calculateTotalTax(subTotal, parseFloat(totalTax?.tax_value))) : 0 }
+  // ]
 
 
 
   // Define conditional visibility logic
-  const filteredOrderPriceDetails = orderPriceDetails.filter((_, index) => {
-    if (index === 1) return isCheck[0]; // Show 'Professional Assembly' if isCheck[0] is true
-    if (index === 2) return isCheck[1]; // Show 'Elite Title' if isCheck[1] is true
-    return true; // Always include other items
-  });
+  // const filteredOrderPriceDetails = orderPriceDetails.filter((_, index) => {
+  //   if (index === 1) return isCheck[0]; // Show 'Professional Assembly' if isCheck[0] is true
+  //   if (index === 2) return isCheck[1]; // Show 'Elite Title' if isCheck[1] is true
+  //   return true; // Always include other items
+  // });
 
   // Apply Financing Modal
   const [applyFinancing, setApplyFinancing] = useState(false);
@@ -254,14 +268,44 @@ const Cart = () => {
   }, [applyFinancing])
 
   // Appointment Modal
+  const { setAppointmentPayload } = useAppointment()
+  const [selectedTab, setSelectedTab] = useState(1);
   const [appointmentModal, setAppointmentModal] = useState(false)
   const handleAppointments = () => {
     setAppointmentModal(true);
   }
 
-  const handleCloseModal = () => {
-    setAppointmentModal(false);
+  const handleCloseAppointmentModal = () => {
+    setAppointmentModal(false)
+    setSelectedTab(1)
+    setAppointmentPayload({
+      serviceType: '',
+      selectedCategories: [],
+      selectedStore: {},
+      otherDetails: 'Customer has sensitive skin',
+      selectedDate: '',
+      selectedSlot: '',
+      details: {
+        firstName: '',
+        lastName: '',
+        email: '',
+        contact: '',
+        associate: ''
+      }
+    })
   }
+
+  const [errorMessage, setErrorMessage] = useState('Something went wrong! Please try again later.');
+    const [snakebarOpen, setSnakebarOpen] = useState(false);
+  
+    const handleOpenSnakeBar = () => {
+      console.log("snakebar open function called")
+      // setAppointmentModal(false);
+      setSnakebarOpen(true);
+    }
+    const handleCloseSnakeBar = () => {
+      setSnakebarOpen(false);
+    }
 
   const handleProductClick = (item) => {
     navigate(`/product/${item.slug}`, { state: item });
@@ -322,7 +366,7 @@ const Cart = () => {
                 <p className='cart-order-summary-price-detail-single-item-price'>{formatedPrice(subTotal0)}</p>
               </div>
 
-              
+
 
 
               <div className='cart-order-summary-price-detail-save-discount'>
@@ -423,7 +467,7 @@ const Cart = () => {
                   ))}
               </div> */}
 
-              
+
 
             </div>
 
@@ -439,14 +483,14 @@ const Cart = () => {
             </div>
 
             <div className='order-summary-coupon-div'>
-                <p onClick={handleCouponInput}>Add Coupon Code <IoIosArrowDown className={`cart-order-summary-coupon-arrow ${isCouponOpen ? 'cart-order-summary-coupon-arrow-rotate' : ''}`} size={20} /></p>
-                <div className={`cart-order-summary-coupon-input-div ${isCouponOpen ? 'show-coupon-update-input' : ''}`}>
-                  <div className='cart-order-summary-coupon-input-and-button'>
-                    <input type='text' placeholder='Coupon Code' className='cart-summary-update-coupon-input' />
-                    <button className='cart-summary-update-coupon-btn'>Update</button>
-                  </div>
+              <p onClick={handleCouponInput}>Add Coupon Code <IoIosArrowDown className={`cart-order-summary-coupon-arrow ${isCouponOpen ? 'cart-order-summary-coupon-arrow-rotate' : ''}`} size={20} /></p>
+              <div className={`cart-order-summary-coupon-input-div ${isCouponOpen ? 'show-coupon-update-input' : ''}`}>
+                <div className='cart-order-summary-coupon-input-and-button'>
+                  <input type='text' placeholder='Coupon Code' className='cart-summary-update-coupon-input' />
+                  <button className='cart-summary-update-coupon-btn'>Update</button>
                 </div>
               </div>
+            </div>
 
             <button
               onClick={navigateToCheckout}
@@ -502,7 +546,7 @@ const Cart = () => {
                     ProductSku={item.sku}
                     tags={item.tags}
                     allow_back_order={item?.allow_back_order}
-                    ProductTitle={truncateTitle(item.name, maxLength)}
+                    ProductTitle={item.name}
                     stars={[
                       { icon: star, title: 'filled' },
                       { icon: star, title: 'filled' },
@@ -596,7 +640,13 @@ const Cart = () => {
       <AppointmentModal
         showAppointMentModal={appointmentModal}
         setAppointmentModal={setAppointmentModal}
-        handleCloseModal={handleCloseModal}
+        handleCloseModal={handleCloseAppointmentModal}
+        setErrorMessage={setErrorMessage}
+        snakebarOpen={snakebarOpen}
+        setSnakebarOpen={setSnakebarOpen}
+        handleOpenSnakeBar={handleOpenSnakeBar}
+        selectedTab={selectedTab}
+        setSelectedTab={setSelectedTab}
       />
     </div>
   )

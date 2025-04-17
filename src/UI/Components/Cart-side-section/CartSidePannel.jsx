@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import { useCart } from '../../../context/cartContext/cartContext';
 import { formatedPrice } from '../../../utils/api';
 import { useGlobalContext } from '../../../context/GlobalContext/globalContext';
+import EmptyCart from '../Cart-Components/Empty-Cart/EmptyCart';
 
 const CartSidePannel = (
   {
@@ -80,6 +81,7 @@ const CartSidePannel = (
         </div>
 
         <div className='cart-section-products'>
+           {cartProducts.products.length <= 0 && <EmptyCart />}
           {cartData && cartData?.products?.map((items, index) => {
             return <CartSideSection
               key={items.product_uid}
@@ -106,6 +108,7 @@ const CartSidePannel = (
 
         <div className='cart-side-section-buttons'>
 
+        
           {cartProducts.products.length > 0 ? (
             <div className='proffesional-assembly-check-sec'>
               <label className='order-summary-proffesional-check-item-label-one'>

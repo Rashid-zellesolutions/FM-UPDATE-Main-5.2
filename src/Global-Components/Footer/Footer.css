@@ -545,23 +545,31 @@ p.footer-nav-items > a{
     width: 100%;
 }
 
-.near-store-details-section span{
+.near-store-details-section > span{
     display: flex;
     width: 100%;
     gap: 10px;
 }
 
-.near-store-details-section span img{
+.near-store-details-section > span > img{
     width: auto;
     height: 17px;
     object-fit: contain;
 }
 
-.near-store-details-section span p{
+.near-store-details-section > span > p{
     font-size: var(--content-one-size);
     line-height: var(--content-one-height);
     font-weight: var(--content-two-weight);
     color: var(--text-white);
+}
+
+.footer-near-store-tel{
+    font-size: var(--content-one-size) !important;
+    line-height: var(--content-one-height) !important;
+    font-weight: var(--content-two-weight) !important;
+    color: var(--text-white) !important;
+    text-decoration: none !important;
 }
 
 .appointment-and-outlet-div{

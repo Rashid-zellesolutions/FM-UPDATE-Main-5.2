@@ -105,7 +105,7 @@ export default function ActiveCategoryPage() {
                                     productCardContainerClass="product-card"
                                     ProductSku={item.sku}
                                     tags={item.tags}
-                                    ProductTitle={truncateTitle(item.name, maxLength)}
+                                    ProductTitle={item.name}
                                     reviewCount={item.reviewCount}
                                     lowPriceAddvertisement={item.lowPriceAddvertisement}
                                     priceTag={item.regular_price}

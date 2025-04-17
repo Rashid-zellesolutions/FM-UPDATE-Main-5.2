@@ -112,10 +112,37 @@
     flex-direction: row;
 }
 
-.signup-sec-label.checkbox input{
-    width: auto !important;
+.term-and-condition {
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border: 1px solid var(--secondary-color);
+    border-radius: 4px;
+    position: relative;
+    padding: 0px !important;
+    cursor: pointer;
+    outline: none;
+    box-sizing: border-box;
+    background-color: white;
 }
- 
+
+.term-and-condition:checked {
+    background-color: #28828A;
+    border-color: #28828A;
+}
+
+.term-and-condition:checked::after {
+    content: '';
+    position: absolute;
+    top: 1px;
+    left: 5px;
+    width: 3px;
+    height: 7px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    display: block;
+}
 
 .terms-conditions-agre-container > a {
     color: var(--text-color) !important;
@@ -125,21 +152,7 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-}
-
-/* .signup-sec-label input{
-    width: 100%;
-    border: 1px solid var(--border-color);
-    background-color: #fff;
-    padding: 12px 20px;
-    border-radius: 4px;
-    font-size: 14px;
-    line-height: 21px;
-    font-weight: 400;
-    outline: none;
-    color: var(--text-color);
-}  */
-  
+} 
 
 .signup-sec-content p{
     font-size: 14px;
@@ -172,6 +185,10 @@
     cursor: pointer;
 }
 
+.signup-sec-register-btn:hover {
+    background-color: rgba(89, 89, 89, 0.2);
+    color: var(--secondary-color);
+}
 
 /* Login container styling */
 .login-main-container{
@@ -229,11 +246,12 @@
     gap: 5px;
 }
 
-.login-sec-forgot-pass p{
+.login-sec-forgot-pass > a{
     font-size: 12px;
     line-height: 18px;
     font-weight: 400;
     color: var(--text-color);
+    text-decoration: none;
 }
 
 .login-sec-forgot-pass input {

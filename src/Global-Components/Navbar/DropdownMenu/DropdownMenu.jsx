@@ -40,17 +40,11 @@ const DropdownMenu = (
 
     return (
         <div className='mattresses-main-div'>
-            <div style={{ display: 'flex', width: '25%' }}>
+            <div style={{ display: 'flex' }}>
                 <div className='menu-links'>
                     {/* <h3 className='see-all-heading'>See All {navHeading}</h3> */}
                     <Link to={`/${parentCategorySlug}`} className='living-room-heading'>{`See All ${navHeading}`}</Link>
-                    {/* <div className='mattresses-links-div'>
-                        {dropDownNavData.map((item, index) => {
-                            return <p className={`mattres-links ${lastSegment === item.slug ? 'active' : ''}`} key={index} onClick={() => handleActiveIndex(index)}>
-                                <Link to={`/${parentCategorySlug}/${item.slug}`}>{item.name}</Link>
-                            </p>
-                        })}
-                    </div> */}
+                    
                     <div className='mattresses-links-div'>
                         {chunkedNavData.map((chunk, columnIndex) => (
                             <div className='mattress-column' key={columnIndex}>
@@ -69,7 +63,7 @@ const DropdownMenu = (
                 </div>
             </div>
             {
-                products && <div className='mattresses-images-div'>
+                products && <div className='mattresses-images-div' >
                     {products?.map((item, index) => {
                         return <Link
                             key={index}

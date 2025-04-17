@@ -246,7 +246,7 @@ const BestSellerSlider = (
             {allProducts && allProducts.length > 0 ? (
                 <div className="best-seller-slider-container">
 
-                    <div className='best-seller-imaage-and-cards'>
+                    <div className='best-seller-imaage-and-cards'> 
                         <div className='best-seller-slider-main-banner'>
                             <img src={url + bestSellerNav1[activeItem].image.image_url} alt='main banner' />
                         </div>

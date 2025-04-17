@@ -236,9 +236,9 @@ const DealOfTheDay = ({ dealEndTime, setDealEndTime, allProducts, setAllProducts
     ]
   };
 
-  // if(!allProducts.length > 0) {
-  //   return
-  // }
+  if(!allProducts.length > 0) {
+    return
+  }
 
   return (
     <div className='deal-of-the-day-main-container'>
