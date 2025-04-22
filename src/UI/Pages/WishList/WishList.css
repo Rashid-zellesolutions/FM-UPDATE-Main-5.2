@@ -23,7 +23,7 @@
 
 .heading-line {
     width: 80%;
-    border-bottom: 1px solid var(--text-color);
+    border-bottom: 1px solid var(--text-primary);
     height: 1px;
 }
 
@@ -73,7 +73,7 @@
 }
 
 .mobile-view-wishlist-card-grid-single-col.grid-active{
-    background-color: var(--text-color);
+    background-color: var(--text-primary);
 }
 
 .mobile-view-wishlist-card-grid-dual-col{
@@ -92,7 +92,7 @@
 }
 
 .mobile-view-wishlist-card-grid-dual-col-inner.active-dual-col{
-    background-color: var(--text-color);
+    background-color: var(--text-primary);
 }
 
 @media only screen and (max-width: 480px){

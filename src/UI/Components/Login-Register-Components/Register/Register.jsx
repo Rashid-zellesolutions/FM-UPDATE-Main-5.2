@@ -3,10 +3,7 @@ import './Register.css'
 import registerIcon from '../../../../Assets/Furniture Mecca/login-register/5564823 1.png'
 
 const Register = ({signinClicked, handleBtnClicked}) => {
-    // const [signinClicked, setSigninClicked] = useState(false);
-    // const handleSigninSlide = () => {
-    //     setSigninClicked(!signinClicked);
-    // }
+    
   return (
     <div className={`register-main-container ${signinClicked ? 'register-section-slide-to-left' : ''}`}>
         <img src={registerIcon} alt='registration icon' />

@@ -51,7 +51,7 @@
     font-size: 18px;
     line-height: 24px;
     font-weight: 500;
-    color: var(--text-color);
+    color: var(--text-primary);
     cursor: pointer;
 }
 

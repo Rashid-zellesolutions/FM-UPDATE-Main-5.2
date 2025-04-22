@@ -32,7 +32,7 @@
     font-size: 15px;
     line-height: 18px;
     font-weight: 500;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .login-sec-signup-btn-div button{
@@ -44,7 +44,7 @@
     font-size: 15px;
     line-height: 18px;
     font-weight: 500;
-    color: var(--text-color);
+    color: var(--text-primary);
     cursor: pointer;
 }
 
@@ -68,7 +68,7 @@
     font-size: 15px;
     line-height: 22px;
     font-weight: 600;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .mobile-login-input-label{
@@ -90,7 +90,7 @@
 }
 
 .mobile-login-input-label a {
-    color: var(--text-color);
+    color: var(--text-primary);
 
 }
 
@@ -103,7 +103,7 @@
     font-size: 12px;
     line-height: 18px;
     font-weight: 400;
-    color: var(--text-color);
+    color: var(--text-primary);
     outline: none;
 }
 

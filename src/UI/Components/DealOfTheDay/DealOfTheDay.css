@@ -118,7 +118,7 @@ position: absolute;
 .slick-arrow.slick-prev svg{
     /* width: auto;
     height: 55px; */
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .slick-arrow.slick-prev{left: -15px;}
@@ -141,7 +141,7 @@ position: absolute;
     font-size: 12px;
     line-height: 18px;
     font-weight: 600;
-    color: var(--text-color);
+    color: var(--text-primary);
     height: max-content;
     display: none;
 }

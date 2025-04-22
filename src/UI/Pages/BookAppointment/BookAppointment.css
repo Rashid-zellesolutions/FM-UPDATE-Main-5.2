@@ -20,14 +20,14 @@
     font-size: 25px;
     line-height: 28px;
     font-family: 600;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .book-appointment-slogan{
     font-size: 20px;
     line-height: 30px;
     font-weight: 400;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 /* book appointment body */

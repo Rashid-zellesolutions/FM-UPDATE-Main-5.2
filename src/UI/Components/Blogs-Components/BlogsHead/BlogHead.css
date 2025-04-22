@@ -21,7 +21,7 @@
     font-size: var(--sub-section-size);
     line-height: var(--sub-section-height);
     font-weight: var(--sub-section-weight);
-    color: var(--text-color);
+    color: var(--text-primary);
     flex-shrink: 0;
     position: relative;
     padding: 5px 20px;
@@ -61,7 +61,7 @@
     font-size: 11px;
     line-height: 15px;
     font-weight: 400;
-    color: var(--text-color);
+    color: var(--text-primary);
     cursor: pointer;
 }
 

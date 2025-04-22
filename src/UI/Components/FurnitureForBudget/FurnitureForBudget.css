@@ -19,14 +19,14 @@
     font-size: 25px;
     font-weight: 600;
     line-height: var(--heading-line-height);
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .furniture-for-budget-heading-section p{
     font-size: 14px;
     font-weight: 400;
     line-height: 24px;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .furniture-for-budget-card{
@@ -85,7 +85,7 @@
     font-size: 20px;
     line-height: 37px;
     font-weight: 500;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .budget-furniture-card-details button{

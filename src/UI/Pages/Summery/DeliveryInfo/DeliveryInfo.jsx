@@ -1,7 +1,6 @@
 import React, { useState, useRef, useImperativeHandle, forwardRef, useEffect } from 'react'
 import './DeliveryInfo.css';
 import { Link, useNavigate } from 'react-router-dom';
-import { url } from '../../../../utils/api';
 import { useMyOrders } from '../../../../context/orderContext/ordersContext';
 
 const DeliveryInfo = forwardRef((props, ref) => {
@@ -25,7 +24,6 @@ const DeliveryInfo = forwardRef((props, ref) => {
     const {
         orderPayload,
         handleNestedValueChange,
-        handleZipCode,
         handleZipCodeChange
     } = useMyOrders();
 
@@ -33,20 +31,12 @@ const DeliveryInfo = forwardRef((props, ref) => {
 
     const [error, setError] = useState({})
 
-    const validateEmail = (email) => {
-        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    };
+    // const validateEmail = (email) => {
+    //     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    // };
 
     const handleNavigateToSignup = () => {
-        // if (!signupEmail.trim()) {
-        //     setError((prev) => ({ ...prev, email: 'Email is required' }));
-        //     return;
-        // }
-        // if (!validateEmail(signupEmail)) {
-        //     setError((prev) => ({ ...prev, email: 'Invalid email format' }));
-        //     return;
-        // }
-        // setError((prev) => ({ ...prev, email: '' }));
+        
         navigate('/my-account');
     }
 
@@ -55,7 +45,6 @@ const DeliveryInfo = forwardRef((props, ref) => {
         let newErrors = {};
 
         Object.keys(orderPayload?.billing).forEach((field) => {
-            // Skip validation for address2 since it's optional
             if (field === 'address2') return;
 
             if (!orderPayload?.billing?.[field]?.trim()) {
@@ -125,7 +114,6 @@ const DeliveryInfo = forwardRef((props, ref) => {
                     >
                         <label
                             className="floating-label"
-                        // style={{ color: error.first_name ? 'var(--primary-color)' : '' }}
                         >
                             First Name
                         </label>
@@ -149,7 +137,6 @@ const DeliveryInfo = forwardRef((props, ref) => {
                     >
                         <label
                             className="floating-label"
-                        // style={{ color: error.last_name ? 'var(--primary-color)' : '' }}
                         >
                             Last Name
                         </label>
@@ -175,7 +162,6 @@ const DeliveryInfo = forwardRef((props, ref) => {
                     >
                         <label
                             className="floating-label"
-                        // style={{ color: error.last_name ? 'var(--primary-color)' : '' }}
                         >
                             Email
                         </label>
@@ -216,20 +202,7 @@ const DeliveryInfo = forwardRef((props, ref) => {
 
                 </div>
 
-                {/* <div className={`delivery-input-container ${focusedField === 'name' || deliveryInfo.name ? "focused" : ""}`}>
-                    <label className="floating-label">
-                        {error.name ? <span className='error-message'>{error.name}</span> : 'Name'}
-                    </label>
-                    <input
-                        type="text"
-                        className="input-field-email"
-                        onFocus={() => setFocusedField("name")}
-                        onBlur={() => setFocusedField("")}
-                        onChange={handleNestedValueChange}
-                        name='name'
-                        value={deliveryInfo.name}
-                    />
-                </div> */}
+                
 
                 <div
                     onClick={() => addressOneRef.current?.focus()}
@@ -238,7 +211,6 @@ const DeliveryInfo = forwardRef((props, ref) => {
                 >
                     <label
                         className="floating-label"
-                    // style={{ color: error.last_name ? 'var(--primary-color)' : '' }}
                     >
                         Address
                     </label>
@@ -279,7 +251,6 @@ const DeliveryInfo = forwardRef((props, ref) => {
                     >
                         <label
                             className="floating-label"
-                        // style={{ color: error.postal_code ? 'var(--primary-color)' : '' }}
                         >
                             Zip Code
                         </label>
@@ -304,7 +275,6 @@ const DeliveryInfo = forwardRef((props, ref) => {
                     >
                         <label
                             className="floating-label"
-                        // style={{ color: error.email ? 'var(--primary-color)' : '' }}
                         >
                             City
                         </label>
@@ -327,7 +297,6 @@ const DeliveryInfo = forwardRef((props, ref) => {
                     >
                         <label
                             className="floating-label"
-                        // style={{ color: error.state ? 'var(--primary-color)' : '' }}
                         >
                             State
                         </label>
@@ -345,32 +314,7 @@ const DeliveryInfo = forwardRef((props, ref) => {
 
                 </div>
 
-                {/* <div className='delivery-zip-and-phone'>
-
-                    <div
-                        onClick={() => postalCodeRef.current?.focus()}
-                        style={{ border: error.postal_code ? '1px solid var(--primary-color)' : '' }}
-                        className={`delivery-input-container-postal-code ${focusedField === 'postal_code' || orderPayload.billing?.postal_code ? "focused" : ""}`}
-                    >
-                        <label
-                            className="floating-label"
-                        // style={{ color: error.postal_code ? 'var(--primary-color)' : '' }}
-                        >
-                            Zip Code
-                        </label>
-                        <input
-                            type="text"
-                            ref={postalCodeRef}
-                            className="input-field-email"
-                            onFocus={() => setFocusedField('postal_code')}
-                            onBlur={() => setFocusedField("")}
-                            name='postal_code'
-                            value={orderPayload.billing?.postal_code}
-                            onChange={handleZipCodeChange}
-                            maxLength={5}
-                        />
-                    </div>
-                </div> */}
+                
             </div>
 
         </div>

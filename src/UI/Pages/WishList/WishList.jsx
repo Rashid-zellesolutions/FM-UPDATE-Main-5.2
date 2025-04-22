@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 import './WishList.css';
-import { useLocation, useNavigate } from 'react-router-dom';
+import {  useNavigate } from 'react-router-dom';
 import { useList } from '../../../context/wishListContext/wishListContext';
 import ProductCardShimmer from '../../Components/Loaders/productCardShimmer/productCardShimmer';
 import star from '../../../Assets/icons/Star 19.png'
-import ProductCard from '../../Components/ProductCard/ProductCard';
 import heart from '../../../Assets/icons/heart-vector.png'
 import { toast } from 'react-toastify';
 import ProductCardTwo from '../../Components/ProductCardTwo/ProductCardTwo';
@@ -117,13 +116,7 @@ const WishList = () => {
                 ProductSku={item.sku}
                 tags={item.tags}
                 ProductTitle={truncateTitle(item.name, maxLength)}
-                stars={[
-                  { icon: star, title: 'filled' },
-                  { icon: star, title: 'filled' },
-                  { icon: star, title: 'filled' },
-                  { icon: star, title: 'filled' },
-                  { icon: star, title: 'filled' },
-                ]}
+                
                 reviewCount={item.reviewCount}
                 lowPriceAddvertisement={item.lowPriceAddvertisement}
                 priceTag={item.regular_price}
@@ -142,48 +135,7 @@ const WishList = () => {
           })
         )}
 
-          {/* {wishList && wishList.length > 0 ? (
-          wishList.map((item, index) => {
-            return <ProductCard
-              key={index}
-              slug={item.slug}
-              singleProductData={item}
-              maxWidthAccordingToComp={"100%"}
-              // justWidth={'100%'}
-              tagIcon={item.productTag ? item.productTag : heart}
-              tagClass={item.productTag ? 'tag-img' : 'heart-icon'}
-              mainImage={`${item.image.image_url}`}
-              productCardContainerClass="product-card"
-              ProductSku={item.sku}
-              tags={item.tags}
-              ProductTitle={truncateTitle(item.name, maxLength)}
-              stars={[
-                { icon: star, title: 'filled' },
-                { icon: star, title: 'filled' },
-                { icon: star, title: 'filled' },
-                { icon: star, title: 'filled' },
-                { icon: star, title: 'filled' },
-              ]}
-              reviewCount={item.reviewCount}
-              lowPriceAddvertisement={item.lowPriceAddvertisement}
-              priceTag={item.regular_price}
-              sale_price={item.sale_price}
-              financingAdd={item.financingAdd}
-              learnMore={item.learnMore}
-              mainIndex={index}
-              deliveryTime={item.deliveryTime}
-              stock={item.manage_stock}
-              attributes={item.attributes}
-              handleCardClick={() => handleProductClick(item)}
-              handleQuickView={() => handleQuickViewOpen(item)}
-              handleWishListclick={() => handleWishList(item)}
-            />
-          })
-        ) : (
-          Array.from({ length: 4 }).map((item) => (
-            <ProductCardShimmer />
-          ))
-        )} */}
+          
       </div>
 
       <div className={`wishlist-mobile-cards ${selectedGrid === 'single-col' ? 'single-col' : 'two-col'}`}>
@@ -202,13 +154,7 @@ const WishList = () => {
               ProductSku={item.sku}
               tags={item.tags}
               ProductTitle={truncateTitle(item.name, maxLength)}
-              stars={[
-                { icon: star, title: 'filled' },
-                { icon: star, title: 'filled' },
-                { icon: star, title: 'filled' },
-                { icon: star, title: 'filled' },
-                { icon: star, title: 'filled' },
-              ]}
+              
               reviewCount={item.reviewCount}
               lowPriceAddvertisement={item.lowPriceAddvertisement}
               priceTag={item.regular_price}

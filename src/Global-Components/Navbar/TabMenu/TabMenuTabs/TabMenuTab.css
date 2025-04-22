@@ -22,7 +22,7 @@
 }
 
 .back-to-main-menu{
-    border: 1px solid var(--text-color);
+    border: 1px solid var(--text-primary);
     padding: 5px 6px;
     display: flex;
     align-items: center;
@@ -46,7 +46,7 @@
 .sub-menu-heading-container h3{
     font-size: 18px;
     line-height: 26px;
-    color: var(--text-color);
+    color: var(--text-primary);
     font-weight: 600;
 }
 
@@ -57,7 +57,7 @@
 }
 
 .sub-menu-heading-container h3 a{
-    color: var(--text-color);
+    color: var(--text-primary);
     text-decoration: none;
 }
 
@@ -66,7 +66,7 @@
 }
 
 .sub-menu-heading-container span a{
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .tab-sub-menu-link{
@@ -87,22 +87,22 @@
     padding: 20px;
     background-color: var(--border-color);
     font-size: 14px;
-    color: var(--text-color);
+    color: var(--text-primary);
     cursor: pointer;
     gap: 10px;
 }
 
 .tab-sub-menu-link-item span{
-    border: 1px solid var(--text-color);
+    border: 1px solid var(--text-primary);
     padding: 5px 6px;
     display: flex;
     align-items: center;
     border-radius: 30px;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .tab-sub-menu-link-item a{
-    color: var(--text-color);
+    color: var(--text-primary);
     text-decoration: none;
 }
 
@@ -135,11 +135,11 @@
     font-size: 16px;
     font-weight: 600;
     line-height: 18px;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .tab-sub-menu-image-and-title span a{
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .sub-menu-sub-links{

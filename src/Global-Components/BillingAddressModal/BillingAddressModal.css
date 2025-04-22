@@ -58,7 +58,7 @@
     font-size: var(--section-size);
     line-height: var(--section-height);
     font-weight: var(--section-weight);
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .billing-modal-close-button {

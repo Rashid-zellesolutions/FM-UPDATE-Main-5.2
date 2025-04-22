@@ -7,13 +7,7 @@ const OutdoorFaves = ({categories}) => {
     const navigate = useNavigate()
 
     const notMain = categories?.filter((isMain) => isMain?.is_main === 0 );
-    // const relatedCategoryData = [
-    //     {category: 'brown wicker patio furniture'},
-    //     {category: 'deep seating patio furniture'},
-    //     {category: 'heavy duty patio furniture'},
-    //     {category: 'I shaped outdoor seating'},
-    //     {category: 'outside patio'},
-    // ]
+    
 
     const handleNavigate = (item) => {
         const mainCategory = categories.filter((isMain) => isMain?.is_main === 1 )

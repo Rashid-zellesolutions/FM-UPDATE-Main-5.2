@@ -16,29 +16,7 @@ const OrderSummeryTwo = ({productName, productPrice}) => {
     const {cart} = useCart()
     const [trackShow, setTrackShow] = useState(true)
 
-    // const [orderPayload, setOrderPayload] = useState({
-    //     status: 'pending',
-    //     currency: "USD",
-    //     billing: {
-    //         first_name: "John",
-    //         last_name: "Doe",
-    //         address_1: "123 Main St",
-    //         city: "Anytown",
-    //         state: "CA",
-    //         postal_code: "90210",
-    //         country: "USA",
-    //         email: "john.doe@example.com",
-    //         phone: "123-456-7890"
-    //     },
-
-    //     payment_method: "cash_on_delivery",
-    //     items: [],
-    //     discount: 10,
-    //     tax: 5,
-    //     cart_protected: 0,
-    //     is_shipping:1,
-    //     shipping_cost: 10
-    // })
+    
 
     const handleShowTrack = () => {
         setTrackShow(!trackShow)

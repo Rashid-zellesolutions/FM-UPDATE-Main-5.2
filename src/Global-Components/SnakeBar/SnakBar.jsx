@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import './SnakeBar.css';
-import closeButton from '../../Assets/icons/cancel.png'
 import { RxCross1 } from "react-icons/rx";
 import { truncateTitle } from '../../utils/api';
 

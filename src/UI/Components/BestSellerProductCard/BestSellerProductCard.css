@@ -67,7 +67,7 @@
     font-size: 10px;
     line-height: 15px;
     font-weight: 300;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .category-product-rating-and-name{
@@ -114,7 +114,7 @@
     line-height: 20px;
     font-weight: 500;
     margin-bottom: 10px;
-    color: var(--text-color);
+    color: var(--text-primary);
     
     display: -webkit-box !important;  /* Enables multi-line ellipsis */
     -webkit-line-clamp: 2 !important; /* Limits to 2 lines */
@@ -142,7 +142,7 @@
     font-size: 15px;
     line-height: 21px;
     font-weight: 600;
-    color: var(--text-color);
+    color: var(--text-primary);
     opacity: 0.5;
 }
 
@@ -150,7 +150,7 @@
     font-size: 18px;
     line-height: 27px;
     font-weight: 600;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .category-product-price-and-heart img{
@@ -209,7 +209,7 @@
         font-size: 15px;
         line-height: 18px;
         font-weight: 600;
-        color: var(--text-color);
+        color: var(--text-primary);
     }
 }
 

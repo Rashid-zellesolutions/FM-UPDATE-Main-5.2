@@ -28,7 +28,8 @@
 
 .nav-link {
     text-decoration: none;
-    color: var(--quaternary-color);
+    /* color: var(--quaternary-color); */
+    color: var(--text-primary);
     /* color: #000; */
     position: relative;
     height: auto;
@@ -91,7 +92,7 @@
 
 .mobile-nav-link a {
     text-decoration: none;
-    color: var(--text-color);
+    color: var(--text-primary);
     font-size: 12px;
     line-height: 18px;
     font-weight: 500;

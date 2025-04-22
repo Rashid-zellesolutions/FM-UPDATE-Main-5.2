@@ -306,31 +306,10 @@ const StoreLocator = () => {
                 );
               })}
             </div>
-            {/* <h3 className='comments-top-heading'>Reviews & Ratings:</h3> */}
-            {/* {
-              googleReviewDetails?.data?.reviews.map((item, index) => (
-                <div className='single-location-comment-card'>
-                  <div className='comment-user-section'>
-                    <img src={item.profile_photo_url} alt='profile' className='user-profile-picture' />
-                    <div className='comment-user-name-and-rating'>
-                      <h3>{item.author_name}</h3>
-                      <div className='user-rating'>
-                        {[0, 1, 2, 3, 4].map((star, index) => (
-                          <FaStar size={15} color='#F0AD4E' />
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                  <UserComment content={item.text} />
-                </div>
-              ))
-            } */}
+            
           </div >
 
-          {/* {isFetching && <div className="loader">
-            <img src={loader} alt='animation' />
-            <p>Finding Stores...</p>
-          </div>} */}
+         
         </div >
         <div className="all-store-map">
           {isLoaded ? (
@@ -356,13 +335,7 @@ const StoreLocator = () => {
         {storeSelected === 'map' ? (
           <div className='mobile-view-single-store-map'>
             {isLoaded ? (
-              // <GoogleMap
-              //   mapContainerStyle={mapContainerStyle}
-              //   zoom={10}
-              //   center={center}
-              // >
-              //   <Marker position={center} />
-              // </GoogleMap>
+              
               <DeliveryLocationMap
                 address_info={``}
               />

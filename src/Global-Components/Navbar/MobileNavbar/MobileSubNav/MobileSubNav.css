@@ -85,7 +85,7 @@
     gap: 15px;
     cursor: pointer;
     text-decoration: none;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .mobile-sub-nav-single-item img{

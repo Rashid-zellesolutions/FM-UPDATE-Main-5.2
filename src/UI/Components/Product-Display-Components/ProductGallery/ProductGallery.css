@@ -19,7 +19,7 @@
 }
 
 .product-thumbnail-arrow {
-    color: var(--text-color);
+    color: var(--text-primary);
     transition: all 0.3s ease-in-out;
     cursor: pointer;
 }
@@ -163,13 +163,13 @@
 }
 
 .product-gallery-arrow {
-    color: var(--text-color);
+    color: var(--text-primary);
     transition: all 0.3s ease-in-out;
     cursor: pointer;
 }
 
 .product-gallery-arrow {
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .product-gallery-main-slider-arrow:hover .product-gallery-arrow {
@@ -185,7 +185,7 @@
 }
 
 .product-gallery-main-slider-arrow {
-    color: var(--text-color);
+    color: var(--text-primary);
     transition: all 0.3s ease-in-out;
     cursor: pointer;
 }

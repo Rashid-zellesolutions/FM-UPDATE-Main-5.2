@@ -98,7 +98,7 @@
     line-height: 15px;
     font-family: var(--Poppins-font);
     background-color: transparent;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .input-loader {
@@ -234,7 +234,7 @@
     line-height: 12px;
     font-weight: 400;
     text-decoration: none;
-    color: var(--text-color);
+    color: var(--text-primary);
     margin: 0;
 }
 
@@ -255,7 +255,7 @@
     font-size: 8px !important;
     line-height: 14px !important;
     font-weight: 400 !important;
-    color: var(--text-color) !important;
+    color: var(--text-primary) !important;
     opacity: 0.5 !important;
 }
 
@@ -263,7 +263,7 @@
     font-size: 10px;
     line-height: 10px;
     font-weight: 600;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .see-all-searched-products {
@@ -368,14 +368,14 @@
     font-size: 13px;
     line-height: 20px;
     font-weight: 600;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .searched-product-sale-price-on-single-view del{
     font-size: 12px;
     line-height: 14px;
     font-weight: 400; 
-    color: var(--text-color);
+    color: var(--text-primary);
     opacity: 0.5;
 }
 
@@ -395,7 +395,7 @@
 }
 
 .custom-description p {
-    color: var(--text-color);
+    color: var(--text-primary);
     font-size: 12px;
     line-height: 1.2;
     margin-bottom: 10px;
@@ -444,7 +444,7 @@
 }
 
 .near-by-city-time p {
-    color: var(--text-color);
+    color: var(--text-primary);
     font-size: 12px;
     font-weight: 400;
     line-height: 14px;
@@ -456,7 +456,7 @@
 }
 
 .near-by-city-time span a {
-    color: var(--text-color);
+    color: var(--text-primary);
     font-weight: 600;
     font-size: 12px;
     line-height: 14px;
@@ -473,7 +473,7 @@
     font-size: 12px;
     line-height: 14px;
     font-weight: 400;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .deliver-to span {
@@ -481,7 +481,7 @@
     font-size: 12px;
     line-height: 14px;
     font-weight: 600;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 /* near by shimmer effect */
@@ -709,7 +709,7 @@
     font-size: 15px;
     line-height: 22px;
     font-weight: 500;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .mobile-user-icon {
@@ -778,7 +778,7 @@
     font-size: 15px;
     line-height: 22px;
     font-weight: 500;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .mobile-view-search-products-modal-close-btn {
@@ -872,14 +872,14 @@
     font-size: 14px;
     line-height: 15px;
     font-weight: 400;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .searched-product-prices del{
     font-size: 12px;
     line-height: 12px;
     font-weight: 400;
-    color: var(--text-color);
+    color: var(--text-primary);
     opacity: 0.5;
 }
 

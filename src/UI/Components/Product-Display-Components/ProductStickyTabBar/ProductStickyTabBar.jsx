@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import './ProductStickyTabBar.css'
 import { CiDeliveryTruck, CiLocationOn } from "react-icons/ci";
-import { useCart } from '../../../../context/cartContext/cartContext';
 import { formatedPrice } from '../../../../utils/api';
 import LocationPopUp from '../../LocationPopUp/LocationPopUp';
-import Weekdays from 'react-calendar/dist/cjs/MonthView/Weekdays.js';
 import { useGlobalContext } from '../../../../context/GlobalContext/globalContext';
 
 const ProductStickyTabBar = (
@@ -162,21 +160,7 @@ const ProductStickyTabBar = (
                         </div>
                     </div>
 
-                    {/* <div className='mobile-product-sticky-fixed-add-to-cart'>
-                        <div className='mobile-sticky-product-sale-and-price'>
-                            <h3>Sale</h3>
-                            <p>{formatedPrice(productData?.sale_price)}</p>
-                        </div>
-                        <button
-                            onClick={() => {
-                                addToCart0(productData, variationData, !isProtectionCheck ? 1 : 0, quantity)
-                                handleAddToCartProduct(productData);
-                            }
-                            }
-                        >
-                            Add To Cart
-                        </button>
-                    </div> */}
+                    
 
 
                     <div className='product-sticky-fixed-tabs-container'>

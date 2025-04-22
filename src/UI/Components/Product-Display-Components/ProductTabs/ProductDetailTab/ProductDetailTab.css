@@ -44,7 +44,7 @@
     font-size: var(--section-size);
     line-height: var(--section-height);
     font-weight: var(--section-weight);
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .product-detail-right-section-heading-container > a {
@@ -75,14 +75,14 @@
     font-size: var(--sub-section-size);
     line-height: var(--sub-section-height);
     font-weight: var(--sub-section-weight);
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .product-detail-right-section-items > span > p{
     font-size: var(--content-one-size);
     line-height: var(--content-one-height);
     font-weight: var(--content-two-weight);
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .product-detail-right-section-items > p{
@@ -128,7 +128,7 @@
         font-size: var(--sub-section-size);
         line-height: var(--sub-section-height);
         font-weight: 600;
-        color: var(--text-color);
+        color: var(--text-primary);
 }
 
     .product-detail-left-section > img{

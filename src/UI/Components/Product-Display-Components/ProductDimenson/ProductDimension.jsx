@@ -1,14 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect,  useState } from 'react'
 import './ProductDimension.css'
 import { RxDimensions } from "react-icons/rx";
 import { FaRegImage } from "react-icons/fa6";
-import { RiZoomInLine, RiZoomOutLine } from "react-icons/ri";
-import { RxCross2 } from "react-icons/rx";
-import ProductGallery from '../ProductGallery/ProductGallery';
-import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import { MdKeyboardArrowDown } from "react-icons/md";
 import { url } from '../../../../utils/api';
-import GalleryModal from '../GalleryModal/GalleryModal';
 import { AiOutlineZoomIn, AiOutlineZoomOut } from "react-icons/ai";
 import axios from 'axios';
 // import { AiOutlineZoomOut } from "react-icons/ai";

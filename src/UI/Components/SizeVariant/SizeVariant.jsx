@@ -12,7 +12,7 @@ const SizeVariant = ({
     handleSelectedVariationData,
 }) => {
     const { selectedVariationData, setSelectedVariationData } = useProductPage();
-    const [colorVariation, setColorVariation] = useState();
+    // const [colorVariation, setColorVariation] = useState();
     const [imageVariation, setImageVariation] = useState(0);
     const [selectedImageName, setSelectedImageName] = useState();
     const [selectedColorName, setSelectedColorName] = useState();
@@ -191,20 +191,16 @@ const SizeVariant = ({
                                                     : ''
                                                 }`}
                                             onClick={() => handleClickColor(attribute.name, option.value, option.name)}
-                                            // style={{
-                                            //     backgroundColor: option.value,
-                                            // }}
+                                            
                                             style={{
                                                 backgroundColor: option.value,
-                                                // border: 'none',
                                                 border: selectedSelectAttrs[attribute.name] === option.value ? `1px solid ${option.value}` : 'none',
-                                                // boxShadow: ''
+                                                
                                                 boxShadow: selectedSelectAttrs[attribute.name] === option.value ? `inset 0 0 0 2px #FFFF` : '',
                                                 "--tick-color": option.value
 
                                             }}
                                         ></div>
-                                        {/* <p className='quick-view-atribute-option-name'>{option.name}</p> */}
                                     </div>
                                 ))}
 

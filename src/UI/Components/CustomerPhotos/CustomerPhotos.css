@@ -10,7 +10,7 @@
     font-size: 25px;
     font-weight: 600;
     line-height: var(--heading-line-height);
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .slider-container {
@@ -44,7 +44,7 @@
     cursor: pointer;
     z-index: 9;
     position: absolute;
-    background-color: var(--text-color);
+    background-color: var(--text-primary);
     border-radius: 26px;
     height: 26px;
     width: 26px;
@@ -75,7 +75,7 @@
     font-size: 15px;
     line-height: 18px;
     font-weight: 600;
-    color: var(--text-color);
+    color: var(--text-primary);
   }
   .customer-slider-arrow img {
       width: auto;

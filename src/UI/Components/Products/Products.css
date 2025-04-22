@@ -19,7 +19,7 @@
     align-items: center;
     justify-content: start;
     width: 100%;
-    /* gap: 5px; */
+    gap: 10px;
     overflow-y: hidden;
     overflow-x: auto;
     padding: 10px;
@@ -39,7 +39,7 @@
     line-height: 30px;
     font-weight: 500;
     margin-top: 15px;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .searched-products-heading.hide-searched-heading {
@@ -83,7 +83,7 @@
     font-size: 12px;
     line-height: 13px;
     font-weight: 500;
-    color: var(--text-color);
+    color: var(--text-primary);
     justify-content: center;
     width: 100%;
     display: flex;
@@ -371,7 +371,7 @@
 
 .availability-dropdown p a {
     text-decoration: none;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 /* No Product Found Container */
@@ -580,7 +580,7 @@
 }
 
 .add-button-round {
-    border: 1px solid var(--text-color);
+    border: 1px solid var(--text-primary);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -878,7 +878,7 @@ label {
     font-size: 12px;
     line-height: 12px;
     font-weight: 400;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .location-toggler>span>h3 {
@@ -994,7 +994,7 @@ label {
     font-size: 12px;
     line-height: 18px;
     font-weight: 400;
-    color: var(--text-color);
+    color: var(--text-primary);
     opacity: 0.7;
     flex-shrink: 0;
 }
@@ -1010,7 +1010,7 @@ label {
     font-size: 12px;
     line-height: 18px;
     font-weight: 400;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .relevance-heading-icon-rotate {
@@ -1063,7 +1063,7 @@ label {
     font-size: 13px;
     line-height: 19px;
     font-weight: 400;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .relevance-single-filter:hover .relevance-single-filter-name {
@@ -1204,11 +1204,11 @@ label {
 }
 
 .view-more-product-page-number:hover {
-    border-bottom: 1px solid var(--text-color);
+    border-bottom: 1px solid var(--text-primary);
 }
 
 .view-more-product-page-number.active-page-selected {
-    border-bottom: 1px solid var(--text-color);
+    border-bottom: 1px solid var(--text-primary);
 }
 
 .view-more-btn {
@@ -1310,7 +1310,7 @@ label {
     top: 0;
     position: absolute;
     background-color: #fff;
-    color: var(--text-color);
+    color: var(--text-primary);
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
 }
@@ -1381,7 +1381,7 @@ label {
 }
 
 .mobile-view-card-grid-single-col.grid-active {
-    background-color: var(--text-color);
+    background-color: var(--text-primary);
 }
 
 .mobile-view-card-grid-dual-col {
@@ -1400,7 +1400,7 @@ label {
 }
 
 .mobile-view-card-grid-dual-col-inner.active-dual-col {
-    background-color: var(--text-color);
+    background-color: var(--text-primary);
 }
 
 
@@ -1426,7 +1426,7 @@ label {
     background-color: #fff;
     border-radius: 5px;
     cursor: pointer;
-    color: var(--text-color);
+    color: var(--text-primary);
     font-size: 12px;
     line-height: 18px;
     font-weight: 600;

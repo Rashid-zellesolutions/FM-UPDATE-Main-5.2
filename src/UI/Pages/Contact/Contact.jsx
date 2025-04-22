@@ -157,9 +157,7 @@ const Contact = () => {
 
         setContactForm(updatedForm)
 
-        console.log("Formated Contact", formatedContact);
-        console.log("updated Form", updatedForm)
-        console.log("payload before send", contactForm)
+        
 
         const api = `/api/v1/contact/create`
         try {
@@ -342,16 +340,6 @@ const Contact = () => {
                 </div>
 
             </div>
-
-            {/* <div className='contact-us-payment-and-FAQ'>
-                {payAndFAQProcess.map((item, index) => (
-                    <div className='contact-us-pay-and-faq-details'>
-                        <img src={item.img} alt='make payment' />
-                        <h3>{item.name}</h3>
-                        <p>{item.details}</p>
-                    </div>
-                ))}
-            </div> */}
         </div>
     )
 }

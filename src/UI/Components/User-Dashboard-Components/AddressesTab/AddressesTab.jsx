@@ -182,23 +182,7 @@ const AddressesTab = ({ userAddresses, setTrigerPoint }) => {
           </div>
         </div>
 
-        {/* <div className='user-billing-address'>
-          <div className='billing-address-details'>
-            <div className='title-and-edit-icon'>
-              <h3>Shipping Address</h3>
-              <img src={editIcon} alt='edit icon' onClick={() => handleEditBillingAddress('shipping-address')} />
-            </div>
-            <div className='billing-address-show'>
-              <p>{userAddresses?.shipping_address?.first_name} {userAddresses?.shipping_address?.last_name}</p>
-              <p>{userAddresses?.email}</p>
-              <p>{userAddresses?.shipping_address?.phone}</p>
-              <p>{userAddresses?.shipping_address?.address_1}</p>
-              <p>{userAddresses?.shipping_address?.address_2}</p>
-              <p>{userAddresses?.shipping_address?.postal_code}</p>
-              <p>{userAddresses?.shipping_address?.city} {userAddresses?.shipping_address?.state}</p>
-            </div>
-          </div>
-        </div> */}
+        
       </div>
 
       <div className={`address-edit-modal ${isEditTrue ? 'show-address-edit-modal' : ''}`}>
@@ -243,22 +227,7 @@ const AddressesTab = ({ userAddresses, setTrigerPoint }) => {
               </label>
             </div>
 
-            {/* <div className='double-address'>
-              <label className='label-with-input'>
-                Email
-                <input
-                  className='input-with-label'
-                  type='text'
-                  placeholder='Email'
-                  name='email'
-                  value={modalType === 'billing-address'
-                    ? billingPayload?.billingAddress?.email
-                    : shippingPayload?.shippingAddress?.email
-                  }
-                  onChange={handleInputData}
-                />
-              </label>
-            </div> */}
+            
 
             <div className='country-indication'>
               <p className='country-region'>Country/Region</p>

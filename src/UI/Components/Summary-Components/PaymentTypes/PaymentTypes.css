@@ -15,7 +15,7 @@
   font-size: 20px;
   line-height: 30px;
   font-weight: 500;
-  color: var(--text-color);
+  color: var(--text-primary);
 }
 
 /* Payment select container */
@@ -37,7 +37,7 @@
   line-height: 24px;
   font-weight: 400;
   border: 1px solid var(--border-color);
-  color: var(--text-color);
+  color: var(--text-primary);
   padding: 5px 15px;
   border-radius: 5px;
   cursor: pointer;

@@ -14,7 +14,8 @@
     font-size: 25px;
     font-weight: 600;
     line-height: var(--heading-line-height);
-    color: var(--secondary-color);
+    /* color: var(--secondary-color); */
+    color: var(--text-primary);
 }
 
 .blogs-main-container h3 span{
@@ -25,6 +26,7 @@
     font-size: 14px;
     font-weight: 400;
     line-height: 22px;
+    color: var(--text-primary);
 }
 
 
@@ -64,7 +66,7 @@
 
 .blog-slider-arrow{
     background-color: #FFFFFF !important;
-    border: 1px solid var(--text-color) !important;
+    border: 1px solid var(--text-primary) !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
@@ -133,7 +135,7 @@
     }
     .blog-slider-arrow{
         background-color: #FFFFFF !important;
-        border: 1px solid var(--text-color) !important;
+        border: 1px solid var(--text-primary) !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;

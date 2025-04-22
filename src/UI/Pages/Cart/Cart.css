@@ -322,7 +322,7 @@
     border: none;
     padding: 10px;
     outline: none;
-    color: var(--text-color);
+    color: var(--text-primary);
     font-size: var(--content-one-size);
     line-height: var(--content-one-height);
     font-weight: var(--content-two-weight);
@@ -410,7 +410,7 @@ mobile-cart-order-summary-total{
     border: none;
     padding: 10px;
     outline: none;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .cart-summary-update-coupon-btn {
@@ -445,7 +445,7 @@ mobile-cart-order-summary-total{
     padding: 11px;
     align-items: center;
     justify-content: center;
-    background-color: var(--text-color);
+    background-color: var(--text-primary);
     color: #fff;
     border-radius: 5px;
     border: none;
@@ -480,7 +480,7 @@ mobile-cart-order-summary-total{
     font-size: 25px;
     font-weight: 600;
     line-height: 37px;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 /* Cart Page Related Carts */
@@ -498,7 +498,7 @@ mobile-cart-order-summary-total{
     font-size: var(--section-size);
     font-weight: var(--section-weight);
     line-height: var(--section-height);
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .cart-related-products-slider-main-div {
@@ -521,24 +521,9 @@ mobile-cart-order-summary-total{
     padding: 0px 0px;
 }
 
-/* .cart-latest-products-slider-arrow{
-    position: absolute;
-    top: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: transparent;
-    border-radius: 50%;
-    cursor: pointer;
-    border: none;
-    z-index: 999;
-    cursor: pointer;
-    color: var(--text-color);
-} */
-
 .cart-latest-products-slider-arrow {
     background-color: #FFFFFF !important;
-    border: 1px solid var(--text-color) !important;
+    border: 1px solid var(--text-primary) !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
@@ -661,7 +646,7 @@ mobile-cart-order-summary-total{
     font-size: var(--content-one-size);
     line-height: var(--content-one-height);
     font-weight: var(--content-one-weight);
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .payment-cards-inner-container{
@@ -702,9 +687,9 @@ mobile-cart-order-summary-total{
     justify-content: center;
     padding: 10px;
     border-radius: 4px;
-    border: 1px solid var(--text-color);
+    border: 1px solid var(--text-primary);
     background-color: transparent;
-    color: var(--text-color);
+    color: var(--text-primary);
     font-size: var(--sub-section-size);
     line-height: var(--sub-section-height);
     font-weight: var(--sub-section-weight);

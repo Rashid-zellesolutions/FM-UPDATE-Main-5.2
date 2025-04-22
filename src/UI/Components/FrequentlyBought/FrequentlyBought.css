@@ -14,7 +14,7 @@
     font-size: var(--section-size);
     line-height: var(--section-height);
     font-weight: var(--section-weight);
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .frequently-bought-card{
@@ -45,7 +45,7 @@
         font-size: var(--sub-section-size);
         line-height: var(--sub-section-height);
         font-weight: 600;
-        color: var(--text-color);
+        color: var(--text-primary);
     }
     .stock-label{
         display: none;

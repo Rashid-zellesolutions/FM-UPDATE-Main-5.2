@@ -44,7 +44,7 @@ const CartSideSection = (
                         <p>SKU: {sku}</p>
                         {attributes && attributes.map((item, index) => {
                             return (
-                                <p key={index}>{item?.options[0].name}</p>
+                                <p key={index} >{item?.options[0].name}</p>
                             )
                         })}
                         <div className='cart-side-section-price-and-count'>
@@ -59,7 +59,7 @@ const CartSideSection = (
                                 <></>
                                 :
                                 isProtected === 1 ?
-                                    <p style={{ fontStyle: "italic" }}>(+${eachProtectionValue}) Protection Plan</p> : <></>
+                                    <p style={{ fontStyle: "italic" }} > (+${eachProtectionValue}) Protection Plan </p> : <></>
                         }
                     </div>
 

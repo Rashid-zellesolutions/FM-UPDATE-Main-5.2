@@ -18,7 +18,7 @@
     font-size: 25px;
     line-height: 28px;
     font-weight: 600;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .single-blog-main-heading span{
@@ -59,7 +59,7 @@
     font-size: 15px;
     line-height: 22px;
     font-weight: 400;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .single-blog-main-image-div{
@@ -99,7 +99,7 @@
     font-size: 15px;
     line-height: 22px;
     font-weight: 400;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .single-blog-social-icons{
@@ -161,7 +161,7 @@
     font-size: 15px;
     line-height: 22px;
     font-weight: 400;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .prev-single-blog h3,
@@ -188,7 +188,7 @@
     font-size: 20px;
     line-height: 26px;
     font-weight: 500;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 @media only screen and (max-width: 480px){
@@ -217,7 +217,7 @@
         font-size: 18px;
         line-height: 24px;
         font-weight: 600;
-        color: var(--text-color);
+        color: var(--text-primary);
     }
     .single-blog-post-date{
         display: none;

@@ -8,11 +8,6 @@
     padding: 15px 24px;
 }
 
-/* .product-description-main-container.add-top-margin{
-    background-color: orange;
-    margin-top: 150px;
-} */
-
 .product-description-section {
     display: flex;
     width: 100%;
@@ -49,14 +44,14 @@
     font-size: 20px;
     line-height: 30px;
     font-weight: 600;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .product-description>p {
     font-size: 16px;
     line-height: 22px;
     font-weight: 400;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .product-features-main-container {
@@ -73,7 +68,7 @@
     font-size: var(--section-size);
     line-height: var(--section-height);
     font-weight: var(--section-weight);
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .product-features-and-extra-features-container {
@@ -151,14 +146,14 @@
     font-size: 16px;
     line-height: 24px;
     font-weight: 500;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .product-single-feature-title-and-desc>p {
     font-size: 14px;
     line-height: 24px;
     font-weight: 400;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .product-extra-features-main-section {
@@ -183,7 +178,7 @@
     font-size: 20px;
     line-height: 30px;
     font-weight: 600;
-    color: var(--text-color);
+    color: var(--text-primary);
     cursor: pointer;
 }
 
@@ -291,7 +286,7 @@
         font-size: var(--sub-section-size);
         line-height: var(--sub-section-height);
         font-weight: 600;
-        color: var(--text-color);
+        color: var(--text-primary);
     }
 
     /* .product-features-main-container {
@@ -301,7 +296,7 @@
     .product-features-main-container>h3 {
         font-size: 15px;
         line-height: 20px;
-        color: var(--text-color);
+        color: var(--text-primary);
     }
 
     .product-single-feature {
@@ -323,7 +318,7 @@
         line-height: 15px;
         font-weight: 500;
         text-align: center;
-        color: var(--text-color);
+        color: var(--text-primary);
     }
 
     .product-single-feature-title-and-desc>p {
@@ -331,6 +326,6 @@
         line-height: 12px;
         font-weight: 400;
         text-align: center;
-        color: var(--text-color);
+        color: var(--text-primary);
     } */
 }

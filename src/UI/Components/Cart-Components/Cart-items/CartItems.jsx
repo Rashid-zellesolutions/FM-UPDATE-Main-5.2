@@ -165,60 +165,10 @@ const CartItems = ({
                                 <p>{formatedSalePrice}</p>
                             </div>
 
-                            {/* <div className='desktop-card-protection-div'>
-                                <div className='guard-and-heading'>
-                                    <img effect='blur' src={guardIcon} alt='guard' className='protection-guard-icon' />
-                                    <div className='guard-title-and-details'>
-                                        <div className='guard-title-and-details-head'>
-                                            <h3 className='protection-guard-title'>Platinum Elite Furniture</h3>
-                                            <IoInformationCircle className='eye_icon' onClick={toggleDetails} />
-                                        </div>
-                                        <span className='protection-details-and-message'>
-                                            <p className='protection-price-message'>
-                                                {(cartProducts.is_all_protected === 1 || isProtected === 1) ? "Price shown in summary" : "$99"}
-                                            </p>
-                                            <div className={`detail-container ${isOpen ? 'open' : ''}`}>
-                                                <p className='protection-price-message detail'>
-                                                    Our Elite Furniture Protection Plan covers accidental stains and damage to your new fabric, leather, and wood (and other hard surfaces) furniture.
-                                                </p>
-                                                <Link>Details</Link>
-                                            </div>
-                                        </span>
-                                    </div>
-                                </div>
-
-                                {cartProducts.is_all_protected === 1 ? <div className="protection-all-protected">
-                                    <img src={check} alt="" srcset="" />
-                                    <p>Protection Applied</p>
-                                </div>
-                                    : <div className='protection-btns-accept-and-cancel'>
-                                        <button
-                                            className={`protection-buttons protect-no-thanks ${isProtectionClicked === 'no-thanks' ? 'select-not-protection' : ''}`}
-                                            onClick={() => { handleProtectOrNotButtonClicked('no-thanks'); removeProtection() }}
-                                        >
-                                            No Thanks
-                                        </button>
-                                        <button
-                                            className={`protection-buttons protect-yes-protect ${isProtectionClicked === 'yes-protect' ? 'selected-yes-protect' : ''}`}
-                                            onClick={() => { handleProtectOrNotButtonClicked('yes-protect'); addProtection() }}
-                                        >
-                                            Yes Protect it
-                                        </button>
-                                    </div>}
-                            </div> */}
+                            
 
                         </div>
-                        {/* <div className={`desktop-quantity-and-save-for-leter ${isCartOpen ? 'hide-quantity' : ''}`}>
-                            <div className='desktop-quantity'>
-                                <button onClick={handleDecreament}>
-                                    <img src={minusCharcol} alt='minus' />
-                                </button>
-                                <p>{quantity}</p>
-                                <button onClick={handleIncreament}>
-                                    <img src={plusCharcol} alt='plus' />
-                                </button>
-                            </div>
-                        </div> */}
+                        
 
                         <div className={`desktop-total-price-and-remove-item ${isCartOpen ? 'hide-total-and-remove-item' : ''}`}>
 
@@ -233,9 +183,7 @@ const CartItems = ({
                             </div>
 
                             <p className='cart-product-card-total-price'>{formatedTotalPrice}</p>
-                            {/* <button className='save-for-leter' onClick={(e) => { e.stopPropagation(); handleWishList(productData) }}>
-                                <img src={rotatedArrow} className={`${saveForLeter ? 'arrow-rotate' : ''}`} /> Save For Later
-                            </button> */}
+                           
                         </div>
 
                         <div className={isCartOpen ? 'cart-open-quantity-and-total-price' : 'cart-close-quantity-and-total-price'}>
@@ -279,18 +227,7 @@ const CartItems = ({
                                 <p>Protection Applied</p>
                             </div>
                                 : <div className='protection-btns-accept-and-cancel'>
-                                    {/* <button
-                                            className={`protection-buttons protect-no-thanks ${isProtectionClicked === 'no-thanks' ? 'select-not-protection' : ''}`}
-                                            onClick={() => { handleProtectOrNotButtonClicked('no-thanks'); removeProtection() }}
-                                        >
-                                            No Thanks
-                                        </button>
-                                        <button
-                                            className={`protection-buttons protect-yes-protect ${isProtectionClicked === 'yes-protect' ? 'selected-yes-protect' : ''}`}
-                                            onClick={() => { handleProtectOrNotButtonClicked('yes-protect'); addProtection() }}
-                                        >
-                                            Yes Protect it
-                                        </button> */}
+                                   
                                     <ToggleSwitch
                                         id={`protection-toggle-${productData.isVariable === 1 ? productData.variation_uid : productData.product_uid}`}
                                         checked={isProtectionClicked === 'yes-protect'}

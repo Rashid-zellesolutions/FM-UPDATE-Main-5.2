@@ -83,7 +83,7 @@
     border: 1px solid var(--border-color);
     font-size: 15px;
     font-weight: 400;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .scop-input-email button {
@@ -149,14 +149,14 @@
 }
 
 .text-details h3 {
-    color: var(--text-color);
+    color: var(--text-primary);
     font-size: 20px;
     font-weight: 500;
     line-height: 30px;
 }
 
 .text-details p {
-    color: var(--text-color);
+    color: var(--text-primary);
     font-size: 14px;
     font-weight: 400;
     line-height: 21px;

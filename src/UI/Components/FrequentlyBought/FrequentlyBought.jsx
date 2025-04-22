@@ -1,14 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import './FrequentlyBought.css';
-import { useSelector } from 'react-redux';
-// import ProductCard from '../ProductCard/ProductCard';
 import { useNavigate } from 'react-router-dom';
-import { useProducts } from '../../../context/productsContext/productContext';
 import axios from 'axios';
 import star from '../../../Assets/icons/black-star.png'
 import { url } from '../../../utils/api';
 import heart from '../../../Assets/icons/heart-vector.png'
-// import ProductCardTwo from '../ProductCardTwo/ProductCardTwo';
 import ProductCardShimmer from '../Loaders/productCardShimmer/productCardShimmer';
 import { useList } from '../../../context/wishListContext/wishListContext';
 import { toast } from 'react-toastify';
@@ -47,35 +43,7 @@ const FrequentlyBought = ({ relatedProducts, isPadding }) => {
 
     // const {products} = useProducts()
     const navigate = useNavigate()
-    // const handleProductClicked = (item) => {
-    //     navigate(`/product/${item.slug}`, { state: { products: item } })
-    // }
-
-
-
-    // Card title words limit
-    const maxLength = 30;
-    const truncateTitle = (title, maxLength) => {
-        if (title.length > maxLength) {
-            return title.slice(0, maxLength) + '...';
-        }
-        return title;
-    };
-
-
-    // Select Color Variations Functions
-    // const [selectedColorIndices, setSelectedColorIndices] = useState(Array(products.length).fill(0));
-    // const handleVariantImageClick = (cardIndex, colorIndex) => {
-    //     const updatedIndices = [...selectedColorIndices];
-    //     updatedIndices[cardIndex] = colorIndex;
-    //     setSelectedColorIndices(updatedIndices);
-    // };
-
-    // const colorIndex = useSelector((state) => state.colorIndex.colorIndex)
-
-    // const handleCardClick = (item) => {
-    //     navigate(`/product/${item.slug}`, {state: {products: item}})
-    // }
+    
 
     // wish list
     const { addToList, removeFromList, isInWishList } = useList()
@@ -124,7 +92,6 @@ const FrequentlyBought = ({ relatedProducts, isPadding }) => {
                             showOnPage={true}
                             percent={'12%'}
                             titleHeight={true}
-                            // colTwo={selectedGrid === 'single-col' ? false : true}
                             tagIcon={item.productTag ? item.productTag : heart}
                             tagClass={item.productTag ? 'tag-img' : 'heart-icon'}
                             mainImage={`${item.image.image_url}`}
@@ -133,13 +100,7 @@ const FrequentlyBought = ({ relatedProducts, isPadding }) => {
                             tags={item.tags}
                             allow_back_order={item?.allow_back_order}
                             ProductTitle={item.name}
-                            stars={[
-                                { icon: star, title: 'filled' },
-                                { icon: star, title: 'filled' },
-                                { icon: star, title: 'filled' },
-                                { icon: star, title: 'filled' },
-                                { icon: star, title: 'filled' },
-                            ]}
+                            
                             reviewCount={item.reviewCount}
                             lowPriceAddvertisement={item.lowPriceAddvertisement}
                             priceTag={item.regular_price}

@@ -152,17 +152,6 @@ const CartSidePannel = (
               Checkout
             </button>
           </div>
-
-          
-
-          {/* <div className='cart-side-paner-total-and-sub-total-container'>
-            <p>Total</p>
-            <h3>{formatedPrice(CalculateGrandTotal)}</h3>
-          </div> */}
-
-          {/* <button onClick={handleContinueShopping} className='cart-side-section-continue-shopping'>
-            Continue Shopping
-          </button> */}
         </div>
       </div>
       {isCartLoading && <div className="loader_overlay">

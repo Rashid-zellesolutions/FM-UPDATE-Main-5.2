@@ -20,7 +20,7 @@
     font-size: 30px;
     line-height: 34px;
     font-weight: 500;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .contact-para{
@@ -41,14 +41,14 @@
     width: max-content;
     gap: 15px;
     padding: 5px 10px;
-    border-bottom: 2px solid var(--text-color);
+    border-bottom: 2px solid var(--text-primary);
 }
 
 .contact-head-phone-number-sec > p > a {
     font-size: var(--sub-section-size);
     line-height: var(--sub-section-height);
     font-weight: var(--sub-section-weight);
-    color: var(--text-color);
+    color: var(--text-primary);
     text-decoration: none;
 }
 
@@ -97,14 +97,14 @@
     font-size: 20px;
     line-height: 30px;
     font-weight: 600;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .costumer-care-service-details p{
     font-size: 15px;
     line-height: 22px;
     font-weight: 400;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .costumer-care-service-details p:nth-child(3){
@@ -138,14 +138,14 @@
     font-size: 20px;
     line-height: 30px;
     font-weight: 600;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .contact-form-head p{
     font-size: 15px;
     line-height: 22px;
     font-weight: 400;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 /* contact form inputs */
@@ -183,7 +183,7 @@ input {
     font-size: 15px;
     line-height: 18px;
     font-weight: 400;
-    color: var(--text-color);
+    color: var(--text-primary);
     outline: none;
 }
 
@@ -207,14 +207,14 @@ input {
     width: max-content;
     background-color: #ffff;
     border: 1px solid var(--secondary-color);
-    color: var(--text-color);
+    color: var(--text-primary);
     cursor: pointer;
     border-radius: 5px;
     transition: all 0.3s ease-in-out;
 }
 
 .send-file-icon{
-    color: var(--text-color);
+    color: var(--text-primary);
     transition: all 0.3s ease-in-out;
 }
 
@@ -260,14 +260,14 @@ input {
     font-size: 20px;
     line-height: 28px;
     font-weight: 600;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .contact-us-pay-and-faq-details p{
     font-size: 15px;
     line-height: 22px;
     font-weight: 400;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 textarea {
@@ -279,7 +279,7 @@ textarea {
     font-size: 15px;
     line-height: 18px;
     font-weight: 400;
-    color: var(--text-color);
+    color: var(--text-primary);
     outline: none;
 }
 

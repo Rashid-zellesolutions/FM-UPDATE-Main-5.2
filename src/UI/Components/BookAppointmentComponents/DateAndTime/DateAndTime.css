@@ -32,8 +32,6 @@
 
 .react-calendar__tile--now {
     background: transparent !important;
-    /* border: 1px solid var(--primary-color) !important; */
-    /* border-radius: 5px !important; */;
 }
 
 .react-calendar__tile--active {
@@ -55,7 +53,7 @@
     font-size: 15px;
     line-height: 15px;
     font-weight: 500;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .react-calendar__navigation button:nth-child(4){

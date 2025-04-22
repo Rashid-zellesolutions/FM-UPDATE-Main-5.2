@@ -1,13 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react'
 import './ShareProduct.css';
 import closeBtn from '../../../Assets/icons/cancel.png';
-import twitter from '../../../Assets/icons/x-charcol.png'
-import facebook from '../../../Assets/icons/facebook-charcol.png'
-import insta from '../../../Assets/icons/insta-charcol.png'
-import mail from '../../../Assets/icons/mail-charcol.png'
 import copyCharcol from '../../../Assets/icons/copy-charcol.png'
 import copySuccess from '../../../Assets/icons/copy-success.png'
-import star from '../../../Assets/icons/Star 19.png'
 import { formatedPrice, url } from '../../../utils/api';
 import copy from 'copy-to-clipboard';
 import RatingReview from '../starRating/starRating';

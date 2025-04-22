@@ -76,21 +76,21 @@
     font-size: 18px;
     line-height: 22px;
     font-weight: 500;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .shared-product-sku {
     font-size: 11px;
     line-height: 12px;
     font-weight: 400;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .shared-product-brand-name {
     font-size: 11px;
     line-height: 12px;
     font-weight: 400;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .share-product-popup-product-div {
@@ -113,7 +113,7 @@
     font-size: 18px;
     line-height: 27px;
     font-weight: 600;
-    /* color: var(--text-color); */
+    /* color: var(--text-primary); */
     color: #FFFFFF !important;
 }
 
@@ -134,7 +134,7 @@
     font-size: 12px;
     line-height: 18px;
     font-weight: 300;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .share-product-selected-product-regular-and-sale-price {
@@ -148,7 +148,7 @@
     font-size: 15px;
     line-height: 22px;
     font-weight: 500;
-    color: var(--text-color);
+    color: var(--text-primary);
     opacity: 0.5;
 }
 
@@ -156,7 +156,7 @@
     font-size: 18px;
     line-height: 27px;
     font-weight: 500;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 /* selected product social share flat forms */
@@ -189,7 +189,7 @@
     font-size: 15px;
     line-height: 22px;
     font-weight: 500;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 /* link generator  */
@@ -200,7 +200,7 @@
     width: 100%;
     padding: 5px 10px;
     gap: 10px;
-    border: 1px solid var(--text-color);
+    border: 1px solid var(--text-primary);
     border-radius: 10px;
 }
 
@@ -211,7 +211,7 @@
     font-size: 15px;
     line-height: 22px;
     font-weight: 500;
-    color: var(--text-color);
+    color: var(--text-primary);
     background-color: transparent;
     border: none;
     outline: none;
@@ -226,7 +226,7 @@
     font-size: 15px;
     line-height: 22px;
     font-weight: 600;
-    color: var(--text-color);
+    color: var(--text-primary);
     border: none;
     outline: none;
     background-color: transparent;
@@ -359,7 +359,7 @@
         font-size: 15px;
         line-height: 1.5;
         font-weight: 600;
-        color: var(--text-color);
+        color: var(--text-primary);
     }
 
     .share-product-selected-product-details{

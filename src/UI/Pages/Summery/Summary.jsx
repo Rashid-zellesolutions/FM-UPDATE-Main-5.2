@@ -198,17 +198,7 @@ const Summary = () => {
       {!showThankyou &&
         <div className='summary-left-main-outer-container'>
             <div className='checkout-pages-toggle-nav'>
-              {/* {checkoutSections.map((items, index) => (
-              <span
-                key={items.id}
-                onClick={() => handleTabOpen(index)}
-                className={`checkout-page-toggle-nav-single-item 
-                ${selectedTab === index ? 'active-checkout-toggle' : ''}`}
-              >
-                <p>{items.id}.</p>
-                <p>{items.name}</p>
-              </span>
-            ))} */}
+              
 
               {checkoutSectionsData.map((item, index) => (
                 <div
@@ -221,17 +211,11 @@ const Summary = () => {
                   key={item.id}
                 >
                   <h3>{item.name}</h3>
-                  {/* <input 
-                  type='checkbox' 
-                  className='checkout-page-options-checkbox' 
-                  checked={selectedTab === index} 
-                  readOnly
-                /> */}
+                  
                   <label className='checkbox1'>
                     <input
                       type='checkbox'
                       checked={selectedTab === index}
-                    // onChange={() => handleTabOpen(index)}
                     />
                     <span></span>
                   </label>
@@ -247,26 +231,10 @@ const Summary = () => {
             {
               selectedTab === 0 ?
                 <div className='shipping-details-and-coupen-show'>
-                  {/* <ShippingDetails userInfoPayload={setOrderPayload} />
-              <Coupon /> */}
-                  {/* <ShippingForm /> */}
+                 
                   <DeliveryInfo ref={deliveryInfoRef} onSubmit={handleDeliveryFormSubmit} />
                 </div> :
-                // selectedTab === 1 ?
-                //   <div className='order-summery-and-proceed-btn'>
-                //     <Coupon />
-                //     <ShipingAndDelivery />
-                //     <PaymentInfo />
-                //     <OrderSummary />
-                //     <div className='order-summery-proceed-btn-div'>
-                //       <button onClick={() => {
-                //         handleTabOpen(2); handleClickTop();
-                //         // addProducts(cartProducts)
-                //       }}>
-                //         Continue to Payment
-                //       </button>
-                //     </div>
-                //   </div> :
+                
                 selectedTab === 1 ? <PaymentMethod handleSubmitOrder={handleSubmit} />
                   : <></>
             }
@@ -275,12 +243,10 @@ const Summary = () => {
 
       }
       {!showThankyou && <div className={` ${currentId === 1 ? 'summary-right-section' : currentId === 2 ? 'summery-right-section-according-payment' : 'summery-right-section-low-height'}`}>
-        {/* <TrustFor />
-        <HappyCustomers /> */}
+        
         <div className='right-section-order-summary-main-container'>
           <h3 className='right-section-order-summary-main-heading'>Order Summary</h3>
           <div className='right-section-order-summary-products-container'>
-            {/* <p className='right-section-order-summary-assembly-plan'>White Glove Delivery</p> */}
             <div className='right-section-ordered-product-card'>
               {cartProducts?.products.slice(0, showAll ? cartProducts?.products?.length : 2).map((items, index) => (
                 <div key={items.uid} className='selected-products'>
@@ -321,12 +287,7 @@ const Summary = () => {
             </div>
 
             <div className='right-section-order-pricing-details'>
-              {/* {filteredOrderPriceDetails && filteredOrderPriceDetails.map((price, index) => (
-                <div className='right-section-price-and-value'>
-                  <p className='right-section-price-text'>{price.title}</p>
-                  <p className='right-section-price-text'>{price.price}</p>
-                </div>
-              ))} */}
+              
               <div className='cart-order-summary-price-detail-single-item'>
                 <p className='cart-order-summary-price-detail-single-item-title'>Subtotal</p>
                 <p className='cart-order-summary-price-detail-single-item-price'>{formatedPrice(subTotal0)}</p>
@@ -393,14 +354,12 @@ const Summary = () => {
                     onClick={() => {
                       handleOpenTermsConditionsModal()
                     }}
-                  // to={'/terms-and-conditions'}
                   >Terms & Conditions</Link>
                 </span>
                 {
                   selectedTab === 0 ? <button onClick={handleContinueToPayment} className='right-section-place-order-button'>Continue</button>
                     : <button onClick={handleSubmit} className='right-section-place-order-button'>Place Your Order</button>
                 }
-                {/* <button className='right-section-place-order-button'>Place Your Order</button> */}
               </div>
             </div>
 

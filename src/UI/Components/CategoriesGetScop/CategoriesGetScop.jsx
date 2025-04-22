@@ -59,12 +59,7 @@ const CategoriesGetScop = ({ isTrue, text, contentImages }) => {
             <div className={`mobile-view-get-scoop-text-and-slider ${isTrue ? 'show-mobile-content' : ''}`}>
 
                 <div className='mobile-view-product-text-section-1'>
-                    {/* {mobileProductText.slice(0, 2).map((items, index) => (
-                        <div className='mobile-view-contant'>
-                            <h3>{items.heading}</h3>
-                            <p>{items.para}</p>
-                        </div>
-                    ))} */}
+                    
 
                     <div className='product-text'>
 
@@ -86,14 +81,6 @@ const CategoriesGetScop = ({ isTrue, text, contentImages }) => {
                         ))}
                     </div>
                 </div>
-                {/* <div className='mobile-view-product-text-section-2'>
-                    {mobileProductText.slice(mobileProductText.length - 1, mobileProductText.length).map((items, index) => (
-                        <div className='mobile-view-contant'>
-                            <h3>{items.heading}</h3>
-                            <p>{items.para}</p>
-                        </div>
-                    ))}
-                </div> */}
             </div>
 
         </div>

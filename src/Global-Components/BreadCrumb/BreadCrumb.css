@@ -14,7 +14,7 @@
 }
 
 .bread-crumb-list li a {
-    color: var(--secondary-color);
+    color: var(--text-primary);
     font-size: 14px;
     line-height: 21px;
     font-weight: 500;
@@ -47,15 +47,18 @@
 
 .bread_links :hover {
     background-color: #F5F9FC;
-    color: var(--tertiary-color);
+    /* color: var(--tertiary-color); */
+    color: var(--text-primary);
 }
 
 .active-last-bread-link {
     background-color: #F5F9FC;
-    color: var(--tertiary-color);
+    /* color: var(--tertiary-color); */
+    color: var(--text-primary);
 }
 
 .bread_links_sub.active {
-    color: var(--quaternary-color);
+    /* color: var(--quaternary-color); */
+    color: var(--text-primary);
     font-weight: 600;
 }

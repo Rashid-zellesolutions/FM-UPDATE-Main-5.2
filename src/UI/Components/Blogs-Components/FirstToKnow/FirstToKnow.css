@@ -31,7 +31,7 @@
     font-size: 20px;
     line-height: 26px;
     font-weight: 500;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .first-to-know-emal-btn{
@@ -52,7 +52,7 @@
     font-size: 15px;
     line-height: 22px;
     font-weight: 500;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .first-to-know-btn{
@@ -77,7 +77,7 @@
     font-size: 14px;
     line-height: 21px;
     font-weight: 400;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .first-to-know-link{

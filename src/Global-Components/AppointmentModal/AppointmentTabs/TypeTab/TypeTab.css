@@ -45,7 +45,7 @@
     font-size: var(--content-one-size);
     line-height: var(--content-one-height);
     font-weight: var(--content-two-weight);
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .type-option-title-and-icon {
@@ -60,7 +60,7 @@
     font-size: var(--content-one-size);
     line-height: var(--content-one-height);
     font-weight: var(--content-two-weight);
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .type-categories-container {
@@ -95,7 +95,7 @@
     font-size: var(--content-one-size);
     line-height: var(--content-one-height);
     font-weight: var(--content-two-weight);
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .type-selected-button {

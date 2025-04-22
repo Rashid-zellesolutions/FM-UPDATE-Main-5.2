@@ -8,7 +8,7 @@
 }
 
 .feature-product-heading{
-    color: var(--text-color);
+    color: var(--text-primary);
     font-size: 25px;
     line-height: var(--heading-line-height);
     font-weight: 600;
@@ -80,7 +80,7 @@
     }
 
     .feature-product-heading{
-        color: var(--text-color);
+        color: var(--text-primary);
         font-size: 20px;
         line-height: 24px;
         font-weight: 600;

@@ -183,9 +183,6 @@ const BestSeller = ({ categoryData }) => {
         }
     }
 
-    console.log("products on category", products);
-    console.log("CategoryData on Best Seller", categoryData)
-
     return (
         <>
             {!loading ? (

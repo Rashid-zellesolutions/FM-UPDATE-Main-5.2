@@ -23,14 +23,14 @@
 }
 
 .rating-and-review-main-container h3{
-    color: var(--text-color);
+    color: var(--text-primary);
     font-size: var(--section-size);
     line-height: var(--section-height);
     font-weight: var(--section-weight);
 }
 
 .rating-and-review-main-container p{
-    color: var(--text-color);
+    color: var(--text-primary);
     font-size: 16px;
     line-height: 24px;
     font-weight: 400;
@@ -141,7 +141,7 @@
 }
 
 .customer-images-section > h3{
-    color: var(--text-color);
+    color: var(--text-primary);
     font-size: var(--section-size);
     line-height: var(--section-height);
     font-weight: var(--section-weight);
@@ -185,10 +185,10 @@
         font-size: 15px;
         line-height: 18px;
         font-weight: 600;
-        color: var(--text-color);
+        color: var(--text-primary);
     }
     .rating-and-review-main-container > p {
-        color: var(--text-color);
+        color: var(--text-primary);
         font-size: 12px;
         line-height: 18px;
         font-weight: 300;
@@ -232,7 +232,7 @@
     }
 
     .customer-images-section h3 {
-        color: var(--text-color);
+        color: var(--text-primary);
         font-size: 15px;
         line-height: 18px;
         font-weight: 600;

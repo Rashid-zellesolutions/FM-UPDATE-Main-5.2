@@ -30,7 +30,7 @@
     font-size: 28px;
     line-height: 42px;
     font-weight: 600;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .get-the-scop-form .get-the-scop-offers{
@@ -41,7 +41,7 @@
 }
 
 .get-the-scoop-offers-keywords{
-    color: var(--text-color) !important;
+    color: var(--text-primary) !important;
     font-size: 16px !important;
     font-weight: 600 !important;
     line-height: 24px !important;
@@ -70,7 +70,7 @@
     border: 1px solid var(--border-color);
     padding: 16px 10px;
     outline: none;
-    color: var(--text-color);
+    color: var(--text-primary);
     font-size: 16px;
     font-weight: 500;
     line-height: 24px;
@@ -161,7 +161,7 @@
 } */
 
 /* .get-the-scop-form > p{
-    color: var(--text-color);
+    color: var(--text-primary);
     font-size: 15px;
     font-weight: 400;
     line-height: 22px;
@@ -170,7 +170,7 @@
 } */
 
 .get-the-scoop-terms-and-condition {
-    color: var(--text-color);
+    color: var(--text-primary);
     font-size: 15px;
     font-weight: 400;
     line-height: 22px;
@@ -179,7 +179,7 @@
 }
 
 .get-the-scoop-terms-and-condition > a {
-    color: var(--text-color);
+    color: var(--text-primary);
     font-size: 15px;
     font-weight: 500;
     line-height: 22px;
@@ -188,7 +188,7 @@
 }
 
 .desktop-get-the-scoop-terms{
-    color: var(--text-color);
+    color: var(--text-primary);
     padding: 0 3px;
     cursor: pointer;
     text-decoration: underline;
@@ -214,14 +214,14 @@
     font-size: 30px;
     line-height: 45px;
     font-weight: 600;
-    color: var(--text-color);
+    color: var(--text-primary);
     width: 100%;
     margin-top: -40px;
 }
 
 .get-the-scop-banner p{
     font-size: 15px;
-    color: var(--text-color);
+    color: var(--text-primary);
     font-weight: 500;
     line-height: 22px;
     margin-top: -10px;
@@ -364,7 +364,7 @@
 .mobile-view-get-scoop-input-and-button input{
     padding: 11px 22px;
     border-radius: 5px;
-    color: var(--text-color);
+    color: var(--text-primary);
     border: none;
     outline: none;
     font-size: 12px;
@@ -382,7 +382,7 @@
     border: none;
     outline: none;
     border-radius: 5px;
-    background-color: var(--text-color);
+    background-color: var(--text-primary);
     color: #fff;
     font-size: 12px;
     line-height: 18px;
@@ -431,7 +431,7 @@
 
 .mobile-view-flyre-view button{
     padding: 11px 15px;
-    background-color: var(--text-color);
+    background-color: var(--text-primary);
     color: #fff;
     border: none;
     outline: none;
@@ -510,7 +510,7 @@
         font-size: 16px !important;
         line-height: 28px;
         text-align: center;
-        color: var(--text-color) !important;
+        color: var(--text-primary) !important;
     
     }
     
@@ -519,7 +519,7 @@
         font-size: 12px !important;
         line-height: 21px;
         text-align: center;
-        color: var(--text-color) !important;
+        color: var(--text-primary) !important;
     }
     .subscription_done{
         background-color: rgba(255, 255, 255, 0.6);

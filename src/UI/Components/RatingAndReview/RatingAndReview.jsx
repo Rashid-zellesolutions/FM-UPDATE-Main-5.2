@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './RatingAndReview.css';
-import { Link } from 'react-router-dom';
-import starIcon from '../../../Assets/icons/large-star-blue.png';
 import CustomerPhotos from '../CustomerPhotos/CustomerPhotos';
 import RatingReview from '../starRating/starRating';
 import { FaStar } from "react-icons/fa";
 import { transformReviewData, extractImagesFromReviews } from '../../../utils/api';
-import error from "../../../Assets/error.png"
 import no_image from "../../../Assets/no_image.png"
 
 const RatingAndReview = ({ rating, data }) => {

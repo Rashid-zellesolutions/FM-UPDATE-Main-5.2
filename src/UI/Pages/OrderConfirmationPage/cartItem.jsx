@@ -7,26 +7,7 @@ export default function CartItemOC({image,name,quantity, regular_price, options,
     
     return(
         <>
-            {/* <div className="cartItemOc">
-                <div className="cartItemOcImage">
-                    <img src={url+image}  alt="" />
-                    <div className="quantity">
-                        {quantity}    
-                    </div>
-                </div>
-                <div className="cartItemOCDetails">
-                    <p className="product_name">{name}</p>
-                    {options && options?.map((item,index)=>{
-                            return(
-                                <p className="product_description">{item?.options[0].name}</p>
-                            )
-                    })}
-                    {cart_protected===0 && is_protected===1 ? <p className="product_description">Protection Plan Applied (+ ${protected_price})</p> :<></>}
-                </div>
-                <div className="cartItemOCPrice">
-                    <p>{formatedPrice(price)}</p>
-                </div>
-            </div> */}
+            
             <div className="confirmed-order-product-main">
                 <div className="confirmed-order-product-image">
                     <p>{quantity}</p>

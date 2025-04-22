@@ -21,7 +21,7 @@
     font-size: 12px !important;
     line-height: 12px !important;
     font-weight: 400 !important;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .attribute-variations{
@@ -103,7 +103,7 @@
     font-size: 13px;
     line-height: 18px;
     font-weight: 400;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 /* Select Type  */
@@ -114,7 +114,7 @@
     padding: 5px 10px;
     cursor: pointer;
     border-radius: 4px;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .select-type-attribute.select-select-variation{
@@ -129,7 +129,7 @@
     font-size: var(--content-one-size);
     line-height: var(--content-one-height);
     font-weight: var(--content-one-weight);
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 /* attribute image */
@@ -169,7 +169,7 @@
     font-size: 13px;
     line-height: 18px;
     font-weight: 400;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .show-selected-size-section p{
@@ -308,7 +308,7 @@
     font-size: 18px;
     line-height: 22px;
     font-weight: 400;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .variable-color-boxes-div{
@@ -331,7 +331,7 @@
     font-size: 18px;
     line-height: 22px;
     font-weight: 400;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .select-variation-boxes-div{

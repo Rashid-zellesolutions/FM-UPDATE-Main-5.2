@@ -35,7 +35,7 @@
     font-size: 14px;
     font-weight: 700;
     line-height: 23px;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .cart-item-name button{
@@ -82,7 +82,7 @@
     font-size: 11px;
     line-height: 18px;
     font-weight: 500;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .price-and-count{
@@ -95,7 +95,7 @@
 .price-and-count p{
     font-size: 0.88rem;
     font-weight: 500;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .product-count{
@@ -139,7 +139,7 @@
 .cart-item-actual-price p{
     font-size: 0.94rem;
     font-weight: 600;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 /* Large Screen cart styling */
@@ -149,9 +149,6 @@
     height: max-content;
     max-height: max-content;
     gap: 10px;
-    /* box-shadow: 0px 0px 10px 0px #0000001A; */
-    /* border-top: 1px solid var(--border-color); */
-    /* border-radius: 4px; */
     padding: 15px;
 }
 
@@ -235,35 +232,35 @@
     font-size: var(--sub-section-size);
     font-weight: var(--sub-section-weight);
     line-height: var(--sub-section-height);
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .cart-item-sku-tag{
     font-size: var(--attribute-size) !important;
     line-height: var(--attribute-height) !important;
     font-weight: var(--attribute-weight) !important;
-    color: var(--text-color) !important;
+    color: var(--text-primary) !important;
 }
 
 .desktop-product-extra-info{
     font-size: var(--attribute-size) !important;
     line-height: var(--attribute-height) !important;
     font-weight: var(--attribute-weight) !important;
-    color: var(--text-color) !important;
+    color: var(--text-primary) !important;
 }
 
 .cart-side-section-price-and-count > p{
     font-size: var(--section-size) !important;
     font-weight: var(--section-weight) !important;
     line-height: var(--section-height) !important;
-    color: var(--text-color) !important;
+    color: var(--text-primary) !important;
 }
 
 .cart-side-section-price-and-count > p:nth-child(1){
     font-size: var(--sub-section-size) !important;
     font-weight: var(--sub-section-weight) !important;
     line-height: var(--sub-section-height) !important;
-    color: var(--text-color) !important;
+    color: var(--text-primary) !important;
     opacity: 0.5;
 }
 
@@ -305,7 +302,7 @@
     font-size: var(--sub-section-size) !important;
     line-height: var(--sub-section-height) !important;
     font-weight: var(--sub-section-weight) !important;
-    color: var(--text-color);
+    color: var(--text-primary);
     flex-shrink: 0;
 
 }
@@ -342,7 +339,7 @@
     font-size: 12px;
     line-height: 18px;
     font-weight: 500;
-    color: var(--text-color);
+    color: var(--text-primary);
     border-right: 1px solid #F0F0F0;
     padding-right: 10px;
 }
@@ -351,7 +348,7 @@
     font-size: var(--content-one-size) !important;
     line-height: var(content-one-height) !important;
     font-weight: var(--content-one-weight) !important;
-    color: var(--text-color) !important;
+    color: var(--text-primary) !important;
 }
 
 
@@ -371,7 +368,7 @@
     padding: 5px 30px;
     width: max-content;
     border: 1px solid #fff;
-    color: var(--text-color);
+    color: var(--text-primary);
     font-size: 12px;
     line-height: 18px;
     font-weight: 500;
@@ -419,7 +416,7 @@
     font-size: 12px;
     line-height: 18px;
     font-weight: 500;
-    color: var(--text-color);
+    color: var(--text-primary);
     cursor: pointer;
     transition: all 0.2s ease-in-out;
 }
@@ -489,14 +486,9 @@
     gap: 5px;
     height: 30px;
     padding: 0px 5px;
-    /* border-radius: 10px; */
-    /* border: 1px solid var(--secondary-color);
-    background-color: var(--secondary-color);
-    color: var(--text-white); */
     border: none;
-    /* border-bottom: 1px solid var(--text-color); */
     background-color: transparent;
-    color: var(--text-color);
+    color: var(--text-primary);
     font-size: var(--content-one-size);
     text-decoration: underline;
     font-weight: var(--content-one-weight);
@@ -564,7 +556,7 @@
     font-size: var(--section-size);
     font-weight: var(--section-weight);
     line-height: var(--section-height);
-    color: var(--text-color);
+    color: var(--text-primary);
     margin-right: 20px;
 }
 

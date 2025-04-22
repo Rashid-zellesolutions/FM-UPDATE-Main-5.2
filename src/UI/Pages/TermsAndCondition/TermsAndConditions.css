@@ -10,7 +10,7 @@
     font-size: 25px;
     line-height: 28px;
     font-weight: 600;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .term-and-condition-detail-container{
@@ -33,7 +33,7 @@
     font-size: 20px;
     line-height: 30px;
     font-weight: 600;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .term-condition-list{

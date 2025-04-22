@@ -57,6 +57,6 @@
     font-size: var(--sub-section-size);
     line-height: var(--sub-section-height);
     font-weight: var(--sub-section-weight);
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 

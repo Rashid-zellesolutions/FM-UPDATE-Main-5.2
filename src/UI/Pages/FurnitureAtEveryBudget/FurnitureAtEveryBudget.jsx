@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from "react";
 import "./FurnitureAtEveryBudget.css";
-import ProductCard from "../../Components/ProductCard/ProductCard";
 import star from '../../../Assets/icons/blue-star.png'
 import { url } from "../../../utils/api";
 import { useLocation, useNavigate } from 'react-router-dom';
 import heart from '../../../Assets/icons/heart-vector.png'
 import QuickView from "../../Components/QuickView/QuickView";
-import { IoMdClose } from "react-icons/io";
 import ProductCardShimmer from "../../Components/Loaders/productCardShimmer/productCardShimmer";
 import { useList } from "../../../context/wishListContext/wishListContext";
 
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { type } from "@testing-library/user-event/dist/type";
 import ProductCardTwo from "../../Components/ProductCardTwo/ProductCardTwo";
 import ProductInfoModal from "../../../Global-Components/ProductInfoModal/ProductInfoModal";
 
@@ -49,9 +46,9 @@ export default function FurnitureAtEveryBudget() {
     }, []);
 
     const maxLength = 50;
-    const truncateTitle = (title, maxLength) => {
-        return title.length > maxLength ? title.slice(0, maxLength) + '...' : title;
-    };
+    // const truncateTitle = (title, maxLength) => {
+    //     return title.length > maxLength ? title.slice(0, maxLength) + '...' : title;
+    // };
 
     const [quickViewProduct, setQuickViewProduct] = useState({})
     const [quickViewClicked, setQuickView] = useState(false);
@@ -121,16 +118,16 @@ export default function FurnitureAtEveryBudget() {
     }
 
     const [selectVariation, setSelectVariation] = useState(0);
-    const handleSelectVariation = (value) => {
-        setSelectVariation(value);
-        getVariationMatch()
-    }
+    // const handleSelectVariation = (value) => {
+    //     setSelectVariation(value);
+    //     getVariationMatch()
+    // }
 
     const [selectedColor, setSelectedColor] = useState();
-    const handleSelectColor = (value) => {
-        setSelectedColor(value)
-        getVariationMatch()
-    }
+    // const handleSelectColor = (value) => {
+    //     setSelectedColor(value)
+    //     getVariationMatch()
+    // }
 
     const getInitialDefaultValues = () => {
         const defAttImage = data?.variations?.find(attr =>
@@ -200,13 +197,7 @@ export default function FurnitureAtEveryBudget() {
                             tags={item.tags}
                             allow_back_order={item?.allow_back_order}
                             ProductTitle={item.name}
-                            stars={[
-                                { icon: star, title: 'filled' },
-                                { icon: star, title: 'filled' },
-                                { icon: star, title: 'filled' },
-                                { icon: star, title: 'filled' },
-                                { icon: star, title: 'filled' },
-                            ]}
+                            
                             reviewCount={item.reviewCount}
                             lowPriceAddvertisement={item.lowPriceAddvertisement}
                             priceTag={item.regular_price}
@@ -251,13 +242,7 @@ export default function FurnitureAtEveryBudget() {
                             tags={item.tags}
                             allow_back_order={item?.allow_back_order}
                             ProductTitle={item.name}
-                            stars={[
-                                { icon: star, title: 'filled' },
-                                { icon: star, title: 'filled' },
-                                { icon: star, title: 'filled' },
-                                { icon: star, title: 'filled' },
-                                { icon: star, title: 'filled' },
-                            ]}
+                            
                             reviewCount={item.reviewCount}
                             lowPriceAddvertisement={item.lowPriceAddvertisement}
                             priceTag={item.regular_price}

@@ -32,17 +32,17 @@
 .tab-menu-link h3{
     display: flex;
     width: 100%;
-    color: var(--text-color);
+    color: var(--text-primary);
     justify-content: space-between;
 }
 
 .tab-menu-link h3 span{
-    border: 1px solid var(--text-color);
+    border: 1px solid var(--text-primary);
     padding: 5px 6px;
     display: flex;
     align-items: center;
     border-radius: 30px;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .tab-menu-link h3 span:hover{
@@ -84,6 +84,6 @@
     font-size: 14px;
     line-height: 18px;
     font-weight: 500;
-    color: var(--text-color);
+    color: var(--text-primary);
     text-decoration: none;
 }

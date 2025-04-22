@@ -7,18 +7,8 @@ import pillow from '../../../../../Assets/icon/pillows.svg'
 import spaceIcon from '../../../../../Assets/icon/home-dimention.svg'
 import seatDepth from '../../../../../Assets/icon/sofa-side.svg'
 import seatCushion from '../../../../../Assets/icon/sofa-front.svg'
-import { IoIosArrowDown } from "react-icons/io";
 
 const ProductDescriptionTab = ({ id, descriptionRef, productData, addMarginTop }) => {
-
-  function truncateDescription(description, length) {
-    if (!description) return '';
-    return description?.length > length
-      ? description?.substring(0, length) + '...'
-      : description;
-  }
-
-  const truncatedDescription = truncateDescription(productData?.description, 350);
 
   const featuresData = [
     {icon: performanceIcon, title: 'Upholstery Material', secondTitle: 'Performance Fabric'},
@@ -27,11 +17,6 @@ const ProductDescriptionTab = ({ id, descriptionRef, productData, addMarginTop }
     {icon: seatDepth, title: 'Seat Depth', secondTitle: '20.00"'},
     {icon: seatCushion, title: 'Seat Cushion Style', secondTitle: 'Loose'},
   ]
-
-  const [showAdditional, setShowAdditional] = useState(false);
-  const handleShowAdditional = () => {
-    setShowAdditional(!showAdditional)
-  }
 
 
   return (
@@ -67,19 +52,6 @@ const ProductDescriptionTab = ({ id, descriptionRef, productData, addMarginTop }
               </div>
             ))}
           </div>
-
-          {/* <div className='product-extra-features-main-section'>
-            <div className='additional-feature-head' onClick={handleShowAdditional}>
-              <h3>Additional Features</h3>
-              <button className={`additional-feature-arrow-button ${showAdditional ? 'additional-arrow-rotate' : ''}`}>
-                <IoIosArrowDown size={25} className={`addition-feature-arrow`} />
-              </button>
-            </div>
-            <div className={`additional-features-body ${showAdditional ? 'show-addition-feature-detail' : ''}`}>
-                <h3>Polyester upholstery</h3>
-                <p>100% polyester. This stain-resistant, easy-care fabric boasts a soft feel, yet it's tough enough for extensive, everyday use.</p>
-            </div>
-          </div> */}
 
         </div>
       </div>

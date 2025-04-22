@@ -50,21 +50,21 @@
 .arrow svg {
     width: auto !important;
     height: 25px !important;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .left-arrow {
     left: 20px !important;
     background-color: #fff;
     border-radius: 30px;
-    border: 1px solid var(--text-color);
+    border: 1px solid var(--text-primary);
 }
 
 .right-arrow {
     right: 20px !important;
     background-color: #fff;
     border-radius: 30px;
-    border: 1px solid var(--text-color);
+    border: 1px solid var(--text-primary);
 }
 
 /* mobile slider */

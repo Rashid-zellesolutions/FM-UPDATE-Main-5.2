@@ -9,19 +9,19 @@
 }
 
 .rotating-message{
-    color: var(--text-color);
+    color: var(--text-primary);
     font-size: 12px;
     font-weight: 500;
     line-height: 18px;
 }
 
 .rotating-message span a{
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .toll-free-ancor{
     font-weight: 500;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .header-links-and-select-language{
@@ -44,7 +44,7 @@
     font-weight: 500;
     line-height: 14px;
     text-decoration: none;
-    color: var(--text-color);
+    color: var(--text-primary);
     cursor: pointer;
 }
 
@@ -53,7 +53,7 @@
     font-weight: 500;
     line-height: 14px;
     text-decoration: none;
-    color: var(--text-color);
+    color: var(--text-primary);
     cursor: pointer;
 }
 
@@ -116,7 +116,7 @@
     line-height: 12px;
     font-weight: 600;
     text-decoration: none;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 /* Login warning modal */
@@ -196,7 +196,7 @@
     font-size: 16px;
     line-height: 24px;
     font-weight: 500;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .navigate-to-login-btn-container{
@@ -211,7 +211,7 @@
     align-items: center;
     justify-content: center;
     background-color: #FFFFFF;
-    color: var(--text-color);
+    color: var(--text-primary);
     font-size: 14px;
     font-weight: 500;
     line-height: 21px;
@@ -222,9 +222,9 @@
 }
 
 .navigate-to-login-btn:hover{
-    background-color: var(--text-color);
+    background-color: var(--text-primary);
     color: #FFFFFF;
-    border: 1px solid var(--text-color);
+    border: 1px solid var(--text-primary);
 }
 
 @media only screen and (max-width: 480px){

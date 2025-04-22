@@ -42,7 +42,6 @@ const ProductCardTwo = ({
             attributes && attributes.find(attr => attr.type === "select");
     };
 
-    // console.log("single product data", singleProductData)
 
     const priorityAttribute = getPriorityAttribute(attributes);
 
@@ -65,7 +64,7 @@ const ProductCardTwo = ({
 
             setSelectedColorImage(matchingAttribute?.images[0]?.image_url)
             setHoveredImage(matchingAttribute?.images[1]?.image_url)
-            console.log(matchingAttribute?.images[0]?.image_url, matchingAttribute?.images[1]?.image_url, "two images are")
+            // console.log(matchingAttribute?.images[0]?.image_url, matchingAttribute?.images[1]?.image_url, "two images are")
             return matchingAttribute;
 
         } else if (singleProductData?.type === "simple") {
@@ -159,12 +158,11 @@ const ProductCardTwo = ({
             }
         }
 
-    }, [singleProductData]); // Run this effect whenever `singleProductData` changes
+    }, [singleProductData]); 
 
 
 
     const { isInWishList } = useList();
-    console.log("main image", mainImage)
 
 
     const getDeliveryDate = () => {
@@ -285,14 +283,6 @@ const ProductCardTwo = ({
                                         <ProductCardImageShimmer />
                                     </div>
                                 }
-
-
-
-
-
-
-
-
 
 
                         </div>

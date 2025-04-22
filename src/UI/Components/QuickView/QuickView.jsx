@@ -2,14 +2,9 @@ import React, { useEffect, useState } from 'react'
 import './QuickView.css';
 import minusBtn from '../../../Assets/icons/minus.png'
 import plusBtn from '../../../Assets/icons/plus.png';
-import redHeart from '../../../Assets/icons/red-heart.png'
-import arrowDown from '../../../Assets/icons/arrow-down-white.png';
-import arrowLeft from '../../../Assets/icons/arrow-left.png';
-import arrowRight from '../../../Assets/icons/arrow-right.png';
 import CartSidePannel from '../Cart-side-section/CartSidePannel';
 import { useCart } from '../../../context/cartContext/cartContext';
 import crossBtn from '../../../Assets/icons/close-btn.png'
-import { FaStar } from "react-icons/fa";
 import { formatedPrice, url } from '../../../utils/api';
 import QuickViewVariations from '../SizeVariant/QuickViewVariations';
 import { VscHeartFilled } from "react-icons/vsc";
@@ -17,14 +12,11 @@ import { VscHeart } from "react-icons/vsc";
 import { useList } from '../../../context/wishListContext/wishListContext';
 import { toast } from 'react-toastify';
 import RatingReview from '../starRating/starRating';
-// import { IoIosArrowDown } from "react-icons/io";
 // Assets
 import {
-    IoIosArrowUp,
     IoIosArrowDown,
     IoIosArrowBack,
     IoIosArrowForward,
-    IoMdArrowDropleft
 } from "react-icons/io";
 
 const QuickView = ({ setQuickViewProduct, quickViewClose, quickViewShow, }) => {
@@ -33,7 +25,6 @@ const QuickView = ({ setQuickViewProduct, quickViewClose, quickViewShow, }) => {
     console.log("Quick View Data", setQuickViewProduct)
 
     const {
-        cart,
         increamentQuantity,
         decreamentQuantity,
         removeFromCart,
@@ -43,7 +34,7 @@ const QuickView = ({ setQuickViewProduct, quickViewClose, quickViewShow, }) => {
         cartSection,
         setCartSection
     } = useCart();
-    // const [cartSection, setCartSection] = useState(false);
+
     const [viewDetails, setViewDetails] = useState(null)
     const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -137,7 +128,6 @@ const QuickView = ({ setQuickViewProduct, quickViewClose, quickViewShow, }) => {
 
 
     return (
-        // <div className={`quick-view-outer-overlay-container ${quickViewShow ? 'show-quick-view-outer-overlay' : ''}`}>
         <div className={`quick-view-main-container ${quickViewShow ? 'show-quick-view-modal' : ''}`} onClick={quickViewClose}>
             <div
                 className={`quick-view-main ${quickViewShow ? 'slide-quick-view-inner-modal' : ''}`}
@@ -151,7 +141,7 @@ const QuickView = ({ setQuickViewProduct, quickViewClose, quickViewShow, }) => {
                     <div className='quick-view-rating'>
                         <div className='quick-view-start'>
                             <RatingReview rating={parseFloat(setQuickViewProduct?.average_rating)} size={"12px"} disabled={true} />
-                            {/* <p>4.1</p> */}
+                            
                         </div>
 
                     </div>
@@ -159,7 +149,7 @@ const QuickView = ({ setQuickViewProduct, quickViewClose, quickViewShow, }) => {
                 <div className='quick-view-image-and-variations'>
                     <div className="quick-view-slider">
                         <button className={`quick-view-arrow quick-view-left ${currentIndex === 0 ? 'disabled' : ''}`} onClick={handlePrev}>
-                            {/* <img src={arrowLeft} alt='left' /> */}
+                            
                             <IoIosArrowBack
                                 size={15}
                                 className='quick-view-product-gallery-arrow-left'
@@ -179,7 +169,7 @@ const QuickView = ({ setQuickViewProduct, quickViewClose, quickViewShow, }) => {
                             }
                         </div>
                         <button className={`quick-view-arrow quick-view-right ${currentIndex === imagesLenght - 1 ? 'disabled' : ''}`} onClick={handleNext}>
-                            {/* <img src={arrowRight} alt='right' /> */}
+                            
                             <IoIosArrowForward
                                 size={15}
                                 className='quick-view-product-gallery-arrow-right'
@@ -236,10 +226,6 @@ const QuickView = ({ setQuickViewProduct, quickViewClose, quickViewShow, }) => {
                                 />
                         }
                     </div>
-                    {/* <img src={redHeart} alt='heart' className='quickview-heart-icon' /> */}
-                    {/* <button className='quick-view-add-to-cart' onClick={() => handleAddToCartProduct(setQuickViewProduct)}>
-                        Add To Cart
-                    </button> */}
                     <button className='quick-view-add-to-cart' onClick={() => handleAddToCartProduct(setQuickViewProduct)}>
                         {isCartLoading && <div className="loader_2"></div>}
                         {isCartLoading ? ' Almost there...' : 'Add To Cart'}

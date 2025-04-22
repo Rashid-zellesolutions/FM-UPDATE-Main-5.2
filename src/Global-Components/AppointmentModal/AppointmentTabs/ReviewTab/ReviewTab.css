@@ -11,7 +11,7 @@
   font-size: var(--sub-section-size);
   line-height: var(--sub-section-height);
   font-weight: var(--sub-section-weight);
-  color: var(--text-color);
+  color: var(--text-primary);
 }
 
 .review-tab-form {
@@ -27,7 +27,7 @@
   font-size: var(--sub-section-size);
   line-height: var(--sub-section-height);
   font-weight: var(--sub-section-weight);
-  color: var(--text-color);
+  color: var(--text-primary);
 }
 
 /* Flouting */
@@ -99,7 +99,7 @@
   font-size: var(--sub-section-size);
   line-height: var(--sub-section-height);
   font-weight: var(--sub-section-weight);
-  color: var(--text-color);
+  color: var(--text-primary);
 }
 
 .type-selected-button {
@@ -132,6 +132,6 @@
     font-size: var(--content-one-size);
     line-height: var(--content-one-height);
     font-weight: var(--content-one-weight);
-    color: var(--text-color);
+    color: var(--text-primary);
   }
 }

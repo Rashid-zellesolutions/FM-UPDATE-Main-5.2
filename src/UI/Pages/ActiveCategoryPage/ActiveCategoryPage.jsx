@@ -166,26 +166,10 @@ export default function ActiveCategoryPage() {
                     quickViewClose={handleQuickViewClose}
                 />
 
-                {/* <div className={`quick-view-section ${quickViewClicked ? 'show-quick-view-section' : ''}`} onClick={handleQuickViewClose}>
-                    <button className={`quick-view-close`} onClick={handleQuickViewClose}>
-
-                        <IoMdClose size={25} style={{ color: 'var(--secondary-color)' }} />
-                    </button>
-                    <div className={`quickview-containt ${quickViewClicked ? 'show-quick-view-containt' : ''}`} onClick={(e) => e.stopPropagation()}>
-                        <QuickView 
-                            setQuickViewProduct={quickViewProduct} 
-                            quickViewShow={quickViewClicked}
-                            quickViewClose={handleQuickViewClose}
-                        />
-                    </div>
-                </div> */}
+                
             </div>
 
-            {/* <QuickView
-                setQuickViewProduct={quickViewProduct}
-                quickViewShow={quickViewClicked}
-                quickViewClose={handleQuickViewClose}
-            /> */}
+        
         </>
     )
 }

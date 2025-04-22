@@ -23,7 +23,7 @@
     font-size: var(--sub-section-size);
     line-height: var(--sub-section-height);
     font-weight: var(--sub-section-weight);
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .location-search-container {
@@ -68,14 +68,14 @@
     font-size: var(--section-size);
     line-height: var(--section-height);
     font-weight: var(--section-weight);
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .location-body-heading-and-title>p {
     font-size: var(--sub-section-size);
     line-height: var(--sub-section-height);
     font-weight: var(--sub-section-weight);
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .location-body-heading-and-title>p>span {
@@ -126,7 +126,7 @@
     font-size: var(--sub-section-size);
     line-height: var(--sub-section-height);
     font-weight: var(--sub-section-weight);
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .location-head-title-and-miles>span {
@@ -142,7 +142,7 @@
     font-size: var(--content-one-size);
     line-height: var(--content-one-height);
     font-weight: var(--content-two-weight);
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .location-tab-arrow {
@@ -197,7 +197,7 @@
     font-size: var(--content-one-size);
     line-height: var(--content-one-height);
     font-weight: var(--content-two-weight);
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .location-tab-phone-and-direction {
@@ -244,7 +244,7 @@
     font-size: var(--content-one-size);
     line-height: var(--content-one-height);
     font-weight: var(--content-two-weight);
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .location-tab-buttons-container {

@@ -24,14 +24,14 @@
     font-size: 25px;
     line-height: var(--heading-line-height);
     font-weight: 600;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .out-door-fav-details p{
     font-size: 16px;
     line-height: 24px;
     font-weight: 400;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .out-door-fav-details span{
@@ -73,7 +73,7 @@
     font-size: 25px;
     line-height: var(--heading-line-height);
     font-weight: 600;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .related-category-tags{

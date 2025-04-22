@@ -12,7 +12,7 @@
     font-size: 25px;
     line-height: 37px;
     font-weight: 600;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 /* all stores details section */
@@ -132,7 +132,7 @@
     font-size: 12px;
     line-height: 12px;
     font-weight: 500;
-    color: var(--text-color);
+    color: var(--text-primary);
     cursor: pointer;
     border: none;
     background-color: #ffffff;
@@ -214,7 +214,7 @@
     font-size: 12px;
     line-height: 18px;
     font-weight: 600;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .single-card-address-and-contact{
@@ -249,7 +249,7 @@
     font-size: 12px;
     line-height: 15px;
     font-weight: 500;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .single-card-view-details-button-div{
@@ -438,7 +438,7 @@
     font-size: 15px;
     line-height: 18px;
     font-weight: 500;
-    color: var(--text-color);
+    color: var(--text-primary);
     margin: 10px 0 0px 0;
 }
 
@@ -446,14 +446,14 @@
     font-size: 12px;
     line-height: 15px;
     font-weight: 400;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .comments-top-heading{
     font-size: 14px;
     line-height: 20px;
     font-weight: 600;
-    color: var(--text-color);
+    color: var(--text-primary);
     margin: 15px 0 5px 0;
 }
 
@@ -780,7 +780,7 @@
     font-size: 15px;
     line-height: 22px;
     font-weight: 500;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .mobile-view-rating-and-reviews-of-product{

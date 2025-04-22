@@ -48,22 +48,11 @@ const MobileViewProductFilters = (
     const [tempRatingValue, setTempRatingValue] = useState([]);
     const [tempCategoryValue, setTempCategoryValue] = useState([])
 
-    // useEffect(() => {
-    //     setTampRange([filtersData?.priceRange?.minPrice, filtersData?.priceRange?.maxPrice])
-    // }, [])
-
-
-    // const handleMobileRangeChange = (newRange) => {
-
-    //     setTampRange(newRange)
-    //     // handlePriceRange(tempRange)
-    // }
+    
 
 
     const handleMobileColorCheck = (value, name) => {
-        // const updatedColorValue = tempColorValue.includes(value) ?
-        //     tempColorValue.filter((item) => item !== value) :
-        //     [...colorValue, value]
+        
 
         const updatedColorValue = colorValue.includes(value) ?
                     colorValue.filter((item) => item !== value) :
@@ -93,19 +82,12 @@ const MobileViewProductFilters = (
 
 
     const handlePriceRangeClick = () => {
-        // if (tempRange[0] !== priceRange[0] || tempRange[1] !== priceRange[1]) {
             handlePriceRange(priceRange)
-        // }
-
-        // if(tempColorValue.length > 0) {
+        
             handleColor(tempColorValue)
-        // }
-        // if(tempRatingValue.length > 0) {
+
             handleRating(tempRatingValue);
-        // }
-        // if(tempCategoryValue.length > 0) {
             handleCategory(tempCategoryValue)
-        // }
 
         
 

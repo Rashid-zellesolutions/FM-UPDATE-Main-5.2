@@ -99,7 +99,6 @@ const Products = ({ navigationType }) => {
     // Path Extractor
     const pathSegments = location.pathname.split('/').filter(Boolean)
     const currentRoute = pathSegments[pathSegments.length - 1];
-    console.log("path name on products", currentRoute)
 
     // Filters Section
     const [isOpen, setIsOpen] = useState(false);

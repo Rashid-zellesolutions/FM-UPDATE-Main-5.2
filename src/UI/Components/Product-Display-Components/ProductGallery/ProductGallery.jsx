@@ -252,6 +252,7 @@ const ProductGallery = (
                 <div className='product-gallery-thumbnail-section'>
                     <IoIosArrowUp
                         size={25}
+                        color='#000000'
                         className={`product-thumbnail-arrow product-thumbnail-arrow-up ${thumbActiveIndex === 0 ? 'disabled' : ''}`}
                         onClick={thumbActiveIndex === 0 ? null : handleScrollUp}
                     />
@@ -286,6 +287,7 @@ const ProductGallery = (
 
                     <IoIosArrowDown
                         size={25}
+                        color='#000000'
                         // className={`product-thumbnail-arrow product-thumbnail-arrow-down ${thumbActiveIndex === productData.type === 'variable' ? selectedVariationData?.images?.length : productData?.images.length - 1 ? 'disabled' : ''}`}
                         // onClick={thumbActiveIndex === productData.type === 'variable' ? selectedVariationData?.images?.length : productData?.images.length - 1 ? null : handleScrollDown}
                         className={`product-thumbnail-arrow product-thumbnail-arrow-down ${thumbActiveIndex ===

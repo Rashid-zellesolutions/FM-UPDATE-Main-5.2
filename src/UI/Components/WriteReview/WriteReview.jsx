@@ -121,22 +121,7 @@ export default function WriteReview({ product_id, productData, snakeBarOpen, rev
     // Function to handle button click & trigger file input
     const fileInputRef = useRef(null);
     const [images, setImages] = useState([])
-    // const handleImageSelect = () => {
-    //     fileInputRef.current.click();
-    // };
-
-    // const handleFileChange = (e) => {
-    //     const files = e.target.files;
-    //     if (files.length + images.length <= 5) { // Ensure no more than 5 images
-    //         const newImages = [...images];
-    //         for (let i = 0; i < files.length; i++) {
-    //             newImages.push(files[i]); // Store file references
-    //         }
-    //         setImages(newImages); // Update the images state
-    //     } else {
-    //         alert("You can upload up to 5 images only.");
-    //     }
-    // };
+   
 
     
     const [imagesUrl, setImagesUrl] = useState([])
@@ -215,32 +200,7 @@ export default function WriteReview({ product_id, productData, snakeBarOpen, rev
         }
     }
 
-    // const [isChecked, setIsChecked] = useState(false);
-
-
-    // const handleSubmit = () => {
-    //     // if (isChecked) {
-    //         handleSubmitReview()
-    //         setWriteReview(false)
-    //         setReviewData(
-    //             {
-    //                 "product_id": 0,
-    //                 "product_permalink": "",
-    //                 "product_name": "",
-    //                 "reviewer": "",
-    //                 "reviewer_email": "",
-    //                 "review_title": "",
-    //                 "review": "",
-    //                 "rating": 0,
-    //                 "helpful": 0,
-    //                 "images": [],
-    //             },
-    //         )
-    //         setImages([])
-    //         // Add your form submission logic here
-    //     // } else {
-    //     // }
-    // };
+    
 
     const [showGuideLine, setShowGuideLine] = useState(false);
     const handleShowGuideline = () => {
@@ -403,10 +363,7 @@ export default function WriteReview({ product_id, productData, snakeBarOpen, rev
                                     ))}
                                 </div>
 
-                                {/* <button>
-                                <CiYoutube size={20} color="#4478C5" />
-                                Add Video
-                            </button> */}
+                                
                             </div>
                             <p>
                                 <IoInformationCircleOutline size={20} />
@@ -414,15 +371,7 @@ export default function WriteReview({ product_id, productData, snakeBarOpen, rev
                             </p>
                         </div>
 
-                        {/* <label className="gift-card-checkbox-container">
-                        <input 
-                            type="checkbox" 
-                            checked={isChecked}
-                            onChange={handleCheckboxChange}
-                        />
-                        Enter my name into the drawing to win a gift card. 
-                        <p>Sweepstakes Rules & Regulations</p>
-                    </label> */}
+                        
 
                         <div className="submit-review-container">
                             <button type="button" onClick={handleSubmitReview} >

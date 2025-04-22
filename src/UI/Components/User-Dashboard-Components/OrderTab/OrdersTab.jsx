@@ -153,35 +153,6 @@ const OrdersTab = () => {
   const endIndex = starterIndex + dataPerPage;
   const currentItems = ordersData[0]?.tableBody.slice(starterIndex, endIndex) || [];
 
-
-
-  // const dataPerPage = 7;
-  // const [currentTableDataIndex, setCurrentTableDataIndex] = useState(0);
-  // const [loading, setLoading] = useState(false);
-
-
-  // const totalItems = ordersData[0].tableBody.length;
-  // const maxIndex = Math.ceil(totalItems / dataPerPage) - 1
-  // const handleTableDataNext = () => {
-  //   if(currentTableDataIndex < maxIndex){
-  //     setLoading(true)
-  //     setCurrentTableDataIndex(currentTableDataIndex + 1)
-  //     setTimeout(() => setLoading(false), 1500)
-  //   }
-  // }
-
-  // const handleTableDataPrev = () => {
-  //   if(currentTableDataIndex > 0 ){
-  //     setLoading(true)
-  //     setCurrentTableDataIndex(currentTableDataIndex - 1);
-  //     setTimeout(() => setLoading(false), 1500)
-  //   }
-  // }
-
-  // const starterIndex = currentTableDataIndex * dataPerPage;
-  // const endIndex = starterIndex + dataPerPage;
-  // const currentItems = ordersData[0].tableBody.slice(starterIndex, endIndex)
-
   // View Modal
   const [viewProductModal, setViewProductModal] = useState(false)
   const [selectedProductData, setSelectedProductData] = useState([])
@@ -224,20 +195,7 @@ const OrdersTab = () => {
           handleNextPage={handleNextPage}
           handlePrevPage={handlePrevPage}
         />
-        {/* <div className='pagination-controls'>
-            <span className='pagination-counts'>
-              <p>{starterIndex + 1} - {Math.min(endIndex, totalItems)}</p>
-              of {totalItems}
-            </span>
-            <div className='pagination-page-change-arrows'>
-              <button onClick={handleTableDataPrev} disabled={currentTableDataIndex === 0}>
-                <img src={arrowLeft} alt='left arrow' />
-              </button>
-              <button onClick={handleTableDataNext} disabled={currentTableDataIndex === maxIndex}>
-                <img src={arrowRight} alt='arrow right' />
-              </button>
-            </div>
-          </div> */}
+        
 
       </div>
       <OrderViewModal

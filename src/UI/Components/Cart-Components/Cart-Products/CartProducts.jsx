@@ -5,7 +5,6 @@ import CartPaymnetMethoud from '../CArtAddPaymentMethoud/CartPaymnetMethoud';
 import { useCart } from '../../../../context/cartContext/cartContext';
 import EmptyCart from '../Empty-Cart/EmptyCart';
 import MobileCart from '../Mobile-Cart/MobileCart';
-import { useNavigate } from 'react-router-dom';
 import Breadcrumb from '../../../../Global-Components/BreadCrumb/BreadCrumb';
 import { IoLocationOutline } from "react-icons/io5";
 import LocationPopUp from '../../LocationPopUp/LocationPopUp';
@@ -27,7 +26,6 @@ const CartProducts = () => {
         removeProtection,
         addSingleProtection,
         isCartProtected,
-        setIsCartProtected,
         isProfessionalAssembly,
         handleCartProtected,
         handleCartAssembly,
@@ -57,11 +55,6 @@ const CartProducts = () => {
         state: '',
         country: ''
     });
-
-    // const [deliveryOptionIndex, setDeliveryOptionIndex] = useState(null);
-    // const handleDeliveryOptionndex = (index) => {
-    //     setDeliveryOptionIndex(index)
-    // }
 
     calculateTotalPrice(cart)
 
@@ -202,7 +195,6 @@ const CartProducts = () => {
                                                     margin: "5px 0",
                                                     gap: "10px",
                                                 }}
-                                                // onClick={() => handleDeliveryOptionndex(index)}
                                             >
                                                 <input
                                                     type="radio"
@@ -221,24 +213,6 @@ const CartProducts = () => {
                                         </div>
                                     </div>
                                 ))}
-                            {/* <div className='cart-protect-card'>
-                                <img src={guardIcon} alt='guard icon' className='cart-protection-card-icon' />
-                                <div className='cart-protection-plan-details-container'>
-                                    <p className='cart-protection-plan-card-header'>Protect Entire Order</p>
-                                </div>
-                                <div className='cart-protection-checkbox-container'>
-                                    <input
-                                        type="radio"
-                                        name="options"
-                                        value={option.id}
-                                        checked={selectedOption?.id === option.id}
-                                        onChange={(e) => handleChange(e, option, index)} // Pass the `option` object
-                                        style={{
-                                            marginTop: "5px",
-                                        }}
-                                    />
-                                </div>
-                            </div> */}
                         </div>
                     </div>
                     {cartProducts.products.length <= 0 && <EmptyCart />}
@@ -306,10 +280,7 @@ const CartProducts = () => {
                             handleDecreament={() => decreamentQuantity(items.isVariable === 1 ? items.variation_uid : items.product_uid, items.isVariable === 1)}
                             removeProtection={() => removeProtection(items.isVariable === 1 ? items.variation_uid : items.product_uid, items.isVariable === 1)}
                             addProtection={() => addSingleProtection(items.isVariable === 1 ? items.variation_uid : items.product_uid, items.isVariable === 1)}
-                        // handleIncreament={() => increamentQuantity(items.isVariable===1?items.variation_uid:items.product_uid,items.isVariable===1) }
-                        // handleDecreament={() => decreamentQuantity(items.isVariable===1?items.variation_uid:items.product_uid,items.isVariable===1)}
-                        // removeProtection={() => removeProtection(items.isVariable===1?items.variation_uid:items.product_uid,items.isVariable===1)}
-                        // addProtection={() => addSingleProtection(items.isVariable===1?items.variation_uid:items.product_uid,items.isVariable===1)}
+                        
                         />
                     ))}
                     {isCartLoading && <div className="cart_products_overlay">

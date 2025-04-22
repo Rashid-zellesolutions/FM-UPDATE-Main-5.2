@@ -11,7 +11,7 @@
     font-size: 25px;
     line-height: var(--heading-line-height);
     font-weight: 600;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .landing-page-financing-banners-main-container{
@@ -72,7 +72,7 @@
 
 .financing-page-buttons-div-column a{
     background-color: #fff;
-    color: var(--text-color);
+    color: var(--text-primary);
     border: 1px solid var(--border-color);
     padding: 10px 0px;
     width: 90%;
@@ -138,7 +138,7 @@
 
 .mobile-view-financing-buttons{
     background-color: #fff;
-    color: var(--text-color);
+    color: var(--text-primary);
     border: 1px solid var(--border-color);
     padding: 5px 20px;
     /* height: 60px; */

@@ -30,7 +30,7 @@
     font-size: 15px;
     line-height: 18px;
     font-weight: 500;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .mobile-register-top-heading button{
@@ -39,7 +39,7 @@
     align-items: center;
     justify-content: center;
     border: 1px solid var(--border-color);
-    color: var(--text-color);
+    color: var(--text-primary);
     background-color: #fff;
     font-size: 15px;
     line-height: 18px;
@@ -63,14 +63,14 @@
     font-size: 15px;
     line-height: 22px;
     font-weight: 600;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .mobile-register-content p{
     font-size: 12px;
     line-height: 15px;
     font-weight: 400;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .mobile-view-register-btn{

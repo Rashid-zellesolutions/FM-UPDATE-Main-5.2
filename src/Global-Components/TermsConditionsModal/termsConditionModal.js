@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./termsConditionsModal.css";
-import { Link } from "react-router-dom";
 import { url } from "../../utils/api";
 import { IoClose } from "react-icons/io5";
 
@@ -41,7 +40,6 @@ const TermsConditionsModal = ({ openModal, closeModal }) => {
           ) : (
             <p>Loading...</p>
           )}
-          {/* <button onClick={closeModal}>Close</button> */}
         </div>
       </div>
     </div>

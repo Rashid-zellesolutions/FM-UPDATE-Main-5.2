@@ -36,7 +36,7 @@
   font-size: 12px;
   font-weight: 300;
   line-height: 18px;
-  color: var(--secondary-color);
+  color: var(--text-primary);
 }
 
 .deal-of-the-day-stars{
@@ -47,7 +47,8 @@
   font-size: 16px;
   font-weight: 500;
   line-height: 18px;
-  color: var(--secondary-color);
+  /* color: var(--text-primary); */
+  color: var(--text-primary);
   margin-bottom: 0px;
   height: 38px;
 }
@@ -64,7 +65,7 @@
   font-size: var(--sub-section-size);
   line-height: var(--sub-section-height);
   font-weight: var(--sub-section-weight);
-  color: var(--text-color);
+  color: var(--text-primary);
   opacity: 0.5;
   margin-left: 4px;
 }
@@ -73,7 +74,7 @@
   font-size: var(--section-size) !important;
   line-height: 1.2 !important;
   font-weight: var(--section-weight) !important;
-  color: var(--text-color) !important;
+  color: var(--text-primary) !important;
 }
 
 .deal-of-the-day-product-image{
@@ -175,7 +176,7 @@
 }
 
 .deal-of-month-cart-icon{
-  color: var(--text-color) !important;
+  color: var(--text-primary) !important;
   opacity: 0.8;
   font-weight: 300;
 }
@@ -210,7 +211,7 @@
 }
 
 .deal-of-month-heart-icon{
-  color: var(--text-color) !important;
+  color: var(--text-primary) !important;
   opacity: 0.8;
   font-weight: 300;
 }
@@ -242,7 +243,7 @@
 }
 
 .deal-of-month-share-icon{
-  color: var(--text-color) !important;
+  color: var(--text-primary) !important;
   opacity: 0.8;
   font-weight: 300;
 }
@@ -307,7 +308,7 @@
   font-size: 12px;
   line-height: 18px;
   font-weight: 600;
-  color: var(--text-color);
+  color: var(--text-primary);
   opacity: 0.5;
 }
 
@@ -315,7 +316,7 @@
   font-size: 15px;
   line-height: 22px;
   font-weight: 600;
-  color: var(--text-color);
+  color: var(--text-primary);
 }
 
 @media only screen and (max-width: 480px){

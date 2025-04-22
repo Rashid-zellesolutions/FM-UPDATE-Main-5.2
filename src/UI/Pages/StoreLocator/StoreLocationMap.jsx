@@ -1,50 +1,6 @@
-// import React, { useRef, useEffect } from "react";
-// import { GoogleMap, LoadScript } from "@react-google-maps/api";
-
-// const DeliveryLocationMap = () => {
-//   const mapContainerStyle = {
-//     width: "100%",
-//     height: "500px",
-//   };
-
-//   const center = {
-//     lat: 37.7749,
-//     lng: -122.4194,
-//   };
-
-//   const apiKey = "AIzaSyB9nW_l7Dw8WnnSCOJyJSGjtTYyF9ct3qk";
-
-//   const mapRef = useRef(null);
-
-//   useEffect(() => {
-//     if (mapRef.current && window.google) {
-//       // Create the AdvancedMarkerElement
-//       const marker = new google.maps.marker.AdvancedMarkerElement({
-//         position: center,
-//         map: mapRef.current,
-//       });
-//     }
-//   }, [mapRef]);
-
-//   return (
-//     <LoadScript googleMapsApiKey={apiKey}>
-//       <GoogleMap
-//         mapContainerStyle={mapContainerStyle}
-//         center={center}
-//         zoom={13}
-//         onLoad={(map) => (mapRef.current = map)}
-//       >
-//         {/* No need for a Marker component */}
-//       </GoogleMap>
-//     </LoadScript>
-//   );
-// };
-
-// export default DeliveryLocationMap;
-
 import React, { useState, useEffect } from "react";
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
-import axios from "axios";
+
 
 const containerStyle = {
   width: "100%",
@@ -69,12 +25,6 @@ function StoreLocationMap({ storesData,selectedLocation }) {
     googleMapsApiKey: "AIzaSyBhUqdMX-GUuJUlMuEj7oggAkLuDkVdjbU",
   });
 
-  const [location, setLocation] = useState(null);
-  // const 
-
-  // const handleMarkerClick = (location) => {
-  //   setCenter(location); // Update center to zoom in on the clicked marker
-  // };
 
   if (!isLoaded) return <div>Loading...</div>;
 

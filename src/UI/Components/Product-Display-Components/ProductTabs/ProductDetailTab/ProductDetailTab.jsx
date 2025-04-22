@@ -1,7 +1,5 @@
 import React from 'react'
 import './ProductDetailTab.css'
-import { IoIosArrowForward } from "react-icons/io";
-import { Link } from 'react-router-dom';
 import { url } from '../../../../../utils/api';
 
 const ProductDetailTab = ({id, detailsRef, productData}) => {
@@ -40,13 +38,6 @@ const ProductDetailTab = ({id, detailsRef, productData}) => {
           {/* <p>Care Instructions</p> */}
         </div>
 
-        {/* <div className='product-detail-right-section-items product-detail-second-tab'>
-          <span>
-            <h3>Color Family:</h3>
-            <p>Brown</p>
-          </span>
-        </div> */}
-
         <div className='product-detail-right-section-items product-detail-second-tab'>
           <span>
             <h3># of Accent Pillows:</h3>
@@ -54,44 +45,19 @@ const ProductDetailTab = ({id, detailsRef, productData}) => {
           </span>
         </div>
 
-        {/* <div className='product-detail-right-section-items product-detail-second-tab'>
-          <span>
-            <h3>Pattern:</h3>
-            <p>Solid</p>
-          </span>
-        </div> */}
-
         <div className='product-detail-right-section-items'>
           <span>
             <h3>Brand:</h3>
             <p>Furniture Mecca</p>
           </span>
-          {/* <p>More Dimensions</p> */}
         </div>
-
-        {/* <div className='product-detail-right-section-items product-detail-second-tab'>
-          <span>
-            <h3>Construction</h3>
-          </span>
-          <IoIosArrowForward size={20} />
-        </div> */}
 
         <div className='product-detail-right-section-items product-detail-second-tab'>
         <span>
             <h3>Collection:</h3>
             <p>Furniture Mecca</p>
           </span>
-          {/* <IoIosArrowForward size={20} /> */}
         </div>
-
-        {/* <div className='product-detail-right-section-items product-detail-second-tab'>
-          <span>
-            <h3>Weight Capacity:</h3>
-            <p>900 lbs</p>
-          </span>
-        </div> */}
-
-
       </div>
       </div>
       

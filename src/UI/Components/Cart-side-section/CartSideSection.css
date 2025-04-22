@@ -70,14 +70,14 @@
     font-size: 14px;
     font-weight: 400;
     line-height: 21px;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .attributes_list p{
     font-size: 12px;
     font-weight: 400;
     line-height: 15px;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .cart-side-section-price-and-count{
@@ -93,7 +93,7 @@
     font-size: 14px;
     font-weight: 400;
     line-height: 14px;
-    color: var(--text-color);
+    color: var(--text-primary);
     margin: 0;
 }
 
@@ -149,7 +149,7 @@
     font-size: 15px !important;
     line-height: 23px !important;
     font-weight: 600 !important;
-    color: var(--text-color) !important;
+    color: var(--text-primary) !important;
 }
 
 .attributes_list{

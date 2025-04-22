@@ -44,7 +44,7 @@
     font-size: 14px;
     line-height: 21px;
     font-weight: 500;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .order-table tr td{
@@ -73,7 +73,7 @@
     padding: 0 7px;
     border: 1px solid var(--border-color);
     background-color: #fff;
-    color: var(--text-color);
+    color: var(--text-primary);
     cursor: pointer;
     outline: none;
     font-size: 14px;

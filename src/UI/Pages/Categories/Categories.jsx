@@ -115,8 +115,6 @@ const Categories = ({
   };
 
 
-  useEffect(() => {console.log("all produts", allProducts)}, [allProducts])
-
   return (
     <>
       

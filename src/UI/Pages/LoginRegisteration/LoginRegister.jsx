@@ -20,7 +20,6 @@ const LoginRegister = () => {
 
   const [isTokenValid, setIsTokenValid] = useState(false);
 
-  // const url = "http://localhost:8080"
 
   const checkToken = async () => {
     const token = localStorage.getItem('userToken');

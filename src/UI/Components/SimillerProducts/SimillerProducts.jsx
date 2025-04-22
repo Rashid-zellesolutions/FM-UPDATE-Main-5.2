@@ -1,7 +1,5 @@
 import React, {useState, useEffect} from 'react'
 import './SimillerProducts.css'
-import { useSelector } from 'react-redux'
-import ProductCard from '../ProductCard/ProductCard'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { url } from '../../../utils/api'
@@ -62,11 +60,11 @@ const SimillerProducts = ({collection, isPadding}) => {
 
 
     // Card title words limit
-    const maxLength = 30;
-    const truncateTitle = (title, maxLength) => {
-        if(!title) return '';
-        return title.length > maxLength ? title.slice(0, maxLength) + '...' : title
-    };
+    // const maxLength = 30;
+    // const truncateTitle = (title, maxLength) => {
+    //     if(!title) return '';
+    //     return title.length > maxLength ? title.slice(0, maxLength) + '...' : title
+    // };
 
     // product color variation index from redux
 
@@ -84,11 +82,12 @@ const SimillerProducts = ({collection, isPadding}) => {
         // const handleQuickViewClose = () => { setQuickView(false) }
 
     const navigate = useNavigate();
-    const handleCardClick = (item) => {
-        navigate(`/product/${item.slug}`, {state: {products: item}})
-    }
+    // const handleCardClick = (item) => {
+    //     navigate(`/product/${item.slug}`, {state: {products: item}})
+    // }
 
     // wish list
+    
     const {addToList, removeFromList, isInWishList} = useList()
     const notify = (str) => toast.success(str);
     const notifyRemove = (str) => toast.error(str)
@@ -176,7 +175,6 @@ const SimillerProducts = ({collection, isPadding}) => {
                     percent={'12%'}
                     showExtraLines={false}
                     titleHeight={true}
-                    // colTwo={selectedGrid === 'single-col' ? false : true}
                     tagIcon={item.productTag ? item.productTag : heart}
                     tagClass={item.productTag ? 'tag-img' : 'heart-icon'}
                     mainImage={`${item.image.image_url}`}
@@ -185,13 +183,7 @@ const SimillerProducts = ({collection, isPadding}) => {
                     tags={item.tags}
                     allow_back_order={item?.allow_back_order}
                     ProductTitle={item.name}
-                    stars={[
-                      { icon: star, title: 'filled' },
-                      { icon: star, title: 'filled' },
-                      { icon: star, title: 'filled' },
-                      { icon: star, title: 'filled' },
-                      { icon: star, title: 'filled' },
-                    ]}
+                    
                     reviewCount={item.reviewCount}
                     lowPriceAddvertisement={item.lowPriceAddvertisement}
                     priceTag={item.regular_price}

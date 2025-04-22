@@ -108,7 +108,8 @@
     font-size: 25px;
     line-height: var(--heading-line-height);
     font-weight: 600;
-    color: var(--secondary-color);
+    /* color: var(--secondary-color); */
+    color: var(--text-primary);
     margin-bottom: 15px;
 }
 

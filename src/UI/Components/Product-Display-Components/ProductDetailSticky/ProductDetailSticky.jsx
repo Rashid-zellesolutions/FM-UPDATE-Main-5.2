@@ -253,11 +253,6 @@ const ProductDetailSticky = (
     setShowMiles(false);
   }
 
-  // const contectInfo = [
-  //   { title: 'Call', icon: <IoCallOutline size={18} color='var(--secondary-color)' />, disableColor: false, tel: true },
-  //   { title: 'Chat', icon: <IoChatbubbleOutline size={18} color='var(--secondary-color)' />, disableColor: true, tel: false },
-  //   { title: 'Visit', icon: <PiStorefrontLight size={18} color='var(--secondary-color)' />, disableColor: false, tel: false },
-  // ]
 
   const [appointmentModal, setAppointmentModal] = useState(false);
   const handleShowAppointmentModal = () => {
@@ -321,7 +316,6 @@ const ProductDetailSticky = (
   const [snakebarOpen, setSnakebarOpen] = useState(false);
 
   const handleOpenSnakeBar = () => {
-    console.log("snakebar open function called")
     // setAppointmentModal(false);
     setSnakebarOpen(true);
   }
@@ -467,70 +461,11 @@ const ProductDetailSticky = (
                 }
               </>}
 
-              {/* <div className='single-product-frame-color'>
-                <SizeVariant
-                  productType={product.type}
-                  productData={product.variations}
-                  attributes={product.attributes}
-                  selectedColor={selectedColor}
-                  selectVariation={selectVariation}
-                  handleSelectColor={handleSelectColor}
-                  handleSelectVariation={handleSelectVariation}
-                  handleSelectedVariationData={handleSelectedVariationData}
-                />
-              </div>
-
-              <div className='add-cart-or-add-items-div' ref={cartDivRef}>
-                <div className='item-count'>
-                  <button className={`minus-btn ${product.quantity === 1 ? 'disabled' : ''}`} onClick={decreaseLocalQuantity} disabled={product.quantity === 1}>
-                    
-                    <FaWindowMinimize size={15} className='minus-icon' />
-                  </button>
-
-                  <input
-                    type='number'
-                    value={quantity}
-                    onChange={handleQuantityChange}
-                  />
-                  <button className='plus-btn' onClick={increaseLocalQuantity}>
-                    
-                    <FaPlus size={15} className='plus-icon' />
-                  </button>
-                </div>
-                <div
-                  className='product-details-add-to-wishlist-icon'
-                  onClick={(e) => { e.stopPropagation(); handleWishList(product) }}
-                  style={{ border: isInWishList(product.uid) ? '1px solid red' : '1px solid var(--secondary-color)' }}
-                >
-                  {isInWishList(product.uid) ? <IoMdHeart size={20} color={isInWishList(product.uid) ? 'red' : 'var(--secondary-color)'} />
-                    : <IoMdHeartEmpty size={20} />}
-                </div>
-                <button
-                  className={`add-to-cart-btn ${isLoading ? 'loading' : ''}`}
-                  onClick={() => {
-                    handleClick();
-                    addToCart0(product, variationData, !isProtected ? 1 : 0, quantity)
-                    handleAddToCartProduct(product);
-                  }
-                  }>
-                  {isLoading ? 'Loading...' : 'Add To Cart'}
-                </button>
-              </div> */}
+              
 
             </div>
 
-            {/* {Object.keys(product).length > 0 ? (
-              <FinancingOptions />
-            ) : (
-              <div className='shimmer-financing-option'>
-                <div className='shimmer-financing-cards-sec'>
-                  <div className='shimmer-financing-card'></div>
-                  <div className='shimmer-financing-card'></div>
-                  <div className='shimmer-financing-card'></div>
-                </div>
-                <div className='shimmer-financing-card-button'></div>
-              </div>
-            )} */}
+            
 
 
           </div>
@@ -577,16 +512,7 @@ const ProductDetailSticky = (
                   : <IoMdHeartEmpty size={20} />}
               </div>
 
-              {/* <button
-                className={`add-to-cart-btn ${isLoading ? 'loading' : ''}`}
-                onClick={() => {
-                  handleClick();
-                  addToCart0(product, variationData, !isProtected ? 1 : 0, quantity)
-                  handleAddToCartProduct(product);
-                }
-                }>
-                {isLoading ? 'Loading...' : 'Add To Cart'}
-              </button> */}
+              
 
 
 
@@ -603,18 +529,7 @@ const ProductDetailSticky = (
               </button>
             </div>
 
-            {/* {Object.keys(product).length > 0 ? (
-              <FinancingOptions />
-            ) : (
-              <div className='shimmer-financing-option'>
-                <div className='shimmer-financing-cards-sec'>
-                  <div className='shimmer-financing-card'></div>
-                  <div className='shimmer-financing-card'></div>
-                  <div className='shimmer-financing-card'></div>
-                </div>
-                <div className='shimmer-financing-card-button'></div>
-              </div>
-            )} */}
+            
 
             {product.may_also_need && product.may_also_need.length > 0 ? <AlsoNeed productsUid={product.may_also_need} /> : <></>}
 

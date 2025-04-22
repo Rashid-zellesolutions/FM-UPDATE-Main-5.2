@@ -64,7 +64,7 @@
     flex-direction: column;
     width: 100%;
     padding: 70px 200px 35px 200px;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .faq-details{

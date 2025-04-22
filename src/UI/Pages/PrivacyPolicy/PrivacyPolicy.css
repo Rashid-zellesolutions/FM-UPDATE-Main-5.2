@@ -10,7 +10,7 @@
     font-size: 25px;
     line-height: 28px;
     font-weight: 500;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .policy-container{
@@ -31,7 +31,7 @@
     font-size: 20px;
     line-height: 30px;
     font-weight: 600;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .policy-full-details-list{
@@ -46,5 +46,5 @@
     font-size: 15px;
     line-height: 20px;
     font-weight: 400;
-    color: var(--text-color);
+    color: var(--text-primary);
 }

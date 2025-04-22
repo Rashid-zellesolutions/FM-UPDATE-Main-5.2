@@ -22,7 +22,7 @@
     font-size: var(--section-size);
     font-weight: 700;
     line-height: 38px;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .zipcode-and-protection-plan-container{
@@ -46,7 +46,7 @@
     font-size: var(--content-one-size);
     line-height: var(--content-one-height);
     font-weight: var(--content-two-weight);
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .update-zip-on-cart-update-location{
@@ -69,7 +69,7 @@
     font-size: var(--sub-section-size);
     line-height: var(--sub-section-height);
     font-weight: var(--sub-section-weight);
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .cart-protect-or-not-container{
@@ -115,7 +115,7 @@
     font-size: var(--sub-section-size);
     line-height: var(--sub-section-height);
     font-weight: var(--sub-section-weight);
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .cart-protection-plan-cart-desc{
@@ -123,7 +123,7 @@
     /* line-height: var(--content-one-height); */
     line-height: 12px;
     font-weight: var(--content-two-weight);
-    color: var(--text-color);
+    color: var(--text-primary);
     opacity: 0.7;
 }
 
@@ -279,7 +279,7 @@
     font-size: 15px;
     line-height: 18px;
     font-weight: 600;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .mobile-view-head span{
@@ -293,7 +293,7 @@
     font-size: 10px;
     line-height: 15px;
     font-weight: 500;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .mobile-view-head span p:nth-child(2){
@@ -318,7 +318,7 @@
 }
 
 .mobile-sub-total-protection p{
-    color: var(--text-color);
+    color: var(--text-primary);
     font-size: 12px;
     line-height: 18px;
     font-weight: 500;
@@ -328,7 +328,7 @@
     font-weight: 600;
     font-size: 15px;
     line-height: 22px;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .mobile-tax-section{
@@ -344,7 +344,7 @@
     font-size: 12px;
     line-height: 18px;
     font-weight: 500;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .mobile-tax-section p:nth-child(2){
@@ -366,7 +366,7 @@
     font-size: 12px;
     line-height: 18px;
     font-weight: 600;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .mobile-single-delivery-option{
@@ -393,14 +393,14 @@
     font-size: 12px;
     line-height: 18px;
     font-weight: 600;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .mobile-single-delivery-details p{
     font-size: 10px;
     line-height: 15px;
     font-weight: 400;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 /* Mobile view checkout fixed  */
@@ -444,7 +444,7 @@
     border: none;
     outline: none;
     background-color: var(--primary-color);
-    color: #fff;
+    color: var(--text-white);
     border-radius: 4px;
     font-size: 12px;
     line-height: 18px;
@@ -465,7 +465,7 @@
 .cart-item-details-heading h3{
     font-size: 15px;
     font-weight: 700;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .price-details-div{
@@ -489,13 +489,13 @@
 .price-details h3{
     font-size: 12px;
     font-weight: 600;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .price-details p{
     font-size: 15px;
     font-weight: 600;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .continue-btn{
@@ -558,13 +558,13 @@
 .desktop-price-title{
     font-size: 15px;
     font-weight: 400;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .desktop-price-total{
     font-size: 20px;
     font-weight: 600;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .desktop-continue-btn-div{
@@ -655,7 +655,7 @@ input[type="radio"] {
     font-size: 14px;
     line-height: 18px;
     font-weight: 400;
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .mobile-view-update-zip-on-cart-page > p {
@@ -688,7 +688,7 @@ input[type="radio"] {
         font-size: var(--section-size);
         font-weight: var(--section-weight);
         line-height: var(--section-height);
-        color: var(--text-color);
+        color: var(--text-primary);
     }
 
     .cart-items{
@@ -830,7 +830,7 @@ input[type="radio"] {
         font-size: 16px;
         line-height: 20px;
         font-weight: 400;
-        color: var(--text-color);
+        color: var(--text-primary);
     }
 
     .cart-protect-or-not-container{

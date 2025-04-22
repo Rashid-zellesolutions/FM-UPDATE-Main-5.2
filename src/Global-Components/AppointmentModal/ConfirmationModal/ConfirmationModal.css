@@ -73,14 +73,14 @@
     font-size: var(--sub-section-size);
     line-height: var(--sub-section-height);
     font-weight: var(--sub-section-weight);
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .appointment-confirmation-modal-body>p {
     font-size: var(--content-one-size);
     line-height: var(--content-one-heigh);
     font-weight: var(--content-two-weight);
-    color: var(--text-color);
+    color: var(--text-primary);
 }
 
 .appointment-confirmation-time-and-date {

@@ -32,7 +32,7 @@
     font-size: 16px;
     line-height: 24px;
     font-weight: 400;
-    border: 1px solid var(--text-color);
+    border: 1px solid var(--text-primary);
     border-radius: 30px;
     cursor: pointer;
 }
@@ -41,5 +41,5 @@
     font-size: 16px;
     line-height: 24px;
     font-weight: 400;
-    color: var(--text-color);
+    color: var(--text-primary);
 }

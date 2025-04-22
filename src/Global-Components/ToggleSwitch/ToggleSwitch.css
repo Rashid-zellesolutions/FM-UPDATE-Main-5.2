@@ -101,8 +101,8 @@
     align-items: center;
     justify-content: center;
     flex-direction: row;
-    border: 1px solid var(--text-color);
-    color: var(--text-color) !important;
+    border: 1px solid var(--text-primary);
+    color: var(--text-primary) !important;
 }
 
 .checkbox-wrapper-7 .tgl-ios:checked+.tgl-btn:active {
