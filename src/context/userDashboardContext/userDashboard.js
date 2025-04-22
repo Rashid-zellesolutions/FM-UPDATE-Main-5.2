@@ -1,5 +1,4 @@
 import { createContext, useContext, useState, useEffect } from "react";
-import { url } from "../../utils/api";
 
 const userDashboardContext = createContext();
 

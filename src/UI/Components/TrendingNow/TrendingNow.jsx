@@ -6,6 +6,7 @@ import './TrendingNow.css';
 import { url } from '../../../utils/api';
 import TrandingNowShmmer from './TrandingNowShimmer/TrandingNowShmmer';
 import { Link, useNavigate } from 'react-router-dom';
+import { HiOutlineShoppingBag } from "react-icons/hi2";
 
 const TrendingNow = ({ data }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -58,6 +59,12 @@ const TrendingNow = ({ data }) => {
                                                 src={`${url}${image.image_url}`}
                                                 alt={`Slide ${index + 1}`}
                                             />
+                                            <div className='tranding-cart-overlay-main-container'>
+                                                <div className='tranding-card-bag-container'>
+                                                    <HiOutlineShoppingBag size={35} className='tranding-now-cart-bag' />
+                                                    <HiOutlineShoppingBag size={20} className='mobile-tranding-now-cart-bag' />
+                                                </div>
+                                            </div>
                                         </div>
                                     ))}
                                 </Slider>
@@ -71,6 +78,12 @@ const TrendingNow = ({ data }) => {
                                         alt={item.alt_text}
                                         effect='blur'
                                     />
+                                    <div className='tranding-cart-overlay-main-container'>
+                                        <div className='tranding-card-bag-container'>
+                                            <HiOutlineShoppingBag size={20} className='mobile-tranding-now-cart-bag' />
+                                            <HiOutlineShoppingBag size={35} className='tranding-now-cart-bag' />
+                                        </div>
+                                    </div>
                                 </div>
                             ))}
                         </div>

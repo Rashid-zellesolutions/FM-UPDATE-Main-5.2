@@ -71,7 +71,6 @@ export const GlobalContextProvider = ({ children }) => {
 
   async function getStoresByDistance1(using, zip, lat, lng) {
     var apiUrl = ``;
-    // const url ="http://localhost:8080";
     using === "code" ?
       apiUrl = `${url}/api/v1/stores/get-distant?zipcode=${zip}` :
       using === "latlng" ?
@@ -204,13 +203,6 @@ export const GlobalContextProvider = ({ children }) => {
 
     }
 
-    // If METHOD-1 is applied, no other methods will be shown
-    // if (selectedMethods.length === 1) {
-    //   setSelectedOption(method1); // Automatically select METHOD-1
-    //   setSelectedShippingMethods(selectedMethods);
-    //   return;
-    // }
-
     // Case 2: METHOD-2 (Flat Rate Shipping)
     const method2 = shippingMethods.find((method) => method.id === "METHOD-2");
     if (method2) {
@@ -239,8 +231,6 @@ export const GlobalContextProvider = ({ children }) => {
     setTaxValues();
     setSelectedOption(null)
   }, [info])
-
-
 
   const handleButtonClick = async () => {
     const data = await getStateByPostalCode(zipCode);

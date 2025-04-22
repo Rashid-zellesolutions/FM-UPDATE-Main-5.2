@@ -40,7 +40,7 @@ const DropdownMenu = (
 
     return (
         <div className='mattresses-main-div'>
-            <div style={{ display: 'flex' }}>
+            <div className='nav-items-outer-container'>
                 <div className='menu-links'>
                     {/* <h3 className='see-all-heading'>See All {navHeading}</h3> */}
                     <Link to={`/${parentCategorySlug}`} className='living-room-heading'>{`See All ${navHeading}`}</Link>

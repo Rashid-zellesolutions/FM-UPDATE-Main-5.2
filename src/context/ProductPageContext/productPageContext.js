@@ -14,9 +14,7 @@ export const ProductPageProvider = ({ children }) => {
     }
     
     useEffect(()=>{
-        // console.log(selectedVariationData,"here is sleected")
     },[singleProductData])
-    
     
     return (
         <ProductPageContext.Provider value={{ 

@@ -395,7 +395,7 @@
 }
 
 .custom-description p {
-    color: #595959;
+    color: var(--text-color);
     font-size: 12px;
     line-height: 1.2;
     margin-bottom: 10px;

@@ -1,4 +1,3 @@
-// ProductArchiveContext.js
 import { createContext, useContext, useEffect, useState } from "react";
 
 const ProductArchiveContext = createContext();

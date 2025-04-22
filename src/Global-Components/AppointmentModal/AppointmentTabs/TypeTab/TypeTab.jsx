@@ -16,8 +16,6 @@ const TypeTab = ({ selectedTab, setSelectedTab, handleServiceType, handleCategor
 
   const { appointmentPayload, parentCategories } = useAppointment()
 
-
-
   return (
     <div className='type-tab-main-container'>
 

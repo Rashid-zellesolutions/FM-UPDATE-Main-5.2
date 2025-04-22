@@ -30,7 +30,6 @@
   color: var(--text-color);
 }
 
-
 /* Flouting */
 .floating-input-container {
   position: relative;
@@ -63,7 +62,6 @@
   background-color: transparent;
   padding: 0 4px;
 }
-
 
 .review-tab-form>label {
   display: flex;

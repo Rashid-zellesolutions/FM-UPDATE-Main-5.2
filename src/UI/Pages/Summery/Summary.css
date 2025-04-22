@@ -2,20 +2,29 @@
     display: flex;
     width: 100%;
     height: auto;
-    padding: 35px 60px;
+    padding: 35px 120px;
     position: relative;
-    gap: 20px;
+    align-items: stretch;
+    gap: 10px;
     /* max-width: 1400px; */
     margin: 0 auto;
+}
+
+.summary-left-main-outer-container {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    padding: 0px 20px 10px 10px;
+    height: max-content;
+    gap: 15px;
 }
 
 .summary-left-section {
     display: flex;
     flex-direction: column;
-    width: 65%;
-    /* padding: 0px 20px 30px 60px; */
-    padding: 10px;
+    width: 100%;
     box-shadow: 1px 1px 6px 0px #00000026;
+    padding: 16px;
     height: max-content;
     border-radius: 5px;
     gap: 25px;
@@ -210,12 +219,12 @@
 .summery-right-section-low-height {
     display: flex;
     flex-direction: column;
-    width: 35%;
+    width: 30%;
     height: 100%;
     overflow-x: hidden;
     overflow-y: auto;
     /* background-color: #F6FAFE; */
-    padding: 2px 50px 72px 2px;
+    padding: 2px 5px 2px 2px;
     gap: 50px;
 }
 
@@ -231,7 +240,7 @@
     justify-content: start;
     box-shadow: 1px 1px 6px 0px #00000026;
     /* gap: 15px; */
-    padding: 10px;
+    padding: 16px;
     border-radius: 5px;
 }
 
@@ -317,7 +326,8 @@
 
 .order-summary-prices-container del {
     font-size: var(--sub-section-size);
-    line-height: var(--sub-section-height);
+    /* line-height: var(--sub-section-height); */
+    line-height: 1.2;
     font-weight: var(--sub-section-weight);
     color: var(--text-color);
     opacity: 0.5;
@@ -325,7 +335,8 @@
 
 .order-summary-prices-container p {
     font-size: var(--section-size);
-    line-height: var(--section-height);
+    /* line-height: var(--section-height); */
+    line-height: 1.2;
     font-weight: var(--section-weight);
     color: var(--text-color);
 }
@@ -492,6 +503,30 @@
     width: 100%;
     gap: 5px;
     display: flex;
+}
+
+@media only screen and (max-width: 1725px){
+    .right-section-place-order-terms-and-rights {
+        /* display: flex;
+        flex-direction: column;
+        align-items: start;
+        justify-content: start;
+        gap: 0; */
+        font-size: 10px;
+    }
+    .right-section-place-order-terms-and-rights a {
+        font-size: 10px !important;
+    }
+}
+
+@media only screen and (max-width: 1550px){
+    .right-section-place-order-terms-and-rights {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        justify-content: start;
+        gap: 0;
+    }
 }
 
 .right-section-place-order-terms-and-rights a {

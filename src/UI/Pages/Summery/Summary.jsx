@@ -196,9 +196,9 @@ const Summary = () => {
       {/* {showThankyou && <ThankYou/>} */}
       {isLoader && <Loader />}
       {!showThankyou &&
-        <div className='summary-left-section'>
-          <div className='checkout-pages-toggle-nav'>
-            {/* {checkoutSections.map((items, index) => (
+        <div className='summary-left-main-outer-container'>
+            <div className='checkout-pages-toggle-nav'>
+              {/* {checkoutSections.map((items, index) => (
               <span
                 key={items.id}
                 onClick={() => handleTabOpen(index)}
@@ -210,66 +210,69 @@ const Summary = () => {
               </span>
             ))} */}
 
-            {checkoutSectionsData.map((item, index) => (
-              <div
-                onClick={() => {
-                  index === 0 ?
-                    handleTabOpen(index) :
-                    moveToNextTab();
-                }}
-                className={`checkout-page-select-option-container ${selectedTab === index ? 'selected-option' : ''}`}
-                key={item.id}
-              >
-                <h3>{item.name}</h3>
-                {/* <input 
+              {checkoutSectionsData.map((item, index) => (
+                <div
+                  onClick={() => {
+                    index === 0 ?
+                      handleTabOpen(index) :
+                      moveToNextTab();
+                  }}
+                  className={`checkout-page-select-option-container ${selectedTab === index ? 'selected-option' : ''}`}
+                  key={item.id}
+                >
+                  <h3>{item.name}</h3>
+                  {/* <input 
                   type='checkbox' 
                   className='checkout-page-options-checkbox' 
                   checked={selectedTab === index} 
                   readOnly
                 /> */}
-                <label className='checkbox1'>
-                  <input
-                    type='checkbox'
-                    checked={selectedTab === index}
-                  // onChange={() => handleTabOpen(index)}
-                  />
-                  <span></span>
-                </label>
+                  <label className='checkbox1'>
+                    <input
+                      type='checkbox'
+                      checked={selectedTab === index}
+                    // onChange={() => handleTabOpen(index)}
+                    />
+                    <span></span>
+                  </label>
 
 
-              </div>
-            ))}
+                </div>
+              ))}
 
 
 
-          </div>
-          {
-            selectedTab === 0 ?
-              <div className='shipping-details-and-coupen-show'>
-                {/* <ShippingDetails userInfoPayload={setOrderPayload} />
+            </div>
+          <div className='summary-left-section'>
+            {
+              selectedTab === 0 ?
+                <div className='shipping-details-and-coupen-show'>
+                  {/* <ShippingDetails userInfoPayload={setOrderPayload} />
               <Coupon /> */}
-                {/* <ShippingForm /> */}
-                <DeliveryInfo ref={deliveryInfoRef} onSubmit={handleDeliveryFormSubmit} />
-              </div> :
-              // selectedTab === 1 ?
-              //   <div className='order-summery-and-proceed-btn'>
-              //     <Coupon />
-              //     <ShipingAndDelivery />
-              //     <PaymentInfo />
-              //     <OrderSummary />
-              //     <div className='order-summery-proceed-btn-div'>
-              //       <button onClick={() => {
-              //         handleTabOpen(2); handleClickTop();
-              //         // addProducts(cartProducts)
-              //       }}>
-              //         Continue to Payment
-              //       </button>
-              //     </div>
-              //   </div> :
-              selectedTab === 1 ? <PaymentMethod handleSubmitOrder={handleSubmit} />
-                : <></>
-          }
+                  {/* <ShippingForm /> */}
+                  <DeliveryInfo ref={deliveryInfoRef} onSubmit={handleDeliveryFormSubmit} />
+                </div> :
+                // selectedTab === 1 ?
+                //   <div className='order-summery-and-proceed-btn'>
+                //     <Coupon />
+                //     <ShipingAndDelivery />
+                //     <PaymentInfo />
+                //     <OrderSummary />
+                //     <div className='order-summery-proceed-btn-div'>
+                //       <button onClick={() => {
+                //         handleTabOpen(2); handleClickTop();
+                //         // addProducts(cartProducts)
+                //       }}>
+                //         Continue to Payment
+                //       </button>
+                //     </div>
+                //   </div> :
+                selectedTab === 1 ? <PaymentMethod handleSubmitOrder={handleSubmit} />
+                  : <></>
+            }
+          </div>
         </div>
+
       }
       {!showThankyou && <div className={` ${currentId === 1 ? 'summary-right-section' : currentId === 2 ? 'summery-right-section-according-payment' : 'summery-right-section-low-height'}`}>
         {/* <TrustFor />
@@ -386,10 +389,10 @@ const Summary = () => {
               <div className='right-section-order-place-container'>
                 <span className='right-section-place-order-terms-and-rights'>
                   By placing this order I agree to the Furniture Mecca
-                  <Link 
-                  onClick={()=>{
-                    handleOpenTermsConditionsModal()
-                  }}
+                  <Link
+                    onClick={() => {
+                      handleOpenTermsConditionsModal()
+                    }}
                   // to={'/terms-and-conditions'}
                   >Terms & Conditions</Link>
                 </span>

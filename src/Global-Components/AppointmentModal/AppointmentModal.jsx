@@ -40,9 +40,6 @@ const AppointmentModal = (
         }
     } 
 
-
-
-
     const { appointmentPayload, setAppointmentPayload } = useAppointment()
 
     const handleServiceType = (service, index) => {
@@ -137,8 +134,6 @@ const AppointmentModal = (
         })
     }
 
-
-
     return (
         <div className={`appointment-modal-main-container ${showAppointMentModal ? 'show-appointment-modal' : ''}`} onClick={handleCloseModal}>
 
@@ -175,7 +170,6 @@ const AppointmentModal = (
                                 setSelectedTab={setSelectedTab}
                                 handleCategorySelect={handleCategorySelect}
                                 serviceIndex={serviceIndex}
-                            // setServiceTypeIndex={}
                             />
                                 : selectedTab === 2 ? <LocationTab
                                     selectedTab={selectedTab}

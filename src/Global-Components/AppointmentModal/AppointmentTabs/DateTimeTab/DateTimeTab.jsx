@@ -65,7 +65,6 @@ const DateTimeTab = ({selectedTab, setSelectedTab}) => {
           <Calendar
             value={dateState}
             onChange={changeDate}
-            // tileDisabled={({ date }) => date < new Date().setHours(0, 0, 0, 0)}
             tileDisabled={({ date }) => date < today || date > maxDate}
             formatShortWeekday={(locale, date) =>
               date.toLocaleDateString(locale, { weekday: 'short' }).slice(0, 2)

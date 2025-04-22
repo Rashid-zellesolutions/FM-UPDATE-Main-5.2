@@ -32,7 +32,6 @@
 }
 
 .single-time-slot {
-    /* padding: 5px 10px; */
     width: 200px;
     height: 40px;
     border: 1px solid var(--tertiary-color);
@@ -58,7 +57,6 @@
 
 /* Calender Styling */
 .date-time-tab-calender-section .react-calendar__navigation {
-    /* border-bottom: 1px solid var(--border-color) !important; */
     margin-bottom: 0px !important;
 }
 
@@ -68,12 +66,10 @@
 
 .react-calendar__tile--weekend {
     color: inherit !important;
-    /* or set to your desired color */
 }
 
 .custom-tile {
     border: 1px solid var(--border-color) !important;
-    /* adjust color and style as needed */
 }
 
 .react-calendar__month-view__weekdays__weekday abbr[title] {
@@ -91,8 +87,6 @@
 .react-calendar__tile--active {
     border-radius: 0px !important;
 }
-
-
 
 @media only screen and (max-width: 480px) {
     .date-time-tab-main-container {

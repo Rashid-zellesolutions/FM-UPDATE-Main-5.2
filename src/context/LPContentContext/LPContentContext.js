@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState} from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { url } from "../../utils/api";
 import axios from "axios";
 import BestSellerSliderMainBanner from '../../Assets/Furniture Mecca/Landing Page/best seller products/Home Page Banner 396x595.jpg';
@@ -12,14 +12,9 @@ export const LPContentProvider = ({ children }) => {
   const [error, setError] = useState(null);
   const [landingPageCategories, setLandingPageCategories] = useState([]);
   const [landingPageFOEB, setLandingPageFOEB] = useState([]);
-
-
   const [content2, setContent2] = useState({});
   const [featuredProducts, setFeaturedProducts] = useState([]);
   const [slides, setSlides] = useState([])
-
-  
-
 
   // Standard Function
   const getHomeSliderImages = async () => {
@@ -36,8 +31,6 @@ export const LPContentProvider = ({ children }) => {
       console.error("UnExpected Server Error", error);
     }
   }
-
-  
 
   // Standard Function
   const getLandingPageContent2 = async () => {
@@ -106,15 +99,13 @@ export const LPContentProvider = ({ children }) => {
   // Standard Function
   const getFinanceBannerImagesFromApi = async () => {
     try {
-      // if (financingBanners === null) {
-        const response = await axios.get(`${url}/api/v1/pages/home/upd-finance-slider/get`);
-        if (response.status === 200) {
-          setFinancingBanners(response?.data?.slider)
-          console.log(response?.data?.slider,"here is data of fin slider")
-        } else {
-          console.log("UnExpected Error", response.status)
-        }
-      // }
+      const response = await axios.get(`${url}/api/v1/pages/home/upd-finance-slider/get`);
+      if (response.status === 200) {
+        setFinancingBanners(response?.data?.slider)
+        console.log(response?.data?.slider, "here is data of fin slider")
+      } else {
+        console.log("UnExpected Error", response.status)
+      }
     } catch (error) {
       console.error("UnExpected Server Error", error);
     }
@@ -173,12 +164,10 @@ export const LPContentProvider = ({ children }) => {
   ]);
 
   // Category Page States
-    const [categoryPageData, setCategoryPageData] = useState();
-    const [categoryData, setCategoryData] = useState();
-    const [bestSelling, setBestSelling] = useState();
-    const [paragraph, setParagraph] = useState(null);
-
-    
+  const [categoryPageData, setCategoryPageData] = useState();
+  const [categoryData, setCategoryData] = useState();
+  const [bestSelling, setBestSelling] = useState();
+  const [paragraph, setParagraph] = useState(null);
 
   return (
     <LPContentContext.Provider value={{

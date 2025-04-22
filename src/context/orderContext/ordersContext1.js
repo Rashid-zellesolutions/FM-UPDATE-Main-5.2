@@ -82,7 +82,6 @@ export const MyOrdersProvider = ({ children }) => {
     const [loading, setLoading] = useState(true); // Loading state
     const [selectedTab, setSelectedTab] = useState(0)
     const [isLoader, setIsLoader] = useState(false)
-    const { resetCart } = useContext(CartContext)
 
     async function fetchActivePaymentMethods() {
         const apiUrl = `${url}/api/v1/payment-methods/get`;
@@ -244,7 +243,6 @@ export const MyOrdersProvider = ({ children }) => {
                 },
             };
     
-            // const url = "http://localhost:8080";
             const api = `/api/v1/orders/add`;
             const response = await axios.post(`${url}${api}, ${updatedPayload}`);
     

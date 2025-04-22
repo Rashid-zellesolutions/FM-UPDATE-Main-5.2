@@ -17,7 +17,6 @@ export const MyOrdersProvider = ({ children }) => {
     const { totalTax, calculateTotalTax, getShippingInfo, selectedOption } = useGlobalContext();
     const [showThankyou, setThankyouState] = useState(false);
 
-
     const [orderPlacedInfo, setOrderPlacedInfo] = useState({
         orderNumber: 0,
         billing: {
@@ -165,10 +164,6 @@ export const MyOrdersProvider = ({ children }) => {
 
     };
 
-    // useEffect(() => {
-
-
-
     const handleZipCode = async (zipCode) => {
 
         try {
@@ -211,12 +206,6 @@ export const MyOrdersProvider = ({ children }) => {
         }
     };
 
-
-    // if (orderPayload.billing.postal_code.length === 5 && /^\d{5}$/.test(orderPayload.billing.postal_code)) {
-    //     handleZipCode(orderPayload.billing.postal_code);
-    // }
-    // }, [orderPayload.billing.postal_code]);
-
     const handleNestedValueChangeShipping = (e) => {
         const { name, value } = e.target;
 
@@ -236,8 +225,6 @@ export const MyOrdersProvider = ({ children }) => {
             shipToDiffAdd: !prevOrders.shipToDiffAdd,
         }));
     };
-
-
 
     const addProducts = (products) => {
         setOrderPayload((prevOrder) => ({
@@ -320,12 +307,10 @@ export const MyOrdersProvider = ({ children }) => {
                 },
             };
 
-            // const url = "http://localhost:8080";
             const api = `/api/v1/orders/add`;
             const response = await axios.post(`${url}${api}`, updatedPayload);
 
             if (response.status === 201) {
-                // setThankyouState(true);
                 localStorage.removeItem('cart2')
 
                 // Update orderPlacedInfo with response data

@@ -27,7 +27,6 @@ export const WishListProvider = ({children}) => {
         if (!exists) {
             setWishList((prevList) => [...prevList, product]);
         } else {
-            // console.warn(`Product with ID ${product.uid} already in the wishlist.`);
             alert(`Product with ID ${product.uid} already in the wishlist.`)
         }
     };

@@ -6,8 +6,6 @@ export const CartContext = createContext()
 
 export const CartProvider = ({ children }) => {
 
-    // const url = "http://localhost:8080";
-
     const [eachProtectionValue, setEachProtectionValue] = useState(150); // 99 was old single protection price
     const [eachProtectionValue2, setEachProtectionValue2] = useState(200); // 99 was old single protection price
     const [totalProtectionValue, setTotalProtectionValue] = useState(200);
@@ -35,18 +33,6 @@ export const CartProvider = ({ children }) => {
         return savedIsProfessionalAssembly === 1; // If saved value is 1, set true; otherwise, false
     });
 
-    const [custToken, setCustToken] = useState(() => {
-        const userToken = localStorage.getItem('userToken');
-        return userToken ? userToken : null;
-    });
-
-    const [uuid, setUuid] = useState(() => {
-        const userUid = localStorage.getItem('uuid');
-        return userUid ? userUid : null;
-    });
-
-
-
     useEffect(() => {
         const storedCart = localStorage.getItem('cart');
         if (storedCart) {
@@ -62,12 +48,8 @@ export const CartProvider = ({ children }) => {
         }
     }, []);
 
-
     const [isCartLoading, setIsCartLoading] = useState(false);
     const [cartSection, setCartSection] = useState(false);
-
-
-
 
     // initialize cart from local storage
     const [subTotal0, setSubTotal0] = useState(0);
@@ -82,8 +64,6 @@ export const CartProvider = ({ children }) => {
         const savedCart = localStorage.getItem('cart');
         return savedCart ? JSON.parse(savedCart) : [];
     })
-
-
 
     // save cart to local storage when eer it changes
     useEffect(() => {
@@ -124,8 +104,6 @@ export const CartProvider = ({ children }) => {
         localStorage.setItem('singleProduct', JSON.stringify(singleProduct));
     }, [singleProduct])
 
-
-
     const updateCartDB = async (updatedCart) => {
         try {
 
@@ -137,15 +115,11 @@ export const CartProvider = ({ children }) => {
     
             const method = isCartUidInvalid ? "post" : "put";
 
-
-
-
             // Ensure state update reflects before API call
             const isUserAnonymous = (localStorage.getItem('uuid') && localStorage.getItem('userToken')) ? false : true;
             const uuid = localStorage.getItem('uuid');
             const custToken = localStorage.getItem('userToken');
             await new Promise((resolve) => setTimeout(resolve, 0));
-
 
             // Send updated cart to API
             let response;
@@ -173,8 +147,6 @@ export const CartProvider = ({ children }) => {
                 
             }
 
-          
-
             console.log("API Response:", response.data);
             setIsCartLoading(false);
             return response.data;
@@ -184,13 +156,6 @@ export const CartProvider = ({ children }) => {
             throw error;
         }
     };
-
-
-
-
-
-
-
 
     const addSingleProduct = (product) => {
         setSingleProduct((prevState) => ({
@@ -257,8 +222,6 @@ export const CartProvider = ({ children }) => {
         }
     };
 
-
-
     // Add Items To Cart
     const addToCart = (product, LocalQuantity, isProtected) => {
         setCart((prevCart) => {
@@ -291,160 +254,6 @@ export const CartProvider = ({ children }) => {
         })
 
     };
-
-    //     const addToCart0 = async (product, variationData, isProtected, quantity) => {
-    //         setIsCartLoading(true);
-    //         console.log('Cart UID:', cartUid);
-
-    //         if (cartUid === "undefined" || cartUid === "null") {
-    //             console.log('Cart is null, adding products');
-
-    //             // 🛠 Wait for state update before making API call
-    //             const newCart = await new Promise((resolve) => {
-    //                 setCartProducts((prev) => {
-    //                     const updatedProducts = prev.products || [];
-
-    //                     const existingProduct =
-    //                         product.type === "simple"
-    //                             ? updatedProducts.find((item) => item.product_uid === product?.uid)
-    //                             : updatedProducts.find((item) => item.variation_uid === variationData?.uid);
-
-    //                     let updatedCart;
-
-    //                     if (existingProduct) {
-    //                         updatedCart = {
-    //                             ...prev,
-    //                             products: updatedProducts.map((item) =>
-    //                                 product.type === "simple"
-    //                                     ? item.product_uid === product.uid
-    //                                         ? { ...item, quantity: item.quantity + parseInt(quantity) }
-    //                                         : item
-    //                                     : item.variation_uid === product.default_variation
-    //                                         ? { ...item, quantity: item.quantity + parseInt(quantity) }
-    //                                         : item
-    //                             ),
-    //                         };
-    //                     } else {
-    //                         updatedCart = {
-    //                             ...prev,
-    //                             products: [
-    //                                 ...updatedProducts,
-    //                                 {
-    //                                     product_uid: product?.uid,
-    //                                     name: product?.name,
-    //                                     isVariable: product?.type === "simple" ? 0 : 1,
-    //                                     variation_uid: product?.type === "simple" ? 0 : variationData?.uid,
-    //                                     image: product?.type === "simple" ? product?.image : variationData?.images?.[0],
-    //                                     attributes: product.type === "simple" ? product.attributes : variationData?.attributes,
-    //                                     sale_price: product.type === "simple" ? product.sale_price : variationData?.sale_price,
-    //                                     regular_price: product.type === "simple" ? product.regular_price : variationData?.regular_price,
-    //                                     quantity: parseInt(quantity),
-    //                                     sku: product.type === "simple" ? product.sku : variationData?.sku,
-    //                                     is_protected: isProtected,
-    //                                 },
-    //                             ],
-    //                         };
-    //                     }
-
-    //                     console.log("Updated Cart:", updatedCart);
-    //                     resolve(updatedCart); // ✅ Resolve Promise
-    //                     return updatedCart; // ✅ Update state
-    //                 });
-    //             });
-
-    //             try {
-    //                 const response = await axios.post("${url}/api/v1/unused-cart/add", { cart: newCart });
-    //                 console.log("API Response:", response.data,response?.data?.data?._id);
-    //                 setCartUid(response?.data?.data?._id); // ✅ Corrected response handling
-    //                setCartSection(true)
-    //                setIsCartLoading(false);
-    //                 return response.data; // ✅ Return response data
-    //             } catch (error) {
-    //                 console.error("Error adding to cart:", error);
-    // //setCartSection(true)
-    // setIsCartLoading(false);
-    //                 throw error;
-    //             }
-
-    //         } else {
-    //             console.log('Cart UID exists, updating products');
-
-    //             const newCart = await new Promise((resolve) => {
-    //                 setCartProducts((prev) => {
-    //                     const updatedProducts = prev.products || [];
-
-    //                     const existingProduct =
-    //                         product.type === "simple"
-    //                             ? updatedProducts.find((item) => item.product_uid === product?.uid)
-    //                             : updatedProducts.find((item) => item.variation_uid === variationData?.uid);
-
-    //                     let updatedCart;
-
-    //                     if (existingProduct) {
-    //                         updatedCart = {
-    //                             ...prev,
-    //                             products: updatedProducts.map((item) =>
-    //                                 product.type === "simple"
-    //                                     ? item.product_uid === product.uid
-    //                                         ? { ...item, quantity: item.quantity + parseInt(quantity) }
-    //                                         : item
-    //                                     : item.variation_uid === product.default_variation
-    //                                         ? { ...item, quantity: item.quantity + parseInt(quantity) }
-    //                                         : item
-    //                             ),
-    //                         };
-    //                     } else {
-    //                         updatedCart = {
-    //                             ...prev,
-    //                             products: [
-    //                                 ...updatedProducts,
-    //                                 {
-    //                                     product_uid: product?.uid,
-    //                                     name: product?.name,
-    //                                     isVariable: product?.type === "simple" ? 0 : 1,
-    //                                     variation_uid: product?.type === "simple" ? 0 : variationData?.uid,
-    //                                     image: product?.type === "simple" ? product?.image : variationData?.images?.[0],
-    //                                     attributes: product.type === "simple" ? product.attributes : variationData?.attributes,
-    //                                     sale_price: product.type === "simple" ? product.sale_price : variationData?.sale_price,
-    //                                     regular_price: product.type === "simple" ? product.regular_price : variationData?.regular_price,
-    //                                     quantity: parseInt(quantity),
-    //                                     sku: product.type === "simple" ? product.sku : variationData?.sku,
-    //                                     is_protected: isProtected,
-    //                                 },
-    //                             ],
-    //                         };
-    //                     }
-
-    //                     console.log("Updated Cart:", updatedCart);
-    //                     resolve(updatedCart); // ✅ Resolve Promise
-    //                     return updatedCart; // ✅ Update state
-    //                 });
-    //             });
-
-    //             try {
-    //                 const response = await axios.put(`${url}/api/v1/unused-cart/edit/${cartUid}`, { cart: newCart });
-
-    //                 console.log("API Response:", response.data);
-
-    //                 await new Promise((resolve) => setTimeout(resolve, 0)); // Ensures React processes state updates correctly
-
-    //                 setCartSection(true); // ✅ Now executes after the API response is handled
-    //                 setIsCartLoading(false);
-    //                 return response.data;
-    //             } catch (error) {
-    //                 console.error("Error updating cart:", error);
-    //                 setIsCartLoading(false);
-    //                 throw error; // Avoid calling setCartSection on error if not needed
-    //             }
-
-    //         }
-    //     };
-
-
-
-
-
-
 
     const updateCartAPI = async (url, newCart, method) => {
         try {
@@ -549,20 +358,6 @@ export const CartProvider = ({ children }) => {
         // return updateCartAPI(apiUrl, newCart, method);
         return isUserAnonymous ? updateCartAPI(apiUrl0, newCart, method) : updateCartAPI2(apiUrl1, newCart, method, localStorage.getItem('userToken'), localStorage.getItem('uuid'));
     };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     const addSingleProtection = async (uid, isVariable = false) => {
         setIsCartLoading(true);
@@ -733,8 +528,6 @@ export const CartProvider = ({ children }) => {
             throw error;
         }
     };
-
-
 
     const calculateTotalPrice = () => {
         if (!Array.isArray(cartProducts.products)) {

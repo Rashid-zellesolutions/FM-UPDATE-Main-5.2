@@ -23,21 +23,15 @@
     font-size: var(--sub-section-size);
     line-height: var(--product-height);
     font-weight: var(--sub-section-weight);
-    /* font-size: 20px; */
-    /* font-weight: 600; */
     text-transform: none;
     font-style: normal;
     text-decoration: none;
-    /* line-height: 30px; */
     letter-spacing: 0;
     word-spacing: 0;
     margin-bottom: 12px;
 }
 
 .footer-nav-items{
-    /* font-weight: 400;
-    font-size: 14px;
-    line-height: 19px; */
     font-size: var(--content-one-size);
     line-height: var(--product-height);
     font-weight: var(--content-two-weight);
@@ -713,7 +707,6 @@ p.footer-nav-items > a{
     justify-content: start;
 }
 
-
 .footer-costumer-care-and-about h3{
     font-size: var(--sub-section-size);
     line-height: var(--sub-section-height);
@@ -724,7 +717,6 @@ p.footer-nav-items > a{
 
 
 /* .about-and-care-link{} */
-
 .footer-costumer-care-and-about .about-and-care-link{
     font-size: var(--content-one-size);
     font-weight: var(--content-two-weight);
@@ -758,7 +750,6 @@ p.footer-nav-items > a{
     font-size: 21px;
     line-height: 24px;
     color: #fff;
-
 }
 
 @media only screen and (max-width: 480px){
@@ -770,5 +761,3 @@ p.footer-nav-items > a{
         display: flex;
     }
 }
-
-

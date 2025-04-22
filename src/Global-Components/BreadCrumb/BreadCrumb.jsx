@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import './BreadCrumb.css';
 import { useLocation, Link } from 'react-router-dom';
 import { useNavigation } from '../../context/BreadCrumbContext/NavigationContext';
@@ -24,14 +24,6 @@ const Breadcrumb = ({ category, productName, sku, categorySlug }) => {
 
     const { navigationHistory } = useNavigation();
     const pathnames = location.pathname.split('/').filter(x => x);
-
-    // Combine navigation history and current pathnames
-    // const fullPathNames = [...navigationHistory, ...pathnames];
-
-    // if (fullPathNames.length === 0) {
-    //     return null; // Don't show anything if on the home page
-    // }
-
 
     const fullPathNames = [...navigationHistory, ...pathnames];
 
@@ -77,7 +69,6 @@ const Breadcrumb = ({ category, productName, sku, categorySlug }) => {
                                     .split('-') // Split slug into words
                                     .map(word => word.charAt(0).toUpperCase() + word.slice(1)) // Capitalize each word
                                     .join(' '); // Join words with spaces
-                    // : pathname.charAt(0).toUpperCase() + pathname.slice(1).replace(/-/g, ' '); // Default name
                     const routeTo = isProductPage && categorySlug && index === fullPathNames.length - 1
                         ? `/product/${sku}`  // Ensure that SKU does not redirect to the category page
                         : isCategory

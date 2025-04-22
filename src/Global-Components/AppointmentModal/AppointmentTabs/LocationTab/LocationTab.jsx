@@ -39,8 +39,6 @@ const LocationTab = ({ selectedTab, setSelectedTab, handleSelectStore }) => {
     setShowLocationDetails((prevIndex) => prevIndex === index ? null : index)
   }
 
-  
-
   return (
     <div className='location-tab-main-container'>
       {loading && <Loader />}

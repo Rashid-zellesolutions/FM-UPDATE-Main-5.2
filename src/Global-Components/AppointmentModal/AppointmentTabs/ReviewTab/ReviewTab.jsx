@@ -56,7 +56,6 @@ const ReviewTab = ({ handleSubmitAppointment, selectedTab, setSelectedTab }) => 
           </label>
         )}
         
-
         <div className='type-selected-button'>
           <button onClick={() => setSelectedTab(selectedTab - 1)}>Previous</button>
           <button onClick={handleSubmitAppointment}>

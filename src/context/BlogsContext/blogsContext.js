@@ -68,9 +68,6 @@ export const BlogsProvider = ({ children }) => {
         fetchBlogs(null)
     }, [])
 
-
-
-
     return (
         <BlogsContext.Provider value={{
             blogs,

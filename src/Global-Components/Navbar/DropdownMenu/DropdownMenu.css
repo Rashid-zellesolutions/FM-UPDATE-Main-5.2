@@ -1,7 +1,8 @@
 .mattresses-main-div{
     display: flex;
-    justify-content: space-between;
+    justify-content: start;
     width: 100%;
+    gap: 50px;
     height: auto;
     /* max-height: 100%; */
     padding: 25px 50px 25px 50px;
@@ -17,6 +18,12 @@
 
 .mattresses-main-div::-webkit-scrollbar {
     display: none;
+}
+
+.nav-items-outer-container{
+    display: flex;
+    width: max-content;
+    max-width: 20%;
 }
 
 .menu-links{
@@ -95,14 +102,23 @@
     line-height: 1.5;
     letter-spacing: normal;
     color: var(--text-color);
+    width: 100%;
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    
 }
 
 .mattres-links a{
-    font-size: 14px;
+    /* font-size: 14px; */
+    font-size: clamp(10px, 1.2vw, 14px);
     font-weight: 400;
     line-height: 1.2;
     color: var(--text-color);
     text-decoration: none;
+    white-space: nowrap;        /* Prevents text from wrapping */
+    overflow: hidden;           /* Hides overflowing text */
+    text-overflow: ellipsis; 
 }
 
 .mattres-links a:hover{
@@ -121,8 +137,8 @@
     /* width: 100%; */
     padding: 10px 0px;
     gap: 20px;
-    flex-grow: 1;
-    justify-content: flex-start;
+    width: 80%;
+    justify-content: start;
     align-items: center;
     flex-shrink: 0;
     position: relative;
@@ -134,7 +150,7 @@
     position: relative;
     /* width: 100%; */
     flex-grow: 1;
-    width: 315px !important;
+    width: 365px !important;
     height: auto;
     gap: 5px;
     text-decoration: none;
@@ -181,11 +197,35 @@
     }
 }
 
-@media only screen and (max-width: 1150px) {
-    .mattress-image:nth-last-child(1) {
-        display: none;
-      }
-}
+/* @media only screen and (max-width: 1700px) {
+    .mattress-image{
+        max-height: 320px;
+    }
+} */
+
+/* @media only screen and (max-width: 1530px) {
+    .mattress-image{
+        max-height: 280px;
+    }
+} */
+
+/* @media only screen and (max-width: 1300px) {
+    .mattress-image{
+        max-width: 250px;
+        min-width: 143px;
+        height: 215px;
+    }
+
+    .image-title{
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 15px;
+    }
+
+    .mattress-image > .pricing >.price{
+        font-size: 8px;
+    }
+} */
 
 .image-title{
     padding: 0;
